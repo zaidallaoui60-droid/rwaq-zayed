@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>رواق زايد للفلسفة</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+
+:root{
+    --bg-dark:#080707;
+    --card-bg:rgba(18,16,18,.92);
+    --gold-light:#e5cf87;
+    --gold-primary:#c5a059;
+    --gold-dark:#8c6e33;
+    --text-white:#f4f1ea;
+    --text-muted:#a39e93;
+    --border-gold:rgba(197,160,89,.35);
+    --border-gold-bright:rgba(229,207,135,.8);
+
+    --font-amiri:'Amiri',serif;
+    --font-ruqaa:'Aref Ruqaa',serif;
+    --font-cairo:'Cairo',sans-serif;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#080707;
+    color:var(--text-white);
+    font-family:var(--font-cairo);
+    direction:rtl;
+    overflow-x:hidden;
+    line-height:1.6;
+}
+
+.container{
+    max-width:1280px;
+    margin:auto;
+    padding:0 20px;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar{
+    position:fixed;
+    top:0;
+    right:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+
+    background:rgba(6,5,6,.88);
+    backdrop-filter:blur(12px);
+
+    border-bottom:1px solid rgba(197,160,89,.2);
+
+    padding:10px 0;
+}
+
+.nav-container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.brand-right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.brand-title-box{
+    display:flex;
+    flex-direction:column;
+    text-align:right;
+}
+
+.brand-title{
+    font-family:var(--font-amiri);
+    font-size:1.35rem;
+    font-weight:700;
+    line-height:1.1;
+}
+
+.brand-subtitle{
+    font-size:.75rem;
+    color:var(--gold-primary);
+}
+
+.owl-logo-frame{
+    width:42px;
+    height:42px;
+
+    border:1px solid var(--gold-primary);
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:radial-gradient(
+        circle,
+        rgba(197,160,89,.2),
+        rgba(0,0,0,.8)
+    );
+}
+
+.owl-logo-frame svg{
+    width:26px;
+    height:26px;
+    fill:var(--gold-light);
+}
+
+.nav-menu{
+    display:flex;
+    list-style:none;
+    gap:30px;
+    align-items:center;
+}
+
+.nav-item a{
+    text-decoration:none;
+    color:var(--text-muted);
+    font-size:.95rem;
+    font-weight:600;
+    position:relative;
+    transition:.3s;
+}
+
+.nav-item a:hover,
+.nav-item.active a{
+    color:var(--gold-light);
+}
+
+.nav-item.active a::after{
+    content:'';
+    position:absolute;
+    right:0;
+    bottom:-6px;
+    width:100%;
+    height:2px;
+    background:var(--gold-primary);
+}
+
+.nav-left-tools{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.nav-left-tools button{
+    background:none;
+    border:0;
+    color:var(--text-muted);
+    font-size:1.1rem;
+    cursor:pointer;
+}
+
+.nav-left-tools button:hover{
+    color:var(--gold-light);
+}
+
+
+/* =====================================================
+   HERO — الغلاف الأول
+===================================================== */
+
+.hero-section{
+
+    position:relative;
+
+    min-height:100vh;
+
+    padding-top:100px;
+    padding-bottom:60px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+
+    linear-gradient(
+        to bottom,
+        rgba(8,7,7,.45),
+        rgba(8,7,7,.85)
+    ),
+
+    url("https://commons.wikimedia.org/wiki/Special:Redirect/file/Ancientlibraryalex.jpg")
+    center/cover no-repeat;
+}
+
+
+.hero-section::before{
+    content:'';
+    position:absolute;
+    inset:0;
+
+    background:
+    radial-gradient(
+        circle at center,
+        rgba(0,0,0,.05),
+        rgba(0,0,0,.85)
+    );
+}
+
+
+/* =====================================================
+   محتوى الغلاف
+===================================================== */
+
+.hero-content{
+    position:relative;
+    z-index:2;
+
+    width:100%;
+    max-width:1200px;
+
+    text-align:center;
+}
+
+
+/* =====================================================
+   ثلاث صور:
+   أثينا — المكتبة — بيت الحكمة
+===================================================== */
+
+.philosophy-places{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr
+        1.65fr
+        1fr;
+
+    gap:20px;
+
+    align-items:stretch;
+
+    margin-bottom:35px;
+}
+
+
+.place-card{
+
+    position:relative;
+
+    min-height:380px;
+
+    border:1px solid var(--border-gold);
+
+    border-radius:8px;
+
+    overflow:hidden;
+
+    background:#111;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.65);
+
+    transition:.35s;
+}
+
+.place-card:hover{
+    transform:translateY(-5px);
+
+    border-color:var(--gold-light);
+}
+
+
+.place-card img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    filter:
+        brightness(.62)
+        contrast(1.08)
+        saturate(.8);
+
+    transition:.5s;
+}
+
+.place-card:hover img{
+    transform:scale(1.04);
+    filter:
+        brightness(.72)
+        contrast(1.08)
+        saturate(.9);
+}
+
+
+.place-card::after{
+
+    content:'';
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,.9),
+            rgba(0,0,0,.05) 65%
+        );
+
+    pointer-events:none;
+}
+
+
+.place-label{
+
+    position:absolute;
+
+    right:0;
+    left:0;
+    bottom:0;
+
+    z-index:2;
+
+    padding:22px 15px;
+
+    text-align:center;
+}
+
+.place-label h3{
+
+    font-family:var(--font-amiri);
+
+    font-size:1.7rem;
+
+    color:var(--gold-light);
+
+    margin-bottom:3px;
+}
+
+.place-label span{
+
+    color:#eee;
+
+    font-size:.85rem;
+}
+
+
+/* =====================================================
+   المكتبة في الوسط
+===================================================== */
+
+.central-library{
+
+    min-height:380px;
+
+    position:relative;
+
+    border:
+        2px solid
+        rgba(229,207,135,.65);
+
+    border-radius:8px;
+
+    overflow:hidden;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#080707;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.8),
+
+        inset 0 0 50px
+        rgba(197,160,89,.12);
+}
+
+
+.central-library img{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    filter:
+        brightness(.38)
+        contrast(1.12)
+        saturate(.75);
+}
+
+
+.central-library::after{
+
+    content:'';
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,.1),
+            rgba(0,0,0,.82)
+        );
+
+    z-index:1;
+}
+
+
+.library-content{
+
+    position:relative;
+
+    z-index:2;
+
+    padding:30px;
+}
+
+.library-icon{
+
+    width:75px;
+    height:75px;
+
+    margin:0 auto 15px;
+
+    border:
+        1px solid
+        var(--gold-primary);
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:
+        rgba(0,0,0,.65);
+
+    box-shadow:
+        0 0 25px
+        rgba(197,160,89,.25);
+}
+
+.library-icon i{
+
+    font-size:2rem;
+
+    color:var(--gold-light);
+}
+
+.library-title{
+
+    font-family:var(--font-amiri);
+
+    font-size:3rem;
+
+    font-weight:700;
+
+    color:#fff;
+
+    text-shadow:
+        0 3px 15px #000;
+
+    margin-bottom:4px;
+}
+
+.library-subtitle{
+
+    font-family:var(--font-ruqaa);
+
+    font-size:1.45rem;
+
+    color:var(--gold-light);
+}
+
+
+/* =====================================================
+   عنوان الموقع
+===================================================== */
+
+.hero-main-title{
+
+    font-family:var(--font-amiri);
+
+    font-size:3.8rem;
+
+    font-weight:700;
+
+    color:#fff;
+
+    text-shadow:
+        0 4px 15px rgba(0,0,0,.9);
+
+    margin-bottom:5px;
+}
+
+.hero-tagline{
+
+    font-family:var(--font-ruqaa);
+
+    font-size:1.6rem;
+
+    color:var(--gold-light);
+
+    margin-bottom:15px;
+}
+
+.hero-sub-text{
+
+    font-size:1rem;
+
+    color:#f4f1ea;
+
+    line-height:1.8;
+
+    margin-bottom:25px;
+}
+
+
+/* =====================================================
+   الأزرار
+===================================================== */
+
+.hero-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+    justify-content:center;
+}
+
+.btn-gold,
+.btn-outline{
+
+    padding:10px 28px;
+
+    border-radius:20px;
+
+    font-weight:700;
+
+    font-size:.95rem;
+
+    text-decoration:none;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    transition:.25s;
+}
+
+.btn-gold{
+
+    background:
+        linear-gradient(
+            135deg,
+            #e5cf87,
+            #c5a059
+        );
+
+    color:#000;
+
+    box-shadow:
+        0 4px 15px
+        rgba(197,160,89,.4);
+}
+
+.btn-outline{
+
+    background:rgba(0,0,0,.65);
+
+    color:#fff;
+
+    border:
+        1px solid
+        var(--border-gold-bright);
+}
+
+.btn-gold:hover,
+.btn-outline:hover{
+
+    transform:translateY(-3px);
+}
+
+
+/* =====================================================
+   عناوين الأقسام
+===================================================== */
+
+.section-header{
+
+    text-align:center;
+
+    margin-bottom:40px;
+}
+
+.wing-title-wrapper{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:15px;
+}
+
+.wing-title-wrapper::before,
+.wing-title-wrapper::after{
+
+    content:'❖';
+
+    color:var(--gold-primary);
+
+    font-size:.8rem;
+}
+
+.section-title-text{
+
+    font-family:var(--font-amiri);
+
+    font-size:2.2rem;
+
+    color:#fff;
+
+    font-weight:700;
+}
+
+.section-subtitle-text{
+
+    font-size:.9rem;
+
+    color:var(--text-muted);
+
+    margin-top:5px;
+}
+
+
+/* =====================================================
+   الفلاسفة
+===================================================== */
+
+.philosophers-section{
+
+    padding:60px 0;
+
+    background:
+
+        linear-gradient(
+            to bottom,
+            #080707,
+            #0d0b0d
+        );
+}
+
+.philosophers-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:18px;
+}
+
+
+.ph-card{
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(25,22,25,.96),
+            rgba(10,9,10,.98)
+        );
+
+    border:
+        1px solid
+        var(--border-gold);
+
+    border-radius:7px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    transition:.3s;
+
+    box-shadow:
+        0 10px 25px
+        rgba(0,0,0,.45);
+}
+
+.ph-card:hover{
+
+    transform:translateY(-7px);
+
+    border-color:var(--gold-light);
+}
+
+
+.ph-img-container{
+
+    width:100%;
+
+    height:270px;
+
+    overflow:hidden;
+
+    background:#111;
+
+    position:relative;
+}
+
+.ph-img-container img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    object-position:center;
+
+    display:block;
+
+    filter:
+        grayscale(15%)
+        contrast(1.08);
+
+    transition:.4s;
+}
+
+.ph-card:hover
+.ph-img-container img{
+
+    transform:scale(1.03);
+
+}
+
+
+.ph-img-container::after{
+
+    content:'';
+
+    position:absolute;
+
+    bottom:0;
+    right:0;
+    left:0;
+
+    height:45%;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(18,16,18,1),
+            transparent
+        );
+}
+
+
+.ph-details{
+
+    padding:15px;
+
+    text-align:center;
+
+    min-height:145px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+}
+
+.ph-name{
+
+    font-family:var(--font-amiri);
+
+    font-size:1.55rem;
+
+    color:#fff;
+
+    font-weight:700;
+
+    margin-bottom:3px;
+}
+
+.ph-date{
+
+    color:var(--gold-primary);
+
+    font-size:.85rem;
+
+    margin-bottom:6px;
+}
+
+.ph-sub{
+
+    font-size:.8rem;
+
+    color:var(--gold-light);
+
+    margin-bottom:8px;
+}
+
+.ph-quote{
+
+    font-size:.76rem;
+
+    color:var(--text-muted);
+
+    line-height:1.5;
+
+    font-style:italic;
+}
+
+
+/* =====================================================
+   البرنامج
+===================================================== */
+
+.program-section{
+
+    padding:60px 0 100px;
+}
+
+.program-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+}
+
+.prog-card{
+
+    background:var(--card-bg);
+
+    border:
+        1px solid
+        var(--border-gold);
+
+    border-radius:7px;
+
+    overflow:hidden;
+
+    transition:.3s;
+
+    cursor:pointer;
+}
+
+.prog-card:hover{
+
+    transform:translateY(-5px);
+
+    border-color:var(--gold-light);
+}
+
+.prog-img-box{
+
+    width:100%;
+
+    height:170px;
+
+    overflow:hidden;
+
+    position:relative;
+}
+
+.prog-img-box img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    opacity:.6;
+}
+
+.prog-roman-num{
+
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    font-family:var(--font-amiri);
+
+    font-size:2.2rem;
+
+    color:var(--gold-light);
+
+    border:
+        1px solid
+        var(--gold-primary);
+
+    padding:2px 16px;
+
+    background:
+        rgba(0,0,0,.7);
+
+    border-radius:4px;
+}
+
+.prog-title{
+
+    padding:15px;
+
+    text-align:center;
+
+    font-family:var(--font-amiri);
+
+    font-size:1.25rem;
+
+    color:#fff;
+
+    background:
+        rgba(12,10,12,.95);
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:1000px){
+
+    .philosophy-places{
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .central-library{
+
+        grid-column:
+            1 / -1;
+
+        grid-row:1;
+
+        min-height:420px;
+    }
+
+    .place-card{
+
+        min-height:280px;
+    }
+
+    .philosophers-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .program-grid{
+
+        grid-template-columns:1fr;
+    }
+}
+
+
+@media(max-width:768px){
+
+    .nav-menu{
+
+        display:none;
+    }
+
+    .philosophy-places{
+
+        grid-template-columns:1fr;
+    }
+
+    .central-library{
+
+        grid-column:auto;
+
+        grid-row:auto;
+
+        min-height:400px;
+    }
+
+    .place-card{
+
+        min-height:260px;
+    }
+
+    .philosophers-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .hero-main-title{
+
+        font-size:2.6rem;
+    }
+
+    .library-title{
+
+        font-size:2.3rem;
+    }
+
+    .hero-buttons{
+
+        flex-direction:column;
+
+        align-items:center;
+    }
+
+    .hero-buttons a{
+
+        width:220px;
+
+        justify-content:center;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+<div class="container nav-container">
+
+    <div class="brand-right">
+
+        <div class="owl-logo-frame">
+
+            <svg viewBox="0 0 24 24">
+
+                <path d="
+                M12 2
+                C8.5 2 6 4.5 6 8
+                C6 10.5 7.2 12.8 9 14.2
+                V20
+                L12 18.5
+                L15 20
+                V14.2
+                C16.8 12.8 18 10.5 18 8
+                C18 4.5 15.5 2 12 2ZM9 7.5
+                C9.8 7.5 10.5 8.2 10.5 9
+                S9.8 10.5 9 10.5
+                S7.5 9.8 7.5 9
+                S8.2 7.5 9 7.5ZM15 7.5
+                C15.8 7.5 16.5 8.2 16.5 9
+                S15.8 10.5 15 10.5
+                S13.5 9.8 13.5 9
+                S14.2 7.5 15 7.5Z"/>
+
+            </svg>
+
+        </div>
+
+
+        <div class="brand-title-box">
+
+            <span class="brand-title">
+                رواق زايد
+            </span>
+
+            <span class="brand-subtitle">
+                للفلسفة
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <ul class="nav-menu">
+
+        <li class="nav-item active">
+            <a href="#">الرئيسية</a>
+        </li>
+
+        <li class="nav-item">
+            <a href="#">البرنامج</a>
+        </li>
+
+        <li class="nav-item">
+            <a href="#">الفلاسفة</a>
+        </li>
+
+        <li class="nav-item">
+            <a href="#">المقالات</a>
+        </li>
+
+        <li class="nav-item">
+            <a href="#">المكتبة</a>
+        </li>
+
+        <li class="nav-item">
+            <a href="#">حول المنصة</a>
+        </li>
+
+    </ul>
+
+
+    <div class="nav-left-tools">
+
+        <button>
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+
+        <button>
+            <i class="fa-regular fa-moon"></i>
+        </button>
+
+    </div>
+
+</div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     HERO / الغلاف الأول
+===================================================== -->
+
+<section class="hero-section">
+
+<div class="hero-content container">
+
+
+    <div class="philosophy-places">
+
+
+        <!-- أثينا / اليونان — اليمين -->
+
+        <div class="place-card">
+
+            <img
+                src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Athens%20-%20Parthenon.jpg"
+                alt="أثينا اليونان - الأكروبوليس">
+
+            <div class="place-label">
+
+                <h3>
+                    أثينا
+                </h3>
+
+                <span>
+                    اليونان القديمة
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- المكتبة — الوسط -->
+
+        <div class="central-library">
+
+            <img
+                src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Ancientlibraryalex.jpg"
+                alt="المكتبة القديمة">
+
+            <div class="library-content">
+
+                <div class="library-icon">
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                </div>
+
+                <div class="library-title">
+                    رواق زايد للفلسفة
+                </div>
+
+                <div class="library-subtitle">
+                    مكتبة الفكر الفلسفي
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- بيت الحكمة — اليسار -->
+
+        <div class="place-card">
+
+            <img
+                src="https://image.idntimes.com/post/20211205/bayt-al-hikmah-ilustrasi-9e570a13358bdcb76ed816e9d7c035aa-7799936233ec3bf9e354f9cc78b4206e.jpg"
+                alt="بيت الحكمة في بغداد">
+
+            <div class="place-label">
+
+                <h3>
+                    بيت الحكمة
+                </h3>
+
+                <span>
+                    بغداد — العصر العباسي
+                </span>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <h1 class="hero-main-title">
+        رواق زايد للفلسفة
+    </h1>
+
+    <div class="hero-tagline">
+        حيث يبدأ السؤال... ويستمر البحث.
+    </div>
+
+    <p class="hero-sub-text">
+
+        منصة تعليمية لدراسة الفلسفة، وفهم أسئلتها الكبرى،
+        <br>
+
+        وتعلم بناء الموقف والحجاج الفلسفي.
+
+    </p>
+
+
+    <div class="hero-buttons">
+
+        <a href="#program" class="btn-gold">
+
+            <i class="fa-solid fa-book-open"></i>
+
+            استكشف البرنامج
+
+        </a>
+
+
+        <a href="#" class="btn-outline">
+
+            <i class="fa-solid fa-play"></i>
+
+            شاهد المقدمة
+
+        </a>
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     أعلام الفلسفة
+===================================================== -->
+
+<section class="philosophers-section">
+
+<div class="container">
+
+
+    <div class="section-header">
+
+        <div class="wing-title-wrapper">
+
+            <h2 class="section-title-text">
+                أعلام الفلسفة
+            </h2>
+
+        </div>
+
+        <p class="section-subtitle-text">
+
+            أفكار غيّرت الطريقة التي يفكر بها الإنسان
+
+        </p>
+
+    </div>
+
+
+
+    <div class="philosophers-grid">
+
+
+        <!-- سقراط -->
+
+        <div class="ph-card">
+
+            <div class="ph-img-container">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Socrates%20Louvre.jpg"
+                    alt="سقراط">
+
+            </div>
+
+
+            <div class="ph-details">
+
+                <h3 class="ph-name">
+                    سقراط
+                </h3>
+
+                <div class="ph-date">
+                    470 – 399 ق.م
+                </div>
+
+                <div class="ph-sub">
+                    السؤال والحوار
+                </div>
+
+                <div class="ph-quote">
+                    «اعرف نفسك»
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- أفلاطون -->
+
+        <div class="ph-card">
+
+            <div class="ph-img-container">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Plato%20bust.png"
+                    alt="أفلاطون">
+
+            </div>
+
+
+            <div class="ph-details">
+
+                <h3 class="ph-name">
+                    أفلاطون
+                </h3>
+
+                <div class="ph-date">
+                    428/427 – 348/347 ق.م
+                </div>
+
+                <div class="ph-sub">
+                    المعرفة والمُثل
+                </div>
+
+                <div class="ph-quote">
+                    «الحكمة محبة المعرفة»
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- أرسطو -->
+
+        <div class="ph-card">
+
+            <div class="ph-img-container">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Aristotle%20bust.jpg"
+                    alt="أرسطو">
+
+            </div>
+
+
+            <div class="ph-details">
+
+                <h3 class="ph-name">
+                    أرسطو
+                </h3>
+
+                <div class="ph-date">
+                    384 – 322 ق.م
+                </div>
+
+                <div class="ph-sub">
+                    المنطق والوجود
+                </div>
+
+                <div class="ph-quote">
+                    «الإنسان بالطبع حيوان سياسي»
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ديكارت -->
+
+        <div class="ph-card">
+
+            <div class="ph-img-container">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Descartes-1.jpg"
+                    alt="رينيه ديكارت">
+
+            </div>
+
+
+            <div class="ph-details">
+
+                <h3 class="ph-name">
+                    ديكارت
+                </h3>
+
+                <div class="ph-date">
+                    1596 – 1650
+                </div>
+
+                <div class="ph-sub">
+                    العقل واليقين
+                </div>
+
+                <div class="ph-quote">
+                    «أنا أفكر، إذن أنا موجود»
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     البرنامج السنوي
+===================================================== -->
+
+<section class="program-section" id="program">
+
+<div class="container">
+
+
+    <div class="section-header">
+
+        <div class="wing-title-wrapper">
+
+            <h2 class="section-title-text">
+                البرنامج السنوي
+            </h2>
+
+        </div>
+
+        <p class="section-subtitle-text">
+            اختر مسارك الدراسي للوصول إلى البرنامج الخاص بك.
+        </p>
+
+    </div>
+
+
+
+    <div class="program-grid">
+
+
+        <!-- =================================================
+             الخانة الأولى
+             السنة الثالثة آداب وفلسفة
+        ================================================== -->
+
+        <div class="prog-card">
+
+            <div class="prog-img-box">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/The%20Library%20of%20Celsus%2C%20Ephesus%20Interior.jpg"
+                    alt="السنة الثالثة آداب وفلسفة">
+
+                <div class="prog-roman-num">
+                    I
+                </div>
+
+            </div>
+
+            <div class="prog-title">
+                السنة الثالثة آداب وفلسفة
+                <br>
+                شعبة آداب وفلسفة
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             الخانة الثانية
+             السنة الثانية آداب وفلسفة
+        ================================================== -->
+
+        <div class="prog-card">
+
+            <div class="prog-img-box">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Library%20of%20Alexandria%20%281%29.jpg"
+                    alt="السنة الثانية آداب وفلسفة">
+
+                <div class="prog-roman-num">
+                    II
+                </div>
+
+            </div>
+
+            <div class="prog-title">
+                السنة الثانية آداب وفلسفة
+                <br>
+                شعبة آداب وفلسفة
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             الخانة الثالثة
+             السنة الثانية الشعب العلمية واللغات
+        ================================================== -->
+
+        <div class="prog-card">
+
+            <div class="prog-img-box">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Library%20of%20Alexandria%20-1.JPG"
+                    alt="السنة الثانية الشعب العلمية واللغات">
+
+                <div class="prog-roman-num">
+                    III
+                </div>
+
+            </div>
+
+            <div class="prog-title">
+                السنة الثانية
+                <br>
+                الشعب العلمية واللغات
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+</section>
+
+
+</body>
+</html>
