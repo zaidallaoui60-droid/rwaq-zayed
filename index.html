@@ -6,8 +6,6 @@
 
 <title>رواق زايد للفلسفة</title>
 
-<meta name="description" content="رواق زايد للفلسفة — منصة تعليمية وفكرية لدراسة الفلسفة ونشر المقالات والنصوص الفلسفية.">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -16,25 +14,25 @@
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 
 :root{
     --bg:#080707;
-    --bg2:#0e0c0e;
-    --card:#151214;
-    --card2:#1b181b;
+    --bg2:#0d0b0d;
+    --card:#121012;
+    --card2:#181518;
 
-    --gold:#c5a059;
     --gold-light:#e5cf87;
+    --gold:#c5a059;
     --gold-dark:#8c6e33;
 
     --white:#f4f1ea;
     --muted:#a39e93;
 
-    --border:rgba(197,160,89,.28);
-    --border-light:rgba(229,207,135,.65);
-
-    --shadow:0 15px 40px rgba(0,0,0,.55);
+    --border:rgba(197,160,89,.35);
+    --border-bright:rgba(229,207,135,.8);
 
     --amiri:'Amiri',serif;
     --ruqaa:'Aref Ruqaa',serif;
@@ -42,9 +40,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 }
 
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
 }
 
 html{
@@ -55,7 +53,7 @@ body{
     background:var(--bg);
     color:var(--white);
     font-family:var(--cairo);
-    line-height:1.8;
+    line-height:1.7;
     overflow-x:hidden;
 }
 
@@ -63,21 +61,13 @@ a{
     color:inherit;
 }
 
-button{
-    font-family:inherit;
-}
-
 .container{
-    width:100%;
-    max-width:1250px;
+    width:min(1200px,92%);
     margin:auto;
-    padding:0 22px;
 }
 
 
-/* =========================
-   NAVBAR
-========================= */
+/* ================= NAVBAR ================= */
 
 .navbar{
     position:fixed;
@@ -86,10 +76,10 @@ button{
     left:0;
     z-index:1000;
 
-    background:rgba(7,6,7,.88);
-    backdrop-filter:blur(15px);
+    background:rgba(6,5,6,.9);
+    backdrop-filter:blur(14px);
 
-    border-bottom:1px solid rgba(197,160,89,.18);
+    border-bottom:1px solid rgba(197,160,89,.2);
 }
 
 .nav-container{
@@ -98,19 +88,19 @@ button{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:25px;
+    gap:20px;
 }
 
 .brand{
     display:flex;
     align-items:center;
-    gap:11px;
+    gap:10px;
     text-decoration:none;
 }
 
 .owl{
-    width:44px;
-    height:44px;
+    width:43px;
+    height:43px;
 
     border:1px solid var(--gold);
     border-radius:50%;
@@ -121,7 +111,7 @@ button{
 
     background:radial-gradient(
         circle,
-        rgba(197,160,89,.22),
+        rgba(197,160,89,.2),
         rgba(0,0,0,.8)
     );
 }
@@ -135,77 +125,56 @@ button{
 .brand-text{
     display:flex;
     flex-direction:column;
-    line-height:1.2;
 }
 
 .brand-title{
     font-family:var(--amiri);
     font-size:1.35rem;
     font-weight:700;
+    line-height:1.1;
 }
 
-.brand-subtitle{
-    font-size:.7rem;
+.brand-sub{
     color:var(--gold);
+    font-size:.72rem;
 }
 
 .nav-menu{
     display:flex;
-    align-items:center;
-    gap:25px;
     list-style:none;
+    gap:28px;
 }
 
 .nav-menu a{
     text-decoration:none;
     color:var(--muted);
     font-size:.9rem;
-    font-weight:600;
     transition:.3s;
 }
 
-.nav-menu a:hover,
-.nav-menu a.active{
+.nav-menu a:hover{
     color:var(--gold-light);
 }
 
 .nav-tools{
     display:flex;
-    align-items:center;
     gap:12px;
 }
 
 .nav-tools button{
-    width:38px;
-    height:38px;
-
     border:0;
     background:none;
-
     color:var(--muted);
-
-    cursor:pointer;
-
     font-size:1rem;
-
-    border-radius:50%;
-
-    transition:.3s;
+    cursor:pointer;
 }
 
 .nav-tools button:hover{
     color:var(--gold-light);
-    background:rgba(197,160,89,.1);
-}
-
-.mobile-menu{
-    display:none;
 }
 
 
-/* =========================
-   HERO
-========================= */
+/* ================= HERO ================= */
 
 .hero{
     min-height:100vh;
@@ -216,92 +185,56 @@ button{
     display:flex;
     align-items:center;
 
-    position:relative;
-
     background:
     linear-gradient(
         to bottom,
         rgba(8,7,7,.45),
-        rgba(8,7,7,.96)
+        rgba(8,7,7,.92)
     ),
     url("https://commons.wikimedia.org/wiki/Special:Redirect/file/Ancientlibraryalex.jpg")
     center/cover no-repeat;
 }
 
-.hero::after{
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    background:
-    radial-gradient(
-        circle at center,
-        rgba(197,160,89,.04),
-        rgba(0,0,0,.8)
-    );
-
-    pointer-events:none;
-}
-
 .hero-content{
-    position:relative;
-    z-index:2;
-
     text-align:center;
 }
 
-.hero-places{
+.places{
     display:grid;
-
-    grid-template-columns:
-        1fr
-        1.6fr
-        1fr;
-
-    gap:18px;
-
-    margin-bottom:38px;
+    grid-template-columns:1fr 1.65fr 1fr;
+    gap:20px;
+    margin-bottom:35px;
 }
 
 .place{
-    height:360px;
+    min-height:360px;
 
     position:relative;
 
     overflow:hidden;
 
     border:1px solid var(--border);
-
     border-radius:8px;
 
-    box-shadow:var(--shadow);
-
     background:#111;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.6);
 }
 
 .place img{
     width:100%;
     height:100%;
-
     object-fit:cover;
 
     display:block;
 
-    filter:
-        brightness(.55)
-        contrast(1.08)
-        saturate(.8);
+    filter:brightness(.58) contrast(1.08) saturate(.8);
 
     transition:.5s;
 }
 
 .place:hover img{
     transform:scale(1.04);
-    filter:
-        brightness(.7)
-        contrast(1.08)
-        saturate(.9);
 }
 
 .place::after{
@@ -313,7 +246,7 @@ button{
     background:
     linear-gradient(
         to top,
-        rgba(0,0,0,.95),
+        rgba(0,0,0,.9),
         transparent 65%
     );
 }
@@ -321,13 +254,15 @@ button{
 .place-label{
     position:absolute;
 
-    bottom:0;
     right:0;
     left:0;
+    bottom:0;
 
     z-index:2;
 
     padding:20px;
+
+    text-align:center;
 }
 
 .place-label h3{
@@ -341,28 +276,26 @@ button{
     color:#eee;
 }
 
-.central{
-    height:360px;
+.library{
+    min-height:360px;
 
     position:relative;
+
+    overflow:hidden;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    overflow:hidden;
-
-    border:2px solid rgba(229,207,135,.55);
+    border:2px solid rgba(229,207,135,.65);
     border-radius:8px;
 
-    background:#080707;
-
     box-shadow:
-        0 20px 55px rgba(0,0,0,.8),
+        0 20px 50px rgba(0,0,0,.8),
         inset 0 0 50px rgba(197,160,89,.12);
 }
 
-.central img{
+.library img{
     position:absolute;
     inset:0;
 
@@ -371,13 +304,10 @@ button{
 
     object-fit:cover;
 
-    filter:
-        brightness(.32)
-        contrast(1.12)
-        saturate(.7);
+    filter:brightness(.35) contrast(1.1) saturate(.7);
 }
 
-.central::after{
+.library::after{
     content:"";
 
     position:absolute;
@@ -386,56 +316,54 @@ button{
     background:
     linear-gradient(
         to bottom,
-        rgba(0,0,0,.15),
-        rgba(0,0,0,.9)
+        rgba(0,0,0,.05),
+        rgba(0,0,0,.88)
     );
 }
 
-.central-content{
+.library-content{
     position:relative;
     z-index:2;
-
-    padding:20px;
+    text-align:center;
 }
 
-.central-icon{
-    width:72px;
-    height:72px;
+.library-icon{
+    width:75px;
+    height:75px;
 
     margin:auto auto 15px;
 
     border:1px solid var(--gold);
-
     border-radius:50%;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    color:var(--gold-light);
-
-    font-size:1.8rem;
-
     background:rgba(0,0,0,.65);
 }
 
-.central-title{
+.library-icon i{
+    color:var(--gold-light);
+    font-size:2rem;
+}
+
+.library-title{
     font-family:var(--amiri);
-    font-size:2.8rem;
+    font-size:3rem;
     font-weight:700;
 }
 
-.central-subtitle{
+.library-sub{
     font-family:var(--ruqaa);
     color:var(--gold-light);
-    font-size:1.35rem;
+    font-size:1.4rem;
 }
 
 .hero-title{
     font-family:var(--amiri);
-    font-size:4rem;
-    line-height:1.25;
-    margin-bottom:5px;
+    font-size:3.8rem;
+    line-height:1.3;
 }
 
 .hero-tagline{
@@ -445,40 +373,38 @@ button{
 }
 
 .hero-description{
+    margin:15px auto 25px;
     max-width:700px;
-    margin:15px auto 28px;
-
     color:#eee;
-
-    font-size:.98rem;
 }
 
-.hero-buttons{
+.buttons{
     display:flex;
     justify-content:center;
-    gap:14px;
-    flex-wrap:wrap;
+    gap:15px;
 }
 
 .btn{
     display:inline-flex;
     align-items:center;
-    justify-content:center;
     gap:8px;
 
-    padding:11px 28px;
+    padding:10px 28px;
 
-    border-radius:25px;
+    border-radius:22px;
 
     text-decoration:none;
-
     font-weight:700;
 
-    transition:.3s;
+    transition:.25s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
 }
 
 .btn-gold{
-    color:#090808;
+    color:#000;
 
     background:
     linear-gradient(
@@ -486,43 +412,18 @@ button{
         var(--gold-light),
         var(--gold)
     );
-
-    box-shadow:
-        0 5px 20px rgba(197,160,89,.3);
 }
 
 .btn-outline{
-    color:white;
-
-    border:1px solid var(--border-light);
-
-    background:rgba(0,0,0,.55);
-}
-
-.btn:hover{
-    transform:translateY(-3px);
+    border:1px solid var(--border-bright);
+    background:rgba(0,0,0,.6);
 }
 
 
-/* =========================
-   GENERAL SECTIONS
-========================= */
+/* ================= SECTIONS ================= */
 
-section{
-    scroll-margin-top:80px;
-}
-
-.section{
+section.content-section{
     padding:85px 0;
-}
-
-.section-dark{
-    background:
-    linear-gradient(
-        to bottom,
-        #080707,
-        #0d0b0d
-    );
 }
 
 .section-header{
@@ -531,124 +432,104 @@ section{
 }
 
 .section-title{
-    display:inline-flex;
-    align-items:center;
-    gap:15px;
-
     font-family:var(--amiri);
     font-size:2.4rem;
-}
-
-.section-title::before,
-.section-title::after{
-    content:"❖";
-    color:var(--gold);
-    font-size:.75rem;
 }
 
 .section-subtitle{
     color:var(--muted);
     font-size:.9rem;
-    margin-top:5px;
+}
+
+.decor{
+    color:var(--gold);
+    margin-bottom:8px;
 }
 
 
-/* =========================
-   PHILOSOPHERS
-========================= */
+/* ================= PHILOSOPHERS ================= */
 
-.philosophers-grid{
+.philosophers{
+    background:
+    linear-gradient(
+        to bottom,
+        var(--bg),
+        var(--bg2)
+    );
+}
+
+.philosopher-grid{
     display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
+    grid-template-columns:repeat(4,1fr);
     gap:18px;
 }
 
-.philosopher{
+.ph-card{
     overflow:hidden;
-
-    border:1px solid var(--border);
-    border-radius:8px;
 
     background:
     linear-gradient(
         145deg,
-        #191619,
-        #0b0a0b
+        rgba(25,22,25,.96),
+        rgba(10,9,10,.98)
     );
+
+    border:1px solid var(--border);
+    border-radius:8px;
 
     transition:.3s;
 }
 
-.philosopher:hover{
+.ph-card:hover{
     transform:translateY(-7px);
     border-color:var(--gold-light);
 }
 
-.philosopher-image{
+.ph-image{
     height:260px;
-    overflow:hidden;
 }
 
-.philosopher-image img{
+.ph-image img{
     width:100%;
     height:100%;
-
     object-fit:cover;
 
     display:block;
 
-    filter:
-        grayscale(12%)
-        contrast(1.08);
-
-    transition:.4s;
+    filter:grayscale(15%) contrast(1.08);
 }
 
-.philosopher:hover img{
-    transform:scale(1.04);
-}
-
-.philosopher-info{
+.ph-info{
     padding:18px;
     text-align:center;
 }
 
-.philosopher-name{
+.ph-name{
     font-family:var(--amiri);
-    font-size:1.6rem;
+    font-size:1.55rem;
 }
 
-.philosopher-date{
+.ph-date{
     color:var(--gold);
-    font-size:.8rem;
+    font-size:.82rem;
 }
 
-.philosopher-topic{
+.ph-topic{
     color:var(--gold-light);
     font-size:.8rem;
-    margin-top:4px;
-}
-
-.philosopher-quote{
-    color:var(--muted);
-    font-size:.75rem;
-    margin-top:8px;
+    margin-top:5px;
 }
 
 
-/* =========================
-   PROGRAM
-========================= */
+/* ================= PROGRAM ================= */
+
+.program{
+    background:var(--bg);
+}
 
 .program-grid{
     display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
+    grid-template-columns:repeat(3,1fr);
     gap:20px;
 }
 
@@ -659,14 +540,11 @@ section{
     border-radius:8px;
 
     background:var(--card);
-
     transition:.3s;
-
-    cursor:pointer;
 }
 
 .program-card:hover{
-    transform:translateY(-6px);
+    transform:translateY(-5px);
     border-color:var(--gold-light);
 }
 
@@ -679,11 +557,10 @@ section{
     width:100%;
     height:100%;
     object-fit:cover;
-
-    opacity:.55;
+    opacity:.6;
 }
 
-.program-number{
+.number{
     position:absolute;
 
     top:50%;
@@ -691,490 +568,268 @@ section{
 
     transform:translate(-50%,-50%);
 
+    font-family:var(--amiri);
+    font-size:2.2rem;
+
+    color:var(--gold-light);
+
     border:1px solid var(--gold);
 
     padding:2px 18px;
 
-    font-family:var(--amiri);
-
-    font-size:2rem;
-
-    color:var(--gold-light);
-
     background:rgba(0,0,0,.7);
 }
 
-.program-name{
+.program-title{
     padding:18px;
-
     text-align:center;
 
     font-family:var(--amiri);
-
     font-size:1.25rem;
 }
 
 
-/* =========================
-   ARTICLES
-========================= */
+/* ================= ARTICLES ================= */
 
-.articles-section{
-    background:#0b090b;
+.articles{
+    background:
+    linear-gradient(
+        to bottom,
+        #0d0b0d,
+        #080707
+    );
 }
 
-.articles-top{
-    display:flex;
-
-    justify-content:space-between;
-    align-items:end;
-
-    gap:20px;
-
-    margin-bottom:30px;
-}
-
-.search-box{
-    display:flex;
-    align-items:center;
-
-    width:300px;
-
-    border:1px solid var(--border);
-    border-radius:25px;
-
-    background:#121012;
-
-    overflow:hidden;
-}
-
-.search-box input{
-    width:100%;
-
-    border:0;
-    outline:0;
-
-    background:transparent;
-
-    color:white;
-
-    padding:10px 16px;
-
-    font-family:var(--cairo);
-}
-
-.search-box button{
-    width:45px;
-
-    border:0;
-
-    background:none;
-
-    color:var(--gold);
-
-    cursor:pointer;
-}
-
-.articles-grid{
+.article-grid{
     display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:20px;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
 }
 
-.article{
-    overflow:hidden;
+.article-card{
+    display:flex;
+    flex-direction:column;
 
-    border:1px solid var(--border);
-    border-radius:8px;
+    min-height:300px;
+
+    padding:25px;
 
     background:
     linear-gradient(
         145deg,
-        #191619,
-        #0c0a0c
+        rgba(25,22,25,.98),
+        rgba(10,9,10,.98)
     );
+
+    border:1px solid var(--border);
+    border-radius:8px;
 
     transition:.3s;
 }
 
-.article:hover{
+.article-card:hover{
     transform:translateY(-6px);
     border-color:var(--gold-light);
 }
 
-.article-image{
-    height:190px;
-    overflow:hidden;
-}
+.article-icon{
+    width:50px;
+    height:50px;
 
-.article-image img{
-    width:100%;
-    height:100%;
+    margin-bottom:18px;
 
-    object-fit:cover;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    display:block;
+    border:1px solid var(--gold);
+    border-radius:50%;
 
-    filter:
-        brightness(.68)
-        contrast(1.05);
-
-    transition:.4s;
-}
-
-.article:hover .article-image img{
-    transform:scale(1.04);
-}
-
-.article-content{
-    padding:20px;
+    color:var(--gold-light);
 }
 
 .article-category{
     color:var(--gold);
     font-size:.75rem;
-    margin-bottom:5px;
+    margin-bottom:8px;
 }
 
 .article-title{
     font-family:var(--amiri);
-    font-size:1.45rem;
+    font-size:1.5rem;
     line-height:1.4;
-    margin-bottom:8px;
+
+    margin-bottom:10px;
 }
 
 .article-excerpt{
     color:var(--muted);
-    font-size:.8rem;
-    line-height:1.8;
+    font-size:.85rem;
+
+    flex:1;
 }
 
-.article-footer{
-    margin-top:16px;
+.article-link{
+    margin-top:18px;
 
-    display:flex;
-
-    justify-content:space-between;
-    align-items:center;
-}
-
-.read-more{
     color:var(--gold-light);
-
     text-decoration:none;
 
-    font-size:.8rem;
-
-    font-weight:700;
+    font-size:.85rem;
 }
 
-.article-date{
-    color:#777;
-    font-size:.7rem;
+.article-link i{
+    margin-right:5px;
+}
+
+.no-articles{
+    grid-column:1/-1;
+
+    text-align:center;
+
+    padding:50px 20px;
+
+    border:1px dashed var(--border);
+    border-radius:8px;
+
+    color:var(--muted);
+}
+
+.no-articles i{
+    display:block;
+
+    color:var(--gold);
+
+    font-size:2rem;
+
+    margin-bottom:15px;
 }
 
 
-/* =========================
-   ABOUT
-========================= */
+/* ================= ABOUT ================= */
 
 .about{
-    padding:85px 0;
-
-    background:
-    radial-gradient(
-        circle at center,
-        rgba(197,160,89,.05),
-        transparent 60%
-    );
+    text-align:center;
+    background:var(--bg);
 }
 
 .about-box{
     max-width:850px;
-
     margin:auto;
 
-    text-align:center;
+    padding:40px;
 
     border:1px solid var(--border);
-
     border-radius:8px;
 
-    padding:45px 35px;
-
-    background:
-    linear-gradient(
-        145deg,
-        rgba(25,22,25,.9),
-        rgba(8,7,8,.9)
-    );
-
-    box-shadow:var(--shadow);
+    background:rgba(18,16,18,.7);
 }
 
-.about-icon{
-    color:var(--gold-light);
-    font-size:2.5rem;
-    margin-bottom:15px;
-}
-
-.about-title{
-    font-family:var(--amiri);
-    font-size:2.2rem;
-    margin-bottom:12px;
-}
-
-.about-text{
-    color:#c9c4ba;
+.about-box p{
+    color:#ddd;
     line-height:2;
 }
 
 
-/* =========================
-   FOOTER
-========================= */
+/* ================= FOOTER ================= */
 
 footer{
+    padding:35px 0;
+
     border-top:1px solid rgba(197,160,89,.2);
 
-    background:#060506;
+    text-align:center;
 
-    padding:35px 0;
-}
-
-.footer-content{
-    display:flex;
-
-    justify-content:space-between;
-    align-items:center;
-
-    gap:20px;
+    background:#050505;
 }
 
 .footer-brand{
     font-family:var(--amiri);
-    font-size:1.3rem;
+    font-size:1.4rem;
+    color:var(--gold-light);
 }
 
-.footer-copy{
-    color:#777;
+.footer-text{
+    color:var(--muted);
     font-size:.75rem;
-}
-
-.footer-social{
-    display:flex;
-    gap:10px;
-}
-
-.footer-social a{
-    width:35px;
-    height:35px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border:1px solid var(--border);
-
-    border-radius:50%;
-
-    text-decoration:none;
-
-    color:var(--muted);
-
-    transition:.3s;
-}
-
-.footer-social a:hover{
-    color:var(--gold-light);
-    border-color:var(--gold);
+    margin-top:5px;
 }
 
 
-/* =========================
-   MODAL
-========================= */
-
-.modal{
-    position:fixed;
-
-    inset:0;
-
-    z-index:2000;
-
-    display:none;
-
-    align-items:center;
-    justify-content:center;
-
-    padding:20px;
-
-    background:rgba(0,0,0,.85);
-
-    backdrop-filter:blur(8px);
-}
-
-.modal.active{
-    display:flex;
-}
-
-.modal-box{
-    width:100%;
-    max-width:850px;
-    max-height:90vh;
-
-    overflow:auto;
-
-    border:1px solid var(--border-light);
-    border-radius:10px;
-
-    background:#111;
-
-    box-shadow:0 25px 80px rgba(0,0,0,.8);
-
-    padding:35px;
-}
-
-.modal-close{
-    float:left;
-
-    border:0;
-
-    background:none;
-
-    color:var(--muted);
-
-    font-size:1.3rem;
-
-    cursor:pointer;
-}
-
-.modal-title{
-    font-family:var(--amiri);
-    font-size:2.2rem;
-
-    color:var(--gold-light);
-
-    margin-bottom:15px;
-}
-
-.modal-text{
-    color:#ddd;
-    line-height:2.2;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
+/* ================= RESPONSIVE ================= */
 
 @media(max-width:1000px){
 
-    .nav-menu{
-        display:none;
-    }
-
-    .mobile-menu{
-        display:block;
-    }
-
-    .hero-places{
+    .places{
         grid-template-columns:1fr 1fr;
     }
 
-    .central{
-        grid-column:1 / -1;
+    .library{
+        grid-column:1/-1;
         grid-row:1;
     }
 
-    .place{
-        height:280px;
+    .philosopher-grid{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .philosophers-grid{
+    .article-grid{
         grid-template-columns:repeat(2,1fr);
     }
 
     .program-grid{
         grid-template-columns:1fr;
     }
-
-    .articles-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
 }
 
-@media(max-width:700px){
+@media(max-width:768px){
 
-    .container{
-        padding:0 16px;
+    .nav-menu{
+        display:none;
     }
 
-    .hero{
-        padding-top:95px;
-    }
-
-    .hero-places{
+    .places{
         grid-template-columns:1fr;
     }
 
-    .central{
+    .library{
         grid-column:auto;
         grid-row:auto;
-        height:330px;
     }
 
     .place{
-        height:250px;
+        min-height:270px;
+    }
+
+    .philosopher-grid{
+        grid-template-columns:1fr;
+    }
+
+    .article-grid{
+        grid-template-columns:1fr;
     }
 
     .hero-title{
         font-size:2.7rem;
     }
 
-    .hero-tagline{
-        font-size:1.3rem;
+    .library-title{
+        font-size:2.3rem;
     }
 
-    .central-title{
-        font-size:2.2rem;
+    .buttons{
+        flex-direction:column;
+        align-items:center;
     }
 
-    .section{
+    .btn{
+        width:230px;
+        justify-content:center;
+    }
+
+    section.content-section{
         padding:65px 0;
     }
-
-    .section-title{
-        font-size:2rem;
-    }
-
-    .philosophers-grid,
-    .articles-grid{
-        grid-template-columns:1fr;
-    }
-
-    .articles-top{
-        display:block;
-    }
-
-    .search-box{
-        width:100%;
-        margin-top:20px;
-    }
-
-    .footer-content{
-        flex-direction:column;
-        text-align:center;
-    }
-
-    .about-box{
-        padding:30px 20px;
-    }
-
 }
 
 </style>
@@ -1184,15 +839,13 @@ footer{
 <body>
 
 
-<!-- =========================
-     NAVBAR
-========================= -->
+<!-- ================= NAVBAR ================= -->
 
 <nav class="navbar">
 
 <div class="container nav-container">
 
-<a href="#home" class="brand">
+<a href="#" class="brand">
 
 <div class="owl">
 
@@ -1223,13 +876,9 @@ S14.2 7.5 15 7.5Z"/>
 
 <div class="brand-text">
 
-<span class="brand-title">
-رواق زايد
-</span>
+<span class="brand-title">رواق زايد</span>
 
-<span class="brand-subtitle">
-للفلسفة
-</span>
+<span class="brand-sub">للفلسفة</span>
 
 </div>
 
@@ -1238,51 +887,27 @@ S14.2 7.5 15 7.5Z"/>
 
 <ul class="nav-menu">
 
-<li>
-<a href="#home" class="active">
-الرئيسية
-</a>
-</li>
+<li><a href="#">الرئيسية</a></li>
 
-<li>
-<a href="#program">
-البرنامج
-</a>
-</li>
+<li><a href="#program">البرنامج</a></li>
 
-<li>
-<a href="#philosophers">
-الفلاسفة
-</a>
-</li>
+<li><a href="#philosophers">الفلاسفة</a></li>
 
-<li>
-<a href="#articles">
-المقالات
-</a>
-</li>
+<li><a href="#articles">المقالات</a></li>
 
-<li>
-<a href="#about">
-حول المنصة
-</a>
-</li>
+<li><a href="#about">حول المنصة</a></li>
 
 </ul>
 
 
 <div class="nav-tools">
 
-<button id="searchNav" title="البحث">
+<button title="البحث">
 <i class="fa-solid fa-magnifying-glass"></i>
 </button>
 
-<button id="themeButton" title="الوضع الليلي">
+<button title="الوضع الليلي">
 <i class="fa-regular fa-moon"></i>
-</button>
-
-<button class="mobile-menu" id="mobileMenu" title="القائمة">
-<i class="fa-solid fa-bars"></i>
 </button>
 
 </div>
@@ -1292,16 +917,14 @@ S14.2 7.5 15 7.5Z"/>
 </nav>
 
 
-<!-- =========================
-     HERO
-========================= -->
+<!-- ================= HERO ================= -->
 
-<section class="hero" id="home">
+<section class="hero">
 
 <div class="container hero-content">
 
 
-<div class="hero-places">
+<div class="places">
 
 
 <div class="place">
@@ -1312,36 +935,34 @@ alt="أثينا">
 
 <div class="place-label">
 
-<h3>
-أثينا
-</h3>
+<h3>أثينا</h3>
 
-<span>
-اليونان القديمة
-</span>
+<span>اليونان القديمة</span>
 
 </div>
 
 </div>
 
 
-<div class="central">
+<div class="library">
 
 <img
 src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Ancientlibraryalex.jpg"
 alt="المكتبة القديمة">
 
-<div class="central-content">
+<div class="library-content">
 
-<div class="central-icon">
+<div class="library-icon">
+
 <i class="fa-solid fa-book-open"></i>
+
 </div>
 
-<div class="central-title">
+<div class="library-title">
 رواق زايد للفلسفة
 </div>
 
-<div class="central-subtitle">
+<div class="library-sub">
 مكتبة الفكر الفلسفي
 </div>
 
@@ -1358,13 +979,9 @@ alt="بيت الحكمة">
 
 <div class="place-label">
 
-<h3>
-بيت الحكمة
-</h3>
+<h3>بيت الحكمة</h3>
 
-<span>
-بغداد — العصر العباسي
-</span>
+<span>بغداد — العصر العباسي</span>
 
 </div>
 
@@ -1383,25 +1000,26 @@ alt="بيت الحكمة">
 </div>
 
 <p class="hero-description">
-
-منصة تعليمية وفكرية لدراسة الفلسفة،
-وفهم أسئلتها الكبرى،
-وتعلم بناء الموقف والحجاج الفلسفي،
-ونشر المقالات والنصوص والأفكار.
-
+منصة تعليمية لدراسة الفلسفة، وفهم أسئلتها الكبرى،
+وتعلم بناء الموقف والحجاج الفلسفي.
 </p>
 
-
-<div class="hero-buttons">
+<div class="buttons">
 
 <a href="#articles" class="btn btn-gold">
+
 <i class="fa-solid fa-feather"></i>
-اقرأ مقالاتي
+
+اقرأ المقالات
+
 </a>
 
 <a href="#program" class="btn btn-outline">
+
 <i class="fa-solid fa-book-open"></i>
+
 استكشف البرنامج
+
 </a>
 
 </div>
@@ -1411,15 +1029,15 @@ alt="بيت الحكمة">
 </section>
 
 
-<!-- =========================
-     PHILOSOPHERS
-========================= -->
+<!-- ================= PHILOSOPHERS ================= -->
 
-<section class="section section-dark" id="philosophers">
+<section class="content-section philosophers" id="philosophers">
 
 <div class="container">
 
 <div class="section-header">
+
+<div class="decor">❖</div>
 
 <h2 class="section-title">
 أعلام الفلسفة
@@ -1432,12 +1050,12 @@ alt="بيت الحكمة">
 </div>
 
 
-<div class="philosophers-grid">
+<div class="philosopher-grid">
 
 
-<div class="philosopher">
+<div class="ph-card">
 
-<div class="philosopher-image">
+<div class="ph-image">
 
 <img
 src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Socrates%20Louvre.jpg"
@@ -1445,32 +1063,26 @@ alt="سقراط">
 
 </div>
 
-<div class="philosopher-info">
+<div class="ph-info">
 
-<div class="philosopher-name">
-سقراط
-</div>
+<h3 class="ph-name">سقراط</h3>
 
-<div class="philosopher-date">
+<div class="ph-date">
 470 – 399 ق.م
 </div>
 
-<div class="philosopher-topic">
+<div class="ph-topic">
 السؤال والحوار
 </div>
 
-<div class="philosopher-quote">
-«اعرف نفسك»
 </div>
 
 </div>
 
-</div>
 
+<div class="ph-card">
 
-<div class="philosopher">
-
-<div class="philosopher-image">
+<div class="ph-image">
 
 <img
 src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Plato%20bust.png"
@@ -1478,32 +1090,26 @@ alt="أفلاطون">
 
 </div>
 
-<div class="philosopher-info">
+<div class="ph-info">
 
-<div class="philosopher-name">
-أفلاطون
-</div>
+<h3 class="ph-name">أفلاطون</h3>
 
-<div class="philosopher-date">
+<div class="ph-date">
 428/427 – 348/347 ق.م
 </div>
 
-<div class="philosopher-topic">
+<div class="ph-topic">
 المعرفة والمُثل
 </div>
 
-<div class="philosopher-quote">
-«الحكمة محبة المعرفة»
 </div>
 
 </div>
 
-</div>
 
+<div class="ph-card">
 
-<div class="philosopher">
-
-<div class="philosopher-image">
+<div class="ph-image">
 
 <img
 src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Aristotle%20bust.jpg"
@@ -1511,32 +1117,26 @@ alt="أرسطو">
 
 </div>
 
-<div class="philosopher-info">
+<div class="ph-info">
 
-<div class="philosopher-name">
-أرسطو
-</div>
+<h3 class="ph-name">أرسطو</h3>
 
-<div class="philosopher-date">
+<div class="ph-date">
 384 – 322 ق.م
 </div>
 
-<div class="philosopher-topic">
+<div class="ph-topic">
 المنطق والوجود
 </div>
 
-<div class="philosopher-quote">
-«الإنسان بالطبع حيوان سياسي»
 </div>
 
 </div>
 
-</div>
 
+<div class="ph-card">
 
-<div class="philosopher">
-
-<div class="philosopher-image">
+<div class="ph-image">
 
 <img
 src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Descartes-1.jpg"
@@ -1544,22 +1144,16 @@ alt="ديكارت">
 
 </div>
 
-<div class="philosopher-info">
+<div class="ph-info">
 
-<div class="philosopher-name">
-ديكارت
-</div>
+<h3 class="ph-name">ديكارت</h3>
 
-<div class="philosopher-date">
+<div class="ph-date">
 1596 – 1650
 </div>
 
-<div class="philosopher-topic">
+<div class="ph-topic">
 العقل واليقين
-</div>
-
-<div class="philosopher-quote">
-«أنا أفكر، إذن أنا موجود»
 </div>
 
 </div>
@@ -1574,15 +1168,15 @@ alt="ديكارت">
 </section>
 
 
-<!-- =========================
-     PROGRAM
-========================= -->
+<!-- ================= PROGRAM ================= -->
 
-<section class="section" id="program">
+<section class="content-section program" id="program">
 
 <div class="container">
 
 <div class="section-header">
+
+<div class="decor">❖</div>
 
 <h2 class="section-title">
 البرنامج السنوي
@@ -1606,16 +1200,18 @@ alt="ديكارت">
 src="https://commons.wikimedia.org/wiki/Special:Redirect/file/The%20Library%20of%20Celsus%2C%20Ephesus%20Interior.jpg"
 alt="السنة الثالثة آداب وفلسفة">
 
-<div class="program-number">
-I
-</div>
+<div class="number">I</div>
 
 </div>
 
-<div class="program-name">
+<div class="program-title">
+
 السنة الثالثة آداب وفلسفة
+
 <br>
+
 شعبة آداب وفلسفة
+
 </div>
 
 </div>
@@ -1629,16 +1225,18 @@ I
 src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Library%20of%20Alexandria%20%281%29.jpg"
 alt="السنة الثانية آداب وفلسفة">
 
-<div class="program-number">
-II
-</div>
+<div class="number">II</div>
 
 </div>
 
-<div class="program-name">
+<div class="program-title">
+
 السنة الثانية آداب وفلسفة
+
 <br>
+
 شعبة آداب وفلسفة
+
 </div>
 
 </div>
@@ -1650,18 +1248,20 @@ II
 
 <img
 src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Library%20of%20Alexandria%20-1.JPG"
-alt="السنة الثانية الشعب العلمية واللغات">
+alt="الشعب العلمية واللغات">
 
-<div class="program-number">
-III
-</div>
+<div class="number">III</div>
 
 </div>
 
-<div class="program-name">
+<div class="program-title">
+
 السنة الثانية
+
 <br>
+
 الشعب العلمية واللغات
+
 </div>
 
 </div>
@@ -1674,207 +1274,43 @@ III
 </section>
 
 
-<!-- =========================
-     ARTICLES
-========================= -->
+<!-- ================= ARTICLES ================= -->
 
-<section class="section articles-section" id="articles">
+<section class="content-section articles" id="articles">
 
 <div class="container">
 
+<div class="section-header">
 
-<div class="articles-top">
-
-<div>
-
-<div class="section-header" style="text-align:right;margin-bottom:0;">
+<div class="decor">❖</div>
 
 <h2 class="section-title">
 المقالات والنصوص
 </h2>
 
 <p class="section-subtitle">
-مساحة لأسئلتي وأفكاري وقراءاتي.
+أفكار وتأملات وقراءات في الفلسفة والفكر.
 </p>
 
 </div>
 
+
+<div class="article-grid" id="articleGrid">
+
+
+<div class="no-articles">
+
+<i class="fa-solid fa-feather-pointed"></i>
+
+<div>
+ستظهر مقالاتك ونصوصك هنا.
 </div>
 
-
-<div class="search-box">
-
-<input
-type="text"
-id="articleSearch"
-placeholder="ابحث في المقالات...">
-
-<button>
-<i class="fa-solid fa-search"></i>
-</button>
-
-</div>
-
-</div>
-
-
-<div class="articles-grid" id="articlesGrid">
-
-
-<article
-class="article"
-data-title="هل للحياة معنى؟">
-
-<div class="article-image">
-
-<img
-src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Starry_Night_Over_the_Rhone.jpg"
-alt="هل للحياة معنى؟">
-
-</div>
-
-<div class="article-content">
-
-<div class="article-category">
-فلسفة الوجود
-</div>
-
-<h3 class="article-title">
-هل للحياة معنى؟
-</h3>
-
-<p class="article-excerpt">
-
-سؤال يبدو بسيطًا، لكنه يقودنا إلى واحدة من أعمق المسائل الفلسفية:
-هل المعنى موجود في الحياة أم أننا نحن من نصنعه؟
-
-</p>
-
-<div class="article-footer">
-
-<a
-href="#"
-class="read-more"
-data-article="meaning">
-
-اقرأ المقال
-<i class="fa-solid fa-arrow-left"></i>
-
-</a>
-
-<span class="article-date">
-قريبًا
-</span>
-
+<div style="font-size:.75rem;margin-top:8px;">
+المكان جاهز لاستقبال كتابات رواق زايد.
 </div>
 
 </div>
-
-</article>
-
-
-<article
-class="article"
-data-title="ديكارت والشك">
-
-<div class="article-image">
-
-<img
-src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Descartes-1.jpg"
-alt="ديكارت والشك">
-
-</div>
-
-<div class="article-content">
-
-<div class="article-category">
-فلسفة حديثة
-</div>
-
-<h3 class="article-title">
-ديكارت والشك
-</h3>
-
-<p class="article-excerpt">
-
-هل يمكن للشك أن يكون طريقًا إلى اليقين؟
-تأمل في مشروع ديكارت ومحاولته العثور على أساس لا يمكن الشك فيه.
-
-</p>
-
-<div class="article-footer">
-
-<a
-href="#"
-class="read-more"
-data-article="descartes">
-
-اقرأ المقال
-<i class="fa-solid fa-arrow-left"></i>
-
-</a>
-
-<span class="article-date">
-قريبًا
-</span>
-
-</div>
-
-</div>
-
-</article>
-
-
-<article
-class="article"
-data-title="ما الذي يجعل الإنسان إنسانًا؟">
-
-<div class="article-image">
-
-<img
-src="https://commons.wikimedia.org/wiki/Special:Redirect/file/School_of_Athens.jpg"
-alt="الفلسفة والإنسان">
-
-</div>
-
-<div class="article-content">
-
-<div class="article-category">
-فلسفة الإنسان
-</div>
-
-<h3 class="article-title">
-ما الذي يجعل الإنسان إنسانًا؟
-</h3>
-
-<p class="article-excerpt">
-
-من العقل واللغة إلى الوعي والحرية،
-تعود الفلسفة باستمرار إلى السؤال عن طبيعة الإنسان.
-
-</p>
-
-<div class="article-footer">
-
-<a
-href="#"
-class="read-more"
-data-article="human">
-
-اقرأ المقال
-<i class="fa-solid fa-arrow-left"></i>
-
-</a>
-
-<span class="article-date">
-قريبًا
-</span>
-
-</div>
-
-</div>
-
-</article>
 
 
 </div>
@@ -1884,40 +1320,30 @@ data-article="human">
 </section>
 
 
-<!-- =========================
-     ABOUT
-========================= -->
+<!-- ================= ABOUT ================= -->
 
-<section class="about" id="about">
+<section class="content-section about" id="about">
 
 <div class="container">
 
-<div class="about-box">
+<div class="section-header">
 
-<div class="about-icon">
-<i class="fa-solid fa-owl"></i>
-</div>
+<div class="decor">❖</div>
 
-<h2 class="about-title">
-عن رواق زايد للفلسفة
+<h2 class="section-title">
+حول رواق زايد
 </h2>
 
-<p class="about-text">
+</div>
 
-رواق زايد للفلسفة هو فضاء تعليمي وفكري يجمع بين دراسة الفلسفة
-والتفكير النقدي والكتابة والنقاش.
 
-الفكرة بسيطة:
+<div class="about-box">
 
-أن تكون الفلسفة شيئًا نمارسه،
-لا مجرد معلومات نحفظها.
+<p>
 
-هنا ستجد الدروس،
-والبرامج،
-والمقالات،
-والنصوص،
-والقراءات،
-والأسئلة التي تستحق أن نتوقف عندها.
+رواق زايد للفلسفة منصة تعليمية وفكرية تهدف إلى تقديم
+الفلسفة بطريقة واضحة وعميقة، تجمع بين الدراسة والتعليم
+والقراءة والكتابة، وتمنح القارئ مساحة للتفكير وطرح الأسئلة.
 
 </p>
 
@@ -1928,36 +1354,18 @@ data-article="human">
 </section>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+<!-- ================= FOOTER ================= -->
 
 <footer>
 
-<div class="container footer-content">
+<div class="container">
 
 <div class="footer-brand">
 رواق زايد للفلسفة
 </div>
 
-<div class="footer-copy">
-© 2026 رواق زايد للفلسفة — جميع الحقوق محفوظة
-</div>
-
-<div class="footer-social">
-
-<a href="#" aria-label="Facebook">
-<i class="fa-brands fa-facebook-f"></i>
-</a>
-
-<a href="#" aria-label="Instagram">
-<i class="fa-brands fa-instagram"></i>
-</a>
-
-<a href="#" aria-label="YouTube">
-<i class="fa-brands fa-youtube"></i>
-</a>
-
+<div class="footer-text">
+حيث يبدأ السؤال... ويستمر البحث.
 </div>
 
 </div>
@@ -1965,34 +1373,7 @@ data-article="human">
 </footer>
 
 
-<!-- =========================
-     ARTICLE MODAL
-========================= -->
-
-<div class="modal" id="articleModal">
-
-<div class="modal-box">
-
-<button class="modal-close" id="modalClose">
-<i class="fa-solid fa-xmark"></i>
-</button>
-
-<h2 class="modal-title" id="modalTitle">
-</h2>
-
-<div class="modal-text" id="modalText">
-</div>
-
-</div>
-
-</div>
-
-
-<!-- =========================
-     SUPABASE
-========================= -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- ================= SUPABASE ================= -->
 
 <script>
 
@@ -2009,332 +1390,134 @@ window.supabase.createClient(
 );
 
 
-/* =========================
-   SEARCH
-========================= */
+/* تحميل المقالات عندما تكون موجودة */
 
-const searchInput =
-document.getElementById("articleSearch");
+async function loadArticles(){
 
-const articles =
-document.querySelectorAll(".article");
+    const grid =
+        document.getElementById("articleGrid");
 
-searchInput.addEventListener("input", function(){
+    try{
 
-    const value =
-    this.value.trim().toLowerCase();
+        const { data, error } =
+            await supabaseClient
+            .from("articles")
+            .select("*")
+            .order("created_at", {
+                ascending:false
+            });
 
-    articles.forEach(article => {
+        if(error){
 
-        const title =
-        article.dataset.title.toLowerCase();
+            console.log(
+                "Articles table is not ready yet."
+            );
 
-        article.style.display =
-        title.includes(value)
-        ? ""
-        : "none";
-
-    });
-
-});
-
-
-/* =========================
-   NAV SEARCH
-========================= */
-
-document
-.getElementById("searchNav")
-.addEventListener("click", function(){
-
-    document
-    .getElementById("articles")
-    .scrollIntoView({
-        behavior:"smooth"
-    });
-
-    setTimeout(() => {
-        searchInput.focus();
-    },500);
-
-});
-
-
-/* =========================
-   MOBILE MENU
-========================= */
-
-document
-.getElementById("mobileMenu")
-.addEventListener("click", function(){
-
-    const menu =
-    document.querySelector(".nav-menu");
-
-    if(menu.style.display === "flex"){
-
-        menu.style.display = "none";
-
-    }else{
-
-        menu.style.display = "flex";
-
-        menu.style.position = "absolute";
-        menu.style.top = "72px";
-        menu.style.right = "0";
-        menu.style.left = "0";
-
-        menu.style.padding = "20px";
-
-        menu.style.background = "#0b090b";
-
-        menu.style.flexDirection = "column";
-
-        menu.style.borderBottom =
-        "1px solid rgba(197,160,89,.25)";
-
-    }
-
-});
-
-
-/* =========================
-   THEME BUTTON
-========================= */
-
-document
-.getElementById("themeButton")
-.addEventListener("click", function(){
-
-    const icon =
-    this.querySelector("i");
-
-    document.body.classList.toggle("light-mode");
-
-    if(
-        document.body.classList.contains("light-mode")
-    ){
-
-        icon.className =
-        "fa-regular fa-sun";
-
-    }else{
-
-        icon.className =
-        "fa-regular fa-moon";
-
-    }
-
-});
-
-
-/* =========================
-   ARTICLE CONTENT
-========================= */
-
-const articleContent = {
-
-    meaning:{
-
-        title:"هل للحياة معنى؟",
-
-        text:`
-        <p>
-        ربما يكون السؤال عن معنى الحياة من أكثر الأسئلة
-        التي رافقت الإنسان منذ أن بدأ يتأمل وجوده.
-        </p>
-
-        <p>
-        هل يوجد معنى جاهز نكتشفه؟
-        أم أن الإنسان هو الذي يمنح حياته معنى من خلال
-        اختياراته ومشاريعه وعلاقاته؟
-        </p>
-
-        <p>
-        هذه المساحة ستكون مخصصة للمقال الكامل.
-        يمكنك لاحقًا استبدال هذا النص بمقالك الحقيقي.
-        </p>
-        `
-
-    },
-
-    descartes:{
-
-        title:"ديكارت والشك",
-
-        text:`
-        <p>
-        لم يكن شك ديكارت مجرد رغبة في إنكار المعرفة،
-        بل كان محاولة للوصول إلى معرفة لا يمكن زعزعتها.
-        </p>
-
-        <p>
-        ومن هنا أصبح الشك عنده وسيلة منهجية للبحث عن اليقين.
-        </p>
-
-        <p>
-        هنا ستضع لاحقًا مقالك الكامل عن ديكارت.
-        </p>
-        `
-
-    },
-
-    human:{
-
-        title:"ما الذي يجعل الإنسان إنسانًا؟",
-
-        text:`
-        <p>
-        سؤال الإنسان عن ذاته من أقدم الأسئلة الفلسفية.
-        </p>
-
-        <p>
-        هل الإنسان عقل؟
-        أم جسد؟
-        أم وعي؟
-        أم كائن يصنع ذاته باستمرار؟
-        </p>
-
-        <p>
-        هذا المقال سيكون مكانًا مناسبًا لنصك القادم.
-        </p>
-        `
-
-    }
-
-};
-
-
-/* =========================
-   MODAL
-========================= */
-
-const modal =
-document.getElementById("articleModal");
-
-const modalTitle =
-document.getElementById("modalTitle");
-
-const modalText =
-document.getElementById("modalText");
-
-document
-.querySelectorAll(".read-more")
-.forEach(button => {
-
-    button.addEventListener("click", function(event){
-
-        event.preventDefault();
-
-        const key =
-        this.dataset.article;
-
-        const article =
-        articleContent[key];
-
-        if(!article) return;
-
-        modalTitle.textContent =
-        article.title;
-
-        modalText.innerHTML =
-        article.text;
-
-        modal.classList.add("active");
-
-    });
-
-});
-
-
-document
-.getElementById("modalClose")
-.addEventListener("click", function(){
-
-    modal.classList.remove("active");
-
-});
-
-
-modal.addEventListener("click", function(event){
-
-    if(event.target === modal){
-
-        modal.classList.remove("active");
-
-    }
-
-});
-
-
-/* =========================
-   ESCAPE
-========================= */
-
-document.addEventListener("keydown", function(event){
-
-    if(event.key === "Escape"){
-
-        modal.classList.remove("active");
-
-    }
-
-});
-
-
-/* =========================
-   ACTIVE NAV
-========================= */
-
-const navLinks =
-document.querySelectorAll(".nav-menu a");
-
-window.addEventListener("scroll", function(){
-
-    let current = "";
-
-    document
-    .querySelectorAll("section[id]")
-    .forEach(section => {
-
-        const top =
-        section.offsetTop - 150;
-
-        if(window.scrollY >= top){
-
-            current =
-            section.getAttribute("id");
-
+            return;
         }
 
-    });
+        if(!data || data.length === 0){
 
-    navLinks.forEach(link => {
-
-        link.classList.remove("active");
-
-        if(
-            link.getAttribute("href") === "#" + current
-        ){
-
-            link.classList.add("active");
-
+            return;
         }
 
-    });
 
-});
+        grid.innerHTML = "";
 
 
-/* =========================
-   SUPABASE TEST
-========================= */
+        data.forEach(article => {
 
-console.log(
-    "رواق زايد للفلسفة — Supabase connected"
-);
+            const card =
+                document.createElement("article");
+
+            card.className =
+                "article-card";
+
+
+            card.innerHTML = `
+
+                <div class="article-icon">
+
+                    <i class="fa-solid fa-feather-pointed"></i>
+
+                </div>
+
+                <div class="article-category">
+
+                    ${escapeHTML(
+                        article.category || "فلسفة"
+                    )}
+
+                </div>
+
+                <h3 class="article-title">
+
+                    ${escapeHTML(
+                        article.title || "بدون عنوان"
+                    )}
+
+                </h3>
+
+                <p class="article-excerpt">
+
+                    ${escapeHTML(
+                        article.excerpt || ""
+                    )}
+
+                </p>
+
+                <a
+                    href="#"
+                    class="article-link"
+                    onclick="return false;"
+                >
+
+                    قراءة النص
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                </a>
+
+            `;
+
+            grid.appendChild(card);
+
+        });
+
+    }
+
+    catch(error){
+
+        console.log(error);
+
+    }
+
+}
+
+
+/* حماية النصوص القادمة من قاعدة البيانات */
+
+function escapeHTML(value){
+
+    return String(value)
+
+        .replace(/&/g,"&amp;")
+
+        .replace(/</g,"&lt;")
+
+        .replace(/>/g,"&gt;")
+
+        .replace(/"/g,"&quot;")
+
+        .replace(/'/g,"&#039;");
+
+}
+
+
+loadArticles();
 
 </script>
+
 
 </body>
 </html>
