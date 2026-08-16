@@ -1614,7 +1614,17 @@ body{
 </div>
 
 </section>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<script>
+const SUPABASE_URL = "https://mitzxvmmnlkjczbmrumk.supabase.co";
+const SUPABASE_KEY = "sb_publishable_g6Nc_ma8cC3vsUDZZL-RJw_e4JbO6LF";
+
+const supabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+</script>
 
 </body>
 </html>
