@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,24 +8,18 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
 :root{
     --bg:#080707;
     --bg2:#0d0b0d;
     --card:#121012;
-    --card2:#181518;
     --gold-light:#e5cf87;
     --gold:#c5a059;
-    --gold-dark:#8c6e33;
     --white:#f4f1ea;
     --muted:#a39e93;
     --border:rgba(197,160,89,.35);
@@ -54,10 +47,6 @@ body{
     overflow-x:hidden;
 }
 
-a{
-    color:inherit;
-}
-
 button{
     font-family:inherit;
 }
@@ -67,8 +56,7 @@ button{
     margin:auto;
 }
 
-
-/* ================= NAVBAR ================= */
+/* NAVBAR */
 
 .navbar{
     position:fixed;
@@ -76,7 +64,7 @@ button{
     right:0;
     left:0;
     z-index:1000;
-    background:rgba(6,5,6,.9);
+    background:rgba(6,5,6,.92);
     backdrop-filter:blur(14px);
     border-bottom:1px solid rgba(197,160,89,.2);
 }
@@ -93,6 +81,7 @@ button{
     display:flex;
     align-items:center;
     gap:10px;
+    color:inherit;
     text-decoration:none;
 }
 
@@ -147,39 +136,15 @@ button{
     color:var(--gold-light);
 }
 
-.nav-tools{
-    display:flex;
-    gap:12px;
-}
-
-.nav-tools button{
-    border:0;
-    background:none;
-    color:var(--muted);
-    font-size:1rem;
-    cursor:pointer;
-}
-
-.nav-tools button:hover{
-    color:var(--gold-light);
-}
-
-
-/* ================= HERO ================= */
+/* HERO */
 
 .hero{
     min-height:100vh;
-    padding-top:110px;
-    padding-bottom:70px;
+    padding:110px 0 70px;
     display:flex;
     align-items:center;
-
     background:
-    linear-gradient(
-        to bottom,
-        rgba(8,7,7,.45),
-        rgba(8,7,7,.92)
-    ),
+    linear-gradient(to bottom,rgba(8,7,7,.45),rgba(8,7,7,.92)),
     url("https://commons.wikimedia.org/wiki/Special:Redirect/file/Ancientlibraryalex.jpg")
     center/cover no-repeat;
 }
@@ -195,21 +160,25 @@ button{
     margin-bottom:35px;
 }
 
-.place{
+.place,
+.library{
     min-height:360px;
     position:relative;
     overflow:hidden;
     border:1px solid var(--border);
     border-radius:8px;
     background:#111;
-    box-shadow:0 15px 40px rgba(0,0,0,.6);
 }
 
-.place img{
+.place img,
+.library img{
     width:100%;
     height:100%;
     object-fit:cover;
     display:block;
+}
+
+.place img{
     filter:brightness(.58) contrast(1.08) saturate(.8);
     transition:.5s;
 }
@@ -218,7 +187,8 @@ button{
     transform:scale(1.04);
 }
 
-.place::after{
+.place::after,
+.library::after{
     content:"";
     position:absolute;
     inset:0;
@@ -243,49 +213,33 @@ button{
 
 .place-label span{
     font-size:.8rem;
-    color:#eee;
 }
 
 .library{
-    min-height:360px;
-    position:relative;
-    overflow:hidden;
-    display:flex;
-    align-items:center;
-    justify-content:center;
     border:2px solid rgba(229,207,135,.65);
-    border-radius:8px;
     box-shadow:
         0 20px 50px rgba(0,0,0,.8),
         inset 0 0 50px rgba(197,160,89,.12);
 }
 
 .library img{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    object-fit:cover;
     filter:brightness(.35) contrast(1.1) saturate(.7);
 }
 
-.library::after{
-    content:"";
+.library-content{
     position:absolute;
     inset:0;
-    background:linear-gradient(to bottom,rgba(0,0,0,.05),rgba(0,0,0,.88));
-}
-
-.library-content{
-    position:relative;
     z-index:2;
-    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
 }
 
 .library-icon{
     width:75px;
     height:75px;
-    margin:auto auto 15px;
+    margin-bottom:15px;
     border:1px solid var(--gold);
     border-radius:50%;
     display:flex;
@@ -360,8 +314,7 @@ button{
     background:rgba(0,0,0,.6);
 }
 
-
-/* ================= SECTIONS ================= */
+/* SECTIONS */
 
 section.content-section{
     padding:85px 0;
@@ -387,8 +340,7 @@ section.content-section{
     margin-bottom:8px;
 }
 
-
-/* ================= PHILOSOPHERS ================= */
+/* PHILOSOPHERS */
 
 .philosophers{
     background:linear-gradient(to bottom,var(--bg),var(--bg2));
@@ -421,8 +373,6 @@ section.content-section{
     width:100%;
     height:100%;
     object-fit:cover;
-    display:block;
-    filter:grayscale(15%) contrast(1.08);
 }
 
 .ph-info{
@@ -446,8 +396,7 @@ section.content-section{
     margin-top:5px;
 }
 
-
-/* ================= PROGRAM ================= */
+/* PROGRAM */
 
 .program{
     background:var(--bg);
@@ -464,12 +413,6 @@ section.content-section{
     border:1px solid var(--border);
     border-radius:8px;
     background:var(--card);
-    transition:.3s;
-}
-
-.program-card:hover{
-    transform:translateY(-5px);
-    border-color:var(--gold-light);
 }
 
 .program-image{
@@ -504,8 +447,7 @@ section.content-section{
     font-size:1.25rem;
 }
 
-
-/* ================= ARTICLES ================= */
+/* ARTICLES */
 
 .articles{
     background:linear-gradient(to bottom,#0d0b0d,#080707);
@@ -572,7 +514,6 @@ section.content-section{
     border-radius:25px;
     background:transparent;
     color:var(--gold-light);
-    text-decoration:none;
     font-size:.85rem;
     cursor:pointer;
     transition:.25s;
@@ -581,10 +522,6 @@ section.content-section{
 .article-link:hover{
     background:var(--gold);
     color:#000;
-}
-
-.article-link i{
-    margin-right:5px;
 }
 
 .no-articles{
@@ -603,8 +540,7 @@ section.content-section{
     margin-bottom:15px;
 }
 
-
-/* ================= ARTICLE MODAL ================= */
+/* MODAL */
 
 .article-modal{
     position:fixed;
@@ -647,12 +583,6 @@ section.content-section{
     color:var(--gold-light);
     font-size:24px;
     cursor:pointer;
-    z-index:10;
-}
-
-.article-modal-close:hover{
-    background:var(--gold);
-    color:#000;
 }
 
 .article-modal-title{
@@ -679,8 +609,7 @@ section.content-section{
     word-break:break-word;
 }
 
-
-/* ================= ABOUT ================= */
+/* ABOUT */
 
 .about{
     text-align:center;
@@ -701,8 +630,7 @@ section.content-section{
     line-height:2;
 }
 
-
-/* ================= FOOTER ================= */
+/* FOOTER */
 
 footer{
     padding:35px 0;
@@ -723,11 +651,9 @@ footer{
     margin-top:5px;
 }
 
-
-/* ================= RESPONSIVE ================= */
+/* RESPONSIVE */
 
 @media(max-width:1000px){
-
     .places{
         grid-template-columns:1fr 1fr;
     }
@@ -751,7 +677,6 @@ footer{
 }
 
 @media(max-width:768px){
-
     .nav-menu{
         display:none;
     }
@@ -769,10 +694,7 @@ footer{
         min-height:270px;
     }
 
-    .philosopher-grid{
-        grid-template-columns:1fr;
-    }
-
+    .philosopher-grid,
     .article-grid{
         grid-template-columns:1fr;
     }
@@ -811,160 +733,77 @@ footer{
         font-size:.95rem;
     }
 }
-
 </style>
 </head>
 
-
 <body>
 
-
-<!-- ================= NAVBAR ================= -->
-
 <nav class="navbar">
-
 <div class="container nav-container">
 
 <a href="#" class="brand">
-
 <div class="owl">
-
 <svg viewBox="0 0 24 24">
-
-<path d="
-M12 2
-C8.5 2 6 4.5 6 8
-C6 10.5 7.2 12.8 9 14.2
-V20
-L12 18.5
-L15 20
-V14.2
-C16.8 12.8 18 10.5 18 8
-C18 4.5 15.5 2 12 2ZM9 7.5
-C9.8 7.5 10.5 8.2 10.5 9
-S9.8 10.5 9 10.5
-S7.5 9.8 7.5 9
-S8.2 7.5 9 7.5ZM15 7.5
-C15.8 7.5 16.5 8.2 16.5 9
-S15.8 10.5 15 10.5
-S13.5 9.8 13.5 9
-S14.2 7.5 15 7.5Z"/>
-
+<path d="M12 2C8.5 2 6 4.5 6 8C6 10.5 7.2 12.8 9 14.2V20L12 18.5L15 20V14.2C16.8 12.8 18 10.5 18 8C18 4.5 15.5 2 12 2ZM9 7.5C9.8 7.5 10.5 8.2 10.5 9S9.8 10.5 9 10.5S7.5 9.8 7.5 9S8.2 7.5 9 7.5ZM15 7.5C15.8 7.5 16.5 8.2 16.5 9S15.8 10.5 15 10.5S13.5 9.8 13.5 9S14.2 7.5 15 7.5Z"/>
 </svg>
-
 </div>
 
 <div class="brand-text">
-
 <span class="brand-title">رواق زايد</span>
-
 <span class="brand-sub">للفلسفة</span>
-
 </div>
-
 </a>
 
-
 <ul class="nav-menu">
-
 <li><a href="#">الرئيسية</a></li>
 <li><a href="#program">البرنامج</a></li>
 <li><a href="#philosophers">الفلاسفة</a></li>
 <li><a href="#articles">المقالات</a></li>
 <li><a href="#about">حول المنصة</a></li>
-
 </ul>
 
-
-<div class="nav-tools">
-
-<button type="button" title="البحث">
-<i class="fa-solid fa-magnifying-glass"></i>
-</button>
-
-<button type="button" title="الوضع الليلي">
-<i class="fa-regular fa-moon"></i>
-</button>
-
 </div>
-
 </div>
-
 </nav>
 
-
-<!-- ================= HERO ================= -->
-
 <section class="hero">
-
 <div class="container hero-content">
 
 <div class="places">
 
 <div class="place">
-
-<img
-src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Athens%20-%20Parthenon.jpg"
-alt="أثينا">
-
+<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Athens%20-%20Parthenon.jpg" alt="أثينا">
 <div class="place-label">
-
 <h3>أثينا</h3>
-
 <span>اليونان القديمة</span>
-
 </div>
-
 </div>
-
 
 <div class="library">
-
-<img
-src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Ancientlibraryalex.jpg"
-alt="المكتبة القديمة">
+<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Ancientlibraryalex.jpg" alt="المكتبة القديمة">
 
 <div class="library-content">
-
 <div class="library-icon">
 <i class="fa-solid fa-book-open"></i>
 </div>
 
-<div class="library-title">
-رواق زايد للفلسفة
+<div class="library-title">رواق زايد للفلسفة</div>
+<div class="library-sub">مكتبة الفكر الفلسفي</div>
 </div>
-
-<div class="library-sub">
-مكتبة الفكر الفلسفي
 </div>
-
-</div>
-
-</div>
-
 
 <div class="place">
-
-<img
-src="https://image.idntimes.com/post/20211205/bayt-al-hikmah-ilustrasi-9e570a13358bdcb76ed816e9d7c035aa-7799936233ec3bf9e354f9cc78b4206e.jpg"
-alt="بيت الحكمة">
+<img src="https://image.idntimes.com/post/20211205/bayt-al-hikmah-ilustrasi-9e570a13358bdcb76ed816e9d7c035aa-7799936233ec3bf9e354f9cc78b4206e.jpg" alt="بيت الحكمة">
 
 <div class="place-label">
-
 <h3>بيت الحكمة</h3>
-
 <span>بغداد — العصر العباسي</span>
-
+</div>
 </div>
 
 </div>
 
-</div>
-
-
-<h1 class="hero-title">
-رواق زايد للفلسفة
-</h1>
+<h1 class="hero-title">رواق زايد للفلسفة</h1>
 
 <div class="hero-tagline">
 حيث يبدأ السؤال... ويستمر البحث.
@@ -976,321 +815,151 @@ alt="بيت الحكمة">
 </p>
 
 <div class="buttons">
-
 <a href="#articles" class="btn btn-gold">
-
 <i class="fa-solid fa-feather"></i>
-
 اقرأ المقالات
-
 </a>
 
 <a href="#program" class="btn btn-outline">
-
 <i class="fa-solid fa-book-open"></i>
-
 استكشف البرنامج
-
 </a>
-
 </div>
 
 </div>
-
 </section>
 
-
-<!-- ================= PHILOSOPHERS ================= -->
-
 <section class="content-section philosophers" id="philosophers">
-
 <div class="container">
 
 <div class="section-header">
-
 <div class="decor">❖</div>
-
-<h2 class="section-title">
-أعلام الفلسفة
-</h2>
-
-<p class="section-subtitle">
-أفكار غيّرت الطريقة التي يفكر بها الإنسان
-</p>
-
+<h2 class="section-title">أعلام الفلسفة</h2>
+<p class="section-subtitle">أفكار غيّرت الطريقة التي يفكر بها الإنسان</p>
 </div>
-
 
 <div class="philosopher-grid">
 
-
 <div class="ph-card">
-
 <div class="ph-image">
-
-<img
-src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Socrates%20Louvre.jpg"
-alt="سقراط">
-
+<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Socrates%20Louvre.jpg" alt="سقراط">
 </div>
-
 <div class="ph-info">
-
 <h3 class="ph-name">سقراط</h3>
-
-<div class="ph-date">
-470 – 399 ق.م
+<div class="ph-date">470 – 399 ق.م</div>
+<div class="ph-topic">السؤال والحوار</div>
 </div>
-
-<div class="ph-topic">
-السؤال والحوار
 </div>
-
-</div>
-
-</div>
-
 
 <div class="ph-card">
-
 <div class="ph-image">
-
-<img
-src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Plato%20bust.png"
-alt="أفلاطون">
-
+<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Plato%20bust.png" alt="أفلاطون">
 </div>
-
 <div class="ph-info">
-
 <h3 class="ph-name">أفلاطون</h3>
-
-<div class="ph-date">
-428/427 – 348/347 ق.م
+<div class="ph-date">428/427 – 348/347 ق.م</div>
+<div class="ph-topic">المعرفة والمُثل</div>
 </div>
-
-<div class="ph-topic">
-المعرفة والمُثل
 </div>
-
-</div>
-
-</div>
-
 
 <div class="ph-card">
-
 <div class="ph-image">
-
-<img
-src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Aristotle%20bust.jpg"
-alt="أرسطو">
-
+<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Aristotle%20bust.jpg" alt="أرسطو">
 </div>
-
 <div class="ph-info">
-
 <h3 class="ph-name">أرسطو</h3>
-
-<div class="ph-date">
-384 – 322 ق.م
+<div class="ph-date">384 – 322 ق.م</div>
+<div class="ph-topic">المنطق والوجود</div>
 </div>
-
-<div class="ph-topic">
-المنطق والوجود
 </div>
-
-</div>
-
-</div>
-
 
 <div class="ph-card">
-
 <div class="ph-image">
-
-<img
-src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Descartes-1.jpg"
-alt="ديكارت">
-
+<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Descartes-1.jpg" alt="ديكارت">
 </div>
-
 <div class="ph-info">
-
 <h3 class="ph-name">ديكارت</h3>
-
-<div class="ph-date">
-1596 – 1650
+<div class="ph-date">1596 – 1650</div>
+<div class="ph-topic">العقل واليقين</div>
 </div>
-
-<div class="ph-topic">
-العقل واليقين
 </div>
 
 </div>
-
 </div>
-
-
-</div>
-
-</div>
-
 </section>
 
-
-<!-- ================= PROGRAM ================= -->
-
 <section class="content-section program" id="program">
-
 <div class="container">
 
 <div class="section-header">
-
 <div class="decor">❖</div>
-
-<h2 class="section-title">
-البرنامج السنوي
-</h2>
-
-<p class="section-subtitle">
-اختر مسارك الدراسي للوصول إلى البرنامج الخاص بك.
-</p>
-
+<h2 class="section-title">البرنامج السنوي</h2>
+<p class="section-subtitle">اختر مسارك الدراسي للوصول إلى البرنامج الخاص بك.</p>
 </div>
-
 
 <div class="program-grid">
 
-
 <div class="program-card">
-
 <div class="program-image">
-
-<img
-src="https://commons.wikimedia.org/wiki/Special:Redirect/file/The%20Library%20of%20Celsus%2C%20Ephesus%20Interior.jpg"
-alt="السنة الثالثة آداب وفلسفة">
-
+<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/The%20Library%20of%20Celsus%2C%20Ephesus%20Interior.jpg" alt="السنة الثالثة آداب وفلسفة">
 <div class="number">I</div>
-
 </div>
-
 <div class="program-title">
-
 السنة الثالثة آداب وفلسفة
-
 <br>
-
 شعبة آداب وفلسفة
-
 </div>
-
 </div>
-
 
 <div class="program-card">
-
 <div class="program-image">
-
-<img
-src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Library%20of%20Alexandria%20%281%29.jpg"
-alt="السنة الثانية آداب وفلسفة">
-
+<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Library%20of%20Alexandria%20%281%29.jpg" alt="السنة الثانية آداب وفلسفة">
 <div class="number">II</div>
-
 </div>
-
 <div class="program-title">
-
 السنة الثانية آداب وفلسفة
-
 <br>
-
 شعبة آداب وفلسفة
-
 </div>
-
 </div>
-
 
 <div class="program-card">
-
 <div class="program-image">
-
-<img
-src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Library%20of%20Alexandria%20-1.JPG"
-alt="الشعب العلمية واللغات">
-
+<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Library%20of%20Alexandria%20-1.JPG" alt="الشعب العلمية واللغات">
 <div class="number">III</div>
-
 </div>
-
 <div class="program-title">
-
 السنة الثانية
-
 <br>
-
 الشعب العلمية واللغات
-
+</div>
 </div>
 
 </div>
-
-
 </div>
-
-</div>
-
 </section>
 
-
-<!-- ================= ARTICLES ================= -->
-
 <section class="content-section articles" id="articles">
-
 <div class="container">
 
 <div class="section-header">
-
 <div class="decor">❖</div>
-
-<h2 class="section-title">
-المقالات والنصوص
-</h2>
-
-<p class="section-subtitle">
-أفكار وتأملات وقراءات في الفلسفة والفكر.
-</p>
-
+<h2 class="section-title">المقالات والنصوص</h2>
+<p class="section-subtitle">أفكار وتأملات وقراءات في الفلسفة والفكر.</p>
 </div>
-
 
 <div class="article-grid" id="articleGrid">
 
-<div class="no-articles" id="loadingArticles">
-
-<i class="fa-solid fa-feather-pointed"></i>
-
-<div>
-جاري تحميل المقالات...
+<div class="no-articles">
+<i class="fa-solid fa-spinner fa-spin"></i>
+<div>جاري تحميل المقالات...</div>
 </div>
 
 </div>
-
 </div>
-
-</div>
-
 </section>
 
-
-<!-- ================= ARTICLE MODAL ================= -->
-
-<div
-id="articleModal"
-class="article-modal"
->
+<div id="articleModal" class="article-modal">
 
 <div class="article-modal-box">
 
@@ -1298,87 +967,50 @@ class="article-modal"
 type="button"
 id="closeArticleButton"
 class="article-modal-close"
-aria-label="إغلاق"
->
+aria-label="إغلاق">
 ×
 </button>
 
-<h2
-id="modalArticleTitle"
-class="article-modal-title"
-></h2>
+<h2 id="modalArticleTitle" class="article-modal-title"></h2>
 
-<div
-id="modalArticleMeta"
-class="article-modal-meta"
-></div>
+<div id="modalArticleMeta" class="article-modal-meta"></div>
 
-<div
-id="modalArticleContent"
-class="article-modal-content"
-></div>
+<div id="modalArticleContent" class="article-modal-content"></div>
 
 </div>
-
 </div>
-
-
-<!-- ================= ABOUT ================= -->
 
 <section class="content-section about" id="about">
-
 <div class="container">
 
 <div class="section-header">
-
 <div class="decor">❖</div>
-
-<h2 class="section-title">
-حول رواق زايد
-</h2>
-
+<h2 class="section-title">حول رواق زايد</h2>
 </div>
 
-
 <div class="about-box">
-
 <p>
-
 رواق زايد للفلسفة منصة تعليمية وفكرية تهدف إلى تقديم
 الفلسفة بطريقة واضحة وعميقة، تجمع بين الدراسة والتعليم
 والقراءة والكتابة، وتمنح القارئ مساحة للتفكير وطرح الأسئلة.
-
 </p>
-
 </div>
 
 </div>
-
 </section>
 
-
-<!-- ================= FOOTER ================= -->
-
 <footer>
-
 <div class="container">
-
-<div class="footer-brand">
-رواق زايد للفلسفة
+<div class="footer-brand">رواق زايد للفلسفة</div>
+<div class="footer-text">حيث يبدأ السؤال... ويستمر البحث.</div>
 </div>
-
-<div class="footer-text">
-حيث يبدأ السؤال... ويستمر البحث.
-</div>
-
-</div>
-
 </footer>
 
-
-<!-- ================= JAVASCRIPT ================= -->
-
 <script>
+
+/* =====================================================
+   SUPABASE
+===================================================== */
 
 const SUPABASE_URL =
 "https://mitzxvmmnlkjczbmrumk.supabase.co";
@@ -1393,21 +1025,32 @@ window.supabase.createClient(
 );
 
 
-/* ================= حماية النصوص ================= */
+/* =====================================================
+   عناصر الصفحة
+===================================================== */
 
-function escapeHTML(value){
+const articleGrid =
+document.getElementById("articleGrid");
 
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+const articleModal =
+document.getElementById("articleModal");
 
-}
+const modalArticleTitle =
+document.getElementById("modalArticleTitle");
+
+const modalArticleMeta =
+document.getElementById("modalArticleMeta");
+
+const modalArticleContent =
+document.getElementById("modalArticleContent");
+
+const closeArticleButton =
+document.getElementById("closeArticleButton");
 
 
-/* ================= مقتطف المقال ================= */
+/* =====================================================
+   مقتطف المقال
+===================================================== */
 
 function getExcerpt(content){
 
@@ -1415,25 +1058,188 @@ function getExcerpt(content){
         return "اضغط على قراءة النص لقراءة المقال كاملًا.";
     }
 
-    const text = String(content);
+    const text =
+        String(content).trim();
 
     if(text.length <= 180){
         return text;
     }
 
     return text.substring(0,180) + "...";
-
 }
 
 
-/* ================= تحميل المقالات ================= */
+/* =====================================================
+   فتح المقال
+===================================================== */
+
+function openArticle(article){
+
+    if(!article){
+        return;
+    }
+
+    modalArticleTitle.textContent =
+        article.title || "بدون عنوان";
+
+    let metadata =
+        article.category || "فلسفة";
+
+    if(article.author){
+        metadata +=
+            " — " + article.author;
+    }
+
+    modalArticleMeta.textContent =
+        metadata;
+
+    modalArticleContent.textContent =
+        article.content ||
+        "لا يوجد محتوى لهذا المقال.";
+
+    articleModal.classList.add("active");
+
+    document.body.style.overflow =
+        "hidden";
+}
+
+
+/* =====================================================
+   إغلاق المقال
+===================================================== */
+
+function closeArticle(){
+
+    articleModal.classList.remove("active");
+
+    document.body.style.overflow =
+        "";
+}
+
+
+closeArticleButton.addEventListener(
+    "click",
+    closeArticle
+);
+
+
+articleModal.addEventListener(
+    "click",
+    function(event){
+
+        if(event.target === articleModal){
+            closeArticle();
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+            closeArticle();
+        }
+
+    }
+);
+
+
+/* =====================================================
+   إنشاء بطاقة المقال
+===================================================== */
+
+function createArticleCard(article){
+
+    const card =
+        document.createElement("article");
+
+    card.className =
+        "article-card";
+
+
+    const icon =
+        document.createElement("div");
+
+    icon.className =
+        "article-icon";
+
+    icon.innerHTML =
+        '<i class="fa-solid fa-feather-pointed"></i>';
+
+
+    const category =
+        document.createElement("div");
+
+    category.className =
+        "article-category";
+
+    category.textContent =
+        article.category || "فلسفة";
+
+
+    const title =
+        document.createElement("h3");
+
+    title.className =
+        "article-title";
+
+    title.textContent =
+        article.title || "بدون عنوان";
+
+
+    const excerpt =
+        document.createElement("p");
+
+    excerpt.className =
+        "article-excerpt";
+
+    excerpt.textContent =
+        article.excerpt ||
+        getExcerpt(article.content);
+
+
+    const button =
+        document.createElement("button");
+
+    button.type =
+        "button";
+
+    button.className =
+        "article-link";
+
+    button.innerHTML =
+        'قراءة النص <i class="fa-solid fa-arrow-left"></i>';
+
+
+    button.addEventListener(
+        "click",
+        function(){
+            openArticle(article);
+        }
+    );
+
+
+    card.appendChild(icon);
+    card.appendChild(category);
+    card.appendChild(title);
+    card.appendChild(excerpt);
+    card.appendChild(button);
+
+
+    return card;
+}
+
+
+/* =====================================================
+   تحميل المقالات من Supabase
+===================================================== */
 
 async function loadArticles(){
 
-    const grid =
-        document.getElementById("articleGrid");
-
-    grid.innerHTML = `
+    articleGrid.innerHTML = `
         <div class="no-articles">
             <i class="fa-solid fa-spinner fa-spin"></i>
             <div>جاري تحميل المقالات...</div>
@@ -1443,7 +1249,7 @@ async function loadArticles(){
 
     try{
 
-        const { data, error } =
+        const result =
             await supabaseClient
             .from("articles")
             .select("*")
@@ -1453,14 +1259,31 @@ async function loadArticles(){
             });
 
 
+        const data =
+            result.data;
+
+        const error =
+            result.error;
+
+
         if(error){
 
-            console.error("Supabase error:", error);
+            console.error(
+                "Supabase error:",
+                error
+            );
 
-            grid.innerHTML = `
+            articleGrid.innerHTML = `
                 <div class="no-articles">
                     <i class="fa-solid fa-triangle-exclamation"></i>
-                    <div>تعذر تحميل المقالات حاليًا.</div>
+
+                    <div>
+                        تعذر تحميل المقالات حاليًا.
+                    </div>
+
+                    <div style="font-size:.75rem;margin-top:8px;">
+                        تحقق من جدول articles في Supabase.
+                    </div>
                 </div>
             `;
 
@@ -1470,7 +1293,7 @@ async function loadArticles(){
 
         if(!data || data.length === 0){
 
-            grid.innerHTML = `
+            articleGrid.innerHTML = `
                 <div class="no-articles">
 
                     <i class="fa-solid fa-feather-pointed"></i>
@@ -1490,89 +1313,15 @@ async function loadArticles(){
         }
 
 
-        grid.innerHTML = "";
+        articleGrid.innerHTML = "";
 
 
-        data.forEach(article => {
+        data.forEach(function(article){
 
             const card =
-                document.createElement("article");
+                createArticleCard(article);
 
-            card.className =
-                "article-card";
-
-
-            const icon =
-                document.createElement("div");
-
-            icon.className =
-                "article-icon";
-
-            icon.innerHTML =
-                '<i class="fa-solid fa-feather-pointed"></i>';
-
-
-            const category =
-                document.createElement("div");
-
-            category.className =
-                "article-category";
-
-            category.textContent =
-                article.category || "فلسفة";
-
-
-            const title =
-                document.createElement("h3");
-
-            title.className =
-                "article-title";
-
-            title.textContent =
-                article.title || "بدون عنوان";
-
-
-            const excerpt =
-                document.createElement("p");
-
-            excerpt.className =
-                "article-excerpt";
-
-            excerpt.textContent =
-                article.excerpt ||
-                getExcerpt(article.content);
-
-
-            const button =
-                document.createElement("button");
-
-            button.type =
-                "button";
-
-            button.className =
-                "article-link";
-
-            button.innerHTML =
-                'قراءة النص <i class="fa-solid fa-arrow-left"></i>';
-
-
-            button.addEventListener(
-                "click",
-                function(){
-
-                    openArticle(article);
-
-                }
-            );
-
-
-            card.appendChild(icon);
-            card.appendChild(category);
-            card.appendChild(title);
-            card.appendChild(excerpt);
-            card.appendChild(button);
-
-            grid.appendChild(card);
+            articleGrid.appendChild(card);
 
         });
 
@@ -1580,132 +1329,29 @@ async function loadArticles(){
 
     catch(error){
 
-        console.error("Unexpected error:",error);
+        console.error(
+            "Unexpected error:",
+            error
+        );
 
-        grid.innerHTML = `
+        articleGrid.innerHTML = `
             <div class="no-articles">
+
                 <i class="fa-solid fa-triangle-exclamation"></i>
-                <div>حدث خطأ أثناء تحميل المقالات.</div>
+
+                <div>
+                    حدث خطأ أثناء تحميل المقالات.
+                </div>
+
             </div>
         `;
-
     }
-
 }
 
 
-/* ================= فتح المقال ================= */
-
-function openArticle(article){
-
-    const modal =
-        document.getElementById("articleModal");
-
-    const title =
-        document.getElementById("modalArticleTitle");
-
-    const meta =
-        document.getElementById("modalArticleMeta");
-
-    const content =
-        document.getElementById("modalArticleContent");
-
-
-    title.textContent =
-        article.title || "بدون عنوان";
-
-
-    let metadata =
-        article.category || "فلسفة";
-
-
-    if(article.author){
-
-        metadata +=
-            " — " + article.author;
-
-    }
-
-
-    meta.textContent =
-        metadata;
-
-
-    content.textContent =
-        article.content ||
-        "لا يوجد محتوى لهذا المقال.";
-
-
-    modal.classList.add("active");
-
-    document.body.style.overflow =
-        "hidden";
-
-}
-
-
-/* ================= إغلاق المقال ================= */
-
-function closeArticle(){
-
-    const modal =
-        document.getElementById("articleModal");
-
-    modal.classList.remove("active");
-
-    document.body.style.overflow =
-        "";
-
-}
-
-
-/* زر الإغلاق */
-
-document
-.getElementById("closeArticleButton")
-.addEventListener(
-    "click",
-    closeArticle
-);
-
-
-/* إغلاق عند الضغط خارج النافذة */
-
-document
-.getElementById("articleModal")
-.addEventListener(
-    "click",
-    function(event){
-
-        if(event.target === this){
-
-            closeArticle();
-
-        }
-
-    }
-);
-
-
-/* إغلاق بزر ESC */
-
-document.addEventListener(
-    "keydown",
-    function(event){
-
-        if(
-            event.key === "Escape"
-        ){
-
-            closeArticle();
-
-        }
-
-    }
-);
-
-
-/* ================= بدء الموقع ================= */
+/* =====================================================
+   تشغيل الموقع
+===================================================== */
 
 loadArticles();
 
