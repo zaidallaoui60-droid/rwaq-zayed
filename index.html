@@ -9,11 +9,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+
 :root{
     --bg:#080707;
     --bg2:#0d0b0d;
@@ -56,7 +58,9 @@ button{
     margin:auto;
 }
 
-/* NAVBAR */
+/* =========================
+   NAVBAR
+========================= */
 
 .navbar{
     position:fixed;
@@ -136,7 +140,9 @@ button{
     color:var(--gold-light);
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero{
     min-height:100vh;
@@ -312,9 +318,12 @@ button{
 .btn-outline{
     border:1px solid var(--border-bright);
     background:rgba(0,0,0,.6);
+    color:var(--white);
 }
 
-/* SECTIONS */
+/* =========================
+   SECTIONS
+========================= */
 
 section.content-section{
     padding:85px 0;
@@ -340,7 +349,9 @@ section.content-section{
     margin-bottom:8px;
 }
 
-/* PHILOSOPHERS */
+/* =========================
+   PHILOSOPHERS
+========================= */
 
 .philosophers{
     background:linear-gradient(to bottom,var(--bg),var(--bg2));
@@ -396,7 +407,9 @@ section.content-section{
     margin-top:5px;
 }
 
-/* PROGRAM */
+/* =========================
+   PROGRAM
+========================= */
 
 .program{
     background:var(--bg);
@@ -447,7 +460,9 @@ section.content-section{
     font-size:1.25rem;
 }
 
-/* ARTICLES */
+/* =========================
+   ARTICLES
+========================= */
 
 .articles{
     background:linear-gradient(to bottom,#0d0b0d,#080707);
@@ -524,6 +539,146 @@ section.content-section{
     color:#000;
 }
 
+/* =========================
+   NAVIGATION INSIDE ARTICLES
+========================= */
+
+.article-navigation{
+    margin-bottom:30px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.back-button{
+    display:none;
+    border:1px solid var(--gold);
+    background:transparent;
+    color:var(--gold-light);
+    padding:9px 20px;
+    border-radius:25px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.back-button:hover{
+    background:var(--gold);
+    color:#000;
+}
+
+.breadcrumb{
+    color:var(--muted);
+    font-size:.85rem;
+}
+
+.breadcrumb span{
+    color:var(--gold-light);
+}
+
+/* =========================
+   ISSUE CARDS
+========================= */
+
+.category-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.category-card{
+    min-height:190px;
+    padding:30px 25px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:linear-gradient(
+        145deg,
+        rgba(25,22,25,.98),
+        rgba(10,9,10,.98)
+    );
+    border:1px solid var(--border);
+    border-radius:8px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.category-card:hover{
+    transform:translateY(-6px);
+    border-color:var(--gold-light);
+    box-shadow:0 15px 40px rgba(0,0,0,.4);
+}
+
+.category-card i{
+    color:var(--gold-light);
+    font-size:2rem;
+    margin-bottom:15px;
+}
+
+.category-card h3{
+    font-family:var(--amiri);
+    font-size:1.45rem;
+    color:var(--gold-light);
+}
+
+.category-card p{
+    color:var(--muted);
+    font-size:.8rem;
+    margin-top:5px;
+}
+
+/* =========================
+   PROBLEM CARDS
+========================= */
+
+.problem-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.problem-card{
+    padding:25px;
+    background:linear-gradient(
+        145deg,
+        rgba(25,22,25,.98),
+        rgba(10,9,10,.98)
+    );
+    border:1px solid var(--border);
+    border-radius:8px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.problem-card:hover{
+    transform:translateY(-5px);
+    border-color:var(--gold-light);
+}
+
+.problem-number{
+    color:var(--gold);
+    font-size:.8rem;
+    margin-bottom:5px;
+}
+
+.problem-card h3{
+    font-family:var(--amiri);
+    font-size:1.35rem;
+    color:var(--gold-light);
+}
+
+.problem-card p{
+    color:var(--muted);
+    font-size:.8rem;
+    margin-top:6px;
+}
+
+/* =========================
+   NO ARTICLES
+========================= */
+
 .no-articles{
     grid-column:1/-1;
     text-align:center;
@@ -540,7 +695,9 @@ section.content-section{
     margin-bottom:15px;
 }
 
-/* MODAL */
+/* =========================
+   MODAL
+========================= */
 
 .article-modal{
     position:fixed;
@@ -609,7 +766,9 @@ section.content-section{
     word-break:break-word;
 }
 
-/* ABOUT */
+/* =========================
+   ABOUT
+========================= */
 
 .about{
     text-align:center;
@@ -630,7 +789,9 @@ section.content-section{
     line-height:2;
 }
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 footer{
     padding:35px 0;
@@ -651,9 +812,12 @@ footer{
     margin-top:5px;
 }
 
-/* RESPONSIVE */
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media(max-width:1000px){
+
     .places{
         grid-template-columns:1fr 1fr;
     }
@@ -674,9 +838,14 @@ footer{
     .program-grid{
         grid-template-columns:1fr;
     }
+
+    .category-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
 }
 
 @media(max-width:768px){
+
     .nav-menu{
         display:none;
     }
@@ -695,7 +864,9 @@ footer{
     }
 
     .philosopher-grid,
-    .article-grid{
+    .article-grid,
+    .category-grid,
+    .problem-grid{
         grid-template-columns:1fr;
     }
 
@@ -733,233 +904,509 @@ footer{
         font-size:.95rem;
     }
 }
+
 </style>
 </head>
 
 <body>
 
+<!-- =========================
+     NAVBAR
+========================= -->
+
 <nav class="navbar">
+
 <div class="container nav-container">
 
 <a href="#" class="brand">
+
 <div class="owl">
+
 <svg viewBox="0 0 24 24">
+
 <path d="M12 2C8.5 2 6 4.5 6 8C6 10.5 7.2 12.8 9 14.2V20L12 18.5L15 20V14.2C16.8 12.8 18 10.5 18 8C18 4.5 15.5 2 12 2ZM9 7.5C9.8 7.5 10.5 8.2 10.5 9S9.8 10.5 9 10.5S7.5 9.8 7.5 9S8.2 7.5 9 7.5ZM15 7.5C15.8 7.5 16.5 8.2 16.5 9S15.8 10.5 15 10.5S13.5 9.8 13.5 9S14.2 7.5 15 7.5Z"/>
+
 </svg>
+
 </div>
 
 <div class="brand-text">
+
 <span class="brand-title">رواق زايد</span>
+
 <span class="brand-sub">للفلسفة</span>
+
 </div>
+
 </a>
 
 <ul class="nav-menu">
+
 <li><a href="#">الرئيسية</a></li>
 <li><a href="#program">البرنامج</a></li>
 <li><a href="#philosophers">الفلاسفة</a></li>
 <li><a href="#articles">المقالات</a></li>
 <li><a href="#about">حول المنصة</a></li>
+
 </ul>
 
 </div>
-</div>
+
 </nav>
 
+
+<!-- =========================
+     HERO
+========================= -->
+
 <section class="hero">
+
 <div class="container hero-content">
 
 <div class="places">
 
 <div class="place">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Athens%20-%20Parthenon.jpg" alt="أثينا">
+
+<img
+src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Athens%20-%20Parthenon.jpg"
+alt="أثينا">
+
 <div class="place-label">
+
 <h3>أثينا</h3>
+
 <span>اليونان القديمة</span>
+
 </div>
+
 </div>
+
 
 <div class="library">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Ancientlibraryalex.jpg" alt="المكتبة القديمة">
+
+<img
+src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Ancientlibraryalex.jpg"
+alt="المكتبة القديمة">
 
 <div class="library-content">
+
 <div class="library-icon">
+
 <i class="fa-solid fa-book-open"></i>
+
 </div>
 
-<div class="library-title">رواق زايد للفلسفة</div>
-<div class="library-sub">مكتبة الفكر الفلسفي</div>
+<div class="library-title">
+رواق زايد للفلسفة
 </div>
+
+<div class="library-sub">
+مكتبة الفكر الفلسفي
 </div>
+
+</div>
+
+</div>
+
 
 <div class="place">
-<img src="https://image.idntimes.com/post/20211205/bayt-al-hikmah-ilustrasi-9e570a13358bdcb76ed816e9d7c035aa-7799936233ec3bf9e354f9cc78b4206e.jpg" alt="بيت الحكمة">
+
+<img
+src="https://image.idntimes.com/post/20211205/bayt-al-hikmah-ilustrasi-9e570a13358bdcb76ed816e9d7c035aa-7799936233ec3bf9e354f9cc78b4206e.jpg"
+alt="بيت الحكمة">
 
 <div class="place-label">
+
 <h3>بيت الحكمة</h3>
+
 <span>بغداد — العصر العباسي</span>
+
 </div>
+
 </div>
 
 </div>
 
-<h1 class="hero-title">رواق زايد للفلسفة</h1>
+
+<h1 class="hero-title">
+رواق زايد للفلسفة
+</h1>
 
 <div class="hero-tagline">
 حيث يبدأ السؤال... ويستمر البحث.
 </div>
 
 <p class="hero-description">
+
 منصة تعليمية لدراسة الفلسفة، وفهم أسئلتها الكبرى،
 وتعلم بناء الموقف والحجاج الفلسفي.
+
 </p>
 
 <div class="buttons">
+
 <a href="#articles" class="btn btn-gold">
+
 <i class="fa-solid fa-feather"></i>
+
 اقرأ المقالات
+
 </a>
 
 <a href="#program" class="btn btn-outline">
+
 <i class="fa-solid fa-book-open"></i>
+
 استكشف البرنامج
+
 </a>
+
 </div>
 
 </div>
+
 </section>
 
+
+<!-- =========================
+     PHILOSOPHERS
+========================= -->
+
 <section class="content-section philosophers" id="philosophers">
+
 <div class="container">
 
 <div class="section-header">
+
 <div class="decor">❖</div>
-<h2 class="section-title">أعلام الفلسفة</h2>
-<p class="section-subtitle">أفكار غيّرت الطريقة التي يفكر بها الإنسان</p>
+
+<h2 class="section-title">
+أعلام الفلسفة
+</h2>
+
+<p class="section-subtitle">
+أفكار غيّرت الطريقة التي يفكر بها الإنسان
+</p>
+
 </div>
+
 
 <div class="philosopher-grid">
 
+
 <div class="ph-card">
+
 <div class="ph-image">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Socrates%20Louvre.jpg" alt="سقراط">
+
+<img
+src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Socrates%20Louvre.jpg"
+alt="سقراط">
+
 </div>
+
 <div class="ph-info">
+
 <h3 class="ph-name">سقراط</h3>
-<div class="ph-date">470 – 399 ق.م</div>
-<div class="ph-topic">السؤال والحوار</div>
-</div>
+
+<div class="ph-date">
+470 – 399 ق.م
 </div>
 
-<div class="ph-card">
-<div class="ph-image">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Plato%20bust.png" alt="أفلاطون">
+<div class="ph-topic">
+السؤال والحوار
 </div>
+
+</div>
+
+</div>
+
+
+<div class="ph-card">
+
+<div class="ph-image">
+
+<img
+src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Plato%20bust.png"
+alt="أفلاطون">
+
+</div>
+
 <div class="ph-info">
+
 <h3 class="ph-name">أفلاطون</h3>
-<div class="ph-date">428/427 – 348/347 ق.م</div>
-<div class="ph-topic">المعرفة والمُثل</div>
-</div>
+
+<div class="ph-date">
+428/427 – 348/347 ق.م
 </div>
 
-<div class="ph-card">
-<div class="ph-image">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Aristotle%20bust.jpg" alt="أرسطو">
+<div class="ph-topic">
+المعرفة والمُثل
 </div>
+
+</div>
+
+</div>
+
+
+<div class="ph-card">
+
+<div class="ph-image">
+
+<img
+src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Aristotle%20bust.jpg"
+alt="أرسطو">
+
+</div>
+
 <div class="ph-info">
+
 <h3 class="ph-name">أرسطو</h3>
-<div class="ph-date">384 – 322 ق.م</div>
-<div class="ph-topic">المنطق والوجود</div>
+
+<div class="ph-date">
+384 – 322 ق.م
 </div>
+
+<div class="ph-topic">
+المنطق والوجود
 </div>
+
+</div>
+
+</div>
+
 
 <div class="ph-card">
+
 <div class="ph-image">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Descartes-1.jpg" alt="ديكارت">
+
+<img
+src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Descartes-1.jpg"
+alt="ديكارت">
+
 </div>
+
 <div class="ph-info">
+
 <h3 class="ph-name">ديكارت</h3>
-<div class="ph-date">1596 – 1650</div>
-<div class="ph-topic">العقل واليقين</div>
+
+<div class="ph-date">
+1596 – 1650
 </div>
+
+<div class="ph-topic">
+العقل واليقين
 </div>
 
 </div>
+
 </div>
+
+
+</div>
+
+</div>
+
 </section>
 
+
+<!-- =========================
+     PROGRAM
+========================= -->
+
 <section class="content-section program" id="program">
+
 <div class="container">
 
 <div class="section-header">
+
 <div class="decor">❖</div>
-<h2 class="section-title">البرنامج السنوي</h2>
-<p class="section-subtitle">اختر مسارك الدراسي للوصول إلى البرنامج الخاص بك.</p>
+
+<h2 class="section-title">
+البرنامج السنوي
+</h2>
+
+<p class="section-subtitle">
+اختر مسارك الدراسي للوصول إلى البرنامج الخاص بك.
+</p>
+
 </div>
+
 
 <div class="program-grid">
 
+
 <div class="program-card">
+
 <div class="program-image">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/The%20Library%20of%20Celsus%2C%20Ephesus%20Interior.jpg" alt="السنة الثالثة آداب وفلسفة">
-<div class="number">I</div>
+
+<img
+src="https://commons.wikimedia.org/wiki/Special:Redirect/file/The%20Library%20of%20Celsus%2C%20Ephesus%20Interior.jpg"
+alt="السنة الثالثة آداب وفلسفة">
+
+<div class="number">
+I
 </div>
+
+</div>
+
 <div class="program-title">
+
 السنة الثالثة آداب وفلسفة
+
 <br>
+
 شعبة آداب وفلسفة
-</div>
+
 </div>
 
-<div class="program-card">
-<div class="program-image">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Library%20of%20Alexandria%20%281%29.jpg" alt="السنة الثانية آداب وفلسفة">
-<div class="number">II</div>
 </div>
+
+
+<div class="program-card">
+
+<div class="program-image">
+
+<img
+src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Library%20of%20Alexandria%20%281%29.jpg"
+alt="السنة الثانية آداب وفلسفة">
+
+<div class="number">
+II
+</div>
+
+</div>
+
 <div class="program-title">
+
 السنة الثانية آداب وفلسفة
+
 <br>
+
 شعبة آداب وفلسفة
+
 </div>
+
 </div>
+
 
 <div class="program-card">
+
 <div class="program-image">
-<img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Library%20of%20Alexandria%20-1.JPG" alt="الشعب العلمية واللغات">
-<div class="number">III</div>
-</div>
-<div class="program-title">
-السنة الثانية
-<br>
-الشعب العلمية واللغات
-</div>
+
+<img
+src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Library%20of%20Alexandria%20-1.JPG"
+alt="الشعب العلمية واللغات">
+
+<div class="number">
+III
 </div>
 
 </div>
+
+<div class="program-title">
+
+السنة الثانية
+
+<br>
+
+الشعب العلمية واللغات
+
 </div>
+
+</div>
+
+
+</div>
+
+</div>
+
 </section>
+
+
+<!-- =========================
+     ARTICLES
+========================= -->
 
 <section class="content-section articles" id="articles">
+
 <div class="container">
 
+
 <div class="section-header">
-<div class="decor">❖</div>
-<h2 class="section-title">المقالات والنصوص</h2>
-<p class="section-subtitle">أفكار وتأملات وقراءات في الفلسفة والفكر.</p>
+
+<div class="decor">
+❖
 </div>
 
-<div class="article-grid" id="articleGrid">
+<h2 class="section-title" id="articleSectionTitle">
+المقالات والنصوص
+</h2>
+
+<p class="section-subtitle" id="articleSectionSubtitle">
+اختر الإشكالية للوصول إلى مشكلاتها ومقالاتها.
+</p>
+
+</div>
+
+
+<!-- التنقل -->
+
+<div class="article-navigation">
+
+<button
+type="button"
+id="articleBackButton"
+class="back-button">
+
+<i class="fa-solid fa-arrow-right"></i>
+
+رجوع
+
+</button>
+
+
+<div
+class="breadcrumb"
+id="articleBreadcrumb">
+
+المقالات
+
+</div>
+
+</div>
+
+
+<!-- هنا تظهر الإشكاليات / المشكلات / المقالات -->
+
+<div
+id="articleGrid"
+class="article-grid">
 
 <div class="no-articles">
+
 <i class="fa-solid fa-spinner fa-spin"></i>
-<div>جاري تحميل المقالات...</div>
+
+<div>
+جاري تحميل المقالات...
 </div>
 
 </div>
+
 </div>
+
+
+</div>
+
 </section>
 
-<div id="articleModal" class="article-modal">
+
+<!-- =========================
+     ARTICLE MODAL
+========================= -->
+
+<div
+id="articleModal"
+class="article-modal">
 
 <div class="article-modal-box">
 
@@ -968,43 +1415,91 @@ type="button"
 id="closeArticleButton"
 class="article-modal-close"
 aria-label="إغلاق">
+
 ×
+
 </button>
 
-<h2 id="modalArticleTitle" class="article-modal-title"></h2>
+<h2
+id="modalArticleTitle"
+class="article-modal-title">
+</h2>
 
-<div id="modalArticleMeta" class="article-modal-meta"></div>
+<div
+id="modalArticleMeta"
+class="article-modal-meta">
+</div>
 
-<div id="modalArticleContent" class="article-modal-content"></div>
+<div
+id="modalArticleContent"
+class="article-modal-content">
+</div>
 
 </div>
+
 </div>
 
-<section class="content-section about" id="about">
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section
+class="content-section about"
+id="about">
+
 <div class="container">
 
 <div class="section-header">
-<div class="decor">❖</div>
-<h2 class="section-title">حول رواق زايد</h2>
+
+<div class="decor">
+❖
 </div>
 
+<h2 class="section-title">
+حول رواق زايد
+</h2>
+
+</div>
+
+
 <div class="about-box">
+
 <p>
+
 رواق زايد للفلسفة منصة تعليمية وفكرية تهدف إلى تقديم
 الفلسفة بطريقة واضحة وعميقة، تجمع بين الدراسة والتعليم
 والقراءة والكتابة، وتمنح القارئ مساحة للتفكير وطرح الأسئلة.
+
 </p>
+
 </div>
 
 </div>
+
 </section>
 
+
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
+
 <div class="container">
-<div class="footer-brand">رواق زايد للفلسفة</div>
-<div class="footer-text">حيث يبدأ السؤال... ويستمر البحث.</div>
+
+<div class="footer-brand">
+رواق زايد للفلسفة
 </div>
+
+<div class="footer-text">
+حيث يبدأ السؤال... ويستمر البحث.
+</div>
+
+</div>
+
 </footer>
+
 
 <script>
 
@@ -1026,11 +1521,23 @@ window.supabase.createClient(
 
 
 /* =====================================================
-   عناصر الصفحة
+   ELEMENTS
 ===================================================== */
 
 const articleGrid =
 document.getElementById("articleGrid");
+
+const articleBackButton =
+document.getElementById("articleBackButton");
+
+const articleBreadcrumb =
+document.getElementById("articleBreadcrumb");
+
+const articleSectionTitle =
+document.getElementById("articleSectionTitle");
+
+const articleSectionSubtitle =
+document.getElementById("articleSectionSubtitle");
 
 const articleModal =
 document.getElementById("articleModal");
@@ -1046,6 +1553,197 @@ document.getElementById("modalArticleContent");
 
 const closeArticleButton =
 document.getElementById("closeArticleButton");
+
+
+/* =====================================================
+   حالة التنقل
+===================================================== */
+
+let allArticles = [];
+
+let currentLevel = "issues";
+
+let currentIssue = null;
+
+let currentProblem = null;
+
+
+/* =====================================================
+   أسماء الإشكاليات
+===================================================== */
+
+const issueNames = {
+
+    "الإشكالية الأولى: إدراك العالم الخارجي":
+        "الإشكالية الأولى: إدراك العالم الخارجي",
+
+    "الإشكالية الثانية: الأخلاق بين الثوابت والمتغيرات":
+        "الإشكالية الثانية: الأخلاق بين الثوابت والمتغيرات",
+
+    "الإشكالية الثالثة: فلسفة العلوم":
+        "الإشكالية الثالثة: فلسفة العلوم"
+
+};
+
+
+/* =====================================================
+   ترتيب الإشكاليات
+===================================================== */
+
+const issueOrder = [
+
+    "الإشكالية الأولى: إدراك العالم الخارجي",
+
+    "الإشكالية الثانية: الأخلاق بين الثوابت والمتغيرات",
+
+    "الإشكالية الثالثة: فلسفة العلوم"
+
+];
+
+
+/* =====================================================
+   ترتيب المشاكل
+===================================================== */
+
+const problemOrder = {
+
+    "الإشكالية الأولى: إدراك العالم الخارجي": [
+
+        "مشكلة الإحساس والإدراك",
+
+        "مشكلة اللغة والفكر",
+
+        "مشكلة الشعور واللاشعور",
+
+        "مشكلة الذاكرة والخيال"
+
+    ],
+
+    "الإشكالية الثانية: الأخلاق بين الثوابت والمتغيرات": [
+
+        "مشكلة العادة والإرادة",
+
+        "مشكلة الأخلاق",
+
+        "مشكلة العدالة",
+
+        "مشكلة العلاقات الأسرية",
+
+        "مشكلة النظم الاقتصادية والسياسية"
+
+    ],
+
+    "الإشكالية الثالثة: فلسفة العلوم": [
+
+        "مشكلة الحقيقة العلمية والحقيقة الفلسفية",
+
+        "مشكلة فلسفة الرياضيات",
+
+        "مشكلة علوم المادة الجامدة والحية",
+
+        "مشكلة العلوم الإنسانية"
+
+    ]
+
+};
+
+
+/* =====================================================
+   أيقونات الإشكاليات
+===================================================== */
+
+const issueIcons = {
+
+    "الإشكالية الأولى: إدراك العالم الخارجي":
+        "fa-eye",
+
+    "الإشكالية الثانية: الأخلاق بين الثوابت والمتغيرات":
+        "fa-scale-balanced",
+
+    "الإشكالية الثالثة: فلسفة العلوم":
+        "fa-flask"
+
+};
+
+
+/* =====================================================
+   تنظيف النص
+===================================================== */
+
+function cleanText(value){
+
+    if(value === null || value === undefined){
+        return "";
+    }
+
+    return String(value).trim();
+
+}
+
+
+/* =====================================================
+   تطبيع اسم المشكلة
+===================================================== */
+
+function normalizeProblem(value){
+
+    const text =
+        cleanText(value);
+
+    if(!text){
+        return "";
+    }
+
+    return text
+        .replace(/\s+/g," ")
+        .replace("مشكلة العادة والارادة","مشكلة العادة والإرادة");
+
+}
+
+
+/* =====================================================
+   البحث عن الإشكالية الخاصة بالمقال
+===================================================== */
+
+function findIssue(article){
+
+    const issue =
+        cleanText(article.issue);
+
+    if(issueOrder.includes(issue)){
+        return issue;
+    }
+
+    for(const name of issueOrder){
+
+        if(
+            issue.includes(name) ||
+            name.includes(issue)
+        ){
+            return name;
+        }
+
+    }
+
+    return issue;
+}
+
+
+/* =====================================================
+   البحث عن المشكلة الخاصة بالمقال
+===================================================== */
+
+function findProblem(article){
+
+    const problem =
+        normalizeProblem(article.problem);
+
+    if(problem){
+        return problem;
+    }
+
+    return "";
+}
 
 
 /* =====================================================
@@ -1070,85 +1768,291 @@ function getExcerpt(content){
 
 
 /* =====================================================
-   فتح المقال
+   تحديث شريط التنقل
 ===================================================== */
 
-function openArticle(article){
+function updateNavigation(){
 
-    if(!article){
-        return;
+    articleBackButton.style.display =
+        currentLevel === "issues"
+        ? "none"
+        : "inline-flex";
+
+
+    let breadcrumb =
+        '<span>المقالات</span>';
+
+
+    if(currentIssue){
+
+        breadcrumb +=
+            ' ← <span>' +
+            currentIssue +
+            '</span>';
+
     }
 
-    modalArticleTitle.textContent =
-        article.title || "بدون عنوان";
 
-    let metadata =
-        article.category || "فلسفة";
+    if(currentProblem){
 
-    if(article.author){
-        metadata +=
-            " — " + article.author;
+        breadcrumb +=
+            ' ← <span>' +
+            currentProblem +
+            '</span>';
+
     }
 
-    modalArticleMeta.textContent =
-        metadata;
 
-    modalArticleContent.textContent =
-        article.content ||
-        "لا يوجد محتوى لهذا المقال.";
-
-    articleModal.classList.add("active");
-
-    document.body.style.overflow =
-        "hidden";
+    articleBreadcrumb.innerHTML =
+        breadcrumb;
 }
 
 
 /* =====================================================
-   إغلاق المقال
+   بطاقة الإشكالية
 ===================================================== */
 
-function closeArticle(){
+function createIssueCard(issue){
 
-    articleModal.classList.remove("active");
+    const card =
+        document.createElement("div");
 
-    document.body.style.overflow =
+    card.className =
+        "category-card";
+
+
+    const icon =
+        document.createElement("i");
+
+    icon.className =
+        "fa-solid " +
+        (
+            issueIcons[issue] ||
+            "fa-book-open"
+        );
+
+
+    const title =
+        document.createElement("h3");
+
+    title.textContent =
+        issue;
+
+
+    const count =
+        allArticles.filter(
+            article =>
+                findIssue(article) === issue
+        ).length;
+
+
+    const description =
+        document.createElement("p");
+
+    description.textContent =
+        count +
+        " مقال ونص متاح";
+
+
+    card.appendChild(icon);
+    card.appendChild(title);
+    card.appendChild(description);
+
+
+    card.addEventListener(
+        "click",
+        function(){
+
+            currentIssue =
+                issue;
+
+            currentProblem =
+                null;
+
+            currentLevel =
+                "problems";
+
+            renderProblems();
+
+            document
+                .getElementById("articles")
+                .scrollIntoView({
+                    behavior:"smooth"
+                });
+
+        }
+    );
+
+
+    return card;
+}
+
+
+/* =====================================================
+   عرض الإشكاليات
+===================================================== */
+
+function renderIssues(){
+
+    currentLevel =
+        "issues";
+
+    currentIssue =
+        null;
+
+    currentProblem =
+        null;
+
+
+    articleSectionTitle.textContent =
+        "الإشكاليات الفلسفية";
+
+
+    articleSectionSubtitle.textContent =
+        "اختر الإشكالية للوصول إلى مشكلاتها ومقالاتها.";
+
+
+    articleGrid.className =
+        "category-grid";
+
+
+    articleGrid.innerHTML =
         "";
+
+
+    issueOrder.forEach(
+        function(issue){
+
+            articleGrid.appendChild(
+                createIssueCard(issue)
+            );
+
+        }
+    );
+
+
+    updateNavigation();
 }
 
 
-closeArticleButton.addEventListener(
-    "click",
-    closeArticle
-);
+/* =====================================================
+   بطاقة المشكلة
+===================================================== */
+
+function createProblemCard(problem,index){
+
+    const card =
+        document.createElement("div");
+
+    card.className =
+        "problem-card";
 
 
-articleModal.addEventListener(
-    "click",
-    function(event){
+    const number =
+        document.createElement("div");
 
-        if(event.target === articleModal){
-            closeArticle();
+    number.className =
+        "problem-number";
+
+    number.textContent =
+        "المشكلة " +
+        (index + 1);
+
+
+    const title =
+        document.createElement("h3");
+
+    title.textContent =
+        problem;
+
+
+    const count =
+        allArticles.filter(
+            article =>
+                findIssue(article) === currentIssue &&
+                findProblem(article) === problem
+        ).length;
+
+
+    const description =
+        document.createElement("p");
+
+    description.textContent =
+        count +
+        " مقال ونص";
+
+
+    card.appendChild(number);
+    card.appendChild(title);
+    card.appendChild(description);
+
+
+    card.addEventListener(
+        "click",
+        function(){
+
+            currentProblem =
+                problem;
+
+            currentLevel =
+                "articles";
+
+            renderArticles();
+
         }
-
-    }
-);
+    );
 
 
-document.addEventListener(
-    "keydown",
-    function(event){
-
-        if(event.key === "Escape"){
-            closeArticle();
-        }
-
-    }
-);
+    return card;
+}
 
 
 /* =====================================================
-   إنشاء بطاقة المقال
+   عرض المشاكل
+===================================================== */
+
+function renderProblems(){
+
+    articleSectionTitle.textContent =
+        currentIssue;
+
+
+    articleSectionSubtitle.textContent =
+        "اختر المشكلة للوصول إلى مقالاتها ونصوصها.";
+
+
+    articleGrid.className =
+        "problem-grid";
+
+
+    articleGrid.innerHTML =
+        "";
+
+
+    const problems =
+        problemOrder[currentIssue] || [];
+
+
+    problems.forEach(
+        function(problem,index){
+
+            articleGrid.appendChild(
+                createProblemCard(
+                    problem,
+                    index
+                )
+            );
+
+        }
+    );
+
+
+    updateNavigation();
+}
+
+
+/* =====================================================
+   بطاقة المقال
 ===================================================== */
 
 function createArticleCard(article){
@@ -1177,7 +2081,9 @@ function createArticleCard(article){
         "article-category";
 
     category.textContent =
-        article.category || "فلسفة";
+        article.article_type ||
+        article.category ||
+        "مقال فلسفي";
 
 
     const title =
@@ -1187,7 +2093,8 @@ function createArticleCard(article){
         "article-title";
 
     title.textContent =
-        article.title || "بدون عنوان";
+        article.title ||
+        "بدون عنوان";
 
 
     const excerpt =
@@ -1197,8 +2104,9 @@ function createArticleCard(article){
         "article-excerpt";
 
     excerpt.textContent =
-        article.excerpt ||
-        getExcerpt(article.content);
+        getExcerpt(
+            article.content
+        );
 
 
     const button =
@@ -1217,7 +2125,9 @@ function createArticleCard(article){
     button.addEventListener(
         "click",
         function(){
+
             openArticle(article);
+
         }
     );
 
@@ -1234,16 +2144,235 @@ function createArticleCard(article){
 
 
 /* =====================================================
-   تحميل المقالات من Supabase
+   عرض المقالات داخل المشكلة
+===================================================== */
+
+function renderArticles(){
+
+    articleSectionTitle.textContent =
+        currentProblem;
+
+
+    articleSectionSubtitle.textContent =
+        "اختر المقال الذي تريد قراءته.";
+
+
+    articleGrid.className =
+        "article-grid";
+
+
+    articleGrid.innerHTML =
+        "";
+
+
+    const articles =
+        allArticles.filter(
+            article =>
+                findIssue(article) === currentIssue &&
+                findProblem(article) === currentProblem
+        );
+
+
+    if(articles.length === 0){
+
+        articleGrid.innerHTML = `
+
+            <div class="no-articles">
+
+                <i class="fa-solid fa-feather-pointed"></i>
+
+                <div>
+                    لا توجد مقالات مضافة إلى هذه المشكلة بعد.
+                </div>
+
+                <div style="font-size:.75rem;margin-top:8px;">
+                    يمكنك إضافة المقالات لاحقًا من Supabase.
+                </div>
+
+            </div>
+
+        `;
+
+        updateNavigation();
+
+        return;
+    }
+
+
+    articles.forEach(
+        function(article){
+
+            articleGrid.appendChild(
+                createArticleCard(article)
+            );
+
+        }
+    );
+
+
+    updateNavigation();
+}
+
+
+/* =====================================================
+   زر الرجوع
+===================================================== */
+
+articleBackButton.addEventListener(
+    "click",
+    function(){
+
+        if(currentLevel === "articles"){
+
+            currentLevel =
+                "problems";
+
+            currentProblem =
+                null;
+
+            renderProblems();
+
+            return;
+        }
+
+
+        if(currentLevel === "problems"){
+
+            currentLevel =
+                "issues";
+
+            currentIssue =
+                null;
+
+            renderIssues();
+
+            return;
+        }
+
+    }
+);
+
+
+/* =====================================================
+   فتح المقال
+===================================================== */
+
+function openArticle(article){
+
+    if(!article){
+        return;
+    }
+
+
+    modalArticleTitle.textContent =
+        article.title ||
+        "بدون عنوان";
+
+
+    let metadata =
+        article.article_type ||
+        article.category ||
+        "فلسفة";
+
+
+    if(article.author){
+
+        metadata +=
+            " — " +
+            article.author;
+
+    }
+
+
+    modalArticleMeta.textContent =
+        metadata;
+
+
+    modalArticleContent.textContent =
+        article.content ||
+        "لا يوجد محتوى لهذا المقال.";
+
+
+    articleModal.classList.add(
+        "active"
+    );
+
+
+    document.body.style.overflow =
+        "hidden";
+}
+
+
+/* =====================================================
+   إغلاق المقال
+===================================================== */
+
+function closeArticle(){
+
+    articleModal.classList.remove(
+        "active"
+    );
+
+    document.body.style.overflow =
+        "";
+}
+
+
+closeArticleButton.addEventListener(
+    "click",
+    closeArticle
+);
+
+
+articleModal.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target ===
+            articleModal
+        ){
+
+            closeArticle();
+
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            closeArticle();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   تحميل المقالات من SUPABASE
 ===================================================== */
 
 async function loadArticles(){
 
     articleGrid.innerHTML = `
+
         <div class="no-articles">
+
             <i class="fa-solid fa-spinner fa-spin"></i>
-            <div>جاري تحميل المقالات...</div>
+
+            <div>
+                جاري تحميل المقالات...
+            </div>
+
         </div>
+
     `;
 
 
@@ -1253,10 +2382,13 @@ async function loadArticles(){
             await supabaseClient
             .from("articles")
             .select("*")
-            .eq("published", true)
-            .order("created_at", {
-                ascending:false
-            });
+            .eq("published",true)
+            .order(
+                "created_at",
+                {
+                    ascending:false
+                }
+            );
 
 
         const data =
@@ -1273,8 +2405,15 @@ async function loadArticles(){
                 error
             );
 
+
+            articleGrid.className =
+                "article-grid";
+
+
             articleGrid.innerHTML = `
+
                 <div class="no-articles">
+
                     <i class="fa-solid fa-triangle-exclamation"></i>
 
                     <div>
@@ -1284,46 +2423,20 @@ async function loadArticles(){
                     <div style="font-size:.75rem;margin-top:8px;">
                         تحقق من جدول articles في Supabase.
                     </div>
+
                 </div>
+
             `;
 
             return;
         }
 
 
-        if(!data || data.length === 0){
-
-            articleGrid.innerHTML = `
-                <div class="no-articles">
-
-                    <i class="fa-solid fa-feather-pointed"></i>
-
-                    <div>
-                        ستظهر مقالاتك ونصوصك هنا.
-                    </div>
-
-                    <div style="font-size:.75rem;margin-top:8px;">
-                        المكان جاهز لاستقبال كتابات رواق زايد.
-                    </div>
-
-                </div>
-            `;
-
-            return;
-        }
+        allArticles =
+            data || [];
 
 
-        articleGrid.innerHTML = "";
-
-
-        data.forEach(function(article){
-
-            const card =
-                createArticleCard(article);
-
-            articleGrid.appendChild(card);
-
-        });
+        renderIssues();
 
     }
 
@@ -1334,7 +2447,13 @@ async function loadArticles(){
             error
         );
 
+
+        articleGrid.className =
+            "article-grid";
+
+
         articleGrid.innerHTML = `
+
             <div class="no-articles">
 
                 <i class="fa-solid fa-triangle-exclamation"></i>
@@ -1344,8 +2463,11 @@ async function loadArticles(){
                 </div>
 
             </div>
+
         `;
+
     }
+
 }
 
 
