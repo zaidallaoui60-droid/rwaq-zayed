@@ -207,9 +207,11 @@ button{
 
     display:flex;
 
+    align-items:center;
+
     list-style:none;
 
-    gap:28px;
+    gap:24px;
 
 }
 
@@ -228,6 +230,50 @@ button{
 .nav-menu a:hover{
 
     color:var(--gold-light);
+
+}
+
+
+/* =====================================================
+   ADMIN BUTTON IN NAVBAR
+===================================================== */
+
+.admin-nav-link{
+
+    display:flex !important;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:7px 15px;
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    color:var(--gold-light) !important;
+
+    background:rgba(197,160,89,.06);
+
+    transition:.25s !important;
+
+}
+
+.admin-nav-link:hover{
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-light),
+            var(--gold)
+        ) !important;
+
+    color:#000 !important;
+
+    border-color:var(--gold-light);
+
+    transform:translateY(-2px);
 
 }
 
@@ -504,6 +550,8 @@ button{
 
     gap:15px;
 
+    flex-wrap:wrap;
+
 }
 
 .btn{
@@ -511,6 +559,8 @@ button{
     display:inline-flex;
 
     align-items:center;
+
+    justify-content:center;
 
     gap:8px;
 
@@ -552,6 +602,35 @@ button{
     background:rgba(0,0,0,.6);
 
     color:var(--white);
+
+}
+
+
+/* =====================================================
+   ADMIN HERO BUTTON
+===================================================== */
+
+.btn-admin{
+
+    border:1px solid var(--gold);
+
+    background:
+        rgba(197,160,89,.08);
+
+    color:var(--gold-light);
+
+}
+
+.btn-admin:hover{
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-light),
+            var(--gold)
+        );
+
+    color:#000;
 
 }
 
@@ -1708,6 +1787,26 @@ footer{
 <a href="#about">حول المنصة</a>
 </li>
 
+<!-- =====================================================
+     ADMIN LINK
+===================================================== -->
+
+<li>
+
+<a
+href="https://adminzaid.vercel.app/"
+class="admin-nav-link"
+target="_blank"
+rel="noopener noreferrer">
+
+<i class="fa-solid fa-lock"></i>
+
+لوحة الإدارة
+
+</a>
+
+</li>
+
 </ul>
 
 </div>
@@ -1823,12 +1922,30 @@ class="btn btn-gold">
 
 </a>
 
+
 <a href="#program"
 class="btn btn-outline">
 
 <i class="fa-solid fa-book-open"></i>
 
 استكشف البرنامج
+
+</a>
+
+
+<!-- =====================================================
+     ADMIN HERO BUTTON
+===================================================== -->
+
+<a
+href="https://adminzaid.vercel.app/"
+class="btn btn-admin"
+target="_blank"
+rel="noopener noreferrer">
+
+<i class="fa-solid fa-shield-halved"></i>
+
+دخول لوحة الإدارة
 
 </a>
 
@@ -2555,11 +2672,6 @@ function openArticle(article){
         article.title ||
         "بدون عنوان";
 
-
-    /*
-       إنشاء بيانات المقال
-       بشكل منفصل وأنيق
-    */
 
     modalArticleMeta.innerHTML = "";
 
