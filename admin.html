@@ -1,0 +1,3035 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>لوحة إدارة رواق زايد للفلسفة</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<style>
+
+/* =====================================================
+   ROOT
+===================================================== */
+
+:root{
+
+    --bg:#080707;
+    --bg2:#100e10;
+    --card:#151215;
+
+    --gold:#c5a059;
+    --gold-light:#e5cf87;
+
+    --white:#f4f1ea;
+    --muted:#a39e93;
+
+    --green:#5fcf91;
+    --red:#d86b6b;
+    --blue:#6da8e8;
+
+    --border:rgba(197,160,89,.3);
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+
+    background:
+        radial-gradient(
+            circle at top,
+            #171216,
+            #080707 55%
+        );
+
+    color:var(--white);
+
+    font-family:'Cairo',sans-serif;
+
+    min-height:100vh;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+    background:rgba(8,7,7,.94);
+
+    backdrop-filter:blur(15px);
+
+    border-bottom:
+        1px solid var(--border);
+
+}
+
+.header-inner{
+
+    width:min(1250px,94%);
+
+    margin:auto;
+
+    min-height:75px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+}
+
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.logo{
+
+    width:45px;
+
+    height:45px;
+
+    border:1px solid var(--gold);
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:var(--gold-light);
+
+    font-size:22px;
+
+}
+
+.brand h1{
+
+    font-family:'Amiri',serif;
+
+    color:var(--gold-light);
+
+    font-size:1.5rem;
+
+}
+
+.brand span{
+
+    display:block;
+
+    color:var(--muted);
+
+    font-size:.7rem;
+
+}
+
+.back-btn{
+
+    text-decoration:none;
+
+    color:var(--gold-light);
+
+    border:1px solid var(--border);
+
+    padding:8px 16px;
+
+    border-radius:20px;
+
+    font-size:.85rem;
+
+}
+
+
+/* =====================================================
+   LAYOUT
+===================================================== */
+
+.container{
+
+    width:min(1250px,94%);
+
+    margin:35px auto 70px;
+
+}
+
+.page-title{
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+}
+
+.page-title h2{
+
+    font-family:'Amiri',serif;
+
+    color:var(--gold-light);
+
+    font-size:2.5rem;
+
+}
+
+.page-title p{
+
+    color:var(--muted);
+
+    margin-top:5px;
+
+}
+
+
+/* =====================================================
+   TABS
+===================================================== */
+
+.tabs{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:25px;
+
+}
+
+.tab{
+
+    border:1px solid var(--border);
+
+    background:#111;
+
+    color:var(--muted);
+
+    padding:10px 20px;
+
+    border-radius:25px;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+}
+
+.tab.active{
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-light),
+            var(--gold)
+        );
+
+    color:#000;
+
+    border-color:var(--gold-light);
+
+}
+
+
+/* =====================================================
+   PANELS
+===================================================== */
+
+.panel{
+
+    display:none;
+
+}
+
+.panel.active{
+
+    display:block;
+
+}
+
+.card{
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(25,22,25,.98),
+            rgba(12,10,12,.98)
+        );
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    padding:25px;
+
+    margin-bottom:25px;
+
+}
+
+.card h3{
+
+    font-family:'Amiri',serif;
+
+    color:var(--gold-light);
+
+    font-size:1.6rem;
+
+    margin-bottom:18px;
+
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:16px;
+
+}
+
+.full{
+
+    grid-column:1/-1;
+
+}
+
+label{
+
+    display:block;
+
+    color:var(--muted);
+
+    font-size:.82rem;
+
+    margin-bottom:6px;
+
+}
+
+input,
+textarea,
+select{
+
+    width:100%;
+
+    background:#090809;
+
+    color:var(--white);
+
+    border:1px solid
+        rgba(197,160,89,.28);
+
+    border-radius:7px;
+
+    padding:11px 13px;
+
+    outline:none;
+
+    font-family:inherit;
+
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+
+    border-color:var(--gold);
+
+}
+
+textarea{
+
+    min-height:220px;
+
+    resize:vertical;
+
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.buttons{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-top:18px;
+
+}
+
+button{
+
+    font-family:inherit;
+
+}
+
+.btn{
+
+    border:0;
+
+    border-radius:7px;
+
+    padding:10px 20px;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+}
+
+.btn-gold{
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-light),
+            var(--gold)
+        );
+
+    color:#000;
+
+}
+
+.btn-dark{
+
+    background:#1b181b;
+
+    color:var(--white);
+
+    border:1px solid var(--border);
+
+}
+
+.btn-red{
+
+    background:
+        rgba(216,107,107,.12);
+
+    border:1px solid
+        rgba(216,107,107,.45);
+
+    color:#f18b8b;
+
+}
+
+.btn-green{
+
+    background:
+        rgba(95,207,145,.1);
+
+    border:1px solid
+        rgba(95,207,145,.4);
+
+    color:#78e4a5;
+
+}
+
+
+/* =====================================================
+   CURRICULUM
+===================================================== */
+
+.issue{
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    margin-bottom:20px;
+
+}
+
+.issue-header{
+
+    padding:17px 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(197,160,89,.14),
+            transparent
+        );
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.issue-name{
+
+    font-family:'Amiri',serif;
+
+    color:var(--gold-light);
+
+    font-size:1.4rem;
+
+}
+
+.problems{
+
+    padding:15px;
+
+}
+
+.problem{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    padding:12px 15px;
+
+    border-bottom:
+        1px solid
+        rgba(197,160,89,.1);
+
+}
+
+.problem:last-child{
+
+    border-bottom:0;
+
+}
+
+.problem-name{
+
+    color:#ddd;
+
+}
+
+
+/* =====================================================
+   ARTICLES TABLE
+===================================================== */
+
+.table-wrapper{
+
+    overflow-x:auto;
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    min-width:850px;
+
+}
+
+th,
+td{
+
+    padding:13px;
+
+    border-bottom:
+        1px solid
+        rgba(197,160,89,.12);
+
+    text-align:right;
+
+}
+
+th{
+
+    color:var(--gold-light);
+
+    font-size:.85rem;
+
+    background:#111;
+
+}
+
+td{
+
+    color:#ddd;
+
+    font-size:.82rem;
+
+}
+
+.status{
+
+    padding:4px 10px;
+
+    border-radius:20px;
+
+    font-size:.7rem;
+
+}
+
+.status-published{
+
+    color:#79e6a6;
+
+    background:
+        rgba(95,207,145,.1);
+
+}
+
+.status-hidden{
+
+    color:#e78a8a;
+
+    background:
+        rgba(216,107,107,.1);
+
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+.message{
+
+    position:fixed;
+
+    left:20px;
+
+    bottom:20px;
+
+    z-index:9999;
+
+    min-width:260px;
+
+    max-width:90%;
+
+    padding:13px 18px;
+
+    border-radius:8px;
+
+    background:#171417;
+
+    border:1px solid var(--border);
+
+    color:var(--white);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.5);
+
+    display:none;
+
+}
+
+.message.show{
+
+    display:block;
+
+}
+
+.message.success{
+
+    border-color:rgba(95,207,145,.5);
+
+}
+
+.message.error{
+
+    border-color:rgba(216,107,107,.5);
+
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:500;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+        rgba(0,0,0,.85);
+
+    backdrop-filter:blur(8px);
+
+}
+
+.modal.active{
+
+    display:flex;
+
+}
+
+.modal-box{
+
+    width:min(700px,100%);
+
+    max-height:90vh;
+
+    overflow:auto;
+
+    background:#121012;
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    padding:25px;
+
+}
+
+.modal-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:20px;
+
+}
+
+.close{
+
+    width:38px;
+
+    height:38px;
+
+    border-radius:50%;
+
+    border:1px solid var(--border);
+
+    background:#090809;
+
+    color:var(--gold-light);
+
+    cursor:pointer;
+
+    font-size:20px;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:700px){
+
+    .form-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .full{
+
+        grid-column:auto;
+
+    }
+
+    .header-inner{
+
+        min-height:65px;
+
+    }
+
+    .brand h1{
+
+        font-size:1.15rem;
+
+    }
+
+    .page-title h2{
+
+        font-size:2rem;
+
+    }
+
+    .issue-header{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+   HEADER
+===================================================== -->
+
+<header class="header">
+
+<div class="header-inner">
+
+<div class="brand">
+
+<div class="logo">
+❖
+</div>
+
+<div>
+
+<h1>
+لوحة إدارة رواق زايد
+</h1>
+
+<span>
+إدارة البرنامج والمقالات
+</span>
+
+</div>
+
+</div>
+
+
+<a
+href="https://riwakzaid.vercel.app/"
+class="back-btn"
+target="_blank">
+
+فتح الموقع
+
+</a>
+
+</div>
+
+</header>
+
+
+<!-- =====================================================
+   MAIN
+===================================================== -->
+
+<main class="container">
+
+
+<div class="page-title">
+
+<h2>
+لوحة الإدارة
+</h2>
+
+<p>
+من هنا يمكنك التحكم في البرنامج والمقالات دون تعديل كود الموقع.
+</p>
+
+</div>
+
+
+<!-- =====================================================
+   TABS
+===================================================== -->
+
+<div class="tabs">
+
+<button
+class="tab active"
+data-panel="curriculumPanel">
+
+البرنامج الدراسي
+
+</button>
+
+
+<button
+class="tab"
+data-panel="articlePanel">
+
+المقالات
+
+</button>
+
+
+<button
+class="tab"
+data-panel="addArticlePanel">
+
+إضافة مقال
+
+</button>
+
+</div>
+
+
+<!-- =====================================================
+   CURRICULUM PANEL
+===================================================== -->
+
+<section
+id="curriculumPanel"
+class="panel active">
+
+
+<div class="card">
+
+<h3>
+إضافة إشكالية
+</h3>
+
+
+<div class="form-grid">
+
+<div>
+
+<label>
+اسم الإشكالية
+</label>
+
+<input
+id="issueName"
+type="text"
+placeholder="مثال: الإشكالية الأولى: إدراك العالم الخارجي">
+
+</div>
+
+
+<div>
+
+<label>
+الوصف
+</label>
+
+<input
+id="issueSubtitle"
+type="text"
+placeholder="مثال: مقالات الفصل الأول">
+
+</div>
+
+</div>
+
+
+<div class="buttons">
+
+<button
+class="btn btn-gold"
+id="addIssueButton">
+
+إضافة الإشكالية
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+البرنامج الحالي
+</h3>
+
+<div id="curriculumList">
+
+جاري تحميل البرنامج...
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+   ARTICLES PANEL
+===================================================== -->
+
+<section
+id="articlePanel"
+class="panel">
+
+
+<div class="card">
+
+<h3>
+المقالات الموجودة
+</h3>
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+العنوان
+</th>
+
+<th>
+الإشكالية
+</th>
+
+<th>
+المشكلة
+</th>
+
+<th>
+الحالة
+</th>
+
+<th>
+الإجراءات
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="articlesTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+   ADD ARTICLE
+===================================================== -->
+
+<section
+id="addArticlePanel"
+class="panel">
+
+
+<div class="card">
+
+<h3 id="articleFormTitle">
+إضافة مقال جديد
+</h3>
+
+
+<div class="form-grid">
+
+
+<div>
+
+<label>
+عنوان المقال
+</label>
+
+<input
+id="articleTitle"
+type="text"
+placeholder="عنوان المقال">
+
+</div>
+
+
+<div>
+
+<label>
+نوع المقال
+</label>
+
+<input
+id="articleType"
+type="text"
+value="مقال فلسفي"
+placeholder="مقال فلسفي">
+
+</div>
+
+
+<div>
+
+<label>
+الإشكالية
+</label>
+
+<select id="articleIssue">
+
+<option value="">
+اختر الإشكالية
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>
+المشكلة
+</label>
+
+<select id="articleProblem">
+
+<option value="">
+اختر المشكلة
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>
+الكاتب
+</label>
+
+<input
+id="articleAuthor"
+type="text"
+value="الأستاذ زيد">
+
+</div>
+
+
+<div>
+
+<label>
+الحالة
+</label>
+
+<select id="articlePublished">
+
+<option value="true">
+منشور
+</option>
+
+<option value="false">
+مخفي
+</option>
+
+</select>
+
+</div>
+
+
+<div class="full">
+
+<label>
+مقتطف المقال
+</label>
+
+<input
+id="articleExcerpt"
+type="text"
+placeholder="مقتطف قصير يظهر في البطاقة">
+
+</div>
+
+
+<div class="full">
+
+<label>
+محتوى المقال
+</label>
+
+<textarea
+id="articleContent"
+placeholder="اكتب المقال هنا..."></textarea>
+
+</div>
+
+</div>
+
+
+<div class="buttons">
+
+<button
+class="btn btn-gold"
+id="saveArticleButton">
+
+حفظ المقال
+
+</button>
+
+
+<button
+class="btn btn-dark"
+id="cancelEditButton"
+style="display:none;">
+
+إلغاء التعديل
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+</main>
+
+
+<!-- =====================================================
+   ADD PROBLEM MODAL
+===================================================== -->
+
+<div
+id="problemModal"
+class="modal">
+
+<div class="modal-box">
+
+<div class="modal-header">
+
+<h3>
+إضافة مشكلة
+</h3>
+
+<button
+class="close"
+id="closeProblemModal">
+
+×
+</button>
+
+</div>
+
+
+<label>
+اسم المشكلة
+</label>
+
+<input
+id="problemName"
+type="text"
+placeholder="مثال: مشكلة الإحساس والإدراك">
+
+
+<div class="buttons">
+
+<button
+class="btn btn-gold"
+id="saveProblemButton">
+
+إضافة المشكلة
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+   MESSAGE
+===================================================== -->
+
+<div
+id="message"
+class="message">
+</div>
+
+
+<script>
+
+/* =====================================================
+   SUPABASE
+===================================================== */
+
+const SUPABASE_URL =
+"https://mitzxvmmnlkjczbmrumk.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_g6Nc_ma8cC3vsUDZZL-RJw_e4JbO6LF";
+
+
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* =====================================================
+   STATE
+===================================================== */
+
+let curriculum = [];
+
+let articles = [];
+
+let editingArticleId = null;
+
+let selectedIssueIndex = null;
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const curriculumList =
+document.getElementById(
+    "curriculumList"
+);
+
+const articlesTable =
+document.getElementById(
+    "articlesTable"
+);
+
+const articleIssue =
+document.getElementById(
+    "articleIssue"
+);
+
+const articleProblem =
+document.getElementById(
+    "articleProblem"
+);
+
+const message =
+document.getElementById(
+    "message"
+);
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function showMessage(
+    text,
+    type="success"
+){
+
+    message.textContent =
+        text;
+
+    message.className =
+        "message show " + type;
+
+    setTimeout(
+        function(){
+
+            message.className =
+                "message";
+
+        },
+        3000
+    );
+
+}
+
+
+/* =====================================================
+   TABS
+===================================================== */
+
+document
+.querySelectorAll(".tab")
+.forEach(
+    function(tab){
+
+        tab.addEventListener(
+            "click",
+            function(){
+
+                document
+                .querySelectorAll(".tab")
+                .forEach(
+                    t =>
+                    t.classList.remove(
+                        "active"
+                    )
+                );
+
+                document
+                .querySelectorAll(".panel")
+                .forEach(
+                    p =>
+                    p.classList.remove(
+                        "active"
+                    )
+                );
+
+                tab.classList.add(
+                    "active"
+                );
+
+                document
+                .getElementById(
+                    tab.dataset.panel
+                )
+                .classList.add(
+                    "active"
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* =====================================================
+   LOAD CURRICULUM
+===================================================== */
+
+async function loadCurriculum(){
+
+    /*
+       البرنامج مخزن في localStorage مؤقتًا
+       إلى أن ننشئ جدول curriculum في Supabase.
+
+       المقالات نفسها تبقى في Supabase.
+    */
+
+    const saved =
+        localStorage.getItem(
+            "riwak_curriculum"
+        );
+
+
+    if(saved){
+
+        try{
+
+            curriculum =
+                JSON.parse(saved);
+
+        }
+
+        catch{
+
+            curriculum = [];
+
+        }
+
+    }
+
+
+    renderCurriculum();
+
+    populateIssueSelect();
+
+}
+
+
+/* =====================================================
+   SAVE CURRICULUM
+===================================================== */
+
+function saveCurriculum(){
+
+    localStorage.setItem(
+        "riwak_curriculum",
+        JSON.stringify(
+            curriculum
+        )
+    );
+
+}
+
+
+/* =====================================================
+   RENDER CURRICULUM
+===================================================== */
+
+function renderCurriculum(){
+
+    curriculumList.innerHTML =
+        "";
+
+
+    if(
+        curriculum.length === 0
+    ){
+
+        curriculumList.innerHTML = `
+
+            <div style="
+                color:#a39e93;
+                padding:20px;
+                text-align:center;
+            ">
+
+                لم تتم إضافة أي إشكالية بعد.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    curriculum.forEach(
+        function(issue,index){
+
+            const issueElement =
+                document.createElement(
+                    "div"
+                );
+
+            issueElement.className =
+                "issue";
+
+
+            const header =
+                document.createElement(
+                    "div"
+                );
+
+            header.className =
+                "issue-header";
+
+
+            const title =
+                document.createElement(
+                    "div"
+                );
+
+            title.className =
+                "issue-name";
+
+            title.textContent =
+                issue.name;
+
+
+            const headerButtons =
+                document.createElement(
+                    "div"
+                );
+
+
+            const addProblem =
+                document.createElement(
+                    "button"
+                );
+
+            addProblem.className =
+                "btn btn-gold";
+
+            addProblem.textContent =
+                "+ إضافة مشكلة";
+
+
+            addProblem.onclick =
+                function(){
+
+                    selectedIssueIndex =
+                        index;
+
+                    document
+                    .getElementById(
+                        "problemName"
+                    )
+                    .value = "";
+
+                    document
+                    .getElementById(
+                        "problemModal"
+                    )
+                    .classList.add(
+                        "active"
+                    );
+
+                };
+
+
+            const deleteIssue =
+                document.createElement(
+                    "button"
+                );
+
+            deleteIssue.className =
+                "btn btn-red";
+
+            deleteIssue.textContent =
+                "حذف الإشكالية";
+
+
+            deleteIssue.onclick =
+                function(){
+
+                    deleteIssueByIndex(
+                        index
+                    );
+
+                };
+
+
+            headerButtons.appendChild(
+                addProblem
+            );
+
+            headerButtons.appendChild(
+                deleteIssue
+            );
+
+
+            header.appendChild(
+                title
+            );
+
+            header.appendChild(
+                headerButtons
+            );
+
+
+            const problems =
+                document.createElement(
+                    "div"
+                );
+
+            problems.className =
+                "problems";
+
+
+            if(
+                !issue.problems ||
+                issue.problems.length === 0
+            ){
+
+                problems.innerHTML = `
+
+                    <div style="
+                        color:#888;
+                        padding:10px;
+                    ">
+
+                        لا توجد مشاكل داخل هذه الإشكالية.
+
+                    </div>
+
+                `;
+
+            }
+
+
+            (
+                issue.problems || []
+            )
+            .forEach(
+                function(problem,problemIndex){
+
+                    const row =
+                        document.createElement(
+                            "div"
+                        );
+
+                    row.className =
+                        "problem";
+
+
+                    const name =
+                        document.createElement(
+                            "div"
+                        );
+
+                    name.className =
+                        "problem-name";
+
+                    name.textContent =
+                        problem;
+
+
+                    const deleteButton =
+                        document.createElement(
+                            "button"
+                        );
+
+                    deleteButton.className =
+                        "btn btn-red";
+
+                    deleteButton.textContent =
+                        "حذف";
+
+
+                    deleteButton.onclick =
+                        function(){
+
+                            deleteProblem(
+                                index,
+                                problemIndex
+                            );
+
+                        };
+
+
+                    row.appendChild(
+                        name
+                    );
+
+                    row.appendChild(
+                        deleteButton
+                    );
+
+                    problems.appendChild(
+                        row
+                    );
+
+                }
+            );
+
+
+            issueElement.appendChild(
+                header
+            );
+
+            issueElement.appendChild(
+                problems
+            );
+
+
+            curriculumList.appendChild(
+                issueElement
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   ADD ISSUE
+===================================================== */
+
+document
+.getElementById(
+    "addIssueButton"
+)
+.addEventListener(
+    "click",
+    function(){
+
+        const name =
+            document
+            .getElementById(
+                "issueName"
+            )
+            .value
+            .trim();
+
+
+        const subtitle =
+            document
+            .getElementById(
+                "issueSubtitle"
+            )
+            .value
+            .trim();
+
+
+        if(!name){
+
+            showMessage(
+                "اكتب اسم الإشكالية أولًا.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        curriculum.push({
+
+            name:name,
+
+            subtitle:
+                subtitle,
+
+            problems:[]
+
+        });
+
+
+        saveCurriculum();
+
+        renderCurriculum();
+
+        populateIssueSelect();
+
+
+        document
+        .getElementById(
+            "issueName"
+        )
+        .value = "";
+
+
+        document
+        .getElementById(
+            "issueSubtitle"
+        )
+        .value = "";
+
+
+        showMessage(
+            "تمت إضافة الإشكالية."
+        );
+
+    }
+);
+
+
+/* =====================================================
+   DELETE ISSUE
+===================================================== */
+
+function deleteIssueByIndex(index){
+
+    const issue =
+        curriculum[index];
+
+
+    if(!issue){
+
+        return;
+
+    }
+
+
+    const confirmed =
+        confirm(
+            "هل تريد حذف الإشكالية:\n\n" +
+            issue.name +
+            "\n\nسيتم حذفها من البرنامج."
+        );
+
+
+    if(!confirmed){
+
+        return;
+
+    }
+
+
+    curriculum.splice(
+        index,
+        1
+    );
+
+
+    saveCurriculum();
+
+    renderCurriculum();
+
+    populateIssueSelect();
+
+
+    showMessage(
+        "تم حذف الإشكالية."
+    );
+
+}
+
+
+/* =====================================================
+   SAVE PROBLEM
+===================================================== */
+
+document
+.getElementById(
+    "saveProblemButton"
+)
+.addEventListener(
+    "click",
+    function(){
+
+        const name =
+            document
+            .getElementById(
+                "problemName"
+            )
+            .value
+            .trim();
+
+
+        if(
+            !name ||
+            selectedIssueIndex === null
+        ){
+
+            return;
+
+        }
+
+
+        const issue =
+            curriculum[
+                selectedIssueIndex
+            ];
+
+
+        if(
+            !issue.problems
+        ){
+
+            issue.problems = [];
+
+        }
+
+
+        issue.problems.push(
+            name
+        );
+
+
+        saveCurriculum();
+
+        renderCurriculum();
+
+        populateIssueSelect();
+
+
+        document
+        .getElementById(
+            "problemModal"
+        )
+        .classList.remove(
+            "active"
+        );
+
+
+        selectedIssueIndex =
+            null;
+
+
+        showMessage(
+            "تمت إضافة المشكلة."
+        );
+
+    }
+);
+
+
+/* =====================================================
+   CLOSE PROBLEM MODAL
+===================================================== */
+
+document
+.getElementById(
+    "closeProblemModal"
+)
+.addEventListener(
+    "click",
+    function(){
+
+        document
+        .getElementById(
+            "problemModal"
+        )
+        .classList.remove(
+            "active"
+        );
+
+        selectedIssueIndex =
+            null;
+
+    }
+);
+
+
+/* =====================================================
+   DELETE PROBLEM
+===================================================== */
+
+function deleteProblem(
+    issueIndex,
+    problemIndex
+){
+
+    const issue =
+        curriculum[
+            issueIndex
+        ];
+
+
+    const problem =
+        issue.problems[
+            problemIndex
+        ];
+
+
+    if(
+        !confirm(
+            "حذف المشكلة:\n\n" +
+            problem
+        )
+    ){
+
+        return;
+
+    }
+
+
+    issue.problems.splice(
+        problemIndex,
+        1
+    );
+
+
+    saveCurriculum();
+
+    renderCurriculum();
+
+    populateIssueSelect();
+
+
+    showMessage(
+        "تم حذف المشكلة."
+    );
+
+}
+
+
+/* =====================================================
+   POPULATE ISSUE SELECT
+===================================================== */
+
+function populateIssueSelect(){
+
+    articleIssue.innerHTML = `
+
+        <option value="">
+            اختر الإشكالية
+        </option>
+
+    `;
+
+
+    curriculum.forEach(
+        function(issue,index){
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value =
+                index;
+
+            option.textContent =
+                issue.name;
+
+            articleIssue.appendChild(
+                option
+            );
+
+        }
+    );
+
+
+    updateProblemSelect();
+
+}
+
+
+/* =====================================================
+   UPDATE PROBLEM SELECT
+===================================================== */
+
+articleIssue.addEventListener(
+    "change",
+    updateProblemSelect
+);
+
+
+function updateProblemSelect(){
+
+    articleProblem.innerHTML = `
+
+        <option value="">
+            اختر المشكلة
+        </option>
+
+    `;
+
+
+    const index =
+        articleIssue.value;
+
+
+    if(index === ""){
+
+        return;
+
+    }
+
+
+    const issue =
+        curriculum[
+            Number(index)
+        ];
+
+
+    if(!issue){
+
+        return;
+
+    }
+
+
+    (
+        issue.problems || []
+    )
+    .forEach(
+        function(problem){
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value =
+                problem;
+
+            option.textContent =
+                problem;
+
+            articleProblem.appendChild(
+                option
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   LOAD ARTICLES
+===================================================== */
+
+async function loadArticles(){
+
+    articlesTable.innerHTML = `
+
+        <tr>
+
+            <td colspan="5"
+                style="text-align:center;">
+
+                جاري تحميل المقالات...
+
+            </td>
+
+        </tr>
+
+    `;
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+        .from("articles")
+        .select("*")
+        .order(
+            "created_at",
+            {
+                ascending:false
+            }
+        );
+
+
+    if(error){
+
+        console.error(error);
+
+        showMessage(
+            "تعذر تحميل المقالات: " +
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    articles =
+        data || [];
+
+
+    renderArticles();
+
+}
+
+
+/* =====================================================
+   RENDER ARTICLES
+===================================================== */
+
+function renderArticles(){
+
+    articlesTable.innerHTML =
+        "";
+
+
+    if(
+        articles.length === 0
+    ){
+
+        articlesTable.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="5"
+                    style="text-align:center;">
+
+                    لا توجد مقالات.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    articles.forEach(
+        function(article){
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+
+            const title =
+                document.createElement(
+                    "td"
+                );
+
+            title.textContent =
+                article.title ||
+                "بدون عنوان";
+
+
+            const issue =
+                document.createElement(
+                    "td"
+                );
+
+            issue.textContent =
+                article.issue ||
+                "-";
+
+
+            const problem =
+                document.createElement(
+                    "td"
+                );
+
+            problem.textContent =
+                article.problem ||
+                "-";
+
+
+            const status =
+                document.createElement(
+                    "td"
+                );
+
+
+            const statusSpan =
+                document.createElement(
+                    "span"
+                );
+
+
+            statusSpan.className =
+                article.published
+                ?
+                "status status-published"
+                :
+                "status status-hidden";
+
+
+            statusSpan.textContent =
+                article.published
+                ?
+                "منشور"
+                :
+                "مخفي";
+
+
+            status.appendChild(
+                statusSpan
+            );
+
+
+            const actions =
+                document.createElement(
+                    "td"
+                );
+
+
+            const edit =
+                document.createElement(
+                    "button"
+                );
+
+            edit.className =
+                "btn btn-dark";
+
+            edit.textContent =
+                "تعديل";
+
+
+            edit.onclick =
+                function(){
+
+                    editArticle(
+                        article
+                    );
+
+                };
+
+
+            const toggle =
+                document.createElement(
+                    "button"
+                );
+
+            toggle.className =
+                article.published
+                ?
+                "btn btn-dark"
+                :
+                "btn btn-green";
+
+            toggle.textContent =
+                article.published
+                ?
+                "إخفاء"
+                :
+                "نشر";
+
+
+            toggle.onclick =
+                function(){
+
+                    togglePublished(
+                        article
+                    );
+
+                };
+
+
+            const remove =
+                document.createElement(
+                    "button"
+                );
+
+            remove.className =
+                "btn btn-red";
+
+            remove.textContent =
+                "حذف";
+
+
+            remove.onclick =
+                function(){
+
+                    deleteArticle(
+                        article
+                    );
+
+                };
+
+
+            actions.appendChild(
+                edit
+            );
+
+            actions.appendChild(
+                toggle
+            );
+
+            actions.appendChild(
+                remove
+            );
+
+
+            row.appendChild(
+                title
+            );
+
+            row.appendChild(
+                issue
+            );
+
+            row.appendChild(
+                problem
+            );
+
+            row.appendChild(
+                status
+            );
+
+            row.appendChild(
+                actions
+            );
+
+
+            articlesTable.appendChild(
+                row
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   CLEAR ARTICLE FORM
+===================================================== */
+
+function clearArticleForm(){
+
+    editingArticleId =
+        null;
+
+
+    document
+    .getElementById(
+        "articleFormTitle"
+    )
+    .textContent =
+        "إضافة مقال جديد";
+
+
+    document
+    .getElementById(
+        "articleTitle"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "articleType"
+    )
+    .value =
+        "مقال فلسفي";
+
+
+    document
+    .getElementById(
+        "articleAuthor"
+    )
+    .value =
+        "الأستاذ زيد";
+
+
+    document
+    .getElementById(
+        "articleExcerpt"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "articleContent"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "articlePublished"
+    )
+    .value =
+        "true";
+
+
+    articleIssue.value =
+        "";
+
+
+    updateProblemSelect();
+
+
+    document
+    .getElementById(
+        "cancelEditButton"
+    )
+    .style.display =
+        "none";
+
+}
+
+
+/* =====================================================
+   EDIT ARTICLE
+===================================================== */
+
+function editArticle(article){
+
+    editingArticleId =
+        article.id;
+
+
+    document
+    .getElementById(
+        "articleFormTitle"
+    )
+    .textContent =
+        "تعديل المقال";
+
+
+    document
+    .getElementById(
+        "articleTitle"
+    )
+    .value =
+        article.title || "";
+
+
+    document
+    .getElementById(
+        "articleType"
+    )
+    .value =
+        article.article_type ||
+        "مقال فلسفي";
+
+
+    document
+    .getElementById(
+        "articleAuthor"
+    )
+    .value =
+        article.author ||
+        "الأستاذ زيد";
+
+
+    document
+    .getElementById(
+        "articleExcerpt"
+    )
+    .value =
+        article.excerpt ||
+        "";
+
+
+    document
+    .getElementById(
+        "articleContent"
+    )
+    .value =
+        article.content ||
+        "";
+
+
+    document
+    .getElementById(
+        "articlePublished"
+    )
+    .value =
+        article.published
+        ?
+        "true"
+        :
+        "false";
+
+
+    const issueIndex =
+        curriculum.findIndex(
+            issue =>
+                normalizeText(
+                    issue.name
+                )
+                ===
+                normalizeText(
+                    article.issue
+                )
+        );
+
+
+    if(issueIndex >= 0){
+
+        articleIssue.value =
+            issueIndex;
+
+        updateProblemSelect();
+
+        articleProblem.value =
+            article.problem ||
+            "";
+
+    }
+
+
+    document
+    .getElementById(
+        "cancelEditButton"
+    )
+    .style.display =
+        "inline-block";
+
+
+    document
+    .querySelector(
+        '[data-panel="addArticlePanel"]'
+    )
+    .click();
+
+}
+
+
+/* =====================================================
+   NORMALIZE
+===================================================== */
+
+function normalizeText(value){
+
+    return String(
+        value || ""
+    )
+    .trim()
+    .replace(
+        /\s+/g,
+        " "
+    );
+
+}
+
+
+/* =====================================================
+   SAVE ARTICLE
+===================================================== */
+
+document
+.getElementById(
+    "saveArticleButton"
+)
+.addEventListener(
+    "click",
+    saveArticle
+);
+
+
+async function saveArticle(){
+
+    const title =
+        document
+        .getElementById(
+            "articleTitle"
+        )
+        .value
+        .trim();
+
+
+    const issueIndex =
+        articleIssue.value;
+
+
+    const problem =
+        articleProblem.value;
+
+
+    const content =
+        document
+        .getElementById(
+            "articleContent"
+        )
+        .value
+        .trim();
+
+
+    if(!title){
+
+        showMessage(
+            "أدخل عنوان المقال.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(issueIndex === ""){
+
+        showMessage(
+            "اختر الإشكالية.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(!problem){
+
+        showMessage(
+            "اختر المشكلة.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(!content){
+
+        showMessage(
+            "أدخل محتوى المقال.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const issue =
+        curriculum[
+            Number(issueIndex)
+        ];
+
+
+    const articleData = {
+
+        title:title,
+
+        issue:issue.name,
+
+        problem:problem,
+
+        content:content,
+
+        excerpt:
+            document
+            .getElementById(
+                "articleExcerpt"
+            )
+            .value
+            .trim(),
+
+        article_type:
+            document
+            .getElementById(
+                "articleType"
+            )
+            .value
+            .trim(),
+
+        author:
+            document
+            .getElementById(
+                "articleAuthor"
+            )
+            .value
+            .trim(),
+
+        published:
+            document
+            .getElementById(
+                "articlePublished"
+            )
+            .value ===
+            "true"
+
+    };
+
+
+    let result;
+
+
+    if(editingArticleId){
+
+        result =
+            await supabaseClient
+            .from("articles")
+            .update(
+                articleData
+            )
+            .eq(
+                "id",
+                editingArticleId
+            );
+
+    }
+
+    else{
+
+        result =
+            await supabaseClient
+            .from("articles")
+            .insert(
+                articleData
+            );
+
+    }
+
+
+    if(result.error){
+
+        console.error(
+            result.error
+        );
+
+        showMessage(
+            "حدث خطأ: " +
+            result.error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showMessage(
+        editingArticleId
+        ?
+        "تم تعديل المقال."
+        :
+        "تمت إضافة المقال."
+    );
+
+
+    clearArticleForm();
+
+    await loadArticles();
+
+}
+
+
+/* =====================================================
+   CANCEL EDIT
+===================================================== */
+
+document
+.getElementById(
+    "cancelEditButton"
+)
+.addEventListener(
+    "click",
+    clearArticleForm
+);
+
+
+/* =====================================================
+   DELETE ARTICLE
+===================================================== */
+
+async function deleteArticle(article){
+
+    const confirmed =
+        confirm(
+            "هل تريد حذف المقال:\n\n" +
+            article.title +
+            "\n\nهذا الإجراء لا يمكن التراجع عنه."
+        );
+
+
+    if(!confirmed){
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+        .from("articles")
+        .delete()
+        .eq(
+            "id",
+            article.id
+        );
+
+
+    if(error){
+
+        showMessage(
+            "تعذر حذف المقال: " +
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showMessage(
+        "تم حذف المقال."
+    );
+
+
+    await loadArticles();
+
+}
+
+
+/* =====================================================
+   TOGGLE PUBLISHED
+===================================================== */
+
+async function togglePublished(article){
+
+    const {
+        error
+    } =
+        await supabaseClient
+        .from("articles")
+        .update({
+
+            published:
+                !article.published
+
+        })
+        .eq(
+            "id",
+            article.id
+        );
+
+
+    if(error){
+
+        showMessage(
+            "تعذر تغيير حالة المقال.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showMessage(
+        article.published
+        ?
+        "تم إخفاء المقال."
+        :
+        "تم نشر المقال."
+    );
+
+
+    await loadArticles();
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+async function start(){
+
+    await loadCurriculum();
+
+    await loadArticles();
+
+}
+
+
+start();
+
+</script>
+
+</body>
+
+</html>
