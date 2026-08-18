@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
 
 <meta charset="UTF-8">
@@ -56,14 +57,22 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 ===================================================== */
 
 *{
+
     box-sizing:border-box;
+
     margin:0;
+
     padding:0;
+
 }
 
+
 html{
+
     scroll-behavior:smooth;
+
 }
+
 
 body{
 
@@ -79,9 +88,13 @@ body{
 
 }
 
+
 button{
+
     font-family:inherit;
+
 }
+
 
 .container{
 
@@ -115,6 +128,7 @@ button{
 
 }
 
+
 .nav-container{
 
     min-height:72px;
@@ -128,6 +142,7 @@ button{
     gap:20px;
 
 }
+
 
 .brand{
 
@@ -143,9 +158,11 @@ button{
 
 }
 
+
 .owl{
 
     width:43px;
+
     height:43px;
 
     border:1px solid var(--gold);
@@ -167,21 +184,26 @@ button{
 
 }
 
+
 .owl svg{
 
     width:27px;
+
     height:27px;
 
     fill:var(--gold-light);
 
 }
 
+
 .brand-text{
 
     display:flex;
+
     flex-direction:column;
 
 }
+
 
 .brand-title{
 
@@ -195,6 +217,7 @@ button{
 
 }
 
+
 .brand-sub{
 
     color:var(--gold);
@@ -203,17 +226,17 @@ button{
 
 }
 
+
 .nav-menu{
 
     display:flex;
 
-    align-items:center;
-
     list-style:none;
 
-    gap:24px;
+    gap:28px;
 
 }
+
 
 .nav-menu a{
 
@@ -227,53 +250,10 @@ button{
 
 }
 
+
 .nav-menu a:hover{
 
     color:var(--gold-light);
-
-}
-
-
-/* =====================================================
-   ADMIN BUTTON IN NAVBAR
-===================================================== */
-
-.admin-nav-link{
-
-    display:flex !important;
-
-    align-items:center;
-
-    gap:7px;
-
-    padding:7px 15px;
-
-    border:1px solid var(--border);
-
-    border-radius:20px;
-
-    color:var(--gold-light) !important;
-
-    background:rgba(197,160,89,.06);
-
-    transition:.25s !important;
-
-}
-
-.admin-nav-link:hover{
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--gold-light),
-            var(--gold)
-        ) !important;
-
-    color:#000 !important;
-
-    border-color:var(--gold-light);
-
-    transform:translateY(-2px);
 
 }
 
@@ -306,11 +286,13 @@ button{
 
 }
 
+
 .hero-content{
 
     text-align:center;
 
 }
+
 
 .places{
 
@@ -324,6 +306,7 @@ button{
     margin-bottom:35px;
 
 }
+
 
 .place,
 .library{
@@ -342,10 +325,12 @@ button{
 
 }
 
+
 .place img,
 .library img{
 
     width:100%;
+
     height:100%;
 
     object-fit:cover;
@@ -353,6 +338,7 @@ button{
     display:block;
 
 }
+
 
 .place img{
 
@@ -365,11 +351,13 @@ button{
 
 }
 
+
 .place:hover img{
 
     transform:scale(1.04);
 
 }
+
 
 .place::after,
 .library::after{
@@ -389,6 +377,7 @@ button{
 
 }
 
+
 .place-label{
 
     position:absolute;
@@ -405,6 +394,7 @@ button{
 
 }
 
+
 .place-label h3{
 
     font-family:var(--amiri);
@@ -415,11 +405,13 @@ button{
 
 }
 
+
 .place-label span{
 
     font-size:.8rem;
 
 }
+
 
 .library{
 
@@ -436,6 +428,7 @@ button{
 
 }
 
+
 .library img{
 
     filter:
@@ -444,6 +437,7 @@ button{
         saturate(.7);
 
 }
+
 
 .library-content{
 
@@ -463,9 +457,11 @@ button{
 
 }
 
+
 .library-icon{
 
     width:75px;
+
     height:75px;
 
     margin-bottom:15px;
@@ -484,6 +480,7 @@ button{
 
 }
 
+
 .library-icon i{
 
     color:var(--gold-light);
@@ -491,6 +488,7 @@ button{
     font-size:2rem;
 
 }
+
 
 .library-title{
 
@@ -502,6 +500,7 @@ button{
 
 }
 
+
 .library-sub{
 
     font-family:var(--ruqaa);
@@ -511,6 +510,7 @@ button{
     font-size:1.4rem;
 
 }
+
 
 .hero-title{
 
@@ -522,6 +522,7 @@ button{
 
 }
 
+
 .hero-tagline{
 
     font-family:var(--ruqaa);
@@ -531,6 +532,7 @@ button{
     color:var(--gold-light);
 
 }
+
 
 .hero-description{
 
@@ -542,6 +544,7 @@ button{
 
 }
 
+
 .buttons{
 
     display:flex;
@@ -550,17 +553,14 @@ button{
 
     gap:15px;
 
-    flex-wrap:wrap;
-
 }
+
 
 .btn{
 
     display:inline-flex;
 
     align-items:center;
-
-    justify-content:center;
 
     gap:8px;
 
@@ -576,11 +576,13 @@ button{
 
 }
 
+
 .btn:hover{
 
     transform:translateY(-3px);
 
 }
+
 
 .btn-gold{
 
@@ -595,6 +597,7 @@ button{
 
 }
 
+
 .btn-outline{
 
     border:1px solid var(--border-bright);
@@ -602,35 +605,6 @@ button{
     background:rgba(0,0,0,.6);
 
     color:var(--white);
-
-}
-
-
-/* =====================================================
-   ADMIN HERO BUTTON
-===================================================== */
-
-.btn-admin{
-
-    border:1px solid var(--gold);
-
-    background:
-        rgba(197,160,89,.08);
-
-    color:var(--gold-light);
-
-}
-
-.btn-admin:hover{
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--gold-light),
-            var(--gold)
-        );
-
-    color:#000;
 
 }
 
@@ -645,6 +619,7 @@ section.content-section{
 
 }
 
+
 .section-header{
 
     text-align:center;
@@ -652,6 +627,7 @@ section.content-section{
     margin-bottom:45px;
 
 }
+
 
 .section-title{
 
@@ -661,6 +637,7 @@ section.content-section{
 
 }
 
+
 .section-subtitle{
 
     color:var(--muted);
@@ -668,6 +645,7 @@ section.content-section{
     font-size:.9rem;
 
 }
+
 
 .decor{
 
@@ -693,6 +671,7 @@ section.content-section{
 
 }
 
+
 .philosopher-grid{
 
     display:grid;
@@ -703,6 +682,7 @@ section.content-section{
     gap:18px;
 
 }
+
 
 .ph-card{
 
@@ -723,6 +703,7 @@ section.content-section{
 
 }
 
+
 .ph-card:hover{
 
     transform:translateY(-7px);
@@ -731,20 +712,24 @@ section.content-section{
 
 }
 
+
 .ph-image{
 
     height:260px;
 
 }
 
+
 .ph-image img{
 
     width:100%;
+
     height:100%;
 
     object-fit:cover;
 
 }
+
 
 .ph-info{
 
@@ -754,6 +739,7 @@ section.content-section{
 
 }
 
+
 .ph-name{
 
     font-family:var(--amiri);
@@ -762,6 +748,7 @@ section.content-section{
 
 }
 
+
 .ph-date{
 
     color:var(--gold);
@@ -769,6 +756,7 @@ section.content-section{
     font-size:.82rem;
 
 }
+
 
 .ph-topic{
 
@@ -791,6 +779,7 @@ section.content-section{
 
 }
 
+
 .program-grid{
 
     display:grid;
@@ -802,6 +791,7 @@ section.content-section{
 
 }
 
+
 .program-card{
 
     overflow:hidden;
@@ -812,7 +802,25 @@ section.content-section{
 
     background:var(--card);
 
+    transition:.3s;
+
+    cursor:pointer;
+
 }
+
+
+.program-card:hover{
+
+    transform:translateY(-7px);
+
+    border-color:var(--gold-light);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.45);
+
+}
+
 
 .program-image{
 
@@ -822,9 +830,11 @@ section.content-section{
 
 }
 
+
 .program-image img{
 
     width:100%;
+
     height:100%;
 
     object-fit:cover;
@@ -832,6 +842,7 @@ section.content-section{
     opacity:.6;
 
 }
+
 
 .number{
 
@@ -856,6 +867,7 @@ section.content-section{
     background:rgba(0,0,0,.7);
 
 }
+
 
 .program-title{
 
@@ -885,11 +897,13 @@ section.content-section{
 
 }
 
+
 .curriculum-section{
 
     margin-bottom:65px;
 
 }
+
 
 .curriculum-title{
 
@@ -905,6 +919,7 @@ section.content-section{
 
 }
 
+
 .curriculum-subtitle{
 
     text-align:center;
@@ -918,6 +933,11 @@ section.content-section{
     margin-bottom:35px;
 
 }
+
+
+/* =====================================================
+   PROBLEM
+===================================================== */
 
 .problem-block{
 
@@ -938,6 +958,7 @@ section.content-section{
     overflow:hidden;
 
 }
+
 
 .problem-title{
 
@@ -962,6 +983,7 @@ section.content-section{
 
 }
 
+
 .problem-title i{
 
     color:var(--gold);
@@ -969,6 +991,7 @@ section.content-section{
     margin-left:8px;
 
 }
+
 
 .problem-articles{
 
@@ -1013,6 +1036,7 @@ section.content-section{
 
 }
 
+
 .article-card:hover{
 
     transform:translateY(-6px);
@@ -1025,9 +1049,11 @@ section.content-section{
 
 }
 
+
 .article-icon{
 
     width:48px;
+
     height:48px;
 
     margin-bottom:15px;
@@ -1035,6 +1061,7 @@ section.content-section{
     display:flex;
 
     align-items:center;
+
     justify-content:center;
 
     border:1px solid var(--gold);
@@ -1045,6 +1072,7 @@ section.content-section{
 
 }
 
+
 .article-type{
 
     color:var(--gold);
@@ -1054,6 +1082,7 @@ section.content-section{
     margin-bottom:7px;
 
 }
+
 
 .article-title{
 
@@ -1067,6 +1096,7 @@ section.content-section{
 
 }
 
+
 .article-excerpt{
 
     color:var(--muted);
@@ -1076,6 +1106,7 @@ section.content-section{
     flex:1;
 
 }
+
 
 .article-link{
 
@@ -1100,6 +1131,7 @@ section.content-section{
     transition:.25s;
 
 }
+
 
 .article-link:hover{
 
@@ -1128,6 +1160,7 @@ section.content-section{
 
 }
 
+
 .no-articles i{
 
     display:block;
@@ -1142,7 +1175,7 @@ section.content-section{
 
 
 /* =====================================================
-   PREMIUM ARTICLE MODAL
+   MODAL
 ===================================================== */
 
 .article-modal{
@@ -1159,325 +1192,279 @@ section.content-section{
 
     justify-content:center;
 
-    padding:25px;
+    padding:20px;
 
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(197,160,89,.07),
-            rgba(0,0,0,.96) 65%
-        );
+    background:rgba(0,0,0,.9);
 
-    backdrop-filter:blur(12px);
+    backdrop-filter:blur(8px);
 
 }
+
 
 .article-modal.active{
 
     display:flex;
 
-    animation:
-        modalFade .25s ease;
-
 }
 
-@keyframes modalFade{
-
-    from{
-        opacity:0;
-    }
-
-    to{
-        opacity:1;
-    }
-
-}
 
 .article-modal-box{
 
     width:100%;
 
-    max-width:980px;
+    max-width:900px;
 
-    max-height:92vh;
+    max-height:90vh;
 
     overflow-y:auto;
 
-    background:
-        linear-gradient(
-            145deg,
-            #171417,
-            #0d0b0d
-        );
-
-    border:
-        1px solid
-        rgba(197,160,89,.6);
-
-    border-radius:14px;
-
-    padding:55px 65px 65px;
-
-    position:relative;
-
-    box-shadow:
-        0 30px 100px
-        rgba(0,0,0,.95),
-
-        inset 0 0 60px
-        rgba(197,160,89,.035);
-
-    scrollbar-width:thin;
-
-    scrollbar-color:
-        var(--gold)
-        #0c0b0c;
-
-    animation:
-        articleOpen .3s ease;
-
-}
-
-@keyframes articleOpen{
-
-    from{
-
-        transform:
-            translateY(20px)
-            scale(.98);
-
-        opacity:0;
-
-    }
-
-    to{
-
-        transform:
-            translateY(0)
-            scale(1);
-
-        opacity:1;
-
-    }
-
-}
-
-
-/* close */
-
-.article-modal-close{
-
-    position:absolute;
-
-    top:18px;
-
-    left:20px;
-
-    width:42px;
-    height:42px;
+    background:#121012;
 
     border:
         1px solid
         rgba(197,160,89,.7);
 
-    border-radius:50%;
+    border-radius:12px;
 
-    background:
-        rgba(0,0,0,.7);
+    padding:40px;
 
-    color:var(--gold-light);
+    position:relative;
 
-    font-size:23px;
-
-    cursor:pointer;
-
-    transition:.25s;
-
-}
-
-.article-modal-close:hover{
-
-    background:var(--gold);
-
-    color:#000;
-
-    transform:rotate(90deg);
+    box-shadow:
+        0 20px 80px
+        rgba(0,0,0,.9);
 
 }
 
 
-/* article heading */
+.article-modal-close{
 
-.article-reading-header{
+    position:absolute;
 
-    text-align:center;
+    top:15px;
 
-    margin-bottom:30px;
+    left:18px;
 
-}
+    width:40px;
 
-.article-reading-symbol{
-
-    width:60px;
-    height:60px;
-
-    margin:0 auto 18px;
+    height:40px;
 
     border:1px solid var(--gold);
 
     border-radius:50%;
 
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
+    background:#080707;
 
     color:var(--gold-light);
 
-    background:
-        rgba(197,160,89,.06);
+    font-size:24px;
 
-    font-size:1.4rem;
+    cursor:pointer;
 
 }
+
 
 .article-modal-title{
 
     font-family:var(--amiri);
 
-    font-size:2.8rem;
-
-    line-height:1.45;
+    font-size:2.4rem;
 
     color:var(--gold-light);
 
-    margin-bottom:15px;
+    margin-bottom:10px;
+
+    padding-left:50px;
 
 }
+
 
 .article-modal-meta{
 
-    display:flex;
-
-    flex-wrap:wrap;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:8px;
-
-    color:var(--muted);
-
-    font-size:.82rem;
-
-}
-
-.article-meta-item{
-
-    padding:5px 12px;
-
-    border:1px solid
-        rgba(197,160,89,.25);
-
-    border-radius:20px;
-
-    background:
-        rgba(197,160,89,.04);
-
-}
-
-.article-meta-item strong{
-
     color:var(--gold);
 
-    font-weight:600;
+    font-size:.9rem;
+
+    border-bottom:
+        1px solid
+        rgba(197,160,89,.2);
+
+    padding-bottom:18px;
+
+    margin-bottom:25px;
 
 }
 
-
-/* divider */
-
-.article-divider{
-
-    width:100%;
-
-    height:1px;
-
-    margin:30px 0 35px;
-
-    background:
-        linear-gradient(
-            to left,
-            transparent,
-            rgba(197,160,89,.7),
-            transparent
-        );
-
-}
-
-
-/* content */
 
 .article-modal-content{
 
-    max-width:780px;
-
-    margin:auto;
-
     color:#eee;
 
-    font-family:var(--amiri);
+    font-size:1.08rem;
 
-    font-size:1.25rem;
-
-    line-height:2.25;
+    line-height:2.2;
 
     white-space:pre-wrap;
 
     word-break:break-word;
 
-    text-align:justify;
-
-}
-
-.article-modal-content::first-letter{
-
-    font-size:3.5rem;
-
-    color:var(--gold-light);
-
-    float:right;
-
-    line-height:.8;
-
-    padding-left:8px;
-
 }
 
 
-/* footer inside article */
+/* =====================================================
+   CURRICULUM MODAL
+===================================================== */
 
-.article-reading-footer{
-
-    max-width:780px;
-
-    margin:45px auto 0;
-
-    padding-top:25px;
-
-    border-top:
-        1px solid
-        rgba(197,160,89,.18);
+.curriculum-modal-header{
 
     text-align:center;
 
+    margin-bottom:35px;
+
+    padding-bottom:25px;
+
+    border-bottom:
+        1px solid
+        rgba(197,160,89,.25);
+
+}
+
+
+.curriculum-modal-title{
+
+    font-family:var(--amiri);
+
+    font-size:2.5rem;
+
+    color:var(--gold-light);
+
+}
+
+
+.curriculum-modal-subtitle{
+
+    font-family:var(--amiri);
+
+    font-size:1.35rem;
+
+    color:var(--white);
+
+    margin-top:5px;
+
+}
+
+
+.curriculum-teacher{
+
+    color:var(--gold);
+
+    font-size:.9rem;
+
+    margin-top:8px;
+
+}
+
+
+.curriculum-modal-issue{
+
+    margin-bottom:35px;
+
+}
+
+
+.curriculum-modal-issue-title{
+
+    font-family:var(--amiri);
+
+    font-size:1.9rem;
+
+    color:var(--gold-light);
+
+    padding:14px 18px;
+
+    border-right:3px solid var(--gold);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(197,160,89,.12),
+            transparent
+        );
+
+    margin-bottom:20px;
+
+}
+
+
+.curriculum-modal-problem{
+
+    margin-bottom:22px;
+
+    padding:18px 20px;
+
+    border:
+        1px solid
+        rgba(197,160,89,.22);
+
+    border-radius:8px;
+
+    background:
+        rgba(18,16,18,.8);
+
+}
+
+
+.curriculum-modal-problem-title{
+
+    font-family:var(--amiri);
+
+    font-size:1.35rem;
+
+    color:var(--white);
+
+    margin-bottom:12px;
+
+}
+
+
+.curriculum-modal-articles{
+
+    list-style:none;
+
+    margin:0;
+
+    padding:0;
+
+}
+
+
+.curriculum-modal-articles li{
+
+    padding:8px 12px;
+
     color:var(--muted);
 
-    font-family:var(--ruqaa);
+    border-bottom:
+        1px solid
+        rgba(197,160,89,.08);
 
-    font-size:1rem;
+}
+
+
+.curriculum-modal-articles li:last-child{
+
+    border-bottom:none;
+
+}
+
+
+.curriculum-modal-articles li::before{
+
+    content:"✦";
+
+    color:var(--gold);
+
+    margin-left:8px;
 
 }
 
@@ -1494,6 +1481,7 @@ section.content-section{
 
 }
 
+
 .about-box{
 
     max-width:850px;
@@ -1509,6 +1497,7 @@ section.content-section{
     background:rgba(18,16,18,.7);
 
 }
+
 
 .about-box p{
 
@@ -1537,6 +1526,7 @@ footer{
 
 }
 
+
 .footer-brand{
 
     font-family:var(--amiri);
@@ -1546,6 +1536,7 @@ footer{
     color:var(--gold-light);
 
 }
+
 
 .footer-text{
 
@@ -1571,6 +1562,7 @@ footer{
 
     }
 
+
     .library{
 
         grid-column:1/-1;
@@ -1579,6 +1571,7 @@ footer{
 
     }
 
+
     .philosopher-grid{
 
         grid-template-columns:
@@ -1586,11 +1579,13 @@ footer{
 
     }
 
+
     .program-grid{
 
         grid-template-columns:1fr;
 
     }
+
 
     .problem-articles{
 
@@ -1599,16 +1594,8 @@ footer{
 
     }
 
-    .article-modal-box{
-
-        padding:
-            50px
-            40px
-            55px;
-
-    }
-
 }
+
 
 @media(max-width:768px){
 
@@ -1618,11 +1605,13 @@ footer{
 
     }
 
+
     .places{
 
         grid-template-columns:1fr;
 
     }
+
 
     .library{
 
@@ -1632,11 +1621,13 @@ footer{
 
     }
 
+
     .place{
 
         min-height:270px;
 
     }
+
 
     .philosopher-grid,
     .problem-articles{
@@ -1645,17 +1636,20 @@ footer{
 
     }
 
+
     .hero-title{
 
         font-size:2.7rem;
 
     }
 
+
     .library-title{
 
         font-size:2.3rem;
 
     }
+
 
     .buttons{
 
@@ -1665,6 +1659,7 @@ footer{
 
     }
 
+
     .btn{
 
         width:230px;
@@ -1673,50 +1668,52 @@ footer{
 
     }
 
+
     section.content-section{
 
         padding:65px 0;
 
     }
 
-    .article-modal{
-
-        padding:10px;
-
-    }
 
     .article-modal-box{
 
-        max-height:95vh;
-
-        padding:
-            48px
-            20px
-            40px;
-
-        border-radius:10px;
+        padding:30px 20px;
 
     }
 
+
     .article-modal-title{
+
+        font-size:1.8rem;
+
+    }
+
+
+    .article-modal-content{
+
+        font-size:.95rem;
+
+    }
+
+
+    .curriculum-modal-title{
 
         font-size:2rem;
 
     }
 
-    .article-modal-content{
 
-        font-size:1.08rem;
+    .curriculum-modal-issue-title{
 
-        line-height:2.1;
-
-        text-align:right;
+        font-size:1.55rem;
 
     }
 
-    .article-meta-item{
 
-        font-size:.72rem;
+    .curriculum-modal-problem-title{
+
+        font-size:1.2rem;
 
     }
 
@@ -1731,14 +1728,16 @@ footer{
 
 
 <!-- =====================================================
-   NAVBAR
+     NAVBAR
 ===================================================== -->
 
 <nav class="navbar">
 
 <div class="container nav-container">
 
+
 <a href="#" class="brand">
+
 
 <div class="owl">
 
@@ -1749,6 +1748,7 @@ footer{
 </svg>
 
 </div>
+
 
 <div class="brand-text">
 
@@ -1787,42 +1787,26 @@ footer{
 <a href="#about">حول المنصة</a>
 </li>
 
-<!-- =====================================================
-     ADMIN LINK
-===================================================== -->
-
-<li>
-
-<a
-href="https://adminzaid.vercel.app/"
-class="admin-nav-link"
-target="_blank"
-rel="noopener noreferrer">
-
-<i class="fa-solid fa-lock"></i>
-
-لوحة الإدارة
-
-</a>
-
-</li>
-
 </ul>
+
 
 </div>
 
 </nav>
 
 
+
 <!-- =====================================================
-   HERO
+     HERO
 ===================================================== -->
 
 <section class="hero">
 
 <div class="container hero-content">
 
+
 <div class="places">
+
 
 <div class="place">
 
@@ -1843,6 +1827,7 @@ alt="أثينا">
 </div>
 
 </div>
+
 
 
 <div class="library">
@@ -1872,6 +1857,7 @@ alt="المكتبة القديمة">
 </div>
 
 
+
 <div class="place">
 
 <img
@@ -1892,16 +1878,20 @@ alt="بيت الحكمة">
 
 </div>
 
+
 </div>
+
 
 
 <h1 class="hero-title">
 رواق زايد للفلسفة
 </h1>
 
+
 <div class="hero-tagline">
 حيث يبدأ السؤال... ويستمر البحث.
 </div>
+
 
 <p class="hero-description">
 
@@ -1912,6 +1902,7 @@ alt="بيت الحكمة">
 
 
 <div class="buttons">
+
 
 <a href="#articles"
 class="btn btn-gold">
@@ -1933,31 +1924,17 @@ class="btn btn-outline">
 </a>
 
 
-<!-- =====================================================
-     ADMIN HERO BUTTON
-===================================================== -->
-
-<a
-href="https://adminzaid.vercel.app/"
-class="btn btn-admin"
-target="_blank"
-rel="noopener noreferrer">
-
-<i class="fa-solid fa-shield-halved"></i>
-
-دخول لوحة الإدارة
-
-</a>
-
 </div>
+
 
 </div>
 
 </section>
 
 
+
 <!-- =====================================================
-   PHILOSOPHERS
+     PHILOSOPHERS
 ===================================================== -->
 
 <section
@@ -1965,6 +1942,7 @@ class="content-section philosophers"
 id="philosophers">
 
 <div class="container">
+
 
 <div class="section-header">
 
@@ -1983,7 +1961,9 @@ id="philosophers">
 </div>
 
 
+
 <div class="philosopher-grid">
+
 
 <div class="ph-card">
 
@@ -2012,6 +1992,7 @@ alt="سقراط">
 </div>
 
 </div>
+
 
 
 <div class="ph-card">
@@ -2043,6 +2024,7 @@ alt="أفلاطون">
 </div>
 
 
+
 <div class="ph-card">
 
 <div class="ph-image">
@@ -2070,6 +2052,7 @@ alt="أرسطو">
 </div>
 
 </div>
+
 
 
 <div class="ph-card">
@@ -2100,6 +2083,7 @@ alt="ديكارت">
 
 </div>
 
+
 </div>
 
 </div>
@@ -2107,8 +2091,9 @@ alt="ديكارت">
 </section>
 
 
+
 <!-- =====================================================
-   PROGRAM
+     PROGRAM
 ===================================================== -->
 
 <section
@@ -2116,6 +2101,7 @@ class="content-section program"
 id="program">
 
 <div class="container">
+
 
 <div class="section-header">
 
@@ -2134,9 +2120,18 @@ id="program">
 </div>
 
 
+
 <div class="program-grid">
 
-<div class="program-card">
+
+<!-- =====================================================
+     THIRD YEAR
+===================================================== -->
+
+<div
+class="program-card"
+onclick="openCurriculum('third')"
+>
 
 <div class="program-image">
 
@@ -2162,6 +2157,11 @@ I
 
 </div>
 
+
+
+<!-- =====================================================
+     SECOND YEAR
+===================================================== -->
 
 <div class="program-card">
 
@@ -2190,6 +2190,11 @@ II
 </div>
 
 
+
+<!-- =====================================================
+     SCIENTIFIC AND LANGUAGES
+===================================================== -->
+
 <div class="program-card">
 
 <div class="program-image">
@@ -2216,6 +2221,7 @@ III
 
 </div>
 
+
 </div>
 
 </div>
@@ -2223,8 +2229,63 @@ III
 </section>
 
 
+
 <!-- =====================================================
-   ARTICLES
+     CURRICULUM MODAL
+===================================================== -->
+
+<div
+id="curriculumModal"
+class="article-modal"
+>
+
+<div class="article-modal-box">
+
+
+<button
+type="button"
+id="closeCurriculumButton"
+class="article-modal-close"
+aria-label="إغلاق"
+>
+
+×
+
+</button>
+
+
+<div class="curriculum-modal-header">
+
+<div class="decor">
+❖
+</div>
+
+<h2 class="curriculum-modal-title">
+برنامج مادة الفلسفة
+</h2>
+
+<div class="curriculum-modal-subtitle">
+شعبة آداب وفلسفة
+</div>
+
+<div class="curriculum-teacher">
+من إعداد الأستاذ: زايد علاوي
+</div>
+
+</div>
+
+
+<div id="curriculumModalContent"></div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     ARTICLES
 ===================================================== -->
 
 <section
@@ -2232,6 +2293,7 @@ class="content-section articles"
 id="articles">
 
 <div class="container">
+
 
 <div class="section-header">
 
@@ -2250,6 +2312,7 @@ id="articles">
 </div>
 
 
+
 <div id="articleContainer">
 
 <div class="no-articles">
@@ -2264,20 +2327,25 @@ id="articles">
 
 </div>
 
+
 </div>
 
 </section>
 
 
+
 <!-- =====================================================
-   ARTICLE MODAL
+     ARTICLE MODAL
 ===================================================== -->
 
 <div
 id="articleModal"
-class="article-modal">
+class="article-modal"
+>
+
 
 <div class="article-modal-box">
+
 
 <button
 type="button"
@@ -2288,15 +2356,6 @@ aria-label="إغلاق">
 ×
 
 </button>
-
-
-<div class="article-reading-header">
-
-<div class="article-reading-symbol">
-
-<i class="fa-solid fa-feather-pointed"></i>
-
-</div>
 
 
 <h2
@@ -2310,11 +2369,6 @@ id="modalArticleMeta"
 class="article-modal-meta">
 </div>
 
-</div>
-
-
-<div class="article-divider"></div>
-
 
 <div
 id="modalArticleContent"
@@ -2322,21 +2376,14 @@ class="article-modal-content">
 </div>
 
 
-<div class="article-reading-footer">
-
-رواق زايد للفلسفة  
-<br>
-حيث يبدأ السؤال... ويستمر البحث.
-
 </div>
 
 </div>
 
-</div>
 
 
 <!-- =====================================================
-   ABOUT
+     ABOUT
 ===================================================== -->
 
 <section
@@ -2344,6 +2391,7 @@ class="content-section about"
 id="about">
 
 <div class="container">
+
 
 <div class="section-header">
 
@@ -2358,6 +2406,7 @@ id="about">
 </div>
 
 
+
 <div class="about-box">
 
 <p>
@@ -2370,13 +2419,15 @@ id="about">
 
 </div>
 
+
 </div>
 
 </section>
 
 
+
 <!-- =====================================================
-   FOOTER
+     FOOTER
 ===================================================== -->
 
 <footer>
@@ -2396,6 +2447,7 @@ id="about">
 </footer>
 
 
+
 <script>
 
 /* =====================================================
@@ -2405,8 +2457,10 @@ id="about">
 const SUPABASE_URL =
 "https://mitzxvmmnlkjczbmrumk.supabase.co";
 
+
 const SUPABASE_KEY =
 "sb_publishable_g6Nc_ma8cC3vsUDZZL-RJw_e4JbO6LF";
+
 
 const supabaseClient =
 window.supabase.createClient(
@@ -2416,7 +2470,7 @@ window.supabase.createClient(
 
 
 /* =====================================================
-   CURRICULUM
+   PROGRAM CURRICULUM
 ===================================================== */
 
 const curriculum = [
@@ -2427,23 +2481,83 @@ const curriculum = [
         "الإشكالية الأولى: إدراك العالم الخارجي",
 
         subtitle:
-        "مقالات الفصل الأول",
+        "الفصل الأول",
 
         problems: [
 
-            "مشكلة الإحساس والإدراك",
+            {
 
-            "مشكلة اللغة والفكر",
+                name:
+                "مشكلة الإحساس والإدراك",
 
-            "مشكلة الشعور واللاشعور",
+                articles: [
 
-            "مشكلة الذاكرة والخيال",
+                    "طبيعة الإدراك",
 
-            "مشكلة العادة والإرادة"
+                    "عوامل الإدراك",
+
+                    "العلاقة بين الإحساس والإدراك"
+
+                ]
+
+            },
+
+
+            {
+
+                name:
+                "مشكلة اللغة والفكر",
+
+                articles: [
+
+                    "العلاقة بين اللغة والفكر",
+
+                    "العلاقة بين الدال والمدلول",
+
+                    "وظائف اللغة"
+
+                ]
+
+            },
+
+
+            {
+
+                name:
+                "مشكلة الشعور واللاشعور",
+
+                articles: [
+
+                    "أساس الحياة النفسية",
+
+                    "قيمة اللاشعور بين الفرضية الفلسفية والنظرية العلمية"
+
+                ]
+
+            },
+
+
+            {
+
+                name:
+                "مشكلة الذاكرة والخيال",
+
+                articles: [
+
+                    "طبيعة الذاكرة",
+
+                    "قيمة النسيان",
+
+                    "عوامل الإبداع"
+
+                ]
+
+            }
 
         ]
 
     },
+
 
     {
 
@@ -2451,21 +2565,81 @@ const curriculum = [
         "الإشكالية الثانية: الأخلاق بين الثوابت والمتغيرات",
 
         subtitle:
-        "مقالات الفصل الثاني",
+        "الفصل الثاني",
 
         problems: [
 
-            "مشكلة الأخلاق",
+            {
 
-            "مشكلة العدالة",
+                name:
+                "مشكلة الأخلاق",
 
-            "مشكلة العلاقات الأسرية",
+                articles: [
 
-            "مشكلة النظم الاقتصادية والسياسية"
+                    "طبيعة الأخلاق",
+
+                    "مصدر الأخلاق"
+
+                ]
+
+            },
+
+
+            {
+
+                name:
+                "مشكلة العدالة",
+
+                articles: [
+
+                    "العدالة بين الحق والواجب",
+
+                    "العدالة بين التفاوت والمساواة"
+
+                ]
+
+            },
+
+
+            {
+
+                name:
+                "مشكلة العلاقات الأسرية",
+
+                articles: [
+
+                    "قيمة الأسرة"
+
+                ]
+
+            },
+
+
+            {
+
+                name:
+                "مشكلة النظم الاقتصادية والسياسية",
+
+                articles: [
+
+                    "الشغل",
+
+                    "النظام الاقتصادي الأمثل",
+
+                    "النظام السياسي الأمثل",
+
+                    "الديمقراطية المثلى",
+
+                    "علاقة السياسة بالأخلاق"
+
+                ]
+
+            }
 
         ]
 
     },
+
 
     {
 
@@ -2473,17 +2647,76 @@ const curriculum = [
         "الإشكالية الثالثة: فلسفة العلوم",
 
         subtitle:
-        "مقالات الفصل الثالث",
+        "الفصل الثالث",
 
         problems: [
 
-            "مشكلة الحقيقة العلمية والحقيقة الفلسفية",
+            {
 
-            "مشكلة فلسفة الرياضيات",
+                name:
+                "مشكلة الحقيقة العلمية والحقيقة الفلسفية",
 
-            "مشكلة علوم المادة الجامدة والحية",
+                articles: [
 
-            "مشكلة العلوم الإنسانية"
+                    "طبيعة الحقيقة",
+
+                    "معيار الحقيقة"
+
+                ]
+
+            },
+
+
+            {
+
+                name:
+                "مشكلة فلسفة الرياضيات",
+
+                articles: [
+
+                    "أصل المفاهيم الرياضية",
+
+                    "اليقين الرياضي"
+
+                ]
+
+            },
+
+
+            {
+
+                name:
+                "مشكلة علوم المادة الجامدة والحية",
+
+                articles: [
+
+                    "قيمة الفرضية",
+
+                    "الحتمية واللاحتمية",
+
+                    "نتائج العلم",
+
+                    "قيمة البيولوجيا"
+
+                ]
+
+            },
+
+
+            {
+
+                name:
+                "مشكلة العلوم الإنسانية",
+
+                articles: [
+
+                    "علم النفس",
+
+                    "علم التاريخ"
+
+                ]
+
+            }
 
         ]
 
@@ -2493,7 +2726,249 @@ const curriculum = [
 
 
 /* =====================================================
-   ELEMENTS
+   CURRICULUM MODAL
+===================================================== */
+
+const curriculumModal =
+document.getElementById(
+    "curriculumModal"
+);
+
+
+const curriculumModalContent =
+document.getElementById(
+    "curriculumModalContent"
+);
+
+
+const closeCurriculumButton =
+document.getElementById(
+    "closeCurriculumButton"
+);
+
+
+/* =====================================================
+   OPEN CURRICULUM
+===================================================== */
+
+function openCurriculum(type){
+
+    if(type !== "third"){
+
+        return;
+
+    }
+
+
+    curriculumModalContent.innerHTML =
+        "";
+
+
+    curriculum.forEach(
+        function(issueData){
+
+            const issue =
+            document.createElement(
+                "div"
+            );
+
+
+            issue.className =
+                "curriculum-modal-issue";
+
+
+            const issueTitle =
+            document.createElement(
+                "h3"
+            );
+
+
+            issueTitle.className =
+                "curriculum-modal-issue-title";
+
+
+            issueTitle.textContent =
+                issueData.issue;
+
+
+            issue.appendChild(
+                issueTitle
+            );
+
+
+            issueData.problems.forEach(
+                function(problem){
+
+                    const problemBlock =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                    problemBlock.className =
+                        "curriculum-modal-problem";
+
+
+                    const problemTitle =
+                    document.createElement(
+                        "h4"
+                    );
+
+
+                    problemTitle.className =
+                        "curriculum-modal-problem-title";
+
+
+                    problemTitle.textContent =
+                        problem.name;
+
+
+                    problemBlock.appendChild(
+                        problemTitle
+                    );
+
+
+                    const articles =
+                    document.createElement(
+                        "ul"
+                    );
+
+
+                    articles.className =
+                        "curriculum-modal-articles";
+
+
+                    problem.articles.forEach(
+                        function(article,index){
+
+                            const li =
+                            document.createElement(
+                                "li"
+                            );
+
+
+                            li.textContent =
+                                "المقال " +
+                                String(
+                                    index + 1
+                                ).padStart(
+                                    2,
+                                    "0"
+                                ) +
+                                ": " +
+                                article;
+
+
+                            articles.appendChild(
+                                li
+                            );
+
+                        }
+                    );
+
+
+                    problemBlock.appendChild(
+                        articles
+                    );
+
+
+                    issue.appendChild(
+                        problemBlock
+                    );
+
+                }
+            );
+
+
+            curriculumModalContent.appendChild(
+                issue
+            );
+
+        }
+    );
+
+
+    curriculumModal.classList.add(
+        "active"
+    );
+
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+/* =====================================================
+   CLOSE CURRICULUM
+===================================================== */
+
+function closeCurriculum(){
+
+    curriculumModal.classList.remove(
+        "active"
+    );
+
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+closeCurriculumButton.addEventListener(
+    "click",
+    closeCurriculum
+);
+
+
+curriculumModal.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target ===
+            curriculumModal
+        ){
+
+            closeCurriculum();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   ESCAPE FOR CURRICULUM
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Escape"
+        ){
+
+            if(
+                curriculumModal.classList.contains(
+                    "active"
+                )
+            ){
+
+                closeCurriculum();
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   ARTICLE ELEMENTS
 ===================================================== */
 
 const articleContainer =
@@ -2501,25 +2976,30 @@ document.getElementById(
     "articleContainer"
 );
 
+
 const articleModal =
 document.getElementById(
     "articleModal"
 );
+
 
 const modalArticleTitle =
 document.getElementById(
     "modalArticleTitle"
 );
 
+
 const modalArticleMeta =
 document.getElementById(
     "modalArticleMeta"
 );
 
+
 const modalArticleContent =
 document.getElementById(
     "modalArticleContent"
 );
+
 
 const closeArticleButton =
 document.getElementById(
@@ -2542,12 +3022,30 @@ function normalizeText(value){
 
     }
 
+
     return String(value)
+
         .trim()
-        .replace(/\s+/g," ")
-        .replace(/[إأآ]/g,"ا")
-        .replace(/ى/g,"ي")
-        .replace(/ة/g,"ه");
+
+        .replace(
+            /\s+/g,
+            " "
+        )
+
+        .replace(
+            /[إأآ]/g,
+            "ا"
+        )
+
+        .replace(
+            /ى/g,
+            "ي"
+        )
+
+        .replace(
+            /ة/g,
+            "ه"
+        );
 
 }
 
@@ -2561,11 +3059,13 @@ function normalizeIssueName(value){
     let text =
         normalizeText(value);
 
+
     text =
         text.replace(
             /^الاشكاليه\s*(الاولى|الاولي|الثانيه|الثاني|الثالثه|الثالث)\s*:\s*/,
             ""
         );
+
 
     return text.trim();
 
@@ -2632,12 +3132,15 @@ function getExcerpt(content){
 
     if(!content){
 
-        return "اضغط على قراءة المقال لقراءة النص كاملًا.";
+        return
+        "اضغط على قراءة المقال لقراءة النص كاملًا.";
 
     }
 
+
     const text =
         String(content).trim();
+
 
     if(
         text.length <= 180
@@ -2647,8 +3150,12 @@ function getExcerpt(content){
 
     }
 
+
     return (
-        text.substring(0,180)
+        text.substring(
+            0,
+            180
+        )
         + "..."
     );
 
@@ -2673,87 +3180,23 @@ function openArticle(article){
         "بدون عنوان";
 
 
-    modalArticleMeta.innerHTML = "";
+    let metadata =
+        article.article_type ||
+        article.category ||
+        "مقال فلسفي";
 
 
-    const metaItems = [
+    if(article.author){
 
-        {
-            label:"الإشكالية",
-            value:article.issue
-        },
+        metadata +=
+            " — " +
+            article.author;
 
-        {
-            label:"المشكلة",
-            value:article.problem
-        },
-
-        {
-            label:"النوع",
-            value:
-                article.article_type ||
-                article.category ||
-                "مقال فلسفي"
-        },
-
-        {
-            label:"الكاتب",
-            value:
-                article.author ||
-                "الأستاذ زيد"
-        }
-
-    ];
+    }
 
 
-    metaItems.forEach(
-        function(item){
-
-            if(!item.value){
-
-                return;
-
-            }
-
-
-            const element =
-                document.createElement(
-                    "span"
-                );
-
-
-            element.className =
-                "article-meta-item";
-
-
-            const strong =
-                document.createElement(
-                    "strong"
-                );
-
-
-            strong.textContent =
-                item.label + ": ";
-
-
-            element.appendChild(
-                strong
-            );
-
-
-            element.appendChild(
-                document.createTextNode(
-                    item.value
-                )
-            );
-
-
-            modalArticleMeta.appendChild(
-                element
-            );
-
-        }
-    );
+    modalArticleMeta.textContent =
+        metadata;
 
 
     modalArticleContent.textContent =
@@ -2781,6 +3224,7 @@ function closeArticle(){
     articleModal.classList.remove(
         "active"
     );
+
 
     document.body.style.overflow =
         "";
@@ -2811,22 +3255,6 @@ articleModal.addEventListener(
 );
 
 
-document.addEventListener(
-    "keydown",
-    function(event){
-
-        if(
-            event.key === "Escape"
-        ){
-
-            closeArticle();
-
-        }
-
-    }
-);
-
-
 /* =====================================================
    CREATE ARTICLE CARD
 ===================================================== */
@@ -2838,6 +3266,7 @@ function createArticleCard(article){
             "article"
         );
 
+
     card.className =
         "article-card";
 
@@ -2847,8 +3276,10 @@ function createArticleCard(article){
             "div"
         );
 
+
     icon.className =
         "article-icon";
+
 
     icon.innerHTML =
         '<i class="fa-solid fa-feather-pointed"></i>';
@@ -2859,8 +3290,10 @@ function createArticleCard(article){
             "div"
         );
 
+
     type.className =
         "article-type";
+
 
     type.textContent =
         article.article_type ||
@@ -2873,8 +3306,10 @@ function createArticleCard(article){
             "h3"
         );
 
+
     title.className =
         "article-title";
+
 
     title.textContent =
         article.title ||
@@ -2886,8 +3321,10 @@ function createArticleCard(article){
             "p"
         );
 
+
     excerpt.className =
         "article-excerpt";
+
 
     excerpt.textContent =
         article.excerpt ||
@@ -2901,11 +3338,14 @@ function createArticleCard(article){
             "button"
         );
 
+
     button.type =
         "button";
 
+
     button.className =
         "article-link";
+
 
     button.innerHTML =
         'قراءة المقال <i class="fa-solid fa-arrow-left"></i>';
@@ -2923,15 +3363,29 @@ function createArticleCard(article){
     );
 
 
-    card.appendChild(icon);
+    card.appendChild(
+        icon
+    );
 
-    card.appendChild(type);
 
-    card.appendChild(title);
+    card.appendChild(
+        type
+    );
 
-    card.appendChild(excerpt);
 
-    card.appendChild(button);
+    card.appendChild(
+        title
+    );
+
+
+    card.appendChild(
+        excerpt
+    );
+
+
+    card.appendChild(
+        button
+    );
 
 
     return card;
@@ -2953,6 +3407,7 @@ function createIssueSection(
             "div"
         );
 
+
     section.className =
         "curriculum-section";
 
@@ -2962,8 +3417,10 @@ function createIssueSection(
             "h3"
         );
 
+
     title.className =
         "curriculum-title";
+
 
     title.textContent =
         issueData.issue;
@@ -2974,25 +3431,37 @@ function createIssueSection(
             "div"
         );
 
+
     subtitle.className =
         "curriculum-subtitle";
+
 
     subtitle.textContent =
         issueData.subtitle;
 
 
-    section.appendChild(title);
+    section.appendChild(
+        title
+    );
 
-    section.appendChild(subtitle);
+
+    section.appendChild(
+        subtitle
+    );
 
 
     issueData.problems.forEach(
-        function(problemName){
+        function(problemData){
+
+            const problemName =
+                problemData.name;
+
 
             const block =
                 document.createElement(
                     "div"
                 );
+
 
             block.className =
                 "problem-block";
@@ -3003,8 +3472,10 @@ function createIssueSection(
                     "div"
                 );
 
+
             problemTitle.className =
                 "problem-title";
+
 
             problemTitle.innerHTML =
                 '<i class="fa-solid fa-book-open"></i>' +
@@ -3021,6 +3492,7 @@ function createIssueSection(
                     "div"
                 );
 
+
             problemArticles.className =
                 "problem-articles";
 
@@ -3029,20 +3501,23 @@ function createIssueSection(
                 articles.filter(
                     function(article){
 
-                        return (
-
+                        const sameIssue =
                             issueMatches(
                                 article.issue,
                                 issueData.issue
-                            )
+                            );
 
-                            &&
 
+                        const sameProblem =
                             problemMatches(
                                 article.problem,
                                 problemName
-                            )
+                            );
 
+
+                        return (
+                            sameIssue &&
+                            sameProblem
                         );
 
                     }
@@ -3127,14 +3602,21 @@ async function loadArticles(){
 
     try{
 
+
         const result =
             await supabaseClient
-            .from("articles")
+
+            .from(
+                "articles"
+            )
+
             .select("*")
+
             .eq(
                 "published",
                 true
             )
+
             .order(
                 "created_at",
                 {
@@ -3145,6 +3627,7 @@ async function loadArticles(){
 
         const data =
             result.data;
+
 
         const error =
             result.error;
@@ -3168,9 +3651,19 @@ async function loadArticles(){
                         تعذر تحميل المقالات.
                     </div>
 
+                    <div
+                        style="
+                            font-size:.75rem;
+                            margin-top:8px;
+                        "
+                    >
+                        تحقق من جدول articles في Supabase.
+                    </div>
+
                 </div>
 
             `;
+
 
             return;
 
@@ -3236,7 +3729,23 @@ async function loadArticles(){
         );
 
 
+        filteredArticles.forEach(
+            function(article){
+
+                console.log(
+                    "المقال:",
+                    article.title,
+                    "| issue:",
+                    article.issue,
+                    "| problem:",
+                    article.problem
+                );
+
+            }
+        );
+
     }
+
 
     catch(error){
 
@@ -3273,5 +3782,7 @@ loadArticles();
 
 </script>
 
+
 </body>
+
 </html>
