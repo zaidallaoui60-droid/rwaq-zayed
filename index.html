@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
 
 <meta charset="UTF-8">
@@ -11,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
 <link rel="preconnect"
-href="https://fonts.gstatic.com"
+href="https://fonts.googleapis.com"
 crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;600;700;800&display=swap"
@@ -810,12 +811,20 @@ section.content-section{
 
 .program-card:hover{
 
-    transform:translateY(-7px);
+    transform:translateY(-8px);
 
     border-color:var(--gold-light);
 
     box-shadow:
-        0 15px 40px rgba(0,0,0,.45);
+        0 15px 40px
+        rgba(0,0,0,.45);
+
+}
+
+
+.program-card:active{
+
+    transform:translateY(-3px);
 
 }
 
@@ -838,6 +847,17 @@ section.content-section{
     object-fit:cover;
 
     opacity:.6;
+
+    transition:.4s;
+
+}
+
+
+.program-card:hover .program-image img{
+
+    opacity:.8;
+
+    transform:scale(1.04);
 
 }
 
@@ -877,110 +897,123 @@ section.content-section{
 
     font-size:1.25rem;
 
+    color:var(--white);
+
+}
+
+
+.program-click{
+
+    display:block;
+
+    text-align:center;
+
+    padding:
+        0 15px 17px;
+
+    color:var(--gold);
+
+    font-size:.78rem;
+
 }
 
 
 /* =====================================================
-   PROGRAM VIEW
+   PROGRAM MODAL
 ===================================================== */
 
-.program-view{
+.program-modal{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:999998;
 
     display:none;
-
-    animation:fadeIn .35s ease;
-
-}
-
-
-.program-view.active{
-
-    display:block;
-
-}
-
-
-.program-list-box{
-
-    max-width:1000px;
-
-    margin:auto;
-
-    padding:40px;
-
-    border:1px solid var(--border);
-
-    border-radius:12px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(25,22,25,.96),
-            rgba(10,9,10,.98)
-        );
-
-}
-
-
-.program-view-header{
-
-    text-align:center;
-
-    margin-bottom:35px;
-
-}
-
-
-.program-view-title{
-
-    font-family:var(--amiri);
-
-    font-size:2.5rem;
-
-    color:var(--gold-light);
-
-}
-
-
-.program-view-teacher{
-
-    color:var(--gold);
-
-    margin-top:8px;
-
-}
-
-
-.program-back{
-
-    display:flex;
 
     align-items:center;
 
     justify-content:center;
 
-    gap:8px;
+    padding:20px;
 
-    margin:0 auto 30px;
+    background:rgba(0,0,0,.9);
 
-    padding:10px 25px;
-
-    border:1px solid var(--gold);
-
-    border-radius:25px;
-
-    background:transparent;
-
-    color:var(--gold-light);
-
-    cursor:pointer;
-
-    transition:.25s;
+    backdrop-filter:blur(8px);
 
 }
 
 
-.program-back:hover{
+.program-modal.active{
+
+    display:flex;
+
+}
+
+
+.program-modal-box{
+
+    width:100%;
+
+    max-width:900px;
+
+    max-height:90vh;
+
+    overflow-y:auto;
+
+    background:
+        linear-gradient(
+            145deg,
+            #151215,
+            #090809
+        );
+
+    border:
+        1px solid
+        rgba(197,160,89,.7);
+
+    border-radius:12px;
+
+    padding:35px;
+
+    position:relative;
+
+    box-shadow:
+        0 20px 80px
+        rgba(0,0,0,.9);
+
+}
+
+
+.program-modal-close{
+
+    position:absolute;
+
+    top:15px;
+
+    left:18px;
+
+    width:40px;
+
+    height:40px;
+
+    border:1px solid var(--gold);
+
+    border-radius:50%;
+
+    background:#080707;
+
+    color:var(--gold-light);
+
+    font-size:24px;
+
+    cursor:pointer;
+
+}
+
+
+.program-modal-close:hover{
 
     background:var(--gold);
 
@@ -989,139 +1022,108 @@ section.content-section{
 }
 
 
-.issue-block{
+.program-modal-title{
 
-    margin-bottom:35px;
+    text-align:center;
+
+    font-family:var(--amiri);
+
+    font-size:2.3rem;
+
+    color:var(--gold-light);
+
+    margin-bottom:5px;
+
+    padding-left:35px;
 
 }
 
 
-.issue-heading{
+.program-modal-subtitle{
 
-    padding:18px 22px;
+    text-align:center;
 
-    border:1px solid rgba(197,160,89,.4);
+    color:var(--gold);
 
-    border-radius:8px;
+    margin-bottom:30px;
+
+}
+
+
+.program-issue{
+
+    margin-bottom:28px;
+
+    border:
+        1px solid
+        rgba(197,160,89,.25);
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    background:
+        rgba(18,16,18,.75);
+
+}
+
+
+.program-issue-title{
+
+    padding:14px 18px;
+
+    font-family:var(--amiri);
+
+    font-size:1.45rem;
+
+    color:var(--gold-light);
 
     background:
         linear-gradient(
             90deg,
-            rgba(197,160,89,.16),
+            rgba(197,160,89,.15),
             transparent
         );
 
-    color:var(--gold-light);
-
-    font-family:var(--amiri);
-
-    font-size:1.8rem;
-
-    margin-bottom:18px;
+    border-bottom:
+        1px solid
+        rgba(197,160,89,.18);
 
 }
 
 
-.problem-program{
+.program-problems{
 
-    margin-bottom:18px;
-
-    border:1px solid rgba(197,160,89,.18);
-
-    border-radius:8px;
-
-    overflow:hidden;
-
-    background:rgba(18,16,18,.7);
+    padding:15px 20px 18px;
 
 }
 
 
-.problem-program-title{
+.program-problem{
 
-    padding:13px 18px;
-
-    color:var(--white);
-
-    background:rgba(197,160,89,.08);
-
-    border-bottom:1px solid rgba(197,160,89,.15);
-
-    font-family:var(--amiri);
-
-    font-size:1.3rem;
-
-}
-
-
-.problem-program-title i{
-
-    color:var(--gold);
-
-    margin-left:8px;
-
-}
-
-
-.lesson-list{
-
-    list-style:none;
-
-    padding:10px 20px 15px;
-
-}
-
-
-.lesson-list li{
-
-    padding:8px 5px;
+    padding:9px 0;
 
     color:#ddd;
 
-    border-bottom:1px solid rgba(255,255,255,.05);
+    border-bottom:
+        1px solid
+        rgba(197,160,89,.08);
 
 }
 
 
-.lesson-list li:last-child{
+.program-problem:last-child{
 
     border-bottom:none;
 
 }
 
 
-.lesson-list li::before{
+.program-problem strong{
 
-    content:"◆";
+    color:var(--gold-light);
 
-    color:var(--gold);
-
-    font-size:.55rem;
-
-    margin-left:10px;
-
-    vertical-align:middle;
-
-}
-
-
-@keyframes fadeIn{
-
-    from{
-
-        opacity:0;
-
-        transform:translateY(10px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:translateY(0);
-
-    }
+    margin-left:5px;
 
 }
 
@@ -1762,14 +1764,16 @@ footer{
     }
 
 
-    .article-modal-box{
+    .article-modal-box,
+    .program-modal-box{
 
         padding:30px 20px;
 
     }
 
 
-    .article-modal-title{
+    .article-modal-title,
+    .program-modal-title{
 
         font-size:1.8rem;
 
@@ -1779,34 +1783,6 @@ footer{
     .article-modal-content{
 
         font-size:.95rem;
-
-    }
-
-
-    .program-list-box{
-
-        padding:20px 15px;
-
-    }
-
-
-    .program-view-title{
-
-        font-size:2rem;
-
-    }
-
-
-    .issue-heading{
-
-        font-size:1.5rem;
-
-    }
-
-
-    .problem-program-title{
-
-        font-size:1.15rem;
 
     }
 
@@ -1969,9 +1945,11 @@ alt="بيت الحكمة">
 رواق زايد للفلسفة
 </h1>
 
+
 <div class="hero-tagline">
 حيث يبدأ السؤال... ويستمر البحث.
 </div>
+
 
 <p class="hero-description">
 
@@ -1979,6 +1957,7 @@ alt="بيت الحكمة">
 وتعلم بناء الموقف والحجاج الفلسفي.
 
 </p>
+
 
 <div class="buttons">
 
@@ -1990,6 +1969,7 @@ class="btn btn-gold">
 اقرأ المقالات
 
 </a>
+
 
 <a href="#program"
 class="btn btn-outline">
@@ -2168,11 +2148,6 @@ id="program">
 
 <div class="container">
 
-
-<!-- بطاقات السنوات -->
-
-<div id="programHome">
-
 <div class="section-header">
 
 <div class="decor">
@@ -2193,9 +2168,11 @@ id="program">
 <div class="program-grid">
 
 
+<!-- السنة الثالثة -->
+
 <div
 class="program-card"
-data-program="third-literature">
+data-program="third">
 
 <div class="program-image">
 
@@ -2219,12 +2196,18 @@ I
 
 </div>
 
+<div class="program-click">
+اضغط لعرض البرنامج
+</div>
+
 </div>
 
 
+<!-- السنة الثانية -->
+
 <div
 class="program-card"
-data-program="second-literature">
+data-program="second">
 
 <div class="program-image">
 
@@ -2248,12 +2231,18 @@ II
 
 </div>
 
+<div class="program-click">
+اضغط لعرض البرنامج
+</div>
+
 </div>
 
 
+<!-- الشعب العلمية واللغات -->
+
 <div
 class="program-card"
-data-program="science-languages">
+data-program="science">
 
 <div class="program-image">
 
@@ -2277,62 +2266,61 @@ III
 
 </div>
 
-</div>
-
-
-</div>
-
-</div>
-
-
-<!-- =====================================================
-     PROGRAM VIEW
-===================================================== -->
-
-<div
-id="programView"
-class="program-view">
-
-
-<button
-type="button"
-id="programBack"
-class="program-back">
-
-<i class="fa-solid fa-arrow-right"></i>
-
-العودة إلى البرامج
-
-</button>
-
-
-<div class="program-list-box">
-
-<div class="program-view-header">
-
-<h2
-id="programViewTitle"
-class="program-view-title">
-</h2>
-
-<div
-id="programViewTeacher"
-class="program-view-teacher">
-من إعداد الأستاذ: زايد علاوي
+<div class="program-click">
+اضغط لعرض البرنامج
 </div>
 
 </div>
 
-
-<div id="programContent"></div>
-
-</div>
 
 </div>
 
 </div>
 
 </section>
+
+
+<!-- =====================================================
+     PROGRAM MODAL
+===================================================== -->
+
+<div
+id="programModal"
+class="program-modal">
+
+<div class="program-modal-box">
+
+<button
+type="button"
+id="closeProgramButton"
+class="program-modal-close"
+aria-label="إغلاق">
+
+×
+
+</button>
+
+
+<h2
+id="programModalTitle"
+class="program-modal-title">
+</h2>
+
+
+<div
+id="programModalSubtitle"
+class="program-modal-subtitle">
+</div>
+
+
+<div
+id="programModalContent">
+</div>
+
+
+</div>
+
+</div>
 
 
 <!-- =====================================================
@@ -2401,15 +2389,18 @@ aria-label="إغلاق">
 
 </button>
 
+
 <h2
 id="modalArticleTitle"
 class="article-modal-title">
 </h2>
 
+
 <div
 id="modalArticleMeta"
 class="article-modal-meta">
 </div>
+
 
 <div
 id="modalArticleContent"
@@ -2509,13 +2500,13 @@ window.supabase.createClient(
 
 const programs = {
 
-    "third-literature": {
+    third: {
 
         title:
-        "برنامج مادة الفلسفة شعبة آداب وفلسفة",
+        "السنة الثالثة آداب وفلسفة",
 
-        teacher:
-        "من إعداد الأستاذ: زايد علاوي",
+        subtitle:
+        "شعبة آداب وفلسفة",
 
         issues: [
 
@@ -2526,76 +2517,17 @@ const programs = {
 
                 problems: [
 
-                    {
+                    "مشكلة الإحساس والإدراك",
 
-                        title:
-                        "1. مشكلة الإحساس والإدراك",
+                    "مشكلة اللغة والفكر",
 
-                        lessons: [
+                    "مشكلة الشعور واللاشعور",
 
-                            "المقال 01: طبيعة الإدراك",
-
-                            "المقال 02: عوامل الإدراك",
-
-                            "المقال 03: العلاقة بين الإحساس والإدراك"
-
-                        ]
-
-                    },
-
-                    {
-
-                        title:
-                        "2. مشكلة اللغة والفكر",
-
-                        lessons: [
-
-                            "المقال 01: العلاقة بين اللغة والفكر",
-
-                            "المقال 02: العلاقة بين الدال والمدلول",
-
-                            "المقال 03: وظائف اللغة"
-
-                        ]
-
-                    },
-
-                    {
-
-                        title:
-                        "3. مشكلة الشعور واللاشعور",
-
-                        lessons: [
-
-                            "المقال 01: أساس الحياة النفسية",
-
-                            "المقال 02: قيمة اللاشعور بين الفرضية الفلسفية والنظرية العلمية"
-
-                        ]
-
-                    },
-
-                    {
-
-                        title:
-                        "4. مشكلة الذاكرة والخيال",
-
-                        lessons: [
-
-                            "المقال 01: طبيعة الذاكرة",
-
-                            "المقال 02: قيمة النسيان",
-
-                            "المقال 03: عوامل الإبداع"
-
-                        ]
-
-                    }
+                    "مشكلة الذاكرة والخيال"
 
                 ]
 
             },
-
 
             {
 
@@ -2604,74 +2536,17 @@ const programs = {
 
                 problems: [
 
-                    {
+                    "مشكلة الأخلاق",
 
-                        title:
-                        "1. مشكلة الأخلاق",
+                    "مشكلة العدالة",
 
-                        lessons: [
+                    "مشكلة العلاقات الأسرية",
 
-                            "المقال 01: طبيعة الأخلاق",
-
-                            "المقال 02: مصدر الأخلاق"
-
-                        ]
-
-                    },
-
-                    {
-
-                        title:
-                        "2. مشكلة العدالة",
-
-                        lessons: [
-
-                            "المقال 01: العدالة بين الحق والواجب",
-
-                            "المقال 02: العدالة بين التفاوت والمساواة"
-
-                        ]
-
-                    },
-
-                    {
-
-                        title:
-                        "3. مشكلة العلاقات الأسرية",
-
-                        lessons: [
-
-                            "المقال 01: قيمة الأسرة"
-
-                        ]
-
-                    },
-
-                    {
-
-                        title:
-                        "4. مشكلة النظم الاقتصادية والسياسية",
-
-                        lessons: [
-
-                            "المقال 01: الشغل",
-
-                            "المقال 02: النظام الاقتصادي الأمثل",
-
-                            "المقال 03: النظام السياسي الأمثل",
-
-                            "المقال 04: الديمقراطية المثلى",
-
-                            "المقال 05: علاقة السياسة بالأخلاق"
-
-                        ]
-
-                    }
+                    "مشكلة النظم الاقتصادية والسياسية"
 
                 ]
 
             },
-
 
             {
 
@@ -2680,69 +2555,13 @@ const programs = {
 
                 problems: [
 
-                    {
+                    "مشكلة الحقيقة العلمية والحقيقة الفلسفية",
 
-                        title:
-                        "1. مشكلة الحقيقة العلمية والحقيقة الفلسفية",
+                    "مشكلة فلسفة الرياضيات",
 
-                        lessons: [
+                    "مشكلة علوم المادة الجامدة والحية",
 
-                            "المقال 01: طبيعة الحقيقة",
-
-                            "المقال 02: معيار الحقيقة"
-
-                        ]
-
-                    },
-
-                    {
-
-                        title:
-                        "2. مشكلة فلسفة الرياضيات",
-
-                        lessons: [
-
-                            "المقال 01: أصل المفاهيم الرياضية",
-
-                            "المقال 02: اليقين الرياضي"
-
-                        ]
-
-                    },
-
-                    {
-
-                        title:
-                        "3. مشكلة علوم المادة الجامدة والحية",
-
-                        lessons: [
-
-                            "المقال 01: قيمة الفرضية",
-
-                            "المقال 02: الحتمية واللاحتمية",
-
-                            "المقال 03: نتائج العلم",
-
-                            "المقال 04: قيمة البيولوجيا"
-
-                        ]
-
-                    },
-
-                    {
-
-                        title:
-                        "4. مشكلة العلوم الإنسانية",
-
-                        lessons: [
-
-                            "المقال 01: علم النفس",
-
-                            "المقال 02: علم التاريخ"
-
-                        ]
-
-                    }
+                    "مشكلة العلوم الإنسانية"
 
                 ]
 
@@ -2753,13 +2572,13 @@ const programs = {
     },
 
 
-    "second-literature": {
+    second: {
 
         title:
-        "برنامج مادة الفلسفة — السنة الثانية آداب وفلسفة",
+        "السنة الثانية آداب وفلسفة",
 
-        teacher:
-        "من إعداد الأستاذ: زايد علاوي",
+        subtitle:
+        "شعبة آداب وفلسفة",
 
         issues: [
 
@@ -2770,18 +2589,7 @@ const programs = {
 
                 problems: [
 
-                    {
-
-                        title:
-                        "البرنامج قيد الإعداد",
-
-                        lessons: [
-
-                            "سيتم إضافة البرنامج والدروس لاحقًا."
-
-                        ]
-
-                    }
+                    "سيتم إضافة البرنامج التفصيلي قريبًا."
 
                 ]
 
@@ -2792,35 +2600,24 @@ const programs = {
     },
 
 
-    "science-languages": {
+    science: {
 
         title:
-        "برنامج مادة الفلسفة — الشعب العلمية واللغات",
+        "السنة الثانية",
 
-        teacher:
-        "من إعداد الأستاذ: زايد علاوي",
+        subtitle:
+        "الشعب العلمية واللغات",
 
         issues: [
 
             {
 
                 title:
-                "برنامج السنة الثانية للشعب العلمية واللغات",
+                "برنامج الفلسفة للشعب العلمية واللغات",
 
                 problems: [
 
-                    {
-
-                        title:
-                        "البرنامج قيد الإعداد",
-
-                        lessons: [
-
-                            "سيتم إضافة البرنامج والدروس لاحقًا."
-
-                        ]
-
-                    }
+                    "سيتم إضافة البرنامج التفصيلي قريبًا."
 
                 ]
 
@@ -2834,53 +2631,47 @@ const programs = {
 
 
 /* =====================================================
-   PROGRAM ELEMENTS
+   PROGRAM MODAL
 ===================================================== */
 
-const programHome =
+const programModal =
 document.getElementById(
-    "programHome"
+    "programModal"
 );
 
 
-const programView =
+const programModalTitle =
 document.getElementById(
-    "programView"
+    "programModalTitle"
 );
 
 
-const programViewTitle =
+const programModalSubtitle =
 document.getElementById(
-    "programViewTitle"
+    "programModalSubtitle"
 );
 
 
-const programViewTeacher =
+const programModalContent =
 document.getElementById(
-    "programViewTeacher"
+    "programModalContent"
 );
 
 
-const programContent =
+const closeProgramButton =
 document.getElementById(
-    "programContent"
-);
-
-
-const programBack =
-document.getElementById(
-    "programBack"
+    "closeProgramButton"
 );
 
 
 /* =====================================================
-   OPEN PROGRAM
+   فتح البرنامج
 ===================================================== */
 
-function openProgram(programId){
+function openProgram(programKey){
 
     const program =
-        programs[programId];
+        programs[programKey];
 
 
     if(!program){
@@ -2890,202 +2681,180 @@ function openProgram(programId){
     }
 
 
-    programHome.style.display =
-        "none";
-
-
-    programView.classList.add(
-        "active"
-    );
-
-
-    programViewTitle.textContent =
+    programModalTitle.textContent =
         program.title;
 
 
-    programViewTeacher.textContent =
-        program.teacher;
+    programModalSubtitle.textContent =
+        program.subtitle;
 
 
-    programContent.innerHTML =
+    programModalContent.innerHTML =
         "";
 
 
     program.issues.forEach(
         function(issue){
 
-            const issueBlock =
+            const issueBox =
                 document.createElement(
                     "div"
                 );
 
 
-            issueBlock.className =
-                "issue-block";
+            issueBox.className =
+                "program-issue";
 
 
-            const issueHeading =
+            const issueTitle =
                 document.createElement(
-                    "h3"
+                    "div"
                 );
 
 
-            issueHeading.className =
-                "issue-heading";
+            issueTitle.className =
+                "program-issue-title";
 
 
-            issueHeading.textContent =
+            issueTitle.innerHTML =
+                '<i class="fa-solid fa-book-open"></i> ' +
                 issue.title;
 
 
-            issueBlock.appendChild(
-                issueHeading
+            issueBox.appendChild(
+                issueTitle
             );
 
 
+            const problems =
+                document.createElement(
+                    "div"
+                );
+
+
+            problems.className =
+                "program-problems";
+
+
             issue.problems.forEach(
-                function(problem){
+                function(problem,index){
 
-                    const problemBlock =
+                    const problemElement =
                         document.createElement(
                             "div"
                         );
 
 
-                    problemBlock.className =
-                        "problem-program";
+                    problemElement.className =
+                        "program-problem";
 
 
-                    const problemTitle =
-                        document.createElement(
-                            "div"
-                        );
+                    problemElement.innerHTML =
+
+                        "<strong>" +
+                        (index + 1) +
+                        ".</strong> " +
+
+                        problem;
 
 
-                    problemTitle.className =
-                        "problem-program-title";
-
-
-                    problemTitle.innerHTML =
-                        '<i class="fa-solid fa-book-open"></i>' +
-                        problem.title;
-
-
-                    problemBlock.appendChild(
-                        problemTitle
-                    );
-
-
-                    const lessonList =
-                        document.createElement(
-                            "ul"
-                        );
-
-
-                    lessonList.className =
-                        "lesson-list";
-
-
-                    problem.lessons.forEach(
-                        function(lesson){
-
-                            const li =
-                                document.createElement(
-                                    "li"
-                                );
-
-
-                            li.textContent =
-                                lesson;
-
-
-                            lessonList.appendChild(
-                                li
-                            );
-
-                        }
-                    );
-
-
-                    problemBlock.appendChild(
-                        lessonList
-                    );
-
-
-                    issueBlock.appendChild(
-                        problemBlock
+                    problems.appendChild(
+                        problemElement
                     );
 
                 }
             );
 
 
-            programContent.appendChild(
-                issueBlock
+            issueBox.appendChild(
+                problems
+            );
+
+
+            programModalContent.appendChild(
+                issueBox
             );
 
         }
     );
 
 
-    document.getElementById(
-        "program"
-    ).scrollIntoView({
-
-        behavior:"smooth",
-
-        block:"start"
-
-    });
-
-}
-
-
-/* =====================================================
-   CLOSE PROGRAM
-===================================================== */
-
-function closeProgram(){
-
-    programView.classList.remove(
+    programModal.classList.add(
         "active"
     );
 
 
-    programHome.style.display =
-        "block";
-
-
-    document.getElementById(
-        "program"
-    ).scrollIntoView({
-
-        behavior:"smooth",
-
-        block:"start"
-
-    });
+    document.body.style.overflow =
+        "hidden";
 
 }
 
 
 /* =====================================================
-   PROGRAM CARD EVENTS
+   إغلاق البرنامج
 ===================================================== */
 
-document
-.querySelectorAll(
+function closeProgram(){
+
+    programModal.classList.remove(
+        "active"
+    );
+
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+closeProgramButton.addEventListener(
+    "click",
+    closeProgram
+);
+
+
+programModal.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target ===
+            programModal
+        ){
+
+            closeProgram();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   أزرار البرامج
+===================================================== */
+
+const programCards =
+document.querySelectorAll(
     ".program-card"
-)
-.forEach(
+);
+
+
+programCards.forEach(
     function(card){
 
         card.addEventListener(
             "click",
             function(){
 
+                const programKey =
+                    card.getAttribute(
+                        "data-program"
+                    );
+
+
                 openProgram(
-                    card.dataset.program
+                    programKey
                 );
 
             }
@@ -3095,54 +2864,8 @@ document
 );
 
 
-programBack.addEventListener(
-    "click",
-    closeProgram
-);
-
-
 /* =====================================================
-   ARTICLES
-===================================================== */
-
-const articleContainer =
-document.getElementById(
-    "articleContainer"
-);
-
-
-const articleModal =
-document.getElementById(
-    "articleModal"
-);
-
-
-const modalArticleTitle =
-document.getElementById(
-    "modalArticleTitle"
-);
-
-
-const modalArticleMeta =
-document.getElementById(
-    "modalArticleMeta"
-);
-
-
-const modalArticleContent =
-document.getElementById(
-    "modalArticleContent"
-);
-
-
-const closeArticleButton =
-document.getElementById(
-    "closeArticleButton"
-);
-
-
-/* =====================================================
-   CURRICULUM FOR ARTICLES
+   المقالات
 ===================================================== */
 
 const curriculum = [
@@ -3163,7 +2886,9 @@ const curriculum = [
 
             "مشكلة الشعور واللاشعور",
 
-            "مشكلة الذاكرة والخيال"
+            "مشكلة الذاكرة والخيال",
+
+            "مشكلة العادة والإرادة"
 
         ]
 
@@ -3219,7 +2944,47 @@ const curriculum = [
 
 
 /* =====================================================
-   NORMALIZE TEXT
+   عناصر المقالات
+===================================================== */
+
+const articleContainer =
+document.getElementById(
+    "articleContainer"
+);
+
+
+const articleModal =
+document.getElementById(
+    "articleModal"
+);
+
+
+const modalArticleTitle =
+document.getElementById(
+    "modalArticleTitle"
+);
+
+
+const modalArticleMeta =
+document.getElementById(
+    "modalArticleMeta"
+);
+
+
+const modalArticleContent =
+document.getElementById(
+    "modalArticleContent"
+);
+
+
+const closeArticleButton =
+document.getElementById(
+    "closeArticleButton"
+);
+
+
+/* =====================================================
+   توحيد النصوص
 ===================================================== */
 
 function normalizeText(value){
@@ -3262,7 +3027,7 @@ function normalizeText(value){
 
 
 /* =====================================================
-   NORMALIZE ISSUE
+   توحيد اسم الإشكالية
 ===================================================== */
 
 function normalizeIssueName(value){
@@ -3284,7 +3049,7 @@ function normalizeIssueName(value){
 
 
 /* =====================================================
-   MATCH ISSUE
+   مقارنة الإشكاليات
 ===================================================== */
 
 function issueMatches(
@@ -3310,7 +3075,7 @@ function issueMatches(
 
 
 /* =====================================================
-   MATCH PROBLEM
+   مقارنة المشاكل
 ===================================================== */
 
 function problemMatches(
@@ -3336,7 +3101,7 @@ function problemMatches(
 
 
 /* =====================================================
-   EXCERPT
+   استخراج مقتطف
 ===================================================== */
 
 function getExcerpt(content){
@@ -3374,7 +3139,7 @@ function getExcerpt(content){
 
 
 /* =====================================================
-   OPEN ARTICLE
+   فتح المقال
 ===================================================== */
 
 function openArticle(article){
@@ -3427,7 +3192,7 @@ function openArticle(article){
 
 
 /* =====================================================
-   CLOSE ARTICLE
+   إغلاق المقال
 ===================================================== */
 
 function closeArticle(){
@@ -3466,24 +3231,8 @@ articleModal.addEventListener(
 );
 
 
-document.addEventListener(
-    "keydown",
-    function(event){
-
-        if(
-            event.key === "Escape"
-        ){
-
-            closeArticle();
-
-        }
-
-    }
-);
-
-
 /* =====================================================
-   ARTICLE CARD
+   إنشاء بطاقة المقال
 ===================================================== */
 
 function createArticleCard(article){
@@ -3607,7 +3356,7 @@ function createArticleCard(article){
 
 
 /* =====================================================
-   CREATE ISSUE
+   إنشاء فصل المقالات
 ===================================================== */
 
 function createIssueSection(
@@ -3784,7 +3533,7 @@ function createIssueSection(
 
 
 /* =====================================================
-   LOAD ARTICLES
+   تحميل المقالات من Supabase
 ===================================================== */
 
 async function loadArticles(){
@@ -3932,6 +3681,21 @@ async function loadArticles(){
         );
 
 
+        filteredArticles.forEach(
+            function(article){
+
+                console.log(
+                    "المقال:",
+                    article.title,
+                    "| issue:",
+                    article.issue,
+                    "| problem:",
+                    article.problem
+                );
+
+            }
+        );
+
     }
 
 
@@ -3963,7 +3727,29 @@ async function loadArticles(){
 
 
 /* =====================================================
-   START
+   ESCAPE لإغلاق النوافذ
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Escape"
+        ){
+
+            closeArticle();
+
+            closeProgram();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   تشغيل الموقع
 ===================================================== */
 
 loadArticles();
@@ -3972,4 +3758,5 @@ loadArticles();
 
 
 </body>
+
 </html>
