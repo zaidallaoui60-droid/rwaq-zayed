@@ -41,6 +41,7 @@
 
 html{
     scroll-behavior:smooth;
+    scroll-padding-top:85px;
 }
 
 body{
@@ -425,12 +426,17 @@ section.content-section{
     background:var(--card);
     transition:.3s;
     cursor:pointer;
+    user-select:none;
 }
 
 .program-card:hover{
     transform:translateY(-8px);
     border-color:var(--gold-light);
     box-shadow:0 15px 40px rgba(0,0,0,.45);
+}
+
+.program-card:active{
+    transform:translateY(-3px);
 }
 
 .program-image{
@@ -857,10 +863,8 @@ footer{
 </div>
 
 <div class="brand-text">
-
 <span class="brand-title">رواق زايد</span>
 <span class="brand-sub">للفلسفة</span>
-
 </div>
 
 </a>
@@ -894,11 +898,10 @@ src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Athens%20-%20Parth
 alt="أثينا">
 
 <div class="place-label">
-
 <h3>أثينا</h3>
 <span>اليونان القديمة</span>
-
 </div>
+
 </div>
 
 
@@ -923,6 +926,7 @@ alt="المكتبة القديمة">
 </div>
 
 </div>
+
 </div>
 
 
@@ -933,11 +937,10 @@ src="https://image.idntimes.com/post/20211205/bayt-al-hikmah-ilustrasi-9e570a133
 alt="بيت الحكمة">
 
 <div class="place-label">
-
 <h3>بيت الحكمة</h3>
 <span>بغداد — العصر العباسي</span>
-
 </div>
+
 </div>
 
 </div>
@@ -1000,80 +1003,68 @@ alt="بيت الحكمة">
 <div class="ph-card">
 
 <div class="ph-image">
-
 <img
 src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Socrates%20Louvre.jpg"
 alt="سقراط">
-
 </div>
 
 <div class="ph-info">
-
 <h3 class="ph-name">سقراط</h3>
 <div class="ph-date">470 – 399 ق.م</div>
 <div class="ph-topic">السؤال والحوار</div>
-
 </div>
+
 </div>
 
 
 <div class="ph-card">
 
 <div class="ph-image">
-
 <img
 src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Plato%20bust.png"
 alt="أفلاطون">
-
 </div>
 
 <div class="ph-info">
-
 <h3 class="ph-name">أفلاطون</h3>
 <div class="ph-date">428/427 – 348/347 ق.م</div>
 <div class="ph-topic">المعرفة والمُثل</div>
-
 </div>
+
 </div>
 
 
 <div class="ph-card">
 
 <div class="ph-image">
-
 <img
 src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Aristotle%20bust.jpg"
 alt="أرسطو">
-
 </div>
 
 <div class="ph-info">
-
 <h3 class="ph-name">أرسطو</h3>
 <div class="ph-date">384 – 322 ق.م</div>
 <div class="ph-topic">المنطق والوجود</div>
-
 </div>
+
 </div>
 
 
 <div class="ph-card">
 
 <div class="ph-image">
-
 <img
 src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Descartes-1.jpg"
 alt="ديكارت">
-
 </div>
 
 <div class="ph-info">
-
 <h3 class="ph-name">ديكارت</h3>
 <div class="ph-date">1596 – 1650</div>
 <div class="ph-topic">العقل واليقين</div>
-
 </div>
+
 </div>
 
 </div>
@@ -1105,17 +1096,13 @@ alt="ديكارت">
 <div class="program-grid">
 
 
-<!-- =================================================
-     السنة الثالثة
-     أصبحت الآن قابلة للضغط
-================================================= -->
+<!-- السنة الثالثة -->
 
 <div
     class="program-card"
     id="thirdYearCard"
     role="button"
     tabindex="0"
-    aria-label="فتح برنامج السنة الثالثة آداب وفلسفة"
 >
 
 <div class="program-image">
@@ -1199,7 +1186,7 @@ alt="الشعب العلمية واللغات">
 </section>
 
 
-<!-- ================= ARTICLES / CURRICULUM ================= -->
+<!-- ================= ARTICLES ================= -->
 
 <section class="content-section articles" id="articles">
 
@@ -1383,7 +1370,6 @@ const curriculum = [
     ]
 },
 
-
 {
     issue:"الإشكالية الثانية",
     title:"الأخلاق بين الثوابت والمتغيرات",
@@ -1430,7 +1416,6 @@ const curriculum = [
 
     ]
 },
-
 
 {
     issue:"الإشكالية الثالثة",
@@ -1483,7 +1468,7 @@ const curriculum = [
 
 
 /* =====================================================
-   عناصر الصفحة
+   ELEMENTS
 ===================================================== */
 
 const articleContainer =
@@ -1510,56 +1495,66 @@ document.getElementById("thirdYearCard");
 
 /* =====================================================
    فتح برنامج السنة الثالثة
+   النسخة الجديدة — مباشرة وموثوقة
 ===================================================== */
 
 function openThirdYearProgram(){
 
-    const articlesSection =
+    const target =
         document.getElementById("articles");
 
-    if(!articlesSection){
+    if(!target){
         return;
     }
 
-    articlesSection.scrollIntoView({
-        behavior:"smooth",
-        block:"start"
+    const navbarHeight = 72;
+
+    const targetPosition =
+        target.getBoundingClientRect().top +
+        window.pageYOffset -
+        navbarHeight;
+
+    window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth"
     });
 
 }
 
 
 /* =====================================================
-   الضغط على بطاقة السنة الثالثة
+   CLICK
 ===================================================== */
 
-thirdYearCard.addEventListener(
-    "click",
-    openThirdYearProgram
-);
+if(thirdYearCard){
 
-
-/* =====================================================
-   دعم لوحة المفاتيح
-===================================================== */
-
-thirdYearCard.addEventListener(
-    "keydown",
-    function(event){
-
-        if(
-            event.key === "Enter" ||
-            event.key === " "
-        ){
+    thirdYearCard.onclick =
+        function(event){
 
             event.preventDefault();
 
             openThirdYearProgram();
 
-        }
+        };
 
-    }
-);
+
+    thirdYearCard.onkeydown =
+        function(event){
+
+            if(
+                event.key === "Enter" ||
+                event.key === " "
+            ){
+
+                event.preventDefault();
+
+                openThirdYearProgram();
+
+            }
+
+        };
+
+}
 
 
 /* =====================================================
@@ -1572,7 +1567,9 @@ function normalizeText(value){
         value === null ||
         value === undefined
     ){
+
         return "";
+
     }
 
     return String(value)
@@ -1581,36 +1578,7 @@ function normalizeText(value){
         .replace(/[إأآ]/g,"ا")
         .replace(/ى/g,"ي")
         .replace(/ة/g,"ه");
-}
 
-
-/* =====================================================
-   مطابقة الإشكالية
-===================================================== */
-
-function issueMatches(
-    articleIssue,
-    curriculumIssue
-){
-
-    const article =
-        normalizeText(articleIssue);
-
-    const curriculumText =
-        normalizeText(curriculumIssue);
-
-    if(article === curriculumText){
-        return true;
-    }
-
-    return (
-        article.includes(
-            curriculumText.replace(
-                /^الاشكاليه\s*/,
-                ""
-            )
-        )
-    );
 }
 
 
@@ -1648,10 +1616,13 @@ function getExcerpt(content){
         String(content).trim();
 
     if(text.length <= 180){
+
         return text;
+
     }
 
     return text.substring(0,180) + "...";
+
 }
 
 
@@ -1693,6 +1664,7 @@ function openArticle(article){
 
     document.body.style.overflow =
         "hidden";
+
 }
 
 
@@ -1708,23 +1680,31 @@ function closeArticle(){
 
 }
 
-closeArticleButton.addEventListener(
-    "click",
-    closeArticle
-);
+if(closeArticleButton){
 
-articleModal.addEventListener(
-    "click",
-    function(event){
+    closeArticleButton.addEventListener(
+        "click",
+        closeArticle
+    );
 
-        if(event.target === articleModal){
+}
 
-            closeArticle();
+if(articleModal){
+
+    articleModal.addEventListener(
+        "click",
+        function(event){
+
+            if(event.target === articleModal){
+
+                closeArticle();
+
+            }
 
         }
+    );
 
-    }
-);
+}
 
 document.addEventListener(
     "keydown",
@@ -1741,7 +1721,7 @@ document.addEventListener(
 
 
 /* =====================================================
-   إنشاء بطاقة المقال
+   بطاقة المقال
 ===================================================== */
 
 function createArticleCard(article){
@@ -1826,8 +1806,8 @@ function createArticleCard(article){
     card.appendChild(excerpt);
     card.appendChild(button);
 
-
     return card;
+
 }
 
 
@@ -1925,8 +1905,8 @@ function createProblemBlock(
         problemArticles
     );
 
-
     return block;
+
 }
 
 
@@ -1977,14 +1957,11 @@ function createIssueSection(
     issueData.problems.forEach(
         function(problemData){
 
-            const block =
+            section.appendChild(
                 createProblemBlock(
                     problemData,
                     articles
-                );
-
-            section.appendChild(
-                block
+                )
             );
 
         }
@@ -1992,11 +1969,12 @@ function createIssueSection(
 
 
     return section;
+
 }
 
 
 /* =====================================================
-   تحميل المقالات من Supabase
+   تحميل المقالات من SUPABASE
 ===================================================== */
 
 async function loadArticles(){
@@ -2070,12 +2048,9 @@ async function loadArticles(){
             `;
 
             return;
+
         }
 
-
-        /* =================================================
-           استبعاد مقال الشغل القديم
-        ================================================= */
 
         const filteredArticles =
             (data || []).filter(
@@ -2086,14 +2061,14 @@ async function loadArticles(){
                             article.title
                         );
 
-                    const isOldWorkArticle =
+                    const oldWork =
                         title ===
                         normalizeText("مقال الشغل")
                         ||
                         title ===
                         normalizeText("الشغل");
 
-                    return !isOldWorkArticle;
+                    return !oldWork;
 
                 }
             );
@@ -2101,10 +2076,6 @@ async function loadArticles(){
 
         articleContainer.innerHTML = "";
 
-
-        /* =================================================
-           عنوان البرنامج
-        ================================================= */
 
         const programHeading =
             document.createElement("div");
@@ -2131,50 +2102,23 @@ async function loadArticles(){
         );
 
 
-        /* =================================================
-           الإشكاليات
-        ================================================= */
-
         curriculum.forEach(
             function(issueData){
 
-                const section =
+                articleContainer.appendChild(
                     createIssueSection(
                         issueData,
                         filteredArticles
-                    );
-
-                articleContainer.appendChild(
-                    section
+                    )
                 );
 
             }
         );
 
-
-        /* =================================================
-           Console
-        ================================================= */
 
         console.log(
             "عدد المقالات المنشورة:",
             filteredArticles.length
-        );
-
-
-        filteredArticles.forEach(
-            function(article){
-
-                console.log(
-                    "المقال:",
-                    article.title,
-                    "| المشكلة:",
-                    article.problem,
-                    "| الإشكالية:",
-                    article.issue
-                );
-
-            }
         );
 
     }
