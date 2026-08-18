@@ -423,6 +423,7 @@ section.content-section{
     border-radius:8px;
     background:var(--card);
     transition:.3s;
+    cursor:pointer;
 }
 
 .program-card:hover{
@@ -1087,7 +1088,11 @@ alt="ديكارت">
 
 <div class="program-grid">
 
-<div class="program-card">
+<div
+class="program-card"
+onclick="document.getElementById('articles').scrollIntoView({behavior:'smooth'})"
+style="cursor:pointer;"
+>
 
 <div class="program-image">
 
