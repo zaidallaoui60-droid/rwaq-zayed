@@ -7,22 +7,18 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>رواق زايد للفلسفة</title>
+<title>لوحة إدارة رواق زايد للفلسفة</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
 <link rel="preconnect"
-href="https://fonts.googleapis.com"
+href="https://fonts.gstatic.com"
 crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;600;700;800&display=swap"
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700;800&display=swap"
 rel="stylesheet">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 
 <style>
 
@@ -33,23 +29,27 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 :root{
 
     --bg:#080707;
-    --bg2:#0d0b0d;
-    --card:#121012;
+    --bg2:#100e10;
+    --card:#151215;
 
-    --gold-light:#e5cf87;
     --gold:#c5a059;
+    --gold-light:#e5cf87;
 
     --white:#f4f1ea;
     --muted:#a39e93;
 
-    --border:rgba(197,160,89,.35);
-    --border-bright:rgba(229,207,135,.8);
+    --green:#5fcf91;
+    --red:#d86b6b;
+    --blue:#6da8e8;
 
-    --amiri:'Amiri',serif;
-    --ruqaa:'Aref Ruqaa',serif;
-    --cairo:'Cairo',sans-serif;
+    --border:rgba(197,160,89,.3);
 
 }
+
+
+/* =====================================================
+   RESET
+===================================================== */
 
 *{
     box-sizing:border-box;
@@ -57,350 +57,206 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     padding:0;
 }
 
-html{
-    scroll-behavior:smooth;
-}
-
 body{
-    background:var(--bg);
-    color:var(--white);
-    font-family:var(--cairo);
-    line-height:1.7;
-    overflow-x:hidden;
-}
-
-button{
-    font-family:inherit;
-}
-
-.container{
-    width:min(1200px,92%);
-    margin:auto;
-}
-
-
-/* =====================================================
-   NAVBAR
-===================================================== */
-
-.navbar{
-    position:fixed;
-    top:0;
-    right:0;
-    left:0;
-    z-index:1000;
-
-    background:rgba(6,5,6,.92);
-
-    backdrop-filter:blur(14px);
-
-    border-bottom:
-        1px solid rgba(197,160,89,.2);
-}
-
-.nav-container{
-    min-height:72px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    gap:20px;
-}
-
-.brand{
-    display:flex;
-    align-items:center;
-    gap:10px;
-
-    color:inherit;
-    text-decoration:none;
-}
-
-.owl{
-    width:43px;
-    height:43px;
-
-    border:1px solid var(--gold);
-    border-radius:50%;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
 
     background:
         radial-gradient(
-            circle,
-            rgba(197,160,89,.2),
-            rgba(0,0,0,.8)
+            circle at top,
+            #171216,
+            #080707 55%
         );
-}
 
-.owl svg{
-    width:27px;
-    height:27px;
-    fill:var(--gold-light);
-}
+    color:var(--white);
 
-.brand-text{
-    display:flex;
-    flex-direction:column;
-}
+    font-family:'Cairo',sans-serif;
 
-.brand-title{
-    font-family:var(--amiri);
-    font-size:1.35rem;
-    font-weight:700;
-    line-height:1.1;
-}
+    min-height:100vh;
 
-.brand-sub{
-    color:var(--gold);
-    font-size:.72rem;
-}
-
-.nav-menu{
-    display:flex;
-    list-style:none;
-    gap:28px;
-}
-
-.nav-menu a{
-    text-decoration:none;
-    color:var(--muted);
-    font-size:.9rem;
-    transition:.3s;
-}
-
-.nav-menu a:hover{
-    color:var(--gold-light);
 }
 
 
 /* =====================================================
-   HERO
+   HEADER
 ===================================================== */
 
-.hero{
-    min-height:100vh;
+.header{
 
-    padding:110px 0 70px;
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+    background:rgba(8,7,7,.94);
+
+    backdrop-filter:blur(15px);
+
+    border-bottom:
+        1px solid var(--border);
+
+}
+
+.header-inner{
+
+    width:min(1250px,94%);
+
+    margin:auto;
+
+    min-height:75px;
 
     display:flex;
+
     align-items:center;
 
-    background:
-
-    linear-gradient(
-        to bottom,
-        rgba(8,7,7,.45),
-        rgba(8,7,7,.92)
-    ),
-
-    url("https://commons.wikimedia.org/wiki/Special:Redirect/file/Ancientlibraryalex.jpg")
-
-    center/cover no-repeat;
-}
-
-.hero-content{
-    text-align:center;
-}
-
-.places{
-    display:grid;
-
-    grid-template-columns:
-        1fr 1.65fr 1fr;
+    justify-content:space-between;
 
     gap:20px;
 
-    margin-bottom:35px;
 }
 
-.place,
-.library{
-    min-height:360px;
-
-    position:relative;
-    overflow:hidden;
-
-    border:1px solid var(--border);
-    border-radius:8px;
-
-    background:#111;
-}
-
-.place img,
-.library img{
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-    display:block;
-}
-
-.place img{
-    filter:
-        brightness(.58)
-        contrast(1.08)
-        saturate(.8);
-
-    transition:.5s;
-}
-
-.place:hover img{
-    transform:scale(1.04);
-}
-
-.place::after,
-.library::after{
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    background:
-        linear-gradient(
-            to top,
-            rgba(0,0,0,.9),
-            transparent 65%
-        );
-}
-
-.place-label{
-    position:absolute;
-
-    right:0;
-    left:0;
-    bottom:0;
-
-    z-index:2;
-
-    padding:20px;
-
-    text-align:center;
-}
-
-.place-label h3{
-    font-family:var(--amiri);
-    font-size:1.7rem;
-    color:var(--gold-light);
-}
-
-.place-label span{
-    font-size:.8rem;
-}
-
-.library{
-    border:2px solid
-        rgba(229,207,135,.65);
-
-    box-shadow:
-
-        0 20px 50px
-        rgba(0,0,0,.8),
-
-        inset 0 0 50px
-        rgba(197,160,89,.12);
-}
-
-.library img{
-    filter:
-        brightness(.35)
-        contrast(1.1)
-        saturate(.7);
-}
-
-.library-content{
-    position:absolute;
-    inset:0;
-    z-index:2;
+.brand{
 
     display:flex;
-    flex-direction:column;
 
     align-items:center;
-    justify-content:center;
+
+    gap:12px;
+
 }
 
-.library-icon{
-    width:75px;
-    height:75px;
+.logo{
 
-    margin-bottom:15px;
+    width:45px;
+
+    height:45px;
 
     border:1px solid var(--gold);
+
     border-radius:50%;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
-    background:rgba(0,0,0,.65);
-}
-
-.library-icon i{
     color:var(--gold-light);
-    font-size:2rem;
+
+    font-size:22px;
+
 }
 
-.library-title{
-    font-family:var(--amiri);
-    font-size:3rem;
-    font-weight:700;
-}
+.brand h1{
 
-.library-sub{
-    font-family:var(--ruqaa);
+    font-family:'Amiri',serif;
+
     color:var(--gold-light);
-    font-size:1.4rem;
+
+    font-size:1.5rem;
+
 }
 
-.hero-title{
-    font-family:var(--amiri);
-    font-size:3.8rem;
-    line-height:1.3;
+.brand span{
+
+    display:block;
+
+    color:var(--muted);
+
+    font-size:.7rem;
+
 }
 
-.hero-tagline{
-    font-family:var(--ruqaa);
-    font-size:1.6rem;
-    color:var(--gold-light);
-}
-
-.hero-description{
-    margin:15px auto 25px;
-    max-width:700px;
-    color:#eee;
-}
-
-.buttons{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-}
-
-.btn{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-
-    padding:10px 28px;
-
-    border-radius:22px;
+.back-btn{
 
     text-decoration:none;
-    font-weight:700;
 
-    transition:.25s;
+    color:var(--gold-light);
+
+    border:1px solid var(--border);
+
+    padding:8px 16px;
+
+    border-radius:20px;
+
+    font-size:.85rem;
+
 }
 
-.btn:hover{
-    transform:translateY(-3px);
+
+/* =====================================================
+   LAYOUT
+===================================================== */
+
+.container{
+
+    width:min(1250px,94%);
+
+    margin:35px auto 70px;
+
 }
 
-.btn-gold{
-    color:#000;
+.page-title{
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+}
+
+.page-title h2{
+
+    font-family:'Amiri',serif;
+
+    color:var(--gold-light);
+
+    font-size:2.5rem;
+
+}
+
+.page-title p{
+
+    color:var(--muted);
+
+    margin-top:5px;
+
+}
+
+
+/* =====================================================
+   TABS
+===================================================== */
+
+.tabs{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:25px;
+
+}
+
+.tab{
+
+    border:1px solid var(--border);
+
+    background:#111;
+
+    color:var(--muted);
+
+    padding:10px 20px;
+
+    border-radius:25px;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+}
+
+.tab.active{
 
     background:
         linear-gradient(
@@ -408,699 +264,449 @@ button{
             var(--gold-light),
             var(--gold)
         );
-}
 
-.btn-outline{
-    border:1px solid var(--border-bright);
-
-    background:rgba(0,0,0,.6);
-
-    color:var(--white);
-}
-
-
-/* =====================================================
-   SECTIONS
-===================================================== */
-
-section.content-section{
-    padding:85px 0;
-}
-
-.section-header{
-    text-align:center;
-    margin-bottom:45px;
-}
-
-.section-title{
-    font-family:var(--amiri);
-    font-size:2.4rem;
-}
-
-.section-subtitle{
-    color:var(--muted);
-    font-size:.9rem;
-}
-
-.decor{
-    color:var(--gold);
-    margin-bottom:8px;
-}
-
-
-/* =====================================================
-   PHILOSOPHERS
-===================================================== */
-
-.philosophers{
-    background:
-        linear-gradient(
-            to bottom,
-            var(--bg),
-            var(--bg2)
-        );
-}
-
-.philosopher-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap:18px;
-}
-
-.ph-card{
-    overflow:hidden;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(25,22,25,.96),
-            rgba(10,9,10,.98)
-        );
-
-    border:1px solid var(--border);
-    border-radius:8px;
-
-    transition:.3s;
-}
-
-.ph-card:hover{
-    transform:translateY(-7px);
-    border-color:var(--gold-light);
-}
-
-.ph-image{
-    height:260px;
-}
-
-.ph-image img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.ph-info{
-    padding:18px;
-    text-align:center;
-}
-
-.ph-name{
-    font-family:var(--amiri);
-    font-size:1.55rem;
-}
-
-.ph-date{
-    color:var(--gold);
-    font-size:.82rem;
-}
-
-.ph-topic{
-    color:var(--gold-light);
-    font-size:.8rem;
-    margin-top:5px;
-}
-
-
-/* =====================================================
-   PROGRAM
-===================================================== */
-
-.program{
-    background:var(--bg);
-}
-
-.program-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:20px;
-}
-
-.program-card{
-
-    overflow:hidden;
-
-    border:1px solid var(--border);
-    border-radius:8px;
-
-    background:var(--card);
-
-    cursor:pointer;
-
-    transition:.3s;
-
-}
-
-.program-card:hover{
-
-    transform:translateY(-7px);
+    color:#000;
 
     border-color:var(--gold-light);
 
-    box-shadow:
-        0 15px 40px rgba(0,0,0,.45);
-
-}
-
-.program-image{
-    height:180px;
-    position:relative;
-}
-
-.program-image img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    opacity:.6;
-}
-
-.number{
-    position:absolute;
-
-    top:50%;
-    left:50%;
-
-    transform:
-        translate(-50%,-50%);
-
-    font-family:var(--amiri);
-
-    font-size:2.2rem;
-
-    color:var(--gold-light);
-
-    border:1px solid var(--gold);
-
-    padding:2px 18px;
-
-    background:rgba(0,0,0,.7);
-}
-
-.program-title{
-    padding:18px;
-
-    text-align:center;
-
-    font-family:var(--amiri);
-
-    font-size:1.25rem;
 }
 
 
 /* =====================================================
-   PROGRAM MODAL
+   PANELS
 ===================================================== */
 
-.program-modal{
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:999998;
+.panel{
 
     display:none;
 
-    align-items:center;
+}
 
-    justify-content:center;
+.panel.active{
 
-    padding:20px;
-
-    background:rgba(0,0,0,.92);
-
-    backdrop-filter:blur(9px);
+    display:block;
 
 }
 
-.program-modal.active{
-
-    display:flex;
-
-}
-
-.program-modal-box{
-
-    width:100%;
-
-    max-width:1000px;
-
-    max-height:90vh;
-
-    overflow-y:auto;
-
-    position:relative;
-
-    background:#121012;
-
-    border:1px solid rgba(197,160,89,.7);
-
-    border-radius:12px;
-
-    padding:40px;
-
-    box-shadow:
-        0 20px 80px rgba(0,0,0,.9);
-
-}
-
-.program-modal-close{
-
-    position:absolute;
-
-    top:15px;
-
-    left:18px;
-
-    width:42px;
-
-    height:42px;
-
-    border:1px solid var(--gold);
-
-    border-radius:50%;
-
-    background:#080707;
-
-    color:var(--gold-light);
-
-    font-size:25px;
-
-    cursor:pointer;
-
-}
-
-.program-modal-title{
-
-    text-align:center;
-
-    font-family:var(--amiri);
-
-    font-size:2.5rem;
-
-    color:var(--gold-light);
-
-    margin-bottom:5px;
-
-}
-
-.program-modal-subtitle{
-
-    text-align:center;
-
-    color:var(--gold);
-
-    margin-bottom:35px;
-
-}
-
-.program-content{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:20px;
-
-}
-
-.program-issue{
-
-    border:1px solid rgba(197,160,89,.3);
-
-    border-radius:10px;
-
-    overflow:hidden;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(25,22,25,.9),
-            rgba(10,9,10,.9)
-        );
-
-}
-
-.program-issue-title{
-
-    padding:18px 22px;
-
-    font-family:var(--amiri);
-
-    font-size:1.7rem;
-
-    color:var(--gold-light);
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(197,160,89,.15),
-            transparent
-        );
-
-    border-bottom:1px solid rgba(197,160,89,.2);
-
-}
-
-.program-problem{
-
-    padding:18px 25px;
-
-    border-bottom:
-        1px solid
-        rgba(197,160,89,.12);
-
-}
-
-.program-problem:last-child{
-
-    border-bottom:none;
-
-}
-
-.program-problem-title{
-
-    color:var(--white);
-
-    font-family:var(--amiri);
-
-    font-size:1.35rem;
-
-    margin-bottom:8px;
-
-}
-
-.program-problem-title i{
-
-    color:var(--gold);
-
-    margin-left:8px;
-
-}
-
-.program-article-list{
-
-    padding-right:30px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:5px;
-
-}
-
-.program-article-item{
-
-    color:var(--gold-light);
-
-    font-size:.95rem;
-
-}
-
-.program-article-item::before{
-
-    content:"•";
-
-    color:var(--gold);
-
-    margin-left:8px;
-
-}
-
-
-/* =====================================================
-   ARTICLES
-===================================================== */
-
-.articles{
-
-    background:
-        linear-gradient(
-            to bottom,
-            #0d0b0d,
-            #080707
-        );
-}
-
-.curriculum-section{
-    margin-bottom:65px;
-}
-
-.curriculum-title{
-    text-align:center;
-
-    font-family:var(--amiri);
-
-    font-size:2.5rem;
-
-    color:var(--gold-light);
-
-    margin-bottom:8px;
-}
-
-.curriculum-subtitle{
-    text-align:center;
-
-    color:var(--gold);
-
-    font-family:var(--amiri);
-
-    font-size:1.1rem;
-
-    margin-bottom:35px;
-}
-
-
-/* =====================================================
-   PROBLEM
-===================================================== */
-
-.problem-block{
-
-    margin-bottom:38px;
-
-    border:1px solid
-        rgba(197,160,89,.18);
-
-    border-radius:10px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(25,22,25,.6),
-            rgba(10,9,10,.5)
-        );
-
-    overflow:hidden;
-}
-
-.problem-title{
-
-    padding:17px 22px;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(197,160,89,.12),
-            transparent
-        );
-
-    border-bottom:
-        1px solid
-        rgba(197,160,89,.18);
-
-    font-family:var(--amiri);
-
-    font-size:1.55rem;
-
-    color:var(--gold-light);
-}
-
-.problem-title i{
-
-    color:var(--gold);
-
-    margin-left:8px;
-}
-
-.problem-articles{
-
-    padding:20px;
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:18px;
-}
-
-
-/* =====================================================
-   ARTICLE CARD
-===================================================== */
-
-.article-card{
-
-    display:flex;
-
-    flex-direction:column;
-
-    min-height:285px;
-
-    padding:23px;
+.card{
 
     background:
         linear-gradient(
             145deg,
             rgba(25,22,25,.98),
-            rgba(10,9,10,.98)
+            rgba(12,10,12,.98)
         );
 
     border:1px solid var(--border);
 
-    border-radius:8px;
+    border-radius:12px;
 
-    transition:.3s;
+    padding:25px;
+
+    margin-bottom:25px;
+
 }
 
-.article-card:hover{
+.card h3{
 
-    transform:translateY(-6px);
+    font-family:'Amiri',serif;
 
-    border-color:var(--gold-light);
+    color:var(--gold-light);
 
-    box-shadow:
-        0 12px 35px
-        rgba(0,0,0,.35);
+    font-size:1.6rem;
+
+    margin-bottom:18px;
+
 }
 
-.article-icon{
 
-    width:48px;
+/* =====================================================
+   FORM
+===================================================== */
 
-    height:48px;
+.form-grid{
 
-    margin-bottom:15px;
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:16px;
+
+}
+
+.full{
+
+    grid-column:1/-1;
+
+}
+
+label{
+
+    display:block;
+
+    color:var(--muted);
+
+    font-size:.82rem;
+
+    margin-bottom:6px;
+
+}
+
+input,
+textarea,
+select{
+
+    width:100%;
+
+    background:#090809;
+
+    color:var(--white);
+
+    border:1px solid
+        rgba(197,160,89,.28);
+
+    border-radius:7px;
+
+    padding:11px 13px;
+
+    outline:none;
+
+    font-family:inherit;
+
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+
+    border-color:var(--gold);
+
+}
+
+textarea{
+
+    min-height:220px;
+
+    resize:vertical;
+
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.buttons{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-top:18px;
+
+}
+
+button{
+
+    font-family:inherit;
+
+}
+
+.btn{
+
+    border:0;
+
+    border-radius:7px;
+
+    padding:10px 20px;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+}
+
+.btn-gold{
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-light),
+            var(--gold)
+        );
+
+    color:#000;
+
+}
+
+.btn-dark{
+
+    background:#1b181b;
+
+    color:var(--white);
+
+    border:1px solid var(--border);
+
+}
+
+.btn-red{
+
+    background:
+        rgba(216,107,107,.12);
+
+    border:1px solid
+        rgba(216,107,107,.45);
+
+    color:#f18b8b;
+
+}
+
+.btn-green{
+
+    background:
+        rgba(95,207,145,.1);
+
+    border:1px solid
+        rgba(95,207,145,.4);
+
+    color:#78e4a5;
+
+}
+
+
+/* =====================================================
+   CURRICULUM
+===================================================== */
+
+.issue{
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    margin-bottom:20px;
+
+}
+
+.issue-header{
+
+    padding:17px 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(197,160,89,.14),
+            transparent
+        );
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.issue-name{
+
+    font-family:'Amiri',serif;
+
+    color:var(--gold-light);
+
+    font-size:1.4rem;
+
+}
+
+.problems{
+
+    padding:15px;
+
+}
+
+.problem{
 
     display:flex;
 
     align-items:center;
 
-    justify-content:center;
+    justify-content:space-between;
 
-    border:1px solid var(--gold);
+    gap:10px;
 
-    border-radius:50%;
+    padding:12px 15px;
 
-    color:var(--gold-light);
+    border-bottom:
+        1px solid
+        rgba(197,160,89,.1);
+
 }
 
-.article-type{
+.problem:last-child{
 
-    color:var(--gold);
+    border-bottom:0;
 
-    font-size:.75rem;
-
-    margin-bottom:7px;
 }
 
-.article-title{
+.problem-name{
 
-    font-family:var(--amiri);
+    color:#ddd;
 
-    font-size:1.4rem;
-
-    line-height:1.45;
-
-    margin-bottom:10px;
 }
 
-.article-excerpt{
 
-    color:var(--muted);
+/* =====================================================
+   ARTICLES TABLE
+===================================================== */
 
-    font-size:.84rem;
+.table-wrapper{
 
-    flex:1;
+    overflow-x:auto;
+
 }
 
-.article-link{
-
-    margin-top:18px;
+table{
 
     width:100%;
 
-    padding:10px 18px;
+    border-collapse:collapse;
 
-    border:1px solid var(--gold);
+    min-width:850px;
 
-    border-radius:25px;
+}
 
-    background:transparent;
+th,
+td{
+
+    padding:13px;
+
+    border-bottom:
+        1px solid
+        rgba(197,160,89,.12);
+
+    text-align:right;
+
+}
+
+th{
 
     color:var(--gold-light);
 
     font-size:.85rem;
 
-    cursor:pointer;
+    background:#111;
 
-    transition:.25s;
 }
 
-.article-link:hover{
+td{
 
-    background:var(--gold);
+    color:#ddd;
 
-    color:#000;
+    font-size:.82rem;
+
+}
+
+.status{
+
+    padding:4px 10px;
+
+    border-radius:20px;
+
+    font-size:.7rem;
+
+}
+
+.status-published{
+
+    color:#79e6a6;
+
+    background:
+        rgba(95,207,145,.1);
+
+}
+
+.status-hidden{
+
+    color:#e78a8a;
+
+    background:
+        rgba(216,107,107,.1);
+
 }
 
 
 /* =====================================================
-   NO ARTICLES
+   MESSAGE
 ===================================================== */
 
-.no-articles{
+.message{
 
-    text-align:center;
+    position:fixed;
 
-    padding:50px 20px;
+    left:20px;
 
-    border:1px dashed var(--border);
+    bottom:20px;
+
+    z-index:9999;
+
+    min-width:260px;
+
+    max-width:90%;
+
+    padding:13px 18px;
 
     border-radius:8px;
 
-    color:var(--muted);
+    background:#171417;
+
+    border:1px solid var(--border);
+
+    color:var(--white);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.5);
+
+    display:none;
+
 }
 
-.no-articles i{
+.message.show{
 
     display:block;
 
-    color:var(--gold);
+}
 
-    font-size:2rem;
+.message.success{
 
-    margin-bottom:15px;
+    border-color:rgba(95,207,145,.5);
+
+}
+
+.message.error{
+
+    border-color:rgba(216,107,107,.5);
+
 }
 
 
 /* =====================================================
-   ARTICLE MODAL
+   MODAL
 ===================================================== */
 
-.article-modal{
+.modal{
 
     position:fixed;
 
     inset:0;
 
-    z-index:999999;
+    z-index:500;
 
     display:none;
 
@@ -1110,177 +716,67 @@ section.content-section{
 
     padding:20px;
 
-    background:rgba(0,0,0,.9);
+    background:
+        rgba(0,0,0,.85);
 
     backdrop-filter:blur(8px);
+
 }
 
-.article-modal.active{
+.modal.active{
 
     display:flex;
+
 }
 
-.article-modal-box{
+.modal-box{
 
-    width:100%;
-
-    max-width:900px;
+    width:min(700px,100%);
 
     max-height:90vh;
 
-    overflow-y:auto;
+    overflow:auto;
 
     background:#121012;
 
-    border:
-        1px solid
-        rgba(197,160,89,.7);
+    border:1px solid var(--border);
 
     border-radius:12px;
 
-    padding:40px;
+    padding:25px;
 
-    position:relative;
-
-    box-shadow:
-        0 20px 80px
-        rgba(0,0,0,.9);
 }
 
-.article-modal-close{
+.modal-header{
 
-    position:absolute;
+    display:flex;
 
-    top:15px;
+    align-items:center;
 
-    left:18px;
+    justify-content:space-between;
 
-    width:40px;
+    margin-bottom:20px;
 
-    height:40px;
+}
 
-    border:1px solid var(--gold);
+.close{
+
+    width:38px;
+
+    height:38px;
 
     border-radius:50%;
 
-    background:#080707;
-
-    color:var(--gold-light);
-
-    font-size:24px;
-
-    cursor:pointer;
-}
-
-.article-modal-title{
-
-    font-family:var(--amiri);
-
-    font-size:2.4rem;
-
-    color:var(--gold-light);
-
-    margin-bottom:10px;
-
-    padding-left:50px;
-}
-
-.article-modal-meta{
-
-    color:var(--gold);
-
-    font-size:.9rem;
-
-    border-bottom:
-        1px solid
-        rgba(197,160,89,.2);
-
-    padding-bottom:18px;
-
-    margin-bottom:25px;
-}
-
-.article-modal-content{
-
-    color:#eee;
-
-    font-size:1.08rem;
-
-    line-height:2.2;
-
-    white-space:pre-wrap;
-
-    word-break:break-word;
-}
-
-
-/* =====================================================
-   ABOUT
-===================================================== */
-
-.about{
-
-    text-align:center;
-
-    background:var(--bg);
-}
-
-.about-box{
-
-    max-width:850px;
-
-    margin:auto;
-
-    padding:40px;
-
     border:1px solid var(--border);
 
-    border-radius:8px;
-
-    background:rgba(18,16,18,.7);
-}
-
-.about-box p{
-
-    color:#ddd;
-
-    line-height:2;
-}
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-footer{
-
-    padding:35px 0;
-
-    border-top:
-        1px solid
-        rgba(197,160,89,.2);
-
-    text-align:center;
-
-    background:#050505;
-}
-
-.footer-brand{
-
-    font-family:var(--amiri);
-
-    font-size:1.4rem;
+    background:#090809;
 
     color:var(--gold-light);
-}
 
-.footer-text{
+    cursor:pointer;
 
-    color:var(--muted);
+    font-size:20px;
 
-    font-size:.75rem;
-
-    margin-top:5px;
 }
 
 
@@ -1288,123 +784,44 @@ footer{
    RESPONSIVE
 ===================================================== */
 
-@media(max-width:1000px){
+@media(max-width:700px){
 
-    .places{
-
-        grid-template-columns:
-            1fr 1fr;
-    }
-
-    .library{
-
-        grid-column:1/-1;
-        grid-row:1;
-    }
-
-    .philosopher-grid{
-
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
-    .program-grid{
+    .form-grid{
 
         grid-template-columns:1fr;
+
     }
 
-    .problem-articles{
-
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
-}
-
-@media(max-width:768px){
-
-    .nav-menu{
-
-        display:none;
-    }
-
-    .places{
-
-        grid-template-columns:1fr;
-    }
-
-    .library{
+    .full{
 
         grid-column:auto;
-        grid-row:auto;
+
     }
 
-    .place{
+    .header-inner{
 
-        min-height:270px;
+        min-height:65px;
+
     }
 
-    .philosopher-grid,
-    .problem-articles{
+    .brand h1{
 
-        grid-template-columns:1fr;
+        font-size:1.15rem;
+
     }
 
-    .hero-title{
-
-        font-size:2.7rem;
-    }
-
-    .library-title{
-
-        font-size:2.3rem;
-    }
-
-    .buttons{
-
-        flex-direction:column;
-        align-items:center;
-    }
-
-    .btn{
-
-        width:230px;
-        justify-content:center;
-    }
-
-    section.content-section{
-
-        padding:65px 0;
-    }
-
-    .program-modal-box{
-
-        padding:30px 18px;
-    }
-
-    .program-modal-title{
+    .page-title h2{
 
         font-size:2rem;
+
     }
 
-    .program-issue-title{
+    .issue-header{
 
-        font-size:1.4rem;
-    }
+        align-items:flex-start;
 
-    .article-modal-box{
+        flex-direction:column;
 
-        padding:30px 20px;
-    }
-
-    .article-modal-title{
-
-        font-size:1.8rem;
-    }
-
-    .article-modal-content{
-
-        font-size:.95rem;
     }
 
 }
@@ -1417,631 +834,396 @@ footer{
 <body>
 
 
-<!-- =====================================================
-     NAVBAR
-===================================================== -->
+<header class="header">
 
-<nav class="navbar">
+<div class="header-inner">
 
-<div class="container nav-container">
+<div class="brand">
 
-<a href="#" class="brand">
-
-<div class="owl">
-
-<svg viewBox="0 0 24 24">
-
-<path d="M12 2C8.5 2 6 4.5 6 8C6 10.5 7.2 12.8 9 14.2V20L12 18.5L15 20V14.2C16.8 12.8 18 10.5 18 8C18 4.5 15.5 2 12 2ZM9 7.5C9.8 7.5 10.5 8.2 10.5 9S9.8 10.5 9 10.5S7.5 9.8 7.5 9S8.2 7.5 9 7.5ZM15 7.5C15.8 7.5 16.5 8.2 16.5 9S15.8 10.5 15 10.5S13.5 9.8 13.5 9S14.2 7.5 15 7.5Z"/>
-
-</svg>
-
+<div class="logo">
+❖
 </div>
 
-<div class="brand-text">
+<div>
 
-<span class="brand-title">
-رواق زايد
-</span>
+<h1>
+لوحة إدارة رواق زايد
+</h1>
 
-<span class="brand-sub">
-للفلسفة
+<span>
+إدارة البرنامج والمقالات
 </span>
 
 </div>
+
+</div>
+
+
+<a
+href="https://riwakzaid.vercel.app/"
+class="back-btn"
+target="_blank">
+
+فتح الموقع
 
 </a>
 
+</div>
 
-<ul class="nav-menu">
+</header>
 
-<li>
-<a href="#">الرئيسية</a>
-</li>
 
-<li>
-<a href="#program">البرنامج</a>
-</li>
+<main class="container">
 
-<li>
-<a href="#philosophers">الفلاسفة</a>
-</li>
 
-<li>
-<a href="#articles">المقالات</a>
-</li>
+<div class="page-title">
 
-<li>
-<a href="#about">حول المنصة</a>
-</li>
+<h2>
+لوحة الإدارة
+</h2>
 
-</ul>
+<p>
+من هنا يمكنك التحكم في البرنامج والمقالات دون تعديل كود الموقع.
+</p>
 
 </div>
 
-</nav>
+
+<div class="tabs">
+
+<button
+class="tab active"
+data-panel="curriculumPanel">
+
+البرنامج الدراسي
+
+</button>
+
+
+<button
+class="tab"
+data-panel="articlePanel">
+
+المقالات
+
+</button>
+
+
+<button
+class="tab"
+data-panel="addArticlePanel">
+
+إضافة مقال
+
+</button>
+
+</div>
 
 
 <!-- =====================================================
-     HERO
+   CURRICULUM PANEL
 ===================================================== -->
 
-<section class="hero">
+<section
+id="curriculumPanel"
+class="panel active">
 
-<div class="container hero-content">
 
-<div class="places">
-
-<div class="place">
-
-<img
-src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Athens%20-%20Parthenon.jpg"
-alt="أثينا">
-
-<div class="place-label">
+<div class="card">
 
 <h3>
-أثينا
+إضافة إشكالية
 </h3>
 
-<span>
-اليونان القديمة
-</span>
+
+<div class="form-grid">
+
+<div>
+
+<label>
+اسم الإشكالية
+</label>
+
+<input
+id="issueName"
+type="text"
+placeholder="مثال: الإشكالية الأولى: إدراك العالم الخارجي">
+
+</div>
+
+
+<div>
+
+<label>
+الوصف
+</label>
+
+<input
+id="issueSubtitle"
+type="text"
+placeholder="مثال: مقالات الفصل الأول">
 
 </div>
 
 </div>
 
-
-<div class="library">
-
-<img
-src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Ancientlibraryalex.jpg"
-alt="المكتبة القديمة">
-
-<div class="library-content">
-
-<div class="library-icon">
-
-<i class="fa-solid fa-book-open"></i>
-
-</div>
-
-<div class="library-title">
-رواق زايد للفلسفة
-</div>
-
-<div class="library-sub">
-مكتبة الفكر الفلسفي
-</div>
-
-</div>
-
-</div>
-
-
-<div class="place">
-
-<img
-src="https://image.idntimes.com/post/20211205/bayt-al-hikmah-ilustrasi-9e570a13358bdcb76ed816e9d7c035aa-7799936233ec3bf9e354f9cc78b4206e.jpg"
-alt="بيت الحكمة">
-
-<div class="place-label">
-
-<h3>
-بيت الحكمة
-</h3>
-
-<span>
-بغداد — العصر العباسي
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-
-<h1 class="hero-title">
-رواق زايد للفلسفة
-</h1>
-
-<div class="hero-tagline">
-حيث يبدأ السؤال... ويستمر البحث.
-</div>
-
-<p class="hero-description">
-
-منصة تعليمية لدراسة الفلسفة، وفهم أسئلتها الكبرى،
-وتعلم بناء الموقف والحجاج الفلسفي.
-
-</p>
 
 <div class="buttons">
 
-<a href="#articles"
-class="btn btn-gold">
-
-<i class="fa-solid fa-feather"></i>
-
-اقرأ المقالات
-
-</a>
-
-<a href="#program"
-class="btn btn-outline">
-
-<i class="fa-solid fa-book-open"></i>
-
-استكشف البرنامج
-
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     PHILOSOPHERS
-===================================================== -->
-
-<section
-class="content-section philosophers"
-id="philosophers">
-
-<div class="container">
-
-<div class="section-header">
-
-<div class="decor">
-❖
-</div>
-
-<h2 class="section-title">
-أعلام الفلسفة
-</h2>
-
-<p class="section-subtitle">
-أفكار غيّرت الطريقة التي يفكر بها الإنسان
-</p>
-
-</div>
-
-
-<div class="philosopher-grid">
-
-
-<div class="ph-card">
-
-<div class="ph-image">
-
-<img
-src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Socrates%20Louvre.jpg"
-alt="سقراط">
-
-</div>
-
-<div class="ph-info">
-
-<h3 class="ph-name">
-سقراط
-</h3>
-
-<div class="ph-date">
-470 – 399 ق.م
-</div>
-
-<div class="ph-topic">
-السؤال والحوار
-</div>
-
-</div>
-
-</div>
-
-
-<div class="ph-card">
-
-<div class="ph-image">
-
-<img
-src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Plato%20bust.png"
-alt="أفلاطون">
-
-</div>
-
-<div class="ph-info">
-
-<h3 class="ph-name">
-أفلاطون
-</h3>
-
-<div class="ph-date">
-428/427 – 348/347 ق.م
-</div>
-
-<div class="ph-topic">
-المعرفة والمُثل
-</div>
-
-</div>
-
-</div>
-
-
-<div class="ph-card">
-
-<div class="ph-image">
-
-<img
-src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Aristotle%20bust.jpg"
-alt="أرسطو">
-
-</div>
-
-<div class="ph-info">
-
-<h3 class="ph-name">
-أرسطو
-</h3>
-
-<div class="ph-date">
-384 – 322 ق.م
-</div>
-
-<div class="ph-topic">
-المنطق والوجود
-</div>
-
-</div>
-
-</div>
-
-
-<div class="ph-card">
-
-<div class="ph-image">
-
-<img
-src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Descartes-1.jpg"
-alt="ديكارت">
-
-</div>
-
-<div class="ph-info">
-
-<h3 class="ph-name">
-ديكارت
-</h3>
-
-<div class="ph-date">
-1596 – 1650
-</div>
-
-<div class="ph-topic">
-العقل واليقين
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     PROGRAM
-===================================================== -->
-
-<section
-class="content-section program"
-id="program">
-
-<div class="container">
-
-<div class="section-header">
-
-<div class="decor">
-❖
-</div>
-
-<h2 class="section-title">
-البرنامج السنوي
-</h2>
-
-<p class="section-subtitle">
-اختر مسارك الدراسي للوصول إلى البرنامج الخاص بك.
-</p>
-
-</div>
-
-
-<div class="program-grid">
-
-
-<!-- THIRD YEAR -->
-
-<div
-class="program-card"
-data-program="third-literature">
-
-<div class="program-image">
-
-<img
-src="https://commons.wikimedia.org/wiki/Special:Redirect/file/The%20Library%20of%20Celsus%2C%20Ephesus%20Interior.jpg"
-alt="السنة الثالثة آداب وفلسفة">
-
-<div class="number">
-I
-</div>
-
-</div>
-
-<div class="program-title">
-
-السنة الثالثة آداب وفلسفة
-
-<br>
-
-شعبة آداب وفلسفة
-
-</div>
-
-</div>
-
-
-<!-- SECOND YEAR -->
-
-<div
-class="program-card"
-data-program="second-literature">
-
-<div class="program-image">
-
-<img
-src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Library%20of%20Alexandria%20%281%29.jpg"
-alt="السنة الثانية آداب وفلسفة">
-
-<div class="number">
-II
-</div>
-
-</div>
-
-<div class="program-title">
-
-السنة الثانية آداب وفلسفة
-
-<br>
-
-شعبة آداب وفلسفة
-
-</div>
-
-</div>
-
-
-<!-- SCIENCE LANGUAGES -->
-
-<div
-class="program-card"
-data-program="science-languages">
-
-<div class="program-image">
-
-<img
-src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Library%20of%20Alexandria%20-1.JPG"
-alt="الشعب العلمية واللغات">
-
-<div class="number">
-III
-</div>
-
-</div>
-
-<div class="program-title">
-
-السنة الثانية
-
-<br>
-
-الشعب العلمية واللغات
-
-</div>
-
-</div>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     PROGRAM MODAL
-===================================================== -->
-
-<div
-id="programModal"
-class="program-modal">
-
-<div class="program-modal-box">
-
 <button
-type="button"
-id="closeProgramButton"
-class="program-modal-close">
+class="btn btn-gold"
+id="addIssueButton">
 
-×
+إضافة الإشكالية
 
 </button>
 
-<h2
-id="programModalTitle"
-class="program-modal-title">
-</h2>
-
-<div
-id="programModalSubtitle"
-class="program-modal-subtitle">
-</div>
-
-<div
-id="programContent"
-class="program-content">
 </div>
 
 </div>
 
+
+<div class="card">
+
+<h3>
+البرنامج الحالي
+</h3>
+
+<div id="curriculumList">
+
+جاري تحميل البرنامج...
+
 </div>
+
+</div>
+
+</section>
 
 
 <!-- =====================================================
-     ARTICLES
+   ARTICLES PANEL
 ===================================================== -->
 
 <section
-class="content-section articles"
-id="articles">
+id="articlePanel"
+class="panel">
 
-<div class="container">
 
-<div class="section-header">
+<div class="card">
 
-<div class="decor">
-❖
+<h3>
+المقالات الموجودة
+</h3>
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+العنوان
+</th>
+
+<th>
+الإشكالية
+</th>
+
+<th>
+المشكلة
+</th>
+
+<th>
+الحالة
+</th>
+
+<th>
+الإجراءات
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="articlesTable">
+</tbody>
+
+</table>
+
 </div>
 
-<h2 class="section-title">
-المقالات والنصوص
-</h2>
-
-<p class="section-subtitle">
-اختر الإشكالية ثم المشكلة للوصول إلى المقال المطلوب.
-</p>
-
 </div>
 
+</section>
 
-<div id="articleContainer">
 
-<div class="no-articles">
+<!-- =====================================================
+   ADD ARTICLE
+===================================================== -->
 
-<i class="fa-solid fa-spinner fa-spin"></i>
+<section
+id="addArticlePanel"
+class="panel">
+
+
+<div class="card">
+
+<h3 id="articleFormTitle">
+إضافة مقال جديد
+</h3>
+
+
+<div class="form-grid">
+
 
 <div>
-جاري تحميل المقالات...
+
+<label>
+عنوان المقال
+</label>
+
+<input
+id="articleTitle"
+type="text"
+placeholder="عنوان المقال">
+
+</div>
+
+
+<div>
+
+<label>
+نوع المقال
+</label>
+
+<input
+id="articleType"
+type="text"
+value="مقال فلسفي"
+placeholder="مقال فلسفي">
+
+</div>
+
+
+<div>
+
+<label>
+الإشكالية
+</label>
+
+<select id="articleIssue">
+
+<option value="">
+اختر الإشكالية
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>
+المشكلة
+</label>
+
+<select id="articleProblem">
+
+<option value="">
+اختر المشكلة
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>
+الكاتب
+</label>
+
+<input
+id="articleAuthor"
+type="text"
+value="الأستاذ زيد">
+
+</div>
+
+
+<div>
+
+<label>
+الحالة
+</label>
+
+<select id="articlePublished">
+
+<option value="true">
+منشور
+</option>
+
+<option value="false">
+مخفي
+</option>
+
+</select>
+
+</div>
+
+
+<div class="full">
+
+<label>
+مقتطف المقال
+</label>
+
+<input
+id="articleExcerpt"
+type="text"
+placeholder="مقتطف قصير يظهر في البطاقة">
+
+</div>
+
+
+<div class="full">
+
+<label>
+محتوى المقال
+</label>
+
+<textarea
+id="articleContent"
+placeholder="اكتب المقال هنا..."></textarea>
+
 </div>
 
 </div>
 
-</div>
 
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     ARTICLE MODAL
-===================================================== -->
-
-<div
-id="articleModal"
-class="article-modal">
-
-<div class="article-modal-box">
+<div class="buttons">
 
 <button
-type="button"
-id="closeArticleButton"
-class="article-modal-close"
-aria-label="إغلاق">
+class="btn btn-gold"
+id="saveArticleButton">
 
-×
+حفظ المقال
 
 </button>
 
-<h2
-id="modalArticleTitle"
-class="article-modal-title">
-</h2>
 
-<div
-id="modalArticleMeta"
-class="article-modal-meta">
-</div>
+<button
+class="btn btn-dark"
+id="cancelEditButton"
+style="display:none;">
 
-<div
-id="modalArticleContent"
-class="article-modal-content">
-</div>
+إلغاء التعديل
 
-</div>
-
-</div>
-
-
-<!-- =====================================================
-     ABOUT
-===================================================== -->
-
-<section
-class="content-section about"
-id="about">
-
-<div class="container">
-
-<div class="section-header">
-
-<div class="decor">
-❖
-</div>
-
-<h2 class="section-title">
-حول رواق زايد
-</h2>
-
-</div>
-
-<div class="about-box">
-
-<p>
-
-رواق زايد للفلسفة منصة تعليمية وفكرية تهدف إلى تقديم
-الفلسفة بطريقة واضحة وعميقة، تجمع بين الدراسة والتعليم
-والقراءة والكتابة، وتمنح القارئ مساحة للتفكير وطرح الأسئلة.
-
-</p>
+</button>
 
 </div>
 
@@ -2050,25 +1232,70 @@ id="about">
 </section>
 
 
+</main>
+
+
 <!-- =====================================================
-     FOOTER
+   ADD PROBLEM MODAL
 ===================================================== -->
 
-<footer>
+<div
+id="problemModal"
+class="modal">
 
-<div class="container">
+<div class="modal-box">
 
-<div class="footer-brand">
-رواق زايد للفلسفة
+<div class="modal-header">
+
+<h3>
+إضافة مشكلة
+</h3>
+
+<button
+class="close"
+id="closeProblemModal">
+
+×
+</button>
+
 </div>
 
-<div class="footer-text">
-حيث يبدأ السؤال... ويستمر البحث.
+
+<label>
+اسم المشكلة
+</label>
+
+<input
+id="problemName"
+type="text"
+placeholder="مثال: مشكلة الإحساس والإدراك">
+
+
+<div class="buttons">
+
+<button
+class="btn btn-gold"
+id="saveProblemButton">
+
+إضافة المشكلة
+
+</button>
+
+</div>
+
 </div>
 
 </div>
 
-</footer>
+
+<!-- =====================================================
+   MESSAGE
+===================================================== -->
+
+<div
+id="message"
+class="message">
+</div>
 
 
 <script>
@@ -2083,6 +1310,7 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_g6Nc_ma8cC3vsUDZZL-RJw_e4JbO6LF";
 
+
 const supabaseClient =
 window.supabase.createClient(
     SUPABASE_URL,
@@ -2091,377 +1319,170 @@ window.supabase.createClient(
 
 
 /* =====================================================
-   البرنامج الرسمي
+   STATE
 ===================================================== */
 
-const programs = {
+let curriculum = [];
 
-    "third-literature": {
+let articles = [];
 
-        title:
-        "السنة الثالثة آداب وفلسفة",
+let editingArticleId = null;
 
-        subtitle:
-        "شعبة آداب وفلسفة",
+let selectedIssueId = null;
 
-        issues: [
 
-            {
-
-                title:
-                "الإشكالية الأولى: إدراك العالم الخارجي",
-
-                problems: [
-
-                    {
-
-                        title:
-                        "مشكلة الإحساس والإدراك",
-
-                        articles: [
-
-                            "المقال 01: طبيعة الإدراك",
-
-                            "المقال 02: عوامل الإدراك",
-
-                            "المقال 03: العلاقة بين الإحساس والإدراك"
-
-                        ]
-
-                    },
-
-                    {
-
-                        title:
-                        "مشكلة اللغة والفكر",
-
-                        articles: [
-
-                            "المقال 01: العلاقة بين اللغة والفكر",
-
-                            "المقال 02: العلاقة بين الدال والمدلول",
-
-                            "المقال 03: وظائف اللغة"
-
-                        ]
-
-                    },
-
-                    {
-
-                        title:
-                        "مشكلة الشعور واللاشعور",
-
-                        articles: [
-
-                            "المقال 01: أساس الحياة النفسية",
-
-                            "المقال 02: قيمة اللاشعور بين الفرضية الفلسفية والنظرية العلمية"
-
-                        ]
-
-                    },
-
-                    {
-
-                        title:
-                        "مشكلة الذاكرة والخيال",
-
-                        articles: [
-
-                            "المقال 01: طبيعة الذاكرة",
-
-                            "المقال 02: قيمة النسيان",
-
-                            "المقال 03: عوامل الإبداع"
-
-                        ]
-
-                    }
-
-                ]
-
-            },
-
-            {
-
-                title:
-                "الإشكالية الثانية: الأخلاق بين الثوابت والمتغيرات",
-
-                problems: [
-
-                    {
-
-                        title:
-                        "مشكلة الأخلاق",
-
-                        articles: [
-
-                            "المقال 01: طبيعة الأخلاق",
-
-                            "المقال 02: مصدر الأخلاق"
-
-                        ]
-
-                    },
-
-                    {
-
-                        title:
-                        "مشكلة العدالة",
-
-                        articles: [
-
-                            "المقال 01: العدالة بين الحق والواجب",
-
-                            "المقال 02: العدالة بين التفاوت والمساواة"
-
-                        ]
-
-                    },
-
-                    {
-
-                        title:
-                        "مشكلة العلاقات الأسرية",
-
-                        articles: [
-
-                            "المقال 01: قيمة الأسرة"
-
-                        ]
-
-                    },
-
-                    {
-
-                        title:
-                        "مشكلة النظم الاقتصادية والسياسية",
-
-                        articles: [
-
-                            "المقال 01: الشغل",
-
-                            "المقال 02: النظام الاقتصادي الأمثل",
-
-                            "المقال 03: النظام السياسي الأمثل",
-
-                            "المقال 04: الديمقراطية المثلى",
-
-                            "المقال 05: علاقة السياسة بالأخلاق"
-
-                        ]
-
-                    }
-
-                ]
-
-            },
-
-            {
-
-                title:
-                "الإشكالية الثالثة: فلسفة العلوم",
-
-                problems: [
-
-                    {
-
-                        title:
-                        "مشكلة الحقيقة العلمية والحقيقة الفلسفية",
-
-                        articles: [
-
-                            "المقال 01: طبيعة الحقيقة",
-
-                            "المقال 02: معيار الحقيقة"
-
-                        ]
-
-                    },
-
-                    {
-
-                        title:
-                        "مشكلة فلسفة الرياضيات",
-
-                        articles: [
-
-                            "المقال 01: أصل المفاهيم الرياضية",
-
-                            "المقال 02: اليقين الرياضي"
-
-                        ]
-
-                    },
-
-                    {
-
-                        title:
-                        "مشكلة علوم المادة الجامدة والحية",
-
-                        articles: [
-
-                            "المقال 01: قيمة الفرضية",
-
-                            "المقال 02: الحتمية واللاحتمية",
-
-                            "المقال 03: نتائج العلم",
-
-                            "المقال 04: قيمة البيولوجيا"
-
-                        ]
-
-                    },
-
-                    {
-
-                        title:
-                        "مشكلة العلوم الإنسانية",
-
-                        articles: [
-
-                            "المقال 01: علم النفس",
-
-                            "المقال 02: علم التاريخ"
-
-                        ]
-
-                    }
-
-                ]
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const curriculumList =
+document.getElementById(
+    "curriculumList"
+);
+
+const articlesTable =
+document.getElementById(
+    "articlesTable"
+);
+
+const articleIssue =
+document.getElementById(
+    "articleIssue"
+);
+
+const articleProblem =
+document.getElementById(
+    "articleProblem"
+);
+
+const message =
+document.getElementById(
+    "message"
+);
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function showMessage(
+    text,
+    type="success"
+){
+
+    message.textContent =
+        text;
+
+    message.className =
+        "message show " + type;
+
+    setTimeout(
+        function(){
+
+            message.className =
+                "message";
+
+        },
+        3000
+    );
+
+}
+
+
+/* =====================================================
+   TABS
+===================================================== */
+
+document
+.querySelectorAll(".tab")
+.forEach(
+    function(tab){
+
+        tab.addEventListener(
+            "click",
+            function(){
+
+                document
+                .querySelectorAll(".tab")
+                .forEach(
+                    t =>
+                    t.classList.remove(
+                        "active"
+                    )
+                );
+
+                document
+                .querySelectorAll(".panel")
+                .forEach(
+                    p =>
+                    p.classList.remove(
+                        "active"
+                    )
+                );
+
+                tab.classList.add(
+                    "active"
+                );
+
+                document
+                .getElementById(
+                    tab.dataset.panel
+                )
+                .classList.add(
+                    "active"
+                );
 
             }
-
-        ]
-
-    },
-
-
-    "second-literature": {
-
-        title:
-        "السنة الثانية آداب وفلسفة",
-
-        subtitle:
-        "شعبة آداب وفلسفة",
-
-        issues: [
-
-            {
-
-                title:
-                "برنامج السنة الثانية آداب وفلسفة",
-
-                problems: [
-
-                    {
-
-                        title:
-                        "سيتم إضافة محتوى البرنامج",
-
-                        articles: [
-
-                            "المحتوى سيضاف لاحقًا"
-
-                        ]
-
-                    }
-
-                ]
-
-            }
-
-        ]
-
-    },
-
-
-    "science-languages": {
-
-        title:
-        "السنة الثانية",
-
-        subtitle:
-        "الشعب العلمية واللغات",
-
-        issues: [
-
-            {
-
-                title:
-                "برنامج الفلسفة للشعب العلمية واللغات",
-
-                problems: [
-
-                    {
-
-                        title:
-                        "سيتم إضافة محتوى البرنامج",
-
-                        articles: [
-
-                            "المحتوى سيضاف لاحقًا"
-
-                        ]
-
-                    }
-
-                ]
-
-            }
-
-        ]
+        );
 
     }
-
-};
-
-
-/* =====================================================
-   عناصر برنامج الدراسة
-===================================================== */
-
-const programModal =
-document.getElementById(
-    "programModal"
-);
-
-const programModalTitle =
-document.getElementById(
-    "programModalTitle"
-);
-
-const programModalSubtitle =
-document.getElementById(
-    "programModalSubtitle"
-);
-
-const programContent =
-document.getElementById(
-    "programContent"
-);
-
-const closeProgramButton =
-document.getElementById(
-    "closeProgramButton"
 );
 
 
 /* =====================================================
-   فتح البرنامج
+   LOAD CURRICULUM FROM SUPABASE
 ===================================================== */
 
-function openProgram(programId){
+async function loadCurriculum(){
 
-    const program =
-        programs[programId];
+    curriculumList.innerHTML = `
 
-    if(!program){
+        <div style="
+            color:#a39e93;
+            padding:20px;
+            text-align:center;
+        ">
 
-        console.error(
-            "Program not found:",
-            programId
+            جاري تحميل البرنامج...
+
+        </div>
+
+    `;
+
+
+    const {
+        data: years,
+        error: yearsError
+    } =
+        await supabaseClient
+        .from("program_years")
+        .select("*")
+        .order(
+            "sort_order",
+            {
+                ascending:true
+            }
+        );
+
+
+    if(yearsError){
+
+        console.error(yearsError);
+
+        showMessage(
+            "تعذر تحميل السنوات الدراسية: " +
+            yearsError.message,
+            "error"
         );
 
         return;
@@ -2469,841 +1490,1014 @@ function openProgram(programId){
     }
 
 
-    programModalTitle.textContent =
-        program.title;
-
-    programModalSubtitle.textContent =
-        program.subtitle;
-
-    programContent.innerHTML =
-        "";
+    curriculum = [];
 
 
-    program.issues.forEach(
-        function(issue){
+    for(
+        const year of (years || [])
+    ){
 
-            const issueBox =
-                document.createElement(
-                    "div"
-                );
-
-            issueBox.className =
-                "program-issue";
-
-
-            const issueTitle =
-                document.createElement(
-                    "div"
-                );
-
-            issueTitle.className =
-                "program-issue-title";
-
-            issueTitle.textContent =
-                issue.title;
-
-
-            issueBox.appendChild(
-                issueTitle
+        const {
+            data: issues,
+            error: issuesError
+        } =
+            await supabaseClient
+            .from("program_issues")
+            .select("*")
+            .eq(
+                "year_id",
+                year.id
+            )
+            .order(
+                "sort_order",
+                {
+                    ascending:true
+                }
             );
 
 
-            issue.problems.forEach(
-                function(problem){
+        if(issuesError){
 
-                    const problemBox =
+            console.error(
+                issuesError
+            );
+
+            showMessage(
+                "تعذر تحميل الإشكاليات: " +
+                issuesError.message,
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        year.issues = [];
+
+
+        for(
+            const issue of (issues || [])
+        ){
+
+            const {
+                data: problems,
+                error: problemsError
+            } =
+                await supabaseClient
+                .from("program_problems")
+                .select("*")
+                .eq(
+                    "issue_id",
+                    issue.id
+                )
+                .order(
+                    "sort_order",
+                    {
+                        ascending:true
+                    }
+                );
+
+
+            if(problemsError){
+
+                console.error(
+                    problemsError
+                );
+
+                showMessage(
+                    "تعذر تحميل المشكلات: " +
+                    problemsError.message,
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            issue.problems =
+                problems || [];
+
+
+            year.issues.push(
+                issue
+            );
+
+        }
+
+
+        curriculum.push(
+            year
+        );
+
+    }
+
+
+    renderCurriculum();
+
+    populateIssueSelect();
+
+}
+
+
+/* =====================================================
+   RENDER CURRICULUM
+===================================================== */
+
+function renderCurriculum(){
+
+    curriculumList.innerHTML =
+        "";
+
+
+    if(
+        curriculum.length === 0
+    ){
+
+        curriculumList.innerHTML = `
+
+            <div style="
+                color:#a39e93;
+                padding:20px;
+                text-align:center;
+            ">
+
+                لا يوجد برنامج دراسي.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    curriculum.forEach(
+        function(year){
+
+            const yearCard =
+                document.createElement(
+                    "div"
+                );
+
+            yearCard.className =
+                "card";
+
+
+            const yearTitle =
+                document.createElement(
+                    "h3"
+                );
+
+            yearTitle.textContent =
+                year.name;
+
+
+            yearCard.appendChild(
+                yearTitle
+            );
+
+
+            if(year.subtitle){
+
+                const subtitle =
+                    document.createElement(
+                        "div"
+                    );
+
+                subtitle.style.color =
+                    "#a39e93";
+
+                subtitle.style.marginBottom =
+                    "18px";
+
+                subtitle.textContent =
+                    year.subtitle;
+
+                yearCard.appendChild(
+                    subtitle
+                );
+
+            }
+
+
+            const issues =
+                year.issues || [];
+
+
+            if(
+                issues.length === 0
+            ){
+
+                const empty =
+                    document.createElement(
+                        "div"
+                    );
+
+                empty.style.color =
+                    "#888";
+
+                empty.textContent =
+                    "لا توجد إشكاليات.";
+
+                yearCard.appendChild(
+                    empty
+                );
+
+            }
+
+
+            issues.forEach(
+                function(issue){
+
+                    const issueElement =
                         document.createElement(
                             "div"
                         );
 
-                    problemBox.className =
-                        "program-problem";
+                    issueElement.className =
+                        "issue";
 
 
-                    const problemTitle =
+                    const header =
                         document.createElement(
                             "div"
                         );
 
-                    problemTitle.className =
-                        "program-problem-title";
+                    header.className =
+                        "issue-header";
 
 
-                    problemTitle.innerHTML =
-                        '<i class="fa-solid fa-book-open"></i>' +
-                        problem.title;
+                    const title =
+                        document.createElement(
+                            "div"
+                        );
+
+                    title.className =
+                        "issue-name";
+
+                    title.textContent =
+                        issue.name;
 
 
-                    problemBox.appendChild(
-                        problemTitle
+                    const headerButtons =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    const addProblem =
+                        document.createElement(
+                            "button"
+                        );
+
+                    addProblem.className =
+                        "btn btn-gold";
+
+                    addProblem.textContent =
+                        "+ إضافة مشكلة";
+
+
+                    addProblem.onclick =
+                        function(){
+
+                            selectedIssueId =
+                                issue.id;
+
+                            document
+                            .getElementById(
+                                "problemName"
+                            )
+                            .value = "";
+
+                            document
+                            .getElementById(
+                                "problemModal"
+                            )
+                            .classList.add(
+                                "active"
+                            );
+
+                        };
+
+
+                    const deleteIssue =
+                        document.createElement(
+                            "button"
+                        );
+
+                    deleteIssue.className =
+                        "btn btn-red";
+
+                    deleteIssue.textContent =
+                        "حذف الإشكالية";
+
+
+                    deleteIssue.onclick =
+                        function(){
+
+                            deleteIssueFromSupabase(
+                                issue
+                            );
+
+                        };
+
+
+                    headerButtons.appendChild(
+                        addProblem
+                    );
+
+                    headerButtons.appendChild(
+                        deleteIssue
                     );
 
 
-                    const articleList =
+                    header.appendChild(
+                        title
+                    );
+
+                    header.appendChild(
+                        headerButtons
+                    );
+
+
+                    const problems =
                         document.createElement(
                             "div"
                         );
 
-                    articleList.className =
-                        "program-article-list";
+                    problems.className =
+                        "problems";
 
 
-                    problem.articles.forEach(
-                        function(article){
+                    if(
+                        !issue.problems ||
+                        issue.problems.length === 0
+                    ){
 
-                            const articleItem =
+                        problems.innerHTML = `
+
+                            <div style="
+                                color:#888;
+                                padding:10px;
+                            ">
+
+                                لا توجد مشاكل داخل هذه الإشكالية.
+
+                            </div>
+
+                        `;
+
+                    }
+
+
+                    (
+                        issue.problems || []
+                    )
+                    .forEach(
+                        function(problem){
+
+                            const row =
                                 document.createElement(
                                     "div"
                                 );
 
-                            articleItem.className =
-                                "program-article-item";
+                            row.className =
+                                "problem";
 
-                            articleItem.textContent =
-                                article;
 
-                            articleList.appendChild(
-                                articleItem
+                            const name =
+                                document.createElement(
+                                    "div"
+                                );
+
+                            name.className =
+                                "problem-name";
+
+                            name.textContent =
+                                problem.name;
+
+
+                            const deleteButton =
+                                document.createElement(
+                                    "button"
+                                );
+
+                            deleteButton.className =
+                                "btn btn-red";
+
+                            deleteButton.textContent =
+                                "حذف";
+
+
+                            deleteButton.onclick =
+                                function(){
+
+                                    deleteProblemFromSupabase(
+                                        problem
+                                    );
+
+                                };
+
+
+                            row.appendChild(
+                                name
+                            );
+
+                            row.appendChild(
+                                deleteButton
+                            );
+
+                            problems.appendChild(
+                                row
                             );
 
                         }
                     );
 
 
-                    problemBox.appendChild(
-                        articleList
+                    issueElement.appendChild(
+                        header
+                    );
+
+                    issueElement.appendChild(
+                        problems
                     );
 
 
-                    issueBox.appendChild(
-                        problemBox
+                    yearCard.appendChild(
+                        issueElement
                     );
 
                 }
             );
 
 
-            programContent.appendChild(
-                issueBox
+            curriculumList.appendChild(
+                yearCard
             );
 
         }
     );
 
-
-    programModal.classList.add(
-        "active"
-    );
-
-    document.body.style.overflow =
-        "hidden";
-
 }
 
 
 /* =====================================================
-   إغلاق البرنامج
-===================================================== */
-
-function closeProgram(){
-
-    programModal.classList.remove(
-        "active"
-    );
-
-    document.body.style.overflow =
-        "";
-
-}
-
-
-closeProgramButton.addEventListener(
-    "click",
-    closeProgram
-);
-
-
-programModal.addEventListener(
-    "click",
-    function(event){
-
-        if(
-            event.target ===
-            programModal
-        ){
-
-            closeProgram();
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   ربط بطاقات البرنامج
+   ADD ISSUE
 ===================================================== */
 
 document
-.querySelectorAll(".program-card")
-.forEach(
-    function(card){
+.getElementById(
+    "addIssueButton"
+)
+.addEventListener(
+    "click",
+    addIssue
+);
 
-        card.addEventListener(
-            "click",
-            function(){
 
-                const programId =
-                    card.dataset.program;
+async function addIssue(){
 
-                openProgram(
-                    programId
-                );
+    const name =
+        document
+        .getElementById(
+            "issueName"
+        )
+        .value
+        .trim();
 
-            }
+
+    const subtitle =
+        document
+        .getElementById(
+            "issueSubtitle"
+        )
+        .value
+        .trim();
+
+
+    if(!name){
+
+        showMessage(
+            "اكتب اسم الإشكالية أولًا.",
+            "error"
         );
-
-    }
-);
-
-
-/* =====================================================
-   إغلاق البرنامج بالـ ESC
-===================================================== */
-
-document.addEventListener(
-    "keydown",
-    function(event){
-
-        if(
-            event.key === "Escape"
-        ){
-
-            closeProgram();
-
-            closeArticle();
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   ARTICLES
-===================================================== */
-
-const curriculum = [
-
-    {
-
-        issue:
-        "الإشكالية الأولى: إدراك العالم الخارجي",
-
-        subtitle:
-        "مقالات الفصل الأول",
-
-        problems: [
-
-            "مشكلة الإحساس والإدراك",
-
-            "مشكلة اللغة والفكر",
-
-            "مشكلة الشعور واللاشعور",
-
-            "مشكلة الذاكرة والخيال",
-
-            "مشكلة العادة والإرادة"
-
-        ]
-
-    },
-
-
-    {
-
-        issue:
-        "الإشكالية الثانية: الأخلاق بين الثوابت والمتغيرات",
-
-        subtitle:
-        "مقالات الفصل الثاني",
-
-        problems: [
-
-            "مشكلة الأخلاق",
-
-            "مشكلة العدالة",
-
-            "مشكلة العلاقات الأسرية",
-
-            "مشكلة النظم الاقتصادية والسياسية"
-
-        ]
-
-    },
-
-
-    {
-
-        issue:
-        "الإشكالية الثالثة: فلسفة العلوم",
-
-        subtitle:
-        "مقالات الفصل الثالث",
-
-        problems: [
-
-            "مشكلة الحقيقة العلمية والحقيقة الفلسفية",
-
-            "مشكلة فلسفة الرياضيات",
-
-            "مشكلة علوم المادة الجامدة والحية",
-
-            "مشكلة العلوم الإنسانية"
-
-        ]
-
-    }
-
-];
-
-
-/* =====================================================
-   عناصر المقالات
-===================================================== */
-
-const articleContainer =
-document.getElementById(
-    "articleContainer"
-);
-
-const articleModal =
-document.getElementById(
-    "articleModal"
-);
-
-const modalArticleTitle =
-document.getElementById(
-    "modalArticleTitle"
-);
-
-const modalArticleMeta =
-document.getElementById(
-    "modalArticleMeta"
-);
-
-const modalArticleContent =
-document.getElementById(
-    "modalArticleContent"
-);
-
-const closeArticleButton =
-document.getElementById(
-    "closeArticleButton"
-);
-
-
-/* =====================================================
-   NORMALIZE
-===================================================== */
-
-function normalizeText(value){
-
-    if(
-        value === null ||
-        value === undefined
-    ){
-
-        return "";
-
-    }
-
-    return String(value)
-
-        .trim()
-
-        .replace(
-            /\s+/g,
-            " "
-        )
-
-        .replace(
-            /[إأآ]/g,
-            "ا"
-        )
-
-        .replace(
-            /ى/g,
-            "ي"
-        )
-
-        .replace(
-            /ة/g,
-            "ه"
-        );
-
-}
-
-
-function normalizeIssueName(value){
-
-    let text =
-        normalizeText(value);
-
-    text =
-        text.replace(
-            /^الاشكاليه\s*(الاولى|الاولي|الثانيه|الثاني|الثالثه|الثالث)\s*:\s*/,
-            ""
-        );
-
-    return text.trim();
-
-}
-
-
-function issueMatches(
-    articleIssue,
-    curriculumIssue
-){
-
-    return (
-
-        normalizeIssueName(
-            articleIssue
-        )
-
-        ===
-
-        normalizeIssueName(
-            curriculumIssue
-        )
-
-    );
-
-}
-
-
-function problemMatches(
-    articleProblem,
-    curriculumProblem
-){
-
-    return (
-
-        normalizeText(
-            articleProblem
-        )
-
-        ===
-
-        normalizeText(
-            curriculumProblem
-        )
-
-    );
-
-}
-
-
-/* =====================================================
-   EXCERPT
-===================================================== */
-
-function getExcerpt(content){
-
-    if(!content){
-
-        return
-        "اضغط على قراءة المقال لقراءة النص كاملًا.";
-
-    }
-
-    const text =
-        String(content).trim();
-
-    if(
-        text.length <= 180
-    ){
-
-        return text;
-
-    }
-
-    return (
-        text.substring(
-            0,
-            180
-        )
-        + "..."
-    );
-
-}
-
-
-/* =====================================================
-   OPEN ARTICLE
-===================================================== */
-
-function openArticle(article){
-
-    if(!article){
 
         return;
 
     }
 
-    modalArticleTitle.textContent =
-        article.title ||
-        "بدون عنوان";
 
+    /*
+       الإضافة حاليًا للسنة الثالثة
+       آداب وفلسفة.
+    */
 
-    let metadata =
-        article.article_type ||
-        article.category ||
-        "مقال فلسفي";
+    const year =
+        curriculum.find(
+            function(item){
 
-
-    if(article.author){
-
-        metadata +=
-            " — " +
-            article.author;
-
-    }
-
-
-    modalArticleMeta.textContent =
-        metadata;
-
-
-    modalArticleContent.textContent =
-        article.content ||
-        "لا يوجد محتوى لهذا المقال.";
-
-
-    articleModal.classList.add(
-        "active"
-    );
-
-
-    document.body.style.overflow =
-        "hidden";
-
-}
-
-
-/* =====================================================
-   CLOSE ARTICLE
-===================================================== */
-
-function closeArticle(){
-
-    articleModal.classList.remove(
-        "active"
-    );
-
-    document.body.style.overflow =
-        "";
-
-}
-
-
-closeArticleButton.addEventListener(
-    "click",
-    closeArticle
-);
-
-
-articleModal.addEventListener(
-    "click",
-    function(event){
-
-        if(
-            event.target ===
-            articleModal
-        ){
-
-            closeArticle();
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   ARTICLE CARD
-===================================================== */
-
-function createArticleCard(article){
-
-    const card =
-        document.createElement(
-            "article"
-        );
-
-    card.className =
-        "article-card";
-
-
-    const icon =
-        document.createElement(
-            "div"
-        );
-
-    icon.className =
-        "article-icon";
-
-    icon.innerHTML =
-        '<i class="fa-solid fa-feather-pointed"></i>';
-
-
-    const type =
-        document.createElement(
-            "div"
-        );
-
-    type.className =
-        "article-type";
-
-    type.textContent =
-        article.article_type ||
-        article.category ||
-        "مقال فلسفي";
-
-
-    const title =
-        document.createElement(
-            "h3"
-        );
-
-    title.className =
-        "article-title";
-
-    title.textContent =
-        article.title ||
-        "بدون عنوان";
-
-
-    const excerpt =
-        document.createElement(
-            "p"
-        );
-
-    excerpt.className =
-        "article-excerpt";
-
-    excerpt.textContent =
-        article.excerpt ||
-        getExcerpt(
-            article.content
-        );
-
-
-    const button =
-        document.createElement(
-            "button"
-        );
-
-    button.type =
-        "button";
-
-    button.className =
-        "article-link";
-
-    button.innerHTML =
-        'قراءة المقال <i class="fa-solid fa-arrow-left"></i>';
-
-
-    button.addEventListener(
-        "click",
-        function(){
-
-            openArticle(
-                article
-            );
-
-        }
-    );
-
-
-    card.appendChild(icon);
-
-    card.appendChild(type);
-
-    card.appendChild(title);
-
-    card.appendChild(excerpt);
-
-    card.appendChild(button);
-
-
-    return card;
-
-}
-
-
-/* =====================================================
-   ISSUE SECTION
-===================================================== */
-
-function createIssueSection(
-    issueData,
-    articles
-){
-
-    const section =
-        document.createElement(
-            "div"
-        );
-
-    section.className =
-        "curriculum-section";
-
-
-    const title =
-        document.createElement(
-            "h3"
-        );
-
-    title.className =
-        "curriculum-title";
-
-    title.textContent =
-        issueData.issue;
-
-
-    const subtitle =
-        document.createElement(
-            "div"
-        );
-
-    subtitle.className =
-        "curriculum-subtitle";
-
-    subtitle.textContent =
-        issueData.subtitle;
-
-
-    section.appendChild(title);
-
-    section.appendChild(subtitle);
-
-
-    issueData.problems.forEach(
-        function(problemName){
-
-            const block =
-                document.createElement(
-                    "div"
-                );
-
-            block.className =
-                "problem-block";
-
-
-            const problemTitle =
-                document.createElement(
-                    "div"
-                );
-
-            problemTitle.className =
-                "problem-title";
-
-            problemTitle.innerHTML =
-                '<i class="fa-solid fa-book-open"></i>' +
-                problemName;
-
-
-            block.appendChild(
-                problemTitle
-            );
-
-
-            const problemArticles =
-                document.createElement(
-                    "div"
-                );
-
-            problemArticles.className =
-                "problem-articles";
-
-
-            const matchingArticles =
-                articles.filter(
-                    function(article){
-
-                        return (
-
-                            issueMatches(
-                                article.issue,
-                                issueData.issue
-                            )
-
-                            &&
-
-                            problemMatches(
-                                article.problem,
-                                problemName
-                            )
-
-                        );
-
-                    }
-                );
-
-
-            if(
-                matchingArticles.length === 0
-            ){
-
-                problemArticles.innerHTML = `
-
-                    <div
-                        class="no-articles"
-                        style="grid-column:1/-1;"
-                    >
-
-                        <i class="fa-solid fa-feather-pointed"></i>
-
-                        <div>
-                            لم تتم إضافة مقالات هذه المشكلة بعد.
-                        </div>
-
-                    </div>
-
-                `;
+                return item.name ===
+                    "السنة الثالثة آداب وفلسفة";
 
             }
+        );
 
 
-            matchingArticles.forEach(
-                function(article){
+    if(!year){
 
-                    problemArticles.appendChild(
-                        createArticleCard(
-                            article
-                        )
+        showMessage(
+            "لم يتم العثور على السنة الدراسية.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const nextOrder =
+        (year.issues || []).length + 1;
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+        .from("program_issues")
+        .insert({
+
+            year_id:
+                year.id,
+
+            name:
+                name,
+
+            subtitle:
+                subtitle,
+
+            sort_order:
+                nextOrder
+
+        });
+
+
+    if(error){
+
+        console.error(
+            error
+        );
+
+        showMessage(
+            "تعذر إضافة الإشكالية: " +
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    document
+    .getElementById(
+        "issueName"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "issueSubtitle"
+    )
+    .value = "";
+
+
+    showMessage(
+        "تمت إضافة الإشكالية."
+    );
+
+
+    await loadCurriculum();
+
+}
+
+
+/* =====================================================
+   DELETE ISSUE
+===================================================== */
+
+async function deleteIssueFromSupabase(
+    issue
+){
+
+    const confirmed =
+        confirm(
+            "هل تريد حذف الإشكالية:\n\n" +
+            issue.name +
+            "\n\nسيتم أيضًا حذف جميع المشكلات التابعة لها."
+        );
+
+
+    if(!confirmed){
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+        .from("program_issues")
+        .delete()
+        .eq(
+            "id",
+            issue.id
+        );
+
+
+    if(error){
+
+        console.error(
+            error
+        );
+
+        showMessage(
+            "تعذر حذف الإشكالية: " +
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showMessage(
+        "تم حذف الإشكالية."
+    );
+
+
+    await loadCurriculum();
+
+}
+
+
+/* =====================================================
+   SAVE PROBLEM
+===================================================== */
+
+document
+.getElementById(
+    "saveProblemButton"
+)
+.addEventListener(
+    "click",
+    addProblem
+);
+
+
+async function addProblem(){
+
+    const name =
+        document
+        .getElementById(
+            "problemName"
+        )
+        .value
+        .trim();
+
+
+    if(
+        !name ||
+        !selectedIssueId
+    ){
+
+        return;
+
+    }
+
+
+    const issue =
+        curriculum
+        .flatMap(
+            function(year){
+
+                return year.issues || [];
+
+            }
+        )
+        .find(
+            function(item){
+
+                return item.id ===
+                    selectedIssueId;
+
+            }
+        );
+
+
+    const nextOrder =
+        issue &&
+        issue.problems
+        ?
+        issue.problems.length + 1
+        :
+        1;
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+        .from("program_problems")
+        .insert({
+
+            issue_id:
+                selectedIssueId,
+
+            name:
+                name,
+
+            sort_order:
+                nextOrder
+
+        });
+
+
+    if(error){
+
+        console.error(
+            error
+        );
+
+        showMessage(
+            "تعذر إضافة المشكلة: " +
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    document
+    .getElementById(
+        "problemModal"
+    )
+    .classList.remove(
+        "active"
+    );
+
+
+    selectedIssueId =
+        null;
+
+
+    showMessage(
+        "تمت إضافة المشكلة."
+    );
+
+
+    await loadCurriculum();
+
+}
+
+
+/* =====================================================
+   CLOSE PROBLEM MODAL
+===================================================== */
+
+document
+.getElementById(
+    "closeProblemModal"
+)
+.addEventListener(
+    "click",
+    function(){
+
+        document
+        .getElementById(
+            "problemModal"
+        )
+        .classList.remove(
+            "active"
+        );
+
+        selectedIssueId =
+            null;
+
+    }
+);
+
+
+/* =====================================================
+   DELETE PROBLEM
+===================================================== */
+
+async function deleteProblemFromSupabase(
+    problem
+){
+
+    const confirmed =
+        confirm(
+            "حذف المشكلة:\n\n" +
+            problem.name
+        );
+
+
+    if(!confirmed){
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+        .from("program_problems")
+        .delete()
+        .eq(
+            "id",
+            problem.id
+        );
+
+
+    if(error){
+
+        console.error(
+            error
+        );
+
+        showMessage(
+            "تعذر حذف المشكلة: " +
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showMessage(
+        "تم حذف المشكلة."
+    );
+
+
+    await loadCurriculum();
+
+}
+
+
+/* =====================================================
+   POPULATE ISSUE SELECT
+===================================================== */
+
+function populateIssueSelect(){
+
+    articleIssue.innerHTML = `
+
+        <option value="">
+            اختر الإشكالية
+        </option>
+
+    `;
+
+
+    curriculum.forEach(
+        function(year){
+
+            const issues =
+                year.issues || [];
+
+
+            issues.forEach(
+                function(issue){
+
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
+
+                    /*
+                       نستخدم ID الإشكالية
+                       بدل رقم index.
+                    */
+
+                    option.value =
+                        issue.id;
+
+                    option.textContent =
+                        year.name +
+                        " — " +
+                        issue.name;
+
+                    articleIssue.appendChild(
+                        option
                     );
 
                 }
             );
 
-
-            block.appendChild(
-                problemArticles
-            );
-
-
-            section.appendChild(
-                block
-            );
-
         }
     );
 
 
-    return section;
+    updateProblemSelect();
+
+}
+
+
+/* =====================================================
+   UPDATE PROBLEM SELECT
+===================================================== */
+
+articleIssue.addEventListener(
+    "change",
+    updateProblemSelect
+);
+
+
+function updateProblemSelect(){
+
+    articleProblem.innerHTML = `
+
+        <option value="">
+            اختر المشكلة
+        </option>
+
+    `;
+
+
+    const issueId =
+        articleIssue.value;
+
+
+    if(issueId === ""){
+
+        return;
+
+    }
+
+
+    const issue =
+        curriculum
+        .flatMap(
+            function(year){
+
+                return year.issues || [];
+
+            }
+        )
+        .find(
+            function(item){
+
+                return String(item.id) ===
+                    String(issueId);
+
+            }
+        );
+
+
+    if(!issue){
+
+        return;
+
+    }
+
+
+    (
+        issue.problems || []
+    )
+    .forEach(
+        function(problem){
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value =
+                problem.name;
+
+            option.textContent =
+                problem.name;
+
+            articleProblem.appendChild(
+                option
+            );
+
+        }
+    );
 
 }
 
@@ -3314,172 +2508,882 @@ function createIssueSection(
 
 async function loadArticles(){
 
-    articleContainer.innerHTML = `
+    articlesTable.innerHTML = `
 
-        <div class="no-articles">
+        <tr>
 
-            <i class="fa-solid fa-spinner fa-spin"></i>
+            <td colspan="5"
+                style="text-align:center;">
 
-            <div>
                 جاري تحميل المقالات...
-            </div>
 
-        </div>
+            </td>
+
+        </tr>
 
     `;
 
 
-    try{
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+        .from("articles")
+        .select("*")
+        .order(
+            "created_at",
+            {
+                ascending:false
+            }
+        );
 
-        const result =
-            await supabaseClient
 
-            .from(
-                "articles"
-            )
+    if(error){
 
-            .select("*")
+        console.error(error);
 
-            .eq(
-                "published",
-                true
-            )
+        showMessage(
+            "تعذر تحميل المقالات: " +
+            error.message,
+            "error"
+        );
 
-            .order(
-                "created_at",
-                {
-                    ascending:false
-                }
+        return;
+
+    }
+
+
+    articles =
+        data || [];
+
+
+    renderArticles();
+
+}
+
+
+/* =====================================================
+   RENDER ARTICLES
+===================================================== */
+
+function renderArticles(){
+
+    articlesTable.innerHTML =
+        "";
+
+
+    if(
+        articles.length === 0
+    ){
+
+        articlesTable.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="5"
+                    style="text-align:center;">
+
+                    لا توجد مقالات.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    articles.forEach(
+        function(article){
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+
+            const title =
+                document.createElement(
+                    "td"
+                );
+
+            title.textContent =
+                article.title ||
+                "بدون عنوان";
+
+
+            const issue =
+                document.createElement(
+                    "td"
+                );
+
+            issue.textContent =
+                article.issue ||
+                "-";
+
+
+            const problem =
+                document.createElement(
+                    "td"
+                );
+
+            problem.textContent =
+                article.problem ||
+                "-";
+
+
+            const status =
+                document.createElement(
+                    "td"
+                );
+
+
+            const statusSpan =
+                document.createElement(
+                    "span"
+                );
+
+
+            statusSpan.className =
+                article.published
+                ?
+                "status status-published"
+                :
+                "status status-hidden";
+
+
+            statusSpan.textContent =
+                article.published
+                ?
+                "منشور"
+                :
+                "مخفي";
+
+
+            status.appendChild(
+                statusSpan
             );
 
 
-        const data =
-            result.data;
-
-        const error =
-            result.error;
-
-
-        if(error){
-
-            console.error(
-                "Supabase error:",
-                error
-            );
+            const actions =
+                document.createElement(
+                    "td"
+                );
 
 
-            articleContainer.innerHTML = `
+            const edit =
+                document.createElement(
+                    "button"
+                );
 
-                <div class="no-articles">
+            edit.className =
+                "btn btn-dark";
 
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-
-                    <div>
-                        تعذر تحميل المقالات.
-                    </div>
-
-                    <div
-                        style="
-                            font-size:.75rem;
-                            margin-top:8px;
-                        "
-                    >
-                        تحقق من جدول articles في Supabase.
-                    </div>
-
-                </div>
-
-            `;
-
-            return;
-
-        }
+            edit.textContent =
+                "تعديل";
 
 
-        const filteredArticles =
-            (data || []).filter(
-                function(article){
+            edit.onclick =
+                function(){
 
-                    const title =
-                        normalizeText(
-                            article.title
-                        );
-
-
-                    const isOldWorkArticle =
-
-                        title ===
-                        normalizeText(
-                            "مقال الشغل"
-                        )
-
-                        ||
-
-                        title ===
-                        normalizeText(
-                            "الشغل"
-                        );
-
-
-                    return !isOldWorkArticle;
-
-                }
-            );
-
-
-        articleContainer.innerHTML =
-            "";
-
-
-        curriculum.forEach(
-            function(issueData){
-
-                const section =
-                    createIssueSection(
-                        issueData,
-                        filteredArticles
+                    editArticle(
+                        article
                     );
 
+                };
 
-                articleContainer.appendChild(
-                    section
+
+            const toggle =
+                document.createElement(
+                    "button"
+                );
+
+            toggle.className =
+                article.published
+                ?
+                "btn btn-dark"
+                :
+                "btn btn-green";
+
+            toggle.textContent =
+                article.published
+                ?
+                "إخفاء"
+                :
+                "نشر";
+
+
+            toggle.onclick =
+                function(){
+
+                    togglePublished(
+                        article
+                    );
+
+                };
+
+
+            const remove =
+                document.createElement(
+                    "button"
+                );
+
+            remove.className =
+                "btn btn-red";
+
+            remove.textContent =
+                "حذف";
+
+
+            remove.onclick =
+                function(){
+
+                    deleteArticle(
+                        article
+                    );
+
+                };
+
+
+            actions.appendChild(
+                edit
+            );
+
+            actions.appendChild(
+                toggle
+            );
+
+            actions.appendChild(
+                remove
+            );
+
+
+            row.appendChild(
+                title
+            );
+
+            row.appendChild(
+                issue
+            );
+
+            row.appendChild(
+                problem
+            );
+
+            row.appendChild(
+                status
+            );
+
+            row.appendChild(
+                actions
+            );
+
+
+            articlesTable.appendChild(
+                row
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   CLEAR ARTICLE FORM
+===================================================== */
+
+function clearArticleForm(){
+
+    editingArticleId =
+        null;
+
+
+    document
+    .getElementById(
+        "articleFormTitle"
+    )
+    .textContent =
+        "إضافة مقال جديد";
+
+
+    document
+    .getElementById(
+        "articleTitle"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "articleType"
+    )
+    .value =
+        "مقال فلسفي";
+
+
+    document
+    .getElementById(
+        "articleAuthor"
+    )
+    .value =
+        "الأستاذ زيد";
+
+
+    document
+    .getElementById(
+        "articleExcerpt"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "articleContent"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "articlePublished"
+    )
+    .value =
+        "true";
+
+
+    articleIssue.value =
+        "";
+
+
+    updateProblemSelect();
+
+
+    document
+    .getElementById(
+        "cancelEditButton"
+    )
+    .style.display =
+        "none";
+
+}
+
+
+/* =====================================================
+   EDIT ARTICLE
+===================================================== */
+
+function editArticle(article){
+
+    editingArticleId =
+        article.id;
+
+
+    document
+    .getElementById(
+        "articleFormTitle"
+    )
+    .textContent =
+        "تعديل المقال";
+
+
+    document
+    .getElementById(
+        "articleTitle"
+    )
+    .value =
+        article.title || "";
+
+
+    document
+    .getElementById(
+        "articleType"
+    )
+    .value =
+        article.article_type ||
+        "مقال فلسفي";
+
+
+    document
+    .getElementById(
+        "articleAuthor"
+    )
+    .value =
+        article.author ||
+        "الأستاذ زيد";
+
+
+    document
+    .getElementById(
+        "articleExcerpt"
+    )
+    .value =
+        article.excerpt ||
+        "";
+
+
+    document
+    .getElementById(
+        "articleContent"
+    )
+    .value =
+        article.content ||
+        "";
+
+
+    document
+    .getElementById(
+        "articlePublished"
+    )
+    .value =
+        article.published
+        ?
+        "true"
+        :
+        "false";
+
+
+    const issue =
+        curriculum
+        .flatMap(
+            function(year){
+
+                return year.issues || [];
+
+            }
+        )
+        .find(
+            function(item){
+
+                return normalizeText(
+                    item.name
+                )
+                ===
+                normalizeText(
+                    article.issue
                 );
 
             }
         );
 
 
-        console.log(
-            "عدد المقالات المنشورة:",
-            filteredArticles.length
-        );
+    if(issue){
 
+        articleIssue.value =
+            issue.id;
+
+        updateProblemSelect();
+
+        articleProblem.value =
+            article.problem ||
+            "";
+
+    }
+    else{
+
+        articleIssue.value =
+            "";
+
+        updateProblemSelect();
+
+        articleProblem.value =
+            "";
 
     }
 
-    catch(error){
+
+    document
+    .getElementById(
+        "cancelEditButton"
+    )
+    .style.display =
+        "inline-block";
+
+
+    document
+    .querySelector(
+        '[data-panel="addArticlePanel"]'
+    )
+    .click();
+
+}
+
+
+/* =====================================================
+   NORMALIZE
+===================================================== */
+
+function normalizeText(value){
+
+    return String(
+        value || ""
+    )
+    .trim()
+    .replace(
+        /\s+/g,
+        " "
+    );
+
+}
+
+
+/* =====================================================
+   SAVE ARTICLE
+===================================================== */
+
+document
+.getElementById(
+    "saveArticleButton"
+)
+.addEventListener(
+    "click",
+    saveArticle
+);
+
+
+async function saveArticle(){
+
+    const title =
+        document
+        .getElementById(
+            "articleTitle"
+        )
+        .value
+        .trim();
+
+
+    const issueId =
+        articleIssue.value;
+
+
+    const problem =
+        articleProblem.value;
+
+
+    const content =
+        document
+        .getElementById(
+            "articleContent"
+        )
+        .value
+        .trim();
+
+
+    if(!title){
+
+        showMessage(
+            "أدخل عنوان المقال.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(issueId === ""){
+
+        showMessage(
+            "اختر الإشكالية.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(!problem){
+
+        showMessage(
+            "اختر المشكلة.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(!content){
+
+        showMessage(
+            "أدخل محتوى المقال.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const issue =
+        curriculum
+        .flatMap(
+            function(year){
+
+                return year.issues || [];
+
+            }
+        )
+        .find(
+            function(item){
+
+                return String(item.id) ===
+                    String(issueId);
+
+            }
+        );
+
+
+    if(!issue){
+
+        showMessage(
+            "الإشكالية غير موجودة.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const articleData = {
+
+        title:
+            title,
+
+        issue:
+            issue.name,
+
+        problem:
+            problem,
+
+        content:
+            content,
+
+        excerpt:
+            document
+            .getElementById(
+                "articleExcerpt"
+            )
+            .value
+            .trim(),
+
+        article_type:
+            document
+            .getElementById(
+                "articleType"
+            )
+            .value
+            .trim(),
+
+        author:
+            document
+            .getElementById(
+                "articleAuthor"
+            )
+            .value
+            .trim(),
+
+        published:
+            document
+            .getElementById(
+                "articlePublished"
+            )
+            .value ===
+            "true"
+
+    };
+
+
+    let result;
+
+
+    if(editingArticleId){
+
+        result =
+            await supabaseClient
+            .from("articles")
+            .update(
+                articleData
+            )
+            .eq(
+                "id",
+                editingArticleId
+            );
+
+    }
+
+    else{
+
+        result =
+            await supabaseClient
+            .from("articles")
+            .insert(
+                articleData
+            );
+
+    }
+
+
+    if(result.error){
 
         console.error(
-            "Unexpected error:",
-            error
+            result.error
+        );
+
+        showMessage(
+            "حدث خطأ: " +
+            result.error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showMessage(
+        editingArticleId
+        ?
+        "تم تعديل المقال."
+        :
+        "تمت إضافة المقال."
+    );
+
+
+    clearArticleForm();
+
+    await loadArticles();
+
+}
+
+
+/* =====================================================
+   CANCEL EDIT
+===================================================== */
+
+document
+.getElementById(
+    "cancelEditButton"
+)
+.addEventListener(
+    "click",
+    clearArticleForm
+);
+
+
+/* =====================================================
+   DELETE ARTICLE
+===================================================== */
+
+async function deleteArticle(
+    article
+){
+
+    const confirmed =
+        confirm(
+            "هل تريد حذف المقال:\n\n" +
+            article.title +
+            "\n\nهذا الإجراء لا يمكن التراجع عنه."
         );
 
 
-        articleContainer.innerHTML = `
+    if(!confirmed){
 
-            <div class="no-articles">
-
-                <i class="fa-solid fa-triangle-exclamation"></i>
-
-                <div>
-                    حدث خطأ أثناء تحميل المقالات.
-                </div>
-
-            </div>
-
-        `;
+        return;
 
     }
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+        .from("articles")
+        .delete()
+        .eq(
+            "id",
+            article.id
+        );
+
+
+    if(error){
+
+        showMessage(
+            "تعذر حذف المقال: " +
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showMessage(
+        "تم حذف المقال."
+    );
+
+
+    await loadArticles();
+
+}
+
+
+/* =====================================================
+   TOGGLE PUBLISHED
+===================================================== */
+
+async function togglePublished(
+    article
+){
+
+    const {
+        error
+    } =
+        await supabaseClient
+        .from("articles")
+        .update({
+
+            published:
+                !article.published
+
+        })
+        .eq(
+            "id",
+            article.id
+        );
+
+
+    if(error){
+
+        showMessage(
+            "تعذر تغيير حالة المقال.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showMessage(
+        article.published
+        ?
+        "تم إخفاء المقال."
+        :
+        "تم نشر المقال."
+    );
+
+
+    await loadArticles();
 
 }
 
@@ -3488,7 +3392,16 @@ async function loadArticles(){
    START
 ===================================================== */
 
-loadArticles();
+async function start(){
+
+    await loadCurriculum();
+
+    await loadArticles();
+
+}
+
+
+start();
 
 </script>
 
