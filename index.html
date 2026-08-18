@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -427,8 +428,9 @@ section.content-section{
 }
 
 .program-card:hover{
-    transform:translateY(-6px);
+    transform:translateY(-8px);
     border-color:var(--gold-light);
+    box-shadow:0 15px 40px rgba(0,0,0,.45);
 }
 
 .program-image{
@@ -441,6 +443,12 @@ section.content-section{
     height:100%;
     object-fit:cover;
     opacity:.6;
+    transition:.4s;
+}
+
+.program-card:hover .program-image img{
+    opacity:.8;
+    transform:scale(1.04);
 }
 
 .number{
@@ -461,6 +469,14 @@ section.content-section{
     text-align:center;
     font-family:var(--amiri);
     font-size:1.25rem;
+}
+
+.program-card-hint{
+    display:block;
+    margin-top:8px;
+    color:var(--gold);
+    font-family:var(--cairo);
+    font-size:.72rem;
 }
 
 /* ================= ARTICLES ================= */
@@ -1088,10 +1104,18 @@ alt="ديكارت">
 
 <div class="program-grid">
 
+
+<!-- =================================================
+     السنة الثالثة
+     أصبحت الآن قابلة للضغط
+================================================= -->
+
 <div
-class="program-card"
-onclick="document.getElementById('articles').scrollIntoView({behavior:'smooth'})"
-style="cursor:pointer;"
+    class="program-card"
+    id="thirdYearCard"
+    role="button"
+    tabindex="0"
+    aria-label="فتح برنامج السنة الثالثة آداب وفلسفة"
 >
 
 <div class="program-image">
@@ -1105,13 +1129,22 @@ alt="السنة الثالثة آداب وفلسفة">
 </div>
 
 <div class="program-title">
+
 السنة الثالثة آداب وفلسفة
 <br>
 شعبة آداب وفلسفة
-</div>
+
+<span class="program-card-hint">
+<i class="fa-solid fa-arrow-down"></i>
+اضغط لفتح البرنامج
+</span>
 
 </div>
 
+</div>
+
+
+<!-- السنة الثانية -->
 
 <div class="program-card">
 
@@ -1126,13 +1159,17 @@ alt="السنة الثانية آداب وفلسفة">
 </div>
 
 <div class="program-title">
+
 السنة الثانية آداب وفلسفة
 <br>
 شعبة آداب وفلسفة
-</div>
 
 </div>
 
+</div>
+
+
+<!-- الشعب العلمية واللغات -->
 
 <div class="program-card">
 
@@ -1147,12 +1184,15 @@ alt="الشعب العلمية واللغات">
 </div>
 
 <div class="program-title">
+
 السنة الثانية
 <br>
 الشعب العلمية واللغات
+
 </div>
 
 </div>
+
 
 </div>
 </div>
@@ -1266,6 +1306,7 @@ aria-label="إغلاق">
 </div>
 
 </div>
+
 </footer>
 
 
@@ -1289,7 +1330,7 @@ window.supabase.createClient(
 
 
 /* =====================================================
-   البرنامج الكامل لمادة الفلسفة
+   PROGRAMME
 ===================================================== */
 
 const curriculum = [
@@ -1463,6 +1504,63 @@ document.getElementById("modalArticleContent");
 const closeArticleButton =
 document.getElementById("closeArticleButton");
 
+const thirdYearCard =
+document.getElementById("thirdYearCard");
+
+
+/* =====================================================
+   فتح برنامج السنة الثالثة
+===================================================== */
+
+function openThirdYearProgram(){
+
+    const articlesSection =
+        document.getElementById("articles");
+
+    if(!articlesSection){
+        return;
+    }
+
+    articlesSection.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+
+}
+
+
+/* =====================================================
+   الضغط على بطاقة السنة الثالثة
+===================================================== */
+
+thirdYearCard.addEventListener(
+    "click",
+    openThirdYearProgram
+);
+
+
+/* =====================================================
+   دعم لوحة المفاتيح
+===================================================== */
+
+thirdYearCard.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Enter" ||
+            event.key === " "
+        ){
+
+            event.preventDefault();
+
+            openThirdYearProgram();
+
+        }
+
+    }
+);
+
 
 /* =====================================================
    توحيد النصوص
@@ -1498,16 +1596,16 @@ function issueMatches(
     const article =
         normalizeText(articleIssue);
 
-    const curriculum =
+    const curriculumText =
         normalizeText(curriculumIssue);
 
-    if(article === curriculum){
+    if(article === curriculumText){
         return true;
     }
 
     return (
         article.includes(
-            curriculum.replace(
+            curriculumText.replace(
                 /^الاشكاليه\s*/,
                 ""
             )
@@ -1530,6 +1628,7 @@ function problemMatches(
         ===
         normalizeText(curriculumProblem)
     );
+
 }
 
 
@@ -1576,9 +1675,11 @@ function openArticle(article){
         "مقال فلسفي";
 
     if(article.author){
+
         metadata +=
             " — " +
             article.author;
+
     }
 
     modalArticleMeta.textContent =
@@ -1604,6 +1705,7 @@ function closeArticle(){
     articleModal.classList.remove("active");
 
     document.body.style.overflow = "";
+
 }
 
 closeArticleButton.addEventListener(
@@ -1616,7 +1718,9 @@ articleModal.addEventListener(
     function(event){
 
         if(event.target === articleModal){
+
             closeArticle();
+
         }
 
     }
@@ -1627,7 +1731,9 @@ document.addEventListener(
     function(event){
 
         if(event.key === "Escape"){
+
             closeArticle();
+
         }
 
     }
@@ -1646,6 +1752,7 @@ function createArticleCard(article){
     card.className =
         "article-card";
 
+
     const icon =
         document.createElement("div");
 
@@ -1654,6 +1761,7 @@ function createArticleCard(article){
 
     icon.innerHTML =
         '<i class="fa-solid fa-feather-pointed"></i>';
+
 
     const type =
         document.createElement("div");
@@ -1666,6 +1774,7 @@ function createArticleCard(article){
         article.category ||
         "مقال فلسفي";
 
+
     const title =
         document.createElement("h3");
 
@@ -1675,6 +1784,7 @@ function createArticleCard(article){
     title.textContent =
         article.title ||
         "بدون عنوان";
+
 
     const excerpt =
         document.createElement("p");
@@ -1686,10 +1796,12 @@ function createArticleCard(article){
         article.excerpt ||
         getExcerpt(article.content);
 
+
     const button =
         document.createElement("button");
 
-    button.type = "button";
+    button.type =
+        "button";
 
     button.className =
         "article-link";
@@ -1697,18 +1809,23 @@ function createArticleCard(article){
     button.innerHTML =
         'قراءة المقال <i class="fa-solid fa-arrow-left"></i>';
 
+
     button.addEventListener(
         "click",
         function(){
+
             openArticle(article);
+
         }
     );
+
 
     card.appendChild(icon);
     card.appendChild(type);
     card.appendChild(title);
     card.appendChild(excerpt);
     card.appendChild(button);
+
 
     return card;
 }
@@ -1728,6 +1845,7 @@ function createProblemBlock(
 
     block.className =
         "problem-block";
+
 
     const problemTitle =
         document.createElement("div");
@@ -1749,12 +1867,8 @@ function createProblemBlock(
         "problem-articles";
 
 
-    /* =================================================
-       لكل مقال موجود في البرنامج
-    ================================================= */
-
     problemData.articles.forEach(
-        function(articleName,index){
+        function(articleName){
 
             const matchingArticles =
                 articles.filter(
@@ -1783,10 +1897,6 @@ function createProblemBlock(
     );
 
 
-    /* =================================================
-       إذا لم يوجد مقال منشور
-    ================================================= */
-
     if(
         problemArticles.children.length === 0
     ){
@@ -1810,7 +1920,11 @@ function createProblemBlock(
 
     }
 
-    block.appendChild(problemArticles);
+
+    block.appendChild(
+        problemArticles
+    );
+
 
     return block;
 }
@@ -1832,8 +1946,6 @@ function createIssueSection(
         "curriculum-section";
 
 
-    /* عنوان الإشكالية */
-
     const issueTitle =
         document.createElement("h3");
 
@@ -1843,10 +1955,10 @@ function createIssueSection(
     issueTitle.textContent =
         issueData.issue;
 
-    section.appendChild(issueTitle);
+    section.appendChild(
+        issueTitle
+    );
 
-
-    /* عنوان الإشكالية الرئيسي */
 
     const mainTitle =
         document.createElement("div");
@@ -1857,10 +1969,10 @@ function createIssueSection(
     mainTitle.textContent =
         issueData.title;
 
-    section.appendChild(mainTitle);
+    section.appendChild(
+        mainTitle
+    );
 
-
-    /* المشاكل */
 
     issueData.problems.forEach(
         function(problemData){
@@ -1871,7 +1983,9 @@ function createIssueSection(
                     articles
                 );
 
-            section.appendChild(block);
+            section.appendChild(
+                block
+            );
 
         }
     );
@@ -1924,16 +2038,13 @@ async function loadArticles(){
             result.error;
 
 
-        /* =================================================
-           خطأ Supabase
-        ================================================= */
-
         if(error){
 
             console.error(
                 "Supabase error:",
                 error
             );
+
 
             articleContainer.innerHTML = `
 
@@ -1963,9 +2074,7 @@ async function loadArticles(){
 
 
         /* =================================================
-           استبعاد المقال القديم "الشغل"
-           
-           لا يتم حذفه من قاعدة البيانات.
+           استبعاد مقال الشغل القديم
         ================================================= */
 
         const filteredArticles =
@@ -1985,6 +2094,7 @@ async function loadArticles(){
                         normalizeText("الشغل");
 
                     return !isOldWorkArticle;
+
                 }
             );
 
@@ -1993,7 +2103,7 @@ async function loadArticles(){
 
 
         /* =================================================
-           عنوان البرنامج الكامل
+           عنوان البرنامج
         ================================================= */
 
         const programHeading =
@@ -2001,6 +2111,7 @@ async function loadArticles(){
 
         programHeading.className =
             "curriculum-section";
+
 
         programHeading.innerHTML = `
 
@@ -2014,13 +2125,14 @@ async function loadArticles(){
 
         `;
 
+
         articleContainer.appendChild(
             programHeading
         );
 
 
         /* =================================================
-           إنشاء الإشكاليات الثلاث
+           الإشكاليات
         ================================================= */
 
         curriculum.forEach(
@@ -2049,6 +2161,7 @@ async function loadArticles(){
             filteredArticles.length
         );
 
+
         filteredArticles.forEach(
             function(article){
 
@@ -2073,6 +2186,7 @@ async function loadArticles(){
             "Unexpected error:",
             error
         );
+
 
         articleContainer.innerHTML = `
 
