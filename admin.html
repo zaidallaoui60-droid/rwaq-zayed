@@ -304,6 +304,18 @@ button{
     font-size:1.4rem;
 }
 
+.issue-subtitle{
+    color:var(--muted);
+    font-size:.8rem;
+    margin-top:3px;
+}
+
+.issue-actions{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
 .problems{
     padding:15px;
 }
@@ -441,6 +453,12 @@ td{
     font-size:20px;
 }
 
+.empty{
+    color:var(--muted);
+    padding:25px;
+    text-align:center;
+}
+
 @media(max-width:700px){
 
     .form-grid{
@@ -555,6 +573,11 @@ data-panel="addArticlePanel">
 
 </div>
 
+
+<!-- ========================= -->
+<!-- البرنامج الدراسي -->
+<!-- ========================= -->
+
 <section
 id="curriculumPanel"
 class="panel active">
@@ -609,6 +632,7 @@ id="addIssueButton">
 
 </div>
 
+
 <div class="card">
 
 <h3>
@@ -624,6 +648,11 @@ id="addIssueButton">
 </div>
 
 </section>
+
+
+<!-- ========================= -->
+<!-- المقالات -->
+<!-- ========================= -->
 
 <section
 id="articlePanel"
@@ -662,6 +691,11 @@ class="panel">
 </div>
 
 </section>
+
+
+<!-- ========================= -->
+<!-- إضافة مقال -->
+<!-- ========================= -->
 
 <section
 id="addArticlePanel"
@@ -821,6 +855,11 @@ style="display:none;">
 
 </main>
 
+
+<!-- ========================= -->
+<!-- نافذة إضافة مشكلة -->
+<!-- ========================= -->
+
 <div
 id="problemModal"
 class="modal">
@@ -838,6 +877,7 @@ class="close"
 id="closeProblemModal">
 
 ×
+
 </button>
 
 </div>
@@ -867,10 +907,12 @@ id="saveProblemButton">
 
 </div>
 
+
 <div
 id="message"
 class="message">
 </div>
+
 
 <script>
 
@@ -886,119 +928,249 @@ window.supabase.createClient(
     SUPABASE_KEY
 );
 
+
 let curriculum = [];
 let articles = [];
+
 let editingArticleId = null;
-let selectedIssueIndex = null;
+
+let selectedIssueId = null;
+
 
 const curriculumList =
-document.getElementById("curriculumList");
+document.getElementById(
+    "curriculumList"
+);
 
 const articlesTable =
-document.getElementById("articlesTable");
+document.getElementById(
+    "articlesTable"
+);
 
 const articleIssue =
-document.getElementById("articleIssue");
+document.getElementById(
+    "articleIssue"
+);
 
 const articleProblem =
-document.getElementById("articleProblem");
+document.getElementById(
+    "articleProblem"
+);
 
 const message =
-document.getElementById("message");
+document.getElementById(
+    "message"
+);
 
-function showMessage(text,type="success"){
 
-    message.textContent = text;
+function showMessage(
+    text,
+    type = "success"
+){
+
+    message.textContent =
+        text;
 
     message.className =
         "message show " + type;
 
-    setTimeout(function(){
+    setTimeout(
+        function(){
 
-        message.className =
-            "message";
+            message.className =
+                "message";
 
-    },3000);
+        },
+        3000
+    );
 
 }
 
+
+/* =========================
+   التبويبات
+========================= */
+
 document
 .querySelectorAll(".tab")
-.forEach(function(tab){
+.forEach(
+    function(tab){
 
-    tab.addEventListener("click",function(){
+        tab.addEventListener(
+            "click",
+            function(){
 
-        document
-        .querySelectorAll(".tab")
-        .forEach(t =>
-            t.classList.remove("active")
+                document
+                .querySelectorAll(".tab")
+                .forEach(
+                    function(t){
+
+                        t.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+                document
+                .querySelectorAll(".panel")
+                .forEach(
+                    function(p){
+
+                        p.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+                tab.classList.add(
+                    "active"
+                );
+
+                document
+                .getElementById(
+                    tab.dataset.panel
+                )
+                .classList.add(
+                    "active"
+                );
+
+            }
         );
 
-        document
-        .querySelectorAll(".panel")
-        .forEach(p =>
-            p.classList.remove("active")
-        );
+    }
+);
 
-        tab.classList.add("active");
 
-        document
-        .getElementById(tab.dataset.panel)
-        .classList.add("active");
-
-    });
-
-});
+/* =========================
+   تحميل البرنامج من Supabase
+========================= */
 
 async function loadCurriculum(){
 
-    const saved =
-        localStorage.getItem(
-            "riwak_curriculum"
+    curriculumList.innerHTML = `
+
+        <div class="empty">
+            جاري تحميل البرنامج...
+        </div>
+
+    `;
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+        .from("curriculum")
+        .select("*")
+        .order(
+            "id",
+            {
+                ascending:true
+            }
         );
 
-    if(saved){
+    if(error){
 
-        try{
+        console.error(error);
 
-            curriculum =
-                JSON.parse(saved);
+        curriculumList.innerHTML = `
 
-        }catch{
+            <div class="empty">
 
-            curriculum = [];
+                تعذر تحميل البرنامج.
 
-        }
+                <br>
+
+                <small>
+                    ${error.message}
+                </small>
+
+            </div>
+
+        `;
+
+        showMessage(
+            "تعذر تحميل البرنامج: " +
+            error.message,
+            "error"
+        );
+
+        return;
 
     }
 
+    const rows =
+        data || [];
+
+    const grouped = {};
+
+    rows.forEach(
+        function(row){
+
+            const key =
+                row.issue_name;
+
+            if(!grouped[key]){
+
+                grouped[key] = {
+
+                    id: row.id,
+
+                    name:
+                        row.issue_name,
+
+                    subtitle:
+                        row.issue_subtitle || "",
+
+                    problems: []
+
+                };
+
+            }
+
+            if(row.problem_name){
+
+                grouped[key].problems.push({
+
+                    id: row.id,
+
+                    name:
+                        row.problem_name
+
+                });
+
+            }
+
+        }
+    );
+
+    curriculum =
+        Object.values(grouped);
+
     renderCurriculum();
+
     populateIssueSelect();
 
 }
 
-function saveCurriculum(){
 
-    localStorage.setItem(
-        "riwak_curriculum",
-        JSON.stringify(curriculum)
-    );
-
-}
+/* =========================
+   عرض البرنامج
+========================= */
 
 function renderCurriculum(){
 
     curriculumList.innerHTML = "";
 
-    if(curriculum.length === 0){
+    if(
+        curriculum.length === 0
+    ){
 
         curriculumList.innerHTML = `
 
-            <div style="
-                color:#a39e93;
-                padding:20px;
-                text-align:center;
-            ">
+            <div class="empty">
 
                 لم تتم إضافة أي إشكالية بعد.
 
@@ -1010,165 +1182,297 @@ function renderCurriculum(){
 
     }
 
-    curriculum.forEach(function(issue,index){
+    curriculum.forEach(
+        function(issue){
 
-        const issueElement =
-            document.createElement("div");
+            const issueElement =
+                document.createElement(
+                    "div"
+                );
 
-        issueElement.className = "issue";
+            issueElement.className =
+                "issue";
 
-        const header =
-            document.createElement("div");
 
-        header.className = "issue-header";
+            const header =
+                document.createElement(
+                    "div"
+                );
 
-        const title =
-            document.createElement("div");
+            header.className =
+                "issue-header";
 
-        title.className = "issue-name";
 
-        title.textContent = issue.name;
+            const titleWrapper =
+                document.createElement(
+                    "div"
+                );
 
-        const headerButtons =
-            document.createElement("div");
 
-        const addProblem =
-            document.createElement("button");
+            const title =
+                document.createElement(
+                    "div"
+                );
 
-        addProblem.className =
-            "btn btn-gold";
+            title.className =
+                "issue-name";
 
-        addProblem.textContent =
-            "+ إضافة مشكلة";
+            title.textContent =
+                issue.name;
 
-        addProblem.onclick =
-            function(){
 
-                selectedIssueIndex = index;
+            const subtitle =
+                document.createElement(
+                    "div"
+                );
 
-                document
-                .getElementById("problemName")
-                .value = "";
+            subtitle.className =
+                "issue-subtitle";
 
-                document
-                .getElementById("problemModal")
-                .classList.add("active");
+            subtitle.textContent =
+                issue.subtitle || "";
 
-            };
 
-        const deleteIssue =
-            document.createElement("button");
+            titleWrapper.appendChild(
+                title
+            );
 
-        deleteIssue.className =
-            "btn btn-red";
+            if(issue.subtitle){
 
-        deleteIssue.textContent =
-            "حذف الإشكالية";
+                titleWrapper.appendChild(
+                    subtitle
+                );
 
-        deleteIssue.onclick =
-            function(){
+            }
 
-                deleteIssueByIndex(index);
 
-            };
+            const headerButtons =
+                document.createElement(
+                    "div"
+                );
 
-        headerButtons.appendChild(addProblem);
-        headerButtons.appendChild(deleteIssue);
+            headerButtons.className =
+                "issue-actions";
 
-        header.appendChild(title);
-        header.appendChild(headerButtons);
 
-        const problems =
-            document.createElement("div");
+            const addProblem =
+                document.createElement(
+                    "button"
+                );
 
-        problems.className = "problems";
+            addProblem.className =
+                "btn btn-gold";
 
-        if(
-            !issue.problems ||
-            issue.problems.length === 0
-        ){
+            addProblem.textContent =
+                "+ إضافة مشكلة";
 
-            problems.innerHTML = `
 
-                <div style="
-                    color:#888;
-                    padding:10px;
-                ">
-
-                    لا توجد مشاكل داخل هذه الإشكالية.
-
-                </div>
-
-            `;
-
-        }
-
-        (
-            issue.problems || []
-        )
-        .forEach(function(problem,problemIndex){
-
-            const row =
-                document.createElement("div");
-
-            row.className = "problem";
-
-            const name =
-                document.createElement("div");
-
-            name.className = "problem-name";
-
-            name.textContent = problem;
-
-            const deleteButton =
-                document.createElement("button");
-
-            deleteButton.className =
-                "btn btn-red";
-
-            deleteButton.textContent = "حذف";
-
-            deleteButton.onclick =
+            addProblem.onclick =
                 function(){
 
-                    deleteProblem(
-                        index,
-                        problemIndex
+                    selectedIssueId =
+                        issue.id;
+
+                    document
+                    .getElementById(
+                        "problemName"
+                    )
+                    .value = "";
+
+                    document
+                    .getElementById(
+                        "problemModal"
+                    )
+                    .classList.add(
+                        "active"
                     );
 
                 };
 
-            row.appendChild(name);
-            row.appendChild(deleteButton);
 
-            problems.appendChild(row);
+            const deleteIssue =
+                document.createElement(
+                    "button"
+                );
 
-        });
+            deleteIssue.className =
+                "btn btn-red";
 
-        issueElement.appendChild(header);
-        issueElement.appendChild(problems);
+            deleteIssue.textContent =
+                "حذف الإشكالية";
 
-        curriculumList.appendChild(issueElement);
 
-    });
+            deleteIssue.onclick =
+                function(){
+
+                    deleteIssue(
+                        issue
+                    );
+
+                };
+
+
+            headerButtons.appendChild(
+                addProblem
+            );
+
+            headerButtons.appendChild(
+                deleteIssue
+            );
+
+
+            header.appendChild(
+                titleWrapper
+            );
+
+            header.appendChild(
+                headerButtons
+            );
+
+
+            const problems =
+                document.createElement(
+                    "div"
+                );
+
+            problems.className =
+                "problems";
+
+
+            if(
+                !issue.problems ||
+                issue.problems.length === 0
+            ){
+
+                problems.innerHTML = `
+
+                    <div class="empty">
+
+                        لا توجد مشاكل داخل هذه الإشكالية.
+
+                    </div>
+
+                `;
+
+            }
+
+
+            (
+                issue.problems || []
+            )
+            .forEach(
+                function(problem){
+
+                    const row =
+                        document.createElement(
+                            "div"
+                        );
+
+                    row.className =
+                        "problem";
+
+
+                    const name =
+                        document.createElement(
+                            "div"
+                        );
+
+                    name.className =
+                        "problem-name";
+
+                    name.textContent =
+                        problem.name;
+
+
+                    const deleteButton =
+                        document.createElement(
+                            "button"
+                        );
+
+                    deleteButton.className =
+                        "btn btn-red";
+
+                    deleteButton.textContent =
+                        "حذف";
+
+
+                    deleteButton.onclick =
+                        function(){
+
+                            deleteProblem(
+                                problem
+                            );
+
+                        };
+
+
+                    row.appendChild(
+                        name
+                    );
+
+                    row.appendChild(
+                        deleteButton
+                    );
+
+                    problems.appendChild(
+                        row
+                    );
+
+                }
+            );
+
+
+            issueElement.appendChild(
+                header
+            );
+
+            issueElement.appendChild(
+                problems
+            );
+
+            curriculumList.appendChild(
+                issueElement
+            );
+
+        }
+    );
 
 }
 
+
+/* =========================
+   إضافة إشكالية
+========================= */
+
 document
-.getElementById("addIssueButton")
-.addEventListener("click",function(){
+.getElementById(
+    "addIssueButton"
+)
+.addEventListener(
+    "click",
+    addIssue
+);
+
+
+async function addIssue(){
 
     const name =
         document
-        .getElementById("issueName")
+        .getElementById(
+            "issueName"
+        )
         .value
         .trim();
 
+
     const subtitle =
         document
-        .getElementById("issueSubtitle")
+        .getElementById(
+            "issueSubtitle"
+        )
         .value
         .trim();
+
 
     if(!name){
 
@@ -1181,138 +1485,489 @@ document
 
     }
 
-    curriculum.push({
 
-        name:name,
-        subtitle:subtitle,
-        problems:[]
+    const existing =
+        curriculum.some(
+            function(issue){
 
-    });
+                return (
+                    issue.name.trim()
+                    ===
+                    name
+                );
 
-    saveCurriculum();
-    renderCurriculum();
-    populateIssueSelect();
+            }
+        );
+
+
+    if(existing){
+
+        showMessage(
+            "هذه الإشكالية موجودة بالفعل.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    /*
+       نضيف الإشكالية
+       مع مشكلة فارغة مؤقتًا.
+       هذا يسمح لنا بإنشاء الإشكالية
+       ثم إضافة مشاكل إليها.
+    */
+
+    const {
+        error
+    } =
+        await supabaseClient
+        .from("curriculum")
+        .insert({
+
+            issue_name:name,
+
+            issue_subtitle:
+                subtitle,
+
+            problem_name:
+                ""
+
+        });
+
+
+    if(error){
+
+        console.error(error);
+
+        showMessage(
+            "تعذر إضافة الإشكالية: " +
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
 
     document
-    .getElementById("issueName")
+    .getElementById(
+        "issueName"
+    )
     .value = "";
 
     document
-    .getElementById("issueSubtitle")
+    .getElementById(
+        "issueSubtitle"
+    )
     .value = "";
 
-    showMessage("تمت إضافة الإشكالية.");
 
-});
+    showMessage(
+        "تمت إضافة الإشكالية."
+    );
 
-function deleteIssueByIndex(index){
 
-    const issue =
-        curriculum[index];
+    await loadCurriculum();
+
+}
+
+
+/* =========================
+   حذف إشكالية
+========================= */
+
+async function deleteIssue(issue){
 
     if(!issue){
+
         return;
+
     }
+
 
     const confirmed =
         confirm(
-            "هل تريد حذف الإشكالية:\n\n" +
-            issue.name +
-            "\n\nسيتم حذفها من البرنامج."
+
+            "هل تريد حذف الإشكالية:\n\n"
+            +
+            issue.name
+            +
+            "\n\n"
+            +
+            "سيتم حذف جميع المشاكل التابعة لها أيضًا."
+
         );
 
+
     if(!confirmed){
+
         return;
+
     }
 
-    curriculum.splice(index,1);
 
-    saveCurriculum();
-    renderCurriculum();
-    populateIssueSelect();
+    const {
+        error
+    } =
+        await supabaseClient
+        .from("curriculum")
+        .delete()
+        .eq(
+            "issue_name",
+            issue.name
+        );
 
-    showMessage("تم حذف الإشكالية.");
+
+    if(error){
+
+        console.error(error);
+
+        showMessage(
+            "تعذر حذف الإشكالية: " +
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showMessage(
+        "تم حذف الإشكالية."
+    );
+
+
+    await loadCurriculum();
 
 }
 
+
+/* =========================
+   إضافة مشكلة
+========================= */
+
 document
-.getElementById("saveProblemButton")
-.addEventListener("click",function(){
+.getElementById(
+    "saveProblemButton"
+)
+.addEventListener(
+    "click",
+    addProblem
+);
+
+
+async function addProblem(){
 
     const name =
         document
-        .getElementById("problemName")
+        .getElementById(
+            "problemName"
+        )
         .value
         .trim();
 
+
     if(
         !name ||
-        selectedIssueIndex === null
+        !selectedIssueId
     ){
+
+        showMessage(
+            "أدخل اسم المشكلة.",
+            "error"
+        );
+
         return;
+
     }
 
-    const issue =
-        curriculum[selectedIssueIndex];
 
-    if(!issue.problems){
-        issue.problems = [];
+    const issue =
+        curriculum.find(
+            function(item){
+
+                return (
+                    item.id ===
+                    selectedIssueId
+                );
+
+            }
+        );
+
+
+    if(!issue){
+
+        showMessage(
+            "تعذر تحديد الإشكالية.",
+            "error"
+        );
+
+        return;
+
     }
 
-    issue.problems.push(name);
 
-    saveCurriculum();
-    renderCurriculum();
-    populateIssueSelect();
-
-    document
-    .getElementById("problemModal")
-    .classList.remove("active");
-
-    selectedIssueIndex = null;
-
-    showMessage("تمت إضافة المشكلة.");
-
-});
-
-document
-.getElementById("closeProblemModal")
-.addEventListener("click",function(){
-
-    document
-    .getElementById("problemModal")
-    .classList.remove("active");
-
-    selectedIssueIndex = null;
-
-});
-
-function deleteProblem(issueIndex,problemIndex){
-
-    const issue =
-        curriculum[issueIndex];
-
-    const problem =
-        issue.problems[problemIndex];
-
-    if(
-        !confirm(
-            "حذف المشكلة:\n\n" +
-            problem
+    const alreadyExists =
+        (
+            issue.problems || []
         )
-    ){
+        .some(
+            function(problem){
+
+                return (
+                    problem.name.trim()
+                    ===
+                    name
+                );
+
+            }
+        );
+
+
+    if(alreadyExists){
+
+        showMessage(
+            "هذه المشكلة موجودة بالفعل.",
+            "error"
+        );
+
         return;
+
     }
 
-    issue.problems.splice(problemIndex,1);
 
-    saveCurriculum();
-    renderCurriculum();
-    populateIssueSelect();
+    /*
+       إذا كانت الإشكالية الجديدة
+       تحتوي على صف فارغ،
+       نستعمله بدل إنشاء صف جديد.
+    */
 
-    showMessage("تم حذف المشكلة.");
+    let emptyRow = null;
+
+
+    const {
+        data:rows,
+        error:findError
+    } =
+        await supabaseClient
+        .from("curriculum")
+        .select("*")
+        .eq(
+            "issue_name",
+            issue.name
+        )
+        .eq(
+            "problem_name",
+            ""
+        )
+        .limit(1);
+
+
+    if(findError){
+
+        console.error(findError);
+
+    }else if(
+        rows &&
+        rows.length
+    ){
+
+        emptyRow =
+            rows[0];
+
+    }
+
+
+    let error;
+
+
+    if(emptyRow){
+
+        const result =
+            await supabaseClient
+            .from("curriculum")
+            .update({
+
+                problem_name:name
+
+            })
+            .eq(
+                "id",
+                emptyRow.id
+            );
+
+        error =
+            result.error;
+
+    }else{
+
+        const result =
+            await supabaseClient
+            .from("curriculum")
+            .insert({
+
+                issue_name:
+                    issue.name,
+
+                issue_subtitle:
+                    issue.subtitle || "",
+
+                problem_name:name
+
+            });
+
+        error =
+            result.error;
+
+    }
+
+
+    if(error){
+
+        console.error(error);
+
+        showMessage(
+            "تعذر إضافة المشكلة: " +
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    document
+    .getElementById(
+        "problemName"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "problemModal"
+    )
+    .classList.remove(
+        "active"
+    );
+
+
+    selectedIssueId =
+        null;
+
+
+    showMessage(
+        "تمت إضافة المشكلة."
+    );
+
+
+    await loadCurriculum();
 
 }
+
+
+/* =========================
+   حذف مشكلة
+========================= */
+
+async function deleteProblem(problem){
+
+    if(!problem){
+
+        return;
+
+    }
+
+
+    const confirmed =
+        confirm(
+
+            "هل تريد حذف المشكلة:\n\n"
+            +
+            problem.name
+
+        );
+
+
+    if(!confirmed){
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+        .from("curriculum")
+        .delete()
+        .eq(
+            "id",
+            problem.id
+        );
+
+
+    if(error){
+
+        console.error(error);
+
+        showMessage(
+            "تعذر حذف المشكلة: " +
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showMessage(
+        "تم حذف المشكلة."
+    );
+
+
+    await loadCurriculum();
+
+}
+
+
+/* =========================
+   إغلاق نافذة المشكلة
+========================= */
+
+document
+.getElementById(
+    "closeProblemModal"
+)
+.addEventListener(
+    "click",
+    function(){
+
+        document
+        .getElementById(
+            "problemModal"
+        )
+        .classList.remove(
+            "active"
+        );
+
+        selectedIssueId =
+            null;
+
+    }
+);
+
+
+/* =========================
+   قائمة الإشكاليات للمقال
+========================= */
 
 function populateIssueSelect(){
 
@@ -1324,26 +1979,46 @@ function populateIssueSelect(){
 
     `;
 
-    curriculum.forEach(function(issue,index){
 
-        const option =
-            document.createElement("option");
+    curriculum.forEach(
+        function(issue){
 
-        option.value = index;
-        option.textContent = issue.name;
+            const option =
+                document.createElement(
+                    "option"
+                );
 
-        articleIssue.appendChild(option);
 
-    });
+            option.value =
+                issue.name;
+
+
+            option.textContent =
+                issue.name;
+
+
+            articleIssue.appendChild(
+                option
+            );
+
+        }
+    );
+
 
     updateProblemSelect();
 
 }
 
+
+/* =========================
+   قائمة المشاكل للمقال
+========================= */
+
 articleIssue.addEventListener(
     "change",
     updateProblemSelect
 );
+
 
 function updateProblemSelect(){
 
@@ -1355,36 +2030,71 @@ function updateProblemSelect(){
 
     `;
 
-    const index =
+
+    const issueName =
         articleIssue.value;
 
-    if(index === ""){
+
+    if(!issueName){
+
         return;
+
     }
+
 
     const issue =
-        curriculum[Number(index)];
+        curriculum.find(
+            function(item){
+
+                return (
+                    item.name ===
+                    issueName
+                );
+
+            }
+        );
+
 
     if(!issue){
+
         return;
+
     }
+
 
     (
         issue.problems || []
     )
-    .forEach(function(problem){
+    .forEach(
+        function(problem){
 
-        const option =
-            document.createElement("option");
+            const option =
+                document.createElement(
+                    "option"
+                );
 
-        option.value = problem;
-        option.textContent = problem;
 
-        articleProblem.appendChild(option);
+            option.value =
+                problem.name;
 
-    });
+
+            option.textContent =
+                problem.name;
+
+
+            articleProblem.appendChild(
+                option
+            );
+
+        }
+    );
 
 }
+
+
+/* =========================
+   تحميل المقالات
+========================= */
 
 async function loadArticles(){
 
@@ -1392,7 +2102,8 @@ async function loadArticles(){
 
         <tr>
 
-            <td colspan="5"
+            <td
+                colspan="5"
                 style="text-align:center;">
 
                 جاري تحميل المقالات...
@@ -1402,6 +2113,7 @@ async function loadArticles(){
         </tr>
 
     `;
+
 
     const {
         data,
@@ -1417,6 +2129,7 @@ async function loadArticles(){
             }
         );
 
+
     if(error){
 
         console.error(error);
@@ -1431,17 +2144,28 @@ async function loadArticles(){
 
     }
 
-    articles = data || [];
+
+    articles =
+        data || [];
+
 
     renderArticles();
 
 }
 
+
+/* =========================
+   عرض المقالات
+========================= */
+
 function renderArticles(){
 
     articlesTable.innerHTML = "";
 
-    if(articles.length === 0){
+
+    if(
+        articles.length === 0
+    ){
 
         articlesTable.innerHTML = `
 
@@ -1463,199 +2187,348 @@ function renderArticles(){
 
     }
 
-    articles.forEach(function(article){
 
-        const row =
-            document.createElement("tr");
+    articles.forEach(
+        function(article){
 
-        const title =
-            document.createElement("td");
+            const row =
+                document.createElement(
+                    "tr"
+                );
 
-        title.textContent =
-            article.title || "بدون عنوان";
 
-        const issue =
-            document.createElement("td");
+            const title =
+                document.createElement(
+                    "td"
+                );
 
-        issue.textContent =
-            article.issue || "-";
+            title.textContent =
+                article.title ||
+                "بدون عنوان";
 
-        const problem =
-            document.createElement("td");
 
-        problem.textContent =
-            article.problem || "-";
+            const issue =
+                document.createElement(
+                    "td"
+                );
 
-        const status =
-            document.createElement("td");
+            issue.textContent =
+                article.issue ||
+                "-";
 
-        const statusSpan =
-            document.createElement("span");
 
-        statusSpan.className =
-            article.published
-            ?
-            "status status-published"
-            :
-            "status status-hidden";
+            const problem =
+                document.createElement(
+                    "td"
+                );
 
-        statusSpan.textContent =
-            article.published
-            ?
-            "منشور"
-            :
-            "مخفي";
+            problem.textContent =
+                article.problem ||
+                "-";
 
-        status.appendChild(statusSpan);
 
-        const actions =
-            document.createElement("td");
+            const status =
+                document.createElement(
+                    "td"
+                );
 
-        const edit =
-            document.createElement("button");
 
-        edit.className = "btn btn-dark";
-        edit.textContent = "تعديل";
+            const statusSpan =
+                document.createElement(
+                    "span"
+                );
 
-        edit.onclick =
-            function(){
-                editArticle(article);
-            };
 
-        const toggle =
-            document.createElement("button");
+            statusSpan.className =
+                article.published
+                ?
+                "status status-published"
+                :
+                "status status-hidden";
 
-        toggle.className =
-            article.published
-            ?
-            "btn btn-dark"
-            :
-            "btn btn-green";
 
-        toggle.textContent =
-            article.published
-            ?
-            "إخفاء"
-            :
-            "نشر";
+            statusSpan.textContent =
+                article.published
+                ?
+                "منشور"
+                :
+                "مخفي";
 
-        toggle.onclick =
-            function(){
-                togglePublished(article);
-            };
 
-        const remove =
-            document.createElement("button");
+            status.appendChild(
+                statusSpan
+            );
 
-        remove.className = "btn btn-red";
-        remove.textContent = "حذف";
 
-        remove.onclick =
-            function(){
-                deleteArticle(article);
-            };
+            const actions =
+                document.createElement(
+                    "td"
+                );
 
-        actions.appendChild(edit);
-        actions.appendChild(toggle);
-        actions.appendChild(remove);
 
-        row.appendChild(title);
-        row.appendChild(issue);
-        row.appendChild(problem);
-        row.appendChild(status);
-        row.appendChild(actions);
+            const edit =
+                document.createElement(
+                    "button"
+                );
 
-        articlesTable.appendChild(row);
+            edit.className =
+                "btn btn-dark";
 
-    });
+            edit.textContent =
+                "تعديل";
+
+
+            edit.onclick =
+                function(){
+
+                    editArticle(
+                        article
+                    );
+
+                };
+
+
+            const toggle =
+                document.createElement(
+                    "button"
+                );
+
+            toggle.className =
+                article.published
+                ?
+                "btn btn-dark"
+                :
+                "btn btn-green";
+
+
+            toggle.textContent =
+                article.published
+                ?
+                "إخفاء"
+                :
+                "نشر";
+
+
+            toggle.onclick =
+                function(){
+
+                    togglePublished(
+                        article
+                    );
+
+                };
+
+
+            const remove =
+                document.createElement(
+                    "button"
+                );
+
+            remove.className =
+                "btn btn-red";
+
+            remove.textContent =
+                "حذف";
+
+
+            remove.onclick =
+                function(){
+
+                    deleteArticle(
+                        article
+                    );
+
+                };
+
+
+            actions.appendChild(
+                edit
+            );
+
+            actions.appendChild(
+                toggle
+            );
+
+            actions.appendChild(
+                remove
+            );
+
+
+            row.appendChild(
+                title
+            );
+
+            row.appendChild(
+                issue
+            );
+
+            row.appendChild(
+                problem
+            );
+
+            row.appendChild(
+                status
+            );
+
+            row.appendChild(
+                actions
+            );
+
+
+            articlesTable.appendChild(
+                row
+            );
+
+        }
+    );
 
 }
 
+
+/* =========================
+   تنظيف نموذج المقال
+========================= */
+
 function clearArticleForm(){
 
-    editingArticleId = null;
+    editingArticleId =
+        null;
+
 
     document
-    .getElementById("articleFormTitle")
+    .getElementById(
+        "articleFormTitle"
+    )
     .textContent =
         "إضافة مقال جديد";
 
-    document
-    .getElementById("articleTitle")
-    .value = "";
 
     document
-    .getElementById("articleType")
+    .getElementById(
+        "articleTitle"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "articleType"
+    )
     .value =
         "مقال فلسفي";
 
+
     document
-    .getElementById("articleAuthor")
+    .getElementById(
+        "articleAuthor"
+    )
     .value =
         "الأستاذ زيد";
 
-    document
-    .getElementById("articleExcerpt")
-    .value = "";
 
     document
-    .getElementById("articleContent")
+    .getElementById(
+        "articleExcerpt"
+    )
     .value = "";
 
+
     document
-    .getElementById("articlePublished")
+    .getElementById(
+        "articleContent"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "articlePublished"
+    )
     .value =
         "true";
 
-    articleIssue.value = "";
+
+    articleIssue.value =
+        "";
+
 
     updateProblemSelect();
 
+
     document
-    .getElementById("cancelEditButton")
+    .getElementById(
+        "cancelEditButton"
+    )
     .style.display =
         "none";
 
 }
 
+
+/* =========================
+   تعديل مقال
+========================= */
+
 function editArticle(article){
 
-    editingArticleId = article.id;
+    editingArticleId =
+        article.id;
+
 
     document
-    .getElementById("articleFormTitle")
+    .getElementById(
+        "articleFormTitle"
+    )
     .textContent =
         "تعديل المقال";
 
+
     document
-    .getElementById("articleTitle")
+    .getElementById(
+        "articleTitle"
+    )
     .value =
         article.title || "";
 
+
     document
-    .getElementById("articleType")
+    .getElementById(
+        "articleType"
+    )
     .value =
         article.article_type ||
         "مقال فلسفي";
 
+
     document
-    .getElementById("articleAuthor")
+    .getElementById(
+        "articleAuthor"
+    )
     .value =
         article.author ||
         "الأستاذ زيد";
 
+
     document
-    .getElementById("articleExcerpt")
+    .getElementById(
+        "articleExcerpt"
+    )
     .value =
         article.excerpt || "";
 
+
     document
-    .getElementById("articleContent")
+    .getElementById(
+        "articleContent"
+    )
     .value =
         article.content || "";
 
+
     document
-    .getElementById("articlePublished")
+    .getElementById(
+        "articlePublished"
+    )
     .value =
         article.published
         ?
@@ -1663,29 +2536,25 @@ function editArticle(article){
         :
         "false";
 
-    const issueIndex =
-        curriculum.findIndex(
-            issue =>
-                normalizeText(issue.name)
-                ===
-                normalizeText(article.issue)
-        );
 
-    if(issueIndex >= 0){
+    articleIssue.value =
+        article.issue || "";
 
-        articleIssue.value = issueIndex;
 
-        updateProblemSelect();
+    updateProblemSelect();
 
-        articleProblem.value =
-            article.problem || "";
 
-    }
+    articleProblem.value =
+        article.problem || "";
+
 
     document
-    .getElementById("cancelEditButton")
+    .getElementById(
+        "cancelEditButton"
+    )
     .style.display =
         "inline-block";
+
 
     document
     .querySelector(
@@ -1695,40 +2564,48 @@ function editArticle(article){
 
 }
 
-function normalizeText(value){
 
-    return String(value || "")
-        .trim()
-        .replace(/\s+/g," ");
-
-}
+/* =========================
+   حفظ المقال
+========================= */
 
 document
-.getElementById("saveArticleButton")
+.getElementById(
+    "saveArticleButton"
+)
 .addEventListener(
     "click",
     saveArticle
 );
 
+
 async function saveArticle(){
 
     const title =
         document
-        .getElementById("articleTitle")
+        .getElementById(
+            "articleTitle"
+        )
         .value
         .trim();
 
-    const issueIndex =
+
+    const issue =
         articleIssue.value;
+
 
     const problem =
         articleProblem.value;
 
+
     const content =
         document
-        .getElementById("articleContent")
+        .getElementById(
+            "articleContent"
+        )
         .value
         .trim();
+
 
     if(!title){
 
@@ -1741,7 +2618,8 @@ async function saveArticle(){
 
     }
 
-    if(issueIndex === ""){
+
+    if(!issue){
 
         showMessage(
             "اختر الإشكالية.",
@@ -1751,6 +2629,7 @@ async function saveArticle(){
         return;
 
     }
+
 
     if(!problem){
 
@@ -1763,6 +2642,7 @@ async function saveArticle(){
 
     }
 
+
     if(!content){
 
         showMessage(
@@ -1774,14 +2654,12 @@ async function saveArticle(){
 
     }
 
-    const issue =
-        curriculum[Number(issueIndex)];
 
     const articleData = {
 
         title:title,
 
-        issue:issue.name,
+        issue:issue,
 
         problem:problem,
 
@@ -1789,37 +2667,51 @@ async function saveArticle(){
 
         excerpt:
             document
-            .getElementById("articleExcerpt")
+            .getElementById(
+                "articleExcerpt"
+            )
             .value
             .trim(),
 
         article_type:
             document
-            .getElementById("articleType")
+            .getElementById(
+                "articleType"
+            )
             .value
             .trim(),
 
         author:
             document
-            .getElementById("articleAuthor")
+            .getElementById(
+                "articleAuthor"
+            )
             .value
             .trim(),
 
         published:
             document
-            .getElementById("articlePublished")
-            .value === "true"
+            .getElementById(
+                "articlePublished"
+            )
+            .value
+            ===
+            "true"
 
     };
 
+
     let result;
+
 
     if(editingArticleId){
 
         result =
             await supabaseClient
             .from("articles")
-            .update(articleData)
+            .update(
+                articleData
+            )
             .eq(
                 "id",
                 editingArticleId
@@ -1830,13 +2722,18 @@ async function saveArticle(){
         result =
             await supabaseClient
             .from("articles")
-            .insert(articleData);
+            .insert(
+                articleData
+            );
 
     }
 
+
     if(result.error){
 
-        console.error(result.error);
+        console.error(
+            result.error
+        );
 
         showMessage(
             "حدث خطأ: " +
@@ -1848,41 +2745,76 @@ async function saveArticle(){
 
     }
 
+
+    const wasEditing =
+        Boolean(
+            editingArticleId
+        );
+
+
     showMessage(
-        editingArticleId
+        wasEditing
         ?
         "تم تعديل المقال."
         :
         "تمت إضافة المقال."
     );
 
+
     clearArticleForm();
+
 
     await loadArticles();
 
 }
 
+
+/* =========================
+   إلغاء التعديل
+========================= */
+
 document
-.getElementById("cancelEditButton")
+.getElementById(
+    "cancelEditButton"
+)
 .addEventListener(
     "click",
     clearArticleForm
 );
 
-async function deleteArticle(article){
+
+/* =========================
+   حذف مقال
+========================= */
+
+async function deleteArticle(
+    article
+){
 
     const confirmed =
         confirm(
-            "هل تريد حذف المقال:\n\n" +
-            article.title +
-            "\n\nهذا الإجراء لا يمكن التراجع عنه."
+
+            "هل تريد حذف المقال:\n\n"
+            +
+            article.title
+            +
+            "\n\n"
+            +
+            "هذا الإجراء لا يمكن التراجع عنه."
+
         );
 
+
     if(!confirmed){
+
         return;
+
     }
 
-    const {error} =
+
+    const {
+        error
+    } =
         await supabaseClient
         .from("articles")
         .delete()
@@ -1890,6 +2822,7 @@ async function deleteArticle(article){
             "id",
             article.id
         );
+
 
     if(error){
 
@@ -1903,25 +2836,41 @@ async function deleteArticle(article){
 
     }
 
-    showMessage("تم حذف المقال.");
+
+    showMessage(
+        "تم حذف المقال."
+    );
+
 
     await loadArticles();
 
 }
 
-async function togglePublished(article){
 
-    const {error} =
+/* =========================
+   نشر / إخفاء مقال
+========================= */
+
+async function togglePublished(
+    article
+){
+
+    const {
+        error
+    } =
         await supabaseClient
         .from("articles")
         .update({
+
             published:
                 !article.published
+
         })
         .eq(
             "id",
             article.id
         );
+
 
     if(error){
 
@@ -1934,17 +2883,26 @@ async function togglePublished(article){
 
     }
 
+
     showMessage(
+
         article.published
         ?
         "تم إخفاء المقال."
         :
         "تم نشر المقال."
+
     );
+
 
     await loadArticles();
 
 }
+
+
+/* =========================
+   بدء لوحة الإدارة
+========================= */
 
 async function start(){
 
@@ -1953,6 +2911,7 @@ async function start(){
     await loadArticles();
 
 }
+
 
 start();
 
