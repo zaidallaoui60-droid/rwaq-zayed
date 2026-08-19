@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>لوحة إدارة رواق زايد للفلسفة</title>
@@ -12,44 +9,23 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700;800&display=swap"
-rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-
-/* =====================================================
-   ROOT
-===================================================== */
-
 :root{
-
     --bg:#080707;
     --bg2:#100e10;
     --card:#151215;
-
     --gold:#c5a059;
     --gold-light:#e5cf87;
-
     --white:#f4f1ea;
     --muted:#a39e93;
-
     --green:#5fcf91;
     --red:#d86b6b;
     --blue:#6da8e8;
-
     --border:rgba(197,160,89,.3);
-
 }
-
-
-/* =====================================================
-   RESET
-===================================================== */
 
 *{
     box-sizing:border-box;
@@ -58,936 +34,613 @@ rel="stylesheet">
 }
 
 body{
-
     background:
-        radial-gradient(
-            circle at top,
-            #171216,
-            #080707 55%
-        );
-
+        radial-gradient(circle at top,#171216,#080707 55%);
     color:var(--white);
-
     font-family:'Cairo',sans-serif;
-
     min-height:100vh;
-
 }
 
-
-/* =====================================================
-   HEADER
-===================================================== */
-
 .header{
-
     position:sticky;
-
     top:0;
-
     z-index:100;
-
     background:rgba(8,7,7,.94);
-
     backdrop-filter:blur(15px);
-
-    border-bottom:
-        1px solid var(--border);
-
+    border-bottom:1px solid var(--border);
 }
 
 .header-inner{
-
     width:min(1250px,94%);
-
     margin:auto;
-
     min-height:75px;
-
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
     gap:20px;
-
 }
 
 .brand{
-
     display:flex;
-
     align-items:center;
-
     gap:12px;
-
 }
 
 .logo{
-
     width:45px;
-
     height:45px;
-
     border:1px solid var(--gold);
-
     border-radius:50%;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     color:var(--gold-light);
-
     font-size:22px;
-
 }
 
 .brand h1{
-
     font-family:'Amiri',serif;
-
     color:var(--gold-light);
-
     font-size:1.5rem;
-
 }
 
 .brand span{
-
     display:block;
-
     color:var(--muted);
-
     font-size:.7rem;
-
 }
 
 .back-btn{
-
     text-decoration:none;
-
     color:var(--gold-light);
-
     border:1px solid var(--border);
-
     padding:8px 16px;
-
     border-radius:20px;
-
     font-size:.85rem;
-
 }
 
-
-/* =====================================================
-   LAYOUT
-===================================================== */
-
 .container{
-
     width:min(1250px,94%);
-
     margin:35px auto 70px;
-
 }
 
 .page-title{
-
     text-align:center;
-
     margin-bottom:35px;
-
 }
 
 .page-title h2{
-
     font-family:'Amiri',serif;
-
     color:var(--gold-light);
-
     font-size:2.5rem;
-
 }
 
 .page-title p{
-
     color:var(--muted);
-
     margin-top:5px;
-
 }
 
-
-/* =====================================================
-   TABS
-===================================================== */
-
 .tabs{
-
     display:flex;
-
     gap:10px;
-
     flex-wrap:wrap;
-
     margin-bottom:25px;
-
 }
 
 .tab{
-
     border:1px solid var(--border);
-
     background:#111;
-
     color:var(--muted);
-
     padding:10px 20px;
-
     border-radius:25px;
-
     cursor:pointer;
-
     font-family:inherit;
-
 }
 
 .tab.active{
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--gold-light),
-            var(--gold)
-        );
-
+    background:linear-gradient(135deg,var(--gold-light),var(--gold));
     color:#000;
-
     border-color:var(--gold-light);
-
 }
 
-
-/* =====================================================
-   PANELS
-===================================================== */
-
 .panel{
-
     display:none;
-
 }
 
 .panel.active{
-
     display:block;
-
 }
 
 .card{
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(25,22,25,.98),
-            rgba(12,10,12,.98)
-        );
-
+    background:linear-gradient(145deg,rgba(25,22,25,.98),rgba(12,10,12,.98));
     border:1px solid var(--border);
-
     border-radius:12px;
-
     padding:25px;
-
     margin-bottom:25px;
-
 }
 
 .card h3{
-
     font-family:'Amiri',serif;
-
     color:var(--gold-light);
-
     font-size:1.6rem;
-
     margin-bottom:18px;
-
 }
 
-
-/* =====================================================
-   FORM
-===================================================== */
-
 .form-grid{
-
     display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
+    grid-template-columns:repeat(2,1fr);
     gap:16px;
-
 }
 
 .full{
-
     grid-column:1/-1;
-
 }
 
 label{
-
     display:block;
-
     color:var(--muted);
-
     font-size:.82rem;
-
     margin-bottom:6px;
-
 }
 
 input,
 textarea,
 select{
-
     width:100%;
-
     background:#090809;
-
     color:var(--white);
-
-    border:1px solid
-        rgba(197,160,89,.28);
-
+    border:1px solid rgba(197,160,89,.28);
     border-radius:7px;
-
     padding:11px 13px;
-
     outline:none;
-
     font-family:inherit;
-
 }
 
 input:focus,
 textarea:focus,
 select:focus{
-
     border-color:var(--gold);
-
 }
 
 textarea{
-
     min-height:220px;
-
     resize:vertical;
-
 }
 
-
-/* =====================================================
-   BUTTONS
-===================================================== */
-
 .buttons{
-
     display:flex;
-
     gap:10px;
-
     flex-wrap:wrap;
-
     margin-top:18px;
-
 }
 
 button{
-
     font-family:inherit;
-
 }
 
 .btn{
-
     border:0;
-
     border-radius:7px;
-
-    padding:10px 20px;
-
+    padding:9px 16px;
     cursor:pointer;
-
     font-weight:700;
-
 }
 
 .btn-gold{
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--gold-light),
-            var(--gold)
-        );
-
+    background:linear-gradient(135deg,var(--gold-light),var(--gold));
     color:#000;
-
 }
 
 .btn-dark{
-
     background:#1b181b;
-
     color:var(--white);
-
     border:1px solid var(--border);
-
 }
 
 .btn-red{
-
-    background:
-        rgba(216,107,107,.12);
-
-    border:1px solid
-        rgba(216,107,107,.45);
-
+    background:rgba(216,107,107,.12);
+    border:1px solid rgba(216,107,107,.45);
     color:#f18b8b;
-
 }
 
 .btn-green{
-
-    background:
-        rgba(95,207,145,.1);
-
-    border:1px solid
-        rgba(95,207,145,.4);
-
+    background:rgba(95,207,145,.1);
+    border:1px solid rgba(95,207,145,.4);
     color:#78e4a5;
-
 }
 
+.btn-blue{
+    background:rgba(109,168,232,.1);
+    border:1px solid rgba(109,168,232,.4);
+    color:#8bbcf0;
+}
 
-/* =====================================================
-   CURRICULUM
-===================================================== */
+/* PROGRAM */
+
+.section-card{
+    border:1px solid var(--border);
+    border-radius:12px;
+    margin-bottom:25px;
+    overflow:hidden;
+}
+
+.section-header{
+    padding:20px;
+    background:linear-gradient(
+        90deg,
+        rgba(197,160,89,.15),
+        transparent
+    );
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.section-title{
+    font-family:'Amiri',serif;
+    font-size:1.55rem;
+    color:var(--gold-light);
+}
+
+.section-actions{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+.semesters{
+    padding:18px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.semester{
+    border:1px solid rgba(197,160,89,.2);
+    border-radius:10px;
+    overflow:hidden;
+    background:rgba(10,9,10,.65);
+}
+
+.semester-header{
+    padding:15px;
+    background:rgba(197,160,89,.08);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+}
+
+.semester-title{
+    color:var(--gold-light);
+    font-family:'Amiri',serif;
+    font-size:1.25rem;
+}
+
+.issue-list{
+    padding:12px;
+}
 
 .issue{
-
-    border:1px solid var(--border);
-
-    border-radius:10px;
-
+    border:1px solid rgba(197,160,89,.18);
+    border-radius:8px;
+    margin-bottom:10px;
     overflow:hidden;
+}
 
-    margin-bottom:20px;
-
+.issue:last-child{
+    margin-bottom:0;
 }
 
 .issue-header{
-
-    padding:17px 20px;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(197,160,89,.14),
-            transparent
-        );
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    gap:15px;
-
+    padding:12px;
+    background:rgba(197,160,89,.05);
 }
 
 .issue-name{
+    color:#eee;
+    font-weight:700;
+}
 
-    font-family:'Amiri',serif;
+.issue-subtitle{
+    color:var(--muted);
+    font-size:.72rem;
+    margin-top:3px;
+}
 
-    color:var(--gold-light);
-
-    font-size:1.4rem;
-
+.issue-actions{
+    display:flex;
+    gap:6px;
+    margin-top:10px;
+    flex-wrap:wrap;
 }
 
 .problems{
-
-    padding:15px;
-
+    padding:10px;
 }
 
 .problem{
-
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
-    gap:10px;
-
-    padding:12px 15px;
-
-    border-bottom:
-        1px solid
-        rgba(197,160,89,.1);
-
+    gap:8px;
+    padding:9px;
+    border-bottom:1px solid rgba(197,160,89,.08);
 }
 
 .problem:last-child{
-
     border-bottom:0;
-
 }
 
 .problem-name{
-
-    color:#ddd;
-
+    color:#ccc;
+    font-size:.8rem;
 }
 
+.empty{
+    text-align:center;
+    color:#777;
+    padding:18px;
+    font-size:.82rem;
+}
 
-/* =====================================================
-   ARTICLES TABLE
-===================================================== */
+/* ARTICLES */
 
 .table-wrapper{
-
     overflow-x:auto;
-
 }
 
 table{
-
     width:100%;
-
     border-collapse:collapse;
-
     min-width:850px;
-
 }
 
-th,
-td{
-
+th,td{
     padding:13px;
-
-    border-bottom:
-        1px solid
-        rgba(197,160,89,.12);
-
+    border-bottom:1px solid rgba(197,160,89,.12);
     text-align:right;
-
 }
 
 th{
-
     color:var(--gold-light);
-
     font-size:.85rem;
-
     background:#111;
-
 }
 
 td{
-
     color:#ddd;
-
     font-size:.82rem;
-
 }
 
 .status{
-
     padding:4px 10px;
-
     border-radius:20px;
-
     font-size:.7rem;
-
 }
 
 .status-published{
-
     color:#79e6a6;
-
-    background:
-        rgba(95,207,145,.1);
-
+    background:rgba(95,207,145,.1);
 }
 
 .status-hidden{
-
     color:#e78a8a;
-
-    background:
-        rgba(216,107,107,.1);
-
+    background:rgba(216,107,107,.1);
 }
 
-
-/* =====================================================
-   MESSAGE
-===================================================== */
+/* MESSAGE */
 
 .message{
-
     position:fixed;
-
     left:20px;
-
     bottom:20px;
-
     z-index:9999;
-
     min-width:260px;
-
     max-width:90%;
-
     padding:13px 18px;
-
     border-radius:8px;
-
     background:#171417;
-
     border:1px solid var(--border);
-
     color:var(--white);
-
-    box-shadow:
-        0 15px 40px
-        rgba(0,0,0,.5);
-
+    box-shadow:0 15px 40px rgba(0,0,0,.5);
     display:none;
-
 }
 
 .message.show{
-
     display:block;
-
 }
 
 .message.success{
-
     border-color:rgba(95,207,145,.5);
-
 }
 
 .message.error{
-
     border-color:rgba(216,107,107,.5);
-
 }
 
-
-/* =====================================================
-   MODAL
-===================================================== */
+/* MODAL */
 
 .modal{
-
     position:fixed;
-
     inset:0;
-
     z-index:500;
-
     display:none;
-
     align-items:center;
-
     justify-content:center;
-
     padding:20px;
-
-    background:
-        rgba(0,0,0,.85);
-
+    background:rgba(0,0,0,.85);
     backdrop-filter:blur(8px);
-
 }
 
 .modal.active{
-
     display:flex;
-
 }
 
 .modal-box{
-
-    width:min(700px,100%);
-
+    width:min(650px,100%);
     max-height:90vh;
-
     overflow:auto;
-
     background:#121012;
-
     border:1px solid var(--border);
-
     border-radius:12px;
-
     padding:25px;
-
 }
 
 .modal-header{
-
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
     margin-bottom:20px;
+}
 
+.modal-header h3{
+    font-family:'Amiri',serif;
+    color:var(--gold-light);
+    font-size:1.5rem;
 }
 
 .close{
-
     width:38px;
-
     height:38px;
-
     border-radius:50%;
-
     border:1px solid var(--border);
-
     background:#090809;
-
     color:var(--gold-light);
-
     cursor:pointer;
-
     font-size:20px;
-
 }
 
+@media(max-width:850px){
 
-/* =====================================================
-   RESPONSIVE
-===================================================== */
+    .semesters{
+        grid-template-columns:1fr;
+    }
+}
 
 @media(max-width:700px){
 
     .form-grid{
-
         grid-template-columns:1fr;
-
     }
 
     .full{
-
         grid-column:auto;
-
     }
 
     .header-inner{
-
         min-height:65px;
-
     }
 
     .brand h1{
-
         font-size:1.15rem;
-
     }
 
     .page-title h2{
-
         font-size:2rem;
-
     }
 
-    .issue-header{
-
+    .section-header{
         align-items:flex-start;
-
         flex-direction:column;
-
     }
-
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =====================================================
-   HEADER
-===================================================== -->
-
 <header class="header">
-
 <div class="header-inner">
 
 <div class="brand">
 
-<div class="logo">
-❖
-</div>
+<div class="logo">❖</div>
 
 <div>
-
-<h1>
-لوحة إدارة رواق زايد
-</h1>
-
-<span>
-إدارة البرنامج والمقالات
-</span>
-
+<h1>لوحة إدارة رواق زايد</h1>
+<span>إدارة الشعب والفصول والإشكاليات والمقالات</span>
 </div>
 
 </div>
-
 
 <a
-href="https://riwakzaid.vercel.app/"
+href="https://rewaqzaid.vercel.app/"
 class="back-btn"
 target="_blank">
-
 فتح الموقع
-
 </a>
 
 </div>
-
 </header>
-
-
-<!-- =====================================================
-   MAIN
-===================================================== -->
 
 <main class="container">
 
-
 <div class="page-title">
 
-<h2>
-لوحة الإدارة
-</h2>
+<h2>لوحة الإدارة</h2>
 
 <p>
-من هنا يمكنك التحكم في البرنامج والمقالات دون تعديل كود الموقع.
+إدارة البرنامج الدراسي والمقالات من مكان واحد
 </p>
 
 </div>
-
-
-<!-- =====================================================
-   TABS
-===================================================== -->
 
 <div class="tabs">
 
 <button
 class="tab active"
-data-panel="curriculumPanel">
-
+data-panel="programPanel">
 البرنامج الدراسي
-
 </button>
-
 
 <button
 class="tab"
 data-panel="articlePanel">
-
 المقالات
-
 </button>
-
 
 <button
 class="tab"
 data-panel="addArticlePanel">
-
 إضافة مقال
-
 </button>
 
 </div>
 
 
-<!-- =====================================================
-   CURRICULUM PANEL
-===================================================== -->
+<!-- ================= PROGRAM ================= -->
 
 <section
-id="curriculumPanel"
+id="programPanel"
 class="panel active">
-
 
 <div class="card">
 
-<h3>
-إضافة إشكالية
-</h3>
-
+<h3>إضافة شعبة</h3>
 
 <div class="form-grid">
 
-<div>
+<div class="full">
 
-<label>
-اسم الإشكالية
-</label>
+<label>اسم الشعبة</label>
 
 <input
-id="issueName"
+id="sectionName"
 type="text"
-placeholder="مثال: الإشكالية الأولى: إدراك العالم الخارجي">
-
-</div>
-
-
-<div>
-
-<label>
-الوصف
-</label>
-
-<input
-id="issueSubtitle"
-type="text"
-placeholder="مثال: مقالات الفصل الأول">
+placeholder="مثال: شعبة آداب وفلسفة — السنة الثالثة ثانوي">
 
 </div>
 
 </div>
-
 
 <div class="buttons">
 
 <button
 class="btn btn-gold"
-id="addIssueButton">
-
-إضافة الإشكالية
-
+id="addSectionButton">
++ إضافة الشعبة
 </button>
 
 </div>
@@ -997,14 +650,10 @@ id="addIssueButton">
 
 <div class="card">
 
-<h3>
-البرنامج الحالي
-</h3>
+<h3>البرنامج الدراسي</h3>
 
-<div id="curriculumList">
-
+<div id="programList">
 جاري تحميل البرنامج...
-
 </div>
 
 </div>
@@ -1012,56 +661,33 @@ id="addIssueButton">
 </section>
 
 
-<!-- =====================================================
-   ARTICLES PANEL
-===================================================== -->
+<!-- ================= ARTICLES ================= -->
 
 <section
 id="articlePanel"
 class="panel">
 
-
 <div class="card">
 
-<h3>
-المقالات الموجودة
-</h3>
+<h3>المقالات الموجودة</h3>
 
 <div class="table-wrapper">
 
 <table>
 
 <thead>
-
 <tr>
-
-<th>
-العنوان
-</th>
-
-<th>
-الإشكالية
-</th>
-
-<th>
-المشكلة
-</th>
-
-<th>
-الحالة
-</th>
-
-<th>
-الإجراءات
-</th>
-
+<th>العنوان</th>
+<th>الشعبة</th>
+<th>الفصل</th>
+<th>الإشكالية</th>
+<th>المشكلة</th>
+<th>الحالة</th>
+<th>الإجراءات</th>
 </tr>
-
 </thead>
 
-<tbody id="articlesTable">
-
-</tbody>
+<tbody id="articlesTable"></tbody>
 
 </table>
 
@@ -1072,14 +698,11 @@ class="panel">
 </section>
 
 
-<!-- =====================================================
-   ADD ARTICLE
-===================================================== -->
+<!-- ================= ADD ARTICLE ================= -->
 
 <section
 id="addArticlePanel"
 class="panel">
-
 
 <div class="card">
 
@@ -1087,113 +710,79 @@ class="panel">
 إضافة مقال جديد
 </h3>
 
-
 <div class="form-grid">
 
-
 <div>
-
-<label>
-عنوان المقال
-</label>
+<label>عنوان المقال</label>
 
 <input
 id="articleTitle"
 type="text"
 placeholder="عنوان المقال">
-
 </div>
 
-
 <div>
-
-<label>
-نوع المقال
-</label>
+<label>نوع المقال</label>
 
 <input
 id="articleType"
 type="text"
-value="مقال فلسفي"
-placeholder="مقال فلسفي">
-
+value="مقال فلسفي">
 </div>
 
+<div>
+<label>الشعبة</label>
+
+<select id="articleSection">
+<option value="">اختر الشعبة</option>
+</select>
+</div>
 
 <div>
+<label>الفصل</label>
 
-<label>
-الإشكالية
-</label>
+<select id="articleSemester">
+<option value="">اختر الفصل</option>
+</select>
+</div>
+
+<div>
+<label>الإشكالية</label>
 
 <select id="articleIssue">
-
-<option value="">
-اختر الإشكالية
-</option>
-
+<option value="">اختر الإشكالية</option>
 </select>
-
 </div>
 
-
 <div>
-
-<label>
-المشكلة
-</label>
+<label>المشكلة</label>
 
 <select id="articleProblem">
-
-<option value="">
-اختر المشكلة
-</option>
-
+<option value="">اختر المشكلة</option>
 </select>
-
 </div>
 
-
 <div>
-
-<label>
-الكاتب
-</label>
+<label>الكاتب</label>
 
 <input
 id="articleAuthor"
 type="text"
 value="الأستاذ زيد">
-
 </div>
-
 
 <div>
-
-<label>
-الحالة
-</label>
+<label>الحالة</label>
 
 <select id="articlePublished">
-
-<option value="true">
-منشور
-</option>
-
-<option value="false">
-مخفي
-</option>
-
+<option value="true">منشور</option>
+<option value="false">مخفي</option>
 </select>
-
 </div>
-
 
 <div class="full">
 
-<label>
-مقتطف المقال
-</label>
+<label>مقتطف المقال</label>
 
 <input
 id="articleExcerpt"
@@ -1202,12 +791,9 @@ placeholder="مقتطف قصير يظهر في البطاقة">
 
 </div>
 
-
 <div class="full">
 
-<label>
-محتوى المقال
-</label>
+<label>محتوى المقال</label>
 
 <textarea
 id="articleContent"
@@ -1217,25 +803,19 @@ placeholder="اكتب المقال هنا..."></textarea>
 
 </div>
 
-
 <div class="buttons">
 
 <button
 class="btn btn-gold"
 id="saveArticleButton">
-
 حفظ المقال
-
 </button>
-
 
 <button
 class="btn btn-dark"
 id="cancelEditButton"
-style="display:none;">
-
+style="display:none">
 إلغاء التعديل
-
 </button>
 
 </div>
@@ -1244,71 +824,39 @@ style="display:none;">
 
 </section>
 
-
 </main>
 
 
-<!-- =====================================================
-   ADD PROBLEM MODAL
-===================================================== -->
+<!-- ================= MODAL ================= -->
 
 <div
-id="problemModal"
+id="modal"
 class="modal">
 
 <div class="modal-box">
 
 <div class="modal-header">
 
-<h3>
-إضافة مشكلة
+<h3 id="modalTitle">
+إضافة
 </h3>
 
 <button
 class="close"
-id="closeProblemModal">
-
+id="closeModal">
 ×
 </button>
 
 </div>
 
-
-<label>
-اسم المشكلة
-</label>
-
-<input
-id="problemName"
-type="text"
-placeholder="مثال: مشكلة الإحساس والإدراك">
-
-
-<div class="buttons">
-
-<button
-class="btn btn-gold"
-id="saveProblemButton">
-
-إضافة المشكلة
-
-</button>
-
-</div>
+<div id="modalContent"></div>
 
 </div>
 
 </div>
 
 
-<!-- =====================================================
-   MESSAGE
-===================================================== -->
-
-<div
-id="message"
-class="message">
-</div>
+<div id="message" class="message"></div>
 
 
 <script>
@@ -1323,7 +871,6 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_g6Nc_ma8cC3vsUDZZL-RJw_e4JbO6LF";
 
-
 const supabaseClient =
 window.supabase.createClient(
     SUPABASE_URL,
@@ -1335,70 +882,63 @@ window.supabase.createClient(
    STATE
 ===================================================== */
 
-let curriculum = [];
-
+let sections = [];
+let issues = [];
+let problems = [];
 let articles = [];
 
 let editingArticleId = null;
-
-let selectedIssueIndex = null;
 
 
 /* =====================================================
    ELEMENTS
 ===================================================== */
 
-const curriculumList =
-document.getElementById(
-    "curriculumList"
-);
+const programList =
+document.getElementById("programList");
 
 const articlesTable =
-document.getElementById(
-    "articlesTable"
-);
+document.getElementById("articlesTable");
+
+const articleSection =
+document.getElementById("articleSection");
+
+const articleSemester =
+document.getElementById("articleSemester");
 
 const articleIssue =
-document.getElementById(
-    "articleIssue"
-);
+document.getElementById("articleIssue");
 
 const articleProblem =
-document.getElementById(
-    "articleProblem"
-);
+document.getElementById("articleProblem");
+
+const modal =
+document.getElementById("modal");
+
+const modalTitle =
+document.getElementById("modalTitle");
+
+const modalContent =
+document.getElementById("modalContent");
 
 const message =
-document.getElementById(
-    "message"
-);
+document.getElementById("message");
 
 
 /* =====================================================
    MESSAGE
 ===================================================== */
 
-function showMessage(
-    text,
-    type="success"
-){
+function showMessage(text,type="success"){
 
-    message.textContent =
-        text;
+    message.textContent = text;
 
     message.className =
         "message show " + type;
 
-    setTimeout(
-        function(){
-
-            message.className =
-                "message";
-
-        },
-        3000
-    );
-
+    setTimeout(()=>{
+        message.className="message";
+    },3000);
 }
 
 
@@ -1408,1284 +948,1364 @@ function showMessage(
 
 document
 .querySelectorAll(".tab")
-.forEach(
-    function(tab){
+.forEach(tab=>{
 
-        tab.addEventListener(
-            "click",
-            function(){
+    tab.addEventListener("click",()=>{
 
-                document
-                .querySelectorAll(".tab")
-                .forEach(
-                    t =>
-                    t.classList.remove(
-                        "active"
-                    )
-                );
+        document
+        .querySelectorAll(".tab")
+        .forEach(t=>t.classList.remove("active"));
 
-                document
-                .querySelectorAll(".panel")
-                .forEach(
-                    p =>
-                    p.classList.remove(
-                        "active"
-                    )
-                );
+        document
+        .querySelectorAll(".panel")
+        .forEach(p=>p.classList.remove("active"));
 
-                tab.classList.add(
-                    "active"
-                );
+        tab.classList.add("active");
 
-                document
-                .getElementById(
-                    tab.dataset.panel
-                )
-                .classList.add(
-                    "active"
-                );
+        document
+        .getElementById(tab.dataset.panel)
+        .classList.add("active");
 
-            }
-        );
+    });
 
-    }
-);
+});
 
 
 /* =====================================================
-   LOAD CURRICULUM
+   MODAL
 ===================================================== */
 
-async function loadCurriculum(){
+function openModal(title,content){
 
-    /*
-       البرنامج مخزن في localStorage مؤقتًا
-       إلى أن ننشئ جدول curriculum في Supabase.
+    modalTitle.textContent = title;
 
-       المقالات نفسها تبقى في Supabase.
-    */
+    modalContent.innerHTML = content;
 
-    const saved =
-        localStorage.getItem(
-            "riwak_curriculum"
+    modal.classList.add("active");
+}
+
+function closeModal(){
+
+    modal.classList.remove("active");
+
+    modalContent.innerHTML="";
+}
+
+document
+.getElementById("closeModal")
+.addEventListener("click",closeModal);
+
+
+/* =====================================================
+   LOAD PROGRAM
+===================================================== */
+
+async function loadProgram(){
+
+    const [
+        sectionsResult,
+        issuesResult,
+        problemsResult
+    ] = await Promise.all([
+
+        supabaseClient
+        .from("sections")
+        .select("*")
+        .order("sort_order")
+        .order("created_at"),
+
+        supabaseClient
+        .from("issues")
+        .select("*")
+        .order("sort_order")
+        .order("created_at"),
+
+        supabaseClient
+        .from("problems")
+        .select("*")
+        .order("sort_order")
+        .order("created_at")
+
+    ]);
+
+    if(sectionsResult.error){
+        showMessage(
+            "خطأ في تحميل الشعب: "+
+            sectionsResult.error.message,
+            "error"
         );
-
-
-    if(saved){
-
-        try{
-
-            curriculum =
-                JSON.parse(saved);
-
-        }
-
-        catch{
-
-            curriculum = [];
-
-        }
-
+        return;
     }
 
+    if(issuesResult.error){
+        showMessage(
+            "خطأ في تحميل الإشكاليات: "+
+            issuesResult.error.message,
+            "error"
+        );
+        return;
+    }
 
-    renderCurriculum();
+    if(problemsResult.error){
+        showMessage(
+            "خطأ في تحميل المشاكل: "+
+            problemsResult.error.message,
+            "error"
+        );
+        return;
+    }
 
-    populateIssueSelect();
+    sections = sectionsResult.data || [];
+    issues = issuesResult.data || [];
+    problems = problemsResult.data || [];
 
+    renderProgram();
+
+    populateArticleSections();
 }
 
 
 /* =====================================================
-   SAVE CURRICULUM
+   RENDER PROGRAM
 ===================================================== */
 
-function saveCurriculum(){
+function renderProgram(){
 
-    localStorage.setItem(
-        "riwak_curriculum",
-        JSON.stringify(
-            curriculum
-        )
-    );
+    programList.innerHTML="";
 
-}
+    if(!sections.length){
 
-
-/* =====================================================
-   RENDER CURRICULUM
-===================================================== */
-
-function renderCurriculum(){
-
-    curriculumList.innerHTML =
-        "";
-
-
-    if(
-        curriculum.length === 0
-    ){
-
-        curriculumList.innerHTML = `
-
-            <div style="
-                color:#a39e93;
-                padding:20px;
-                text-align:center;
-            ">
-
-                لم تتم إضافة أي إشكالية بعد.
-
+        programList.innerHTML=`
+            <div class="empty">
+                لا توجد شعب حتى الآن.
             </div>
-
         `;
 
         return;
-
     }
 
 
-    curriculum.forEach(
-        function(issue,index){
+    sections.forEach(section=>{
 
-            const issueElement =
-                document.createElement(
-                    "div"
-                );
-
-            issueElement.className =
-                "issue";
-
-
-            const header =
-                document.createElement(
-                    "div"
-                );
-
-            header.className =
-                "issue-header";
-
-
-            const title =
-                document.createElement(
-                    "div"
-                );
-
-            title.className =
-                "issue-name";
-
-            title.textContent =
-                issue.name;
-
-
-            const headerButtons =
-                document.createElement(
-                    "div"
-                );
-
-
-            const addProblem =
-                document.createElement(
-                    "button"
-                );
-
-            addProblem.className =
-                "btn btn-gold";
-
-            addProblem.textContent =
-                "+ إضافة مشكلة";
-
-
-            addProblem.onclick =
-                function(){
-
-                    selectedIssueIndex =
-                        index;
-
-                    document
-                    .getElementById(
-                        "problemName"
-                    )
-                    .value = "";
-
-                    document
-                    .getElementById(
-                        "problemModal"
-                    )
-                    .classList.add(
-                        "active"
-                    );
-
-                };
-
-
-            const deleteIssue =
-                document.createElement(
-                    "button"
-                );
-
-            deleteIssue.className =
-                "btn btn-red";
-
-            deleteIssue.textContent =
-                "حذف الإشكالية";
-
-
-            deleteIssue.onclick =
-                function(){
-
-                    deleteIssueByIndex(
-                        index
-                    );
-
-                };
-
-
-            headerButtons.appendChild(
-                addProblem
-            );
-
-            headerButtons.appendChild(
-                deleteIssue
+        const sectionIssues =
+            issues.filter(
+                issue =>
+                issue.section_id === section.id
             );
 
 
-            header.appendChild(
-                title
-            );
+        const sectionCard =
+            document.createElement("div");
 
-            header.appendChild(
-                headerButtons
-            );
+        sectionCard.className =
+            "section-card";
 
 
-            const problems =
-                document.createElement(
-                    "div"
+        const header =
+            document.createElement("div");
+
+        header.className =
+            "section-header";
+
+
+        header.innerHTML=`
+
+            <div class="section-title">
+                ${escapeHtml(section.name)}
+            </div>
+
+            <div class="section-actions">
+
+                <button
+                    class="btn btn-gold"
+                    onclick="addIssue(${section.id})">
+                    + إضافة إشكالية
+                </button>
+
+                <button
+                    class="btn btn-dark"
+                    onclick="editSection(${section.id})">
+                    تعديل
+                </button>
+
+                <button
+                    class="btn btn-red"
+                    onclick="deleteSection(${section.id})">
+                    حذف
+                </button>
+
+            </div>
+        `;
+
+
+        const semesters =
+            document.createElement("div");
+
+        semesters.className =
+            "semesters";
+
+
+        for(let semester=1;semester<=3;semester++){
+
+            const semesterBox =
+                document.createElement("div");
+
+            semesterBox.className =
+                "semester";
+
+
+            const semesterIssues =
+                sectionIssues.filter(
+                    issue =>
+                    Number(issue.sort_order) === semester
                 );
 
-            problems.className =
-                "problems";
 
+            semesterBox.innerHTML=`
 
-            if(
-                !issue.problems ||
-                issue.problems.length === 0
-            ){
+                <div class="semester-header">
 
-                problems.innerHTML = `
-
-                    <div style="
-                        color:#888;
-                        padding:10px;
-                    ">
-
-                        لا توجد مشاكل داخل هذه الإشكالية.
-
+                    <div class="semester-title">
+                        الفصل ${semester}
                     </div>
 
+                    <button
+                        class="btn btn-gold"
+                        onclick="addIssue(${section.id},${semester})">
+                        +
+                    </button>
+
+                </div>
+
+                <div class="issue-list"
+                     id="issues-${section.id}-${semester}">
+                </div>
+            `;
+
+
+            const issueList =
+                semesterBox.querySelector(
+                    ".issue-list"
+                );
+
+
+            if(!semesterIssues.length){
+
+                issueList.innerHTML=`
+                    <div class="empty">
+                        لا توجد إشكاليات.
+                    </div>
                 `;
+
+            }
+            else{
+
+                semesterIssues.forEach(issue=>{
+
+                    const issueProblems =
+                        problems.filter(
+                            problem =>
+                            problem.issue_id === issue.id
+                        );
+
+
+                    const issueBox =
+                        document.createElement("div");
+
+                    issueBox.className="issue";
+
+
+                    issueBox.innerHTML=`
+
+                        <div class="issue-header">
+
+                            <div class="issue-name">
+                                ${escapeHtml(issue.name)}
+                            </div>
+
+                            ${
+                                issue.subtitle
+                                ?
+                                `<div class="issue-subtitle">
+                                    ${escapeHtml(issue.subtitle)}
+                                </div>`
+                                :
+                                ""
+                            }
+
+                            <div class="issue-actions">
+
+                                <button
+                                    class="btn btn-gold"
+                                    onclick="addProblem(${issue.id})">
+                                    + مشكلة
+                                </button>
+
+                                <button
+                                    class="btn btn-dark"
+                                    onclick="editIssue(${issue.id})">
+                                    تعديل
+                                </button>
+
+                                <button
+                                    class="btn btn-red"
+                                    onclick="deleteIssue(${issue.id})">
+                                    حذف
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="problems"></div>
+                    `;
+
+
+                    const problemBox =
+                        issueBox.querySelector(".problems");
+
+
+                    if(!issueProblems.length){
+
+                        problemBox.innerHTML=`
+                            <div class="empty">
+                                لا توجد مشاكل.
+                            </div>
+                        `;
+
+                    }
+                    else{
+
+                        issueProblems.forEach(problem=>{
+
+                            const row =
+                                document.createElement("div");
+
+                            row.className="problem";
+
+
+                            row.innerHTML=`
+
+                                <div class="problem-name">
+                                    ${escapeHtml(problem.name)}
+                                </div>
+
+                                <div>
+
+                                    <button
+                                        class="btn btn-dark"
+                                        onclick="editProblem(${problem.id})">
+                                        تعديل
+                                    </button>
+
+                                    <button
+                                        class="btn btn-red"
+                                        onclick="deleteProblem(${problem.id})">
+                                        حذف
+                                    </button>
+
+                                </div>
+                            `;
+
+
+                            problemBox.appendChild(row);
+
+                        });
+
+                    }
+
+
+                    issueList.appendChild(issueBox);
+
+                });
 
             }
 
 
-            (
-                issue.problems || []
-            )
-            .forEach(
-                function(problem,problemIndex){
-
-                    const row =
-                        document.createElement(
-                            "div"
-                        );
-
-                    row.className =
-                        "problem";
-
-
-                    const name =
-                        document.createElement(
-                            "div"
-                        );
-
-                    name.className =
-                        "problem-name";
-
-                    name.textContent =
-                        problem;
-
-
-                    const deleteButton =
-                        document.createElement(
-                            "button"
-                        );
-
-                    deleteButton.className =
-                        "btn btn-red";
-
-                    deleteButton.textContent =
-                        "حذف";
-
-
-                    deleteButton.onclick =
-                        function(){
-
-                            deleteProblem(
-                                index,
-                                problemIndex
-                            );
-
-                        };
-
-
-                    row.appendChild(
-                        name
-                    );
-
-                    row.appendChild(
-                        deleteButton
-                    );
-
-                    problems.appendChild(
-                        row
-                    );
-
-                }
-            );
-
-
-            issueElement.appendChild(
-                header
-            );
-
-            issueElement.appendChild(
-                problems
-            );
-
-
-            curriculumList.appendChild(
-                issueElement
-            );
+            semesters.appendChild(semesterBox);
 
         }
-    );
+
+
+        sectionCard.appendChild(header);
+
+        sectionCard.appendChild(semesters);
+
+        programList.appendChild(sectionCard);
+
+    });
 
 }
+
+
+/* =====================================================
+   ESCAPE
+===================================================== */
+
+function escapeHtml(value){
+
+    return String(value || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   ADD SECTION
+===================================================== */
+
+document
+.getElementById("addSectionButton")
+.addEventListener("click",async()=>{
+
+    const input =
+        document.getElementById("sectionName");
+
+    const name =
+        input.value.trim();
+
+    if(!name){
+
+        showMessage(
+            "اكتب اسم الشعبة.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const {error} =
+        await supabaseClient
+        .from("sections")
+        .insert({
+            name:name,
+            sort_order:sections.length+1
+        });
+
+
+    if(error){
+
+        showMessage(
+            error.message,
+            "error"
+        );
+
+        return;
+    }
+
+
+    input.value="";
+
+    showMessage("تمت إضافة الشعبة.");
+
+    await loadProgram();
+
+});
+
+
+/* =====================================================
+   EDIT SECTION
+===================================================== */
+
+window.editSection = function(id){
+
+    const section =
+        sections.find(s=>s.id===id);
+
+    if(!section) return;
+
+
+    openModal(
+        "تعديل الشعبة",
+        `
+        <label>اسم الشعبة</label>
+
+        <input
+            id="editSectionName"
+            value="${escapeHtml(section.name)}">
+
+        <div class="buttons">
+
+            <button
+                class="btn btn-gold"
+                onclick="saveSectionEdit(${id})">
+                حفظ
+            </button>
+
+        </div>
+        `
+    );
+
+};
+
+
+window.saveSectionEdit = async function(id){
+
+    const name =
+        document
+        .getElementById("editSectionName")
+        .value
+        .trim();
+
+    if(!name) return;
+
+
+    const {error} =
+        await supabaseClient
+        .from("sections")
+        .update({name:name})
+        .eq("id",id);
+
+
+    if(error){
+
+        showMessage(
+            error.message,
+            "error"
+        );
+
+        return;
+    }
+
+
+    closeModal();
+
+    showMessage("تم تعديل الشعبة.");
+
+    await loadProgram();
+
+};
+
+
+/* =====================================================
+   DELETE SECTION
+===================================================== */
+
+window.deleteSection = async function(id){
+
+    const section =
+        sections.find(s=>s.id===id);
+
+    if(!section) return;
+
+
+    if(!confirm(
+        "سيتم حذف الشعبة وكل الإشكاليات والمشاكل التابعة لها.\n\nهل أنت متأكد؟"
+    )) return;
+
+
+    const {error} =
+        await supabaseClient
+        .from("sections")
+        .delete()
+        .eq("id",id);
+
+
+    if(error){
+
+        showMessage(
+            error.message,
+            "error"
+        );
+
+        return;
+    }
+
+
+    showMessage("تم حذف الشعبة.");
+
+    await loadProgram();
+
+};
 
 
 /* =====================================================
    ADD ISSUE
 ===================================================== */
 
-document
-.getElementById(
-    "addIssueButton"
-)
-.addEventListener(
-    "click",
-    function(){
+window.addIssue = function(sectionId,semester=1){
 
-        const name =
+    openModal(
+        "إضافة إشكالية",
+        `
+        <label>اسم الإشكالية</label>
+
+        <input
+            id="newIssueName"
+            placeholder="مثال: إدراك العالم الخارجي">
+
+        <br><br>
+
+        <label>الوصف</label>
+
+        <input
+            id="newIssueSubtitle"
+            placeholder="وصف اختياري">
+
+        <br><br>
+
+        <label>الفصل</label>
+
+        <select id="newIssueSemester">
+
+            <option value="1"
+                ${semester===1?"selected":""}>
+                الفصل الأول
+            </option>
+
+            <option value="2"
+                ${semester===2?"selected":""}>
+                الفصل الثاني
+            </option>
+
+            <option value="3"
+                ${semester===3?"selected":""}>
+                الفصل الثالث
+            </option>
+
+        </select>
+
+        <div class="buttons">
+
+            <button
+                class="btn btn-gold"
+                onclick="saveNewIssue(${sectionId})">
+                إضافة
+            </button>
+
+        </div>
+        `
+    );
+
+};
+
+
+window.saveNewIssue = async function(sectionId){
+
+    const name =
+        document
+        .getElementById("newIssueName")
+        .value
+        .trim();
+
+    const subtitle =
+        document
+        .getElementById("newIssueSubtitle")
+        .value
+        .trim();
+
+    const semester =
+        Number(
             document
-            .getElementById(
-                "issueName"
-            )
+            .getElementById("newIssueSemester")
             .value
-            .trim();
+        );
 
 
-        const subtitle =
-            document
-            .getElementById(
-                "issueSubtitle"
-            )
-            .value
-            .trim();
+    if(!name){
+
+        showMessage(
+            "اكتب اسم الإشكالية.",
+            "error"
+        );
+
+        return;
+    }
 
 
-        if(!name){
-
-            showMessage(
-                "اكتب اسم الإشكالية أولًا.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        curriculum.push({
-
+    const {error} =
+        await supabaseClient
+        .from("issues")
+        .insert({
+            section_id:sectionId,
             name:name,
-
-            subtitle:
-                subtitle,
-
-            problems:[]
-
+            subtitle:subtitle,
+            sort_order:semester
         });
 
 
-        saveCurriculum();
-
-        renderCurriculum();
-
-        populateIssueSelect();
-
-
-        document
-        .getElementById(
-            "issueName"
-        )
-        .value = "";
-
-
-        document
-        .getElementById(
-            "issueSubtitle"
-        )
-        .value = "";
-
+    if(error){
 
         showMessage(
-            "تمت إضافة الإشكالية."
+            error.message,
+            "error"
         );
 
+        return;
     }
-);
+
+
+    closeModal();
+
+    showMessage("تمت إضافة الإشكالية.");
+
+    await loadProgram();
+
+};
+
+
+/* =====================================================
+   EDIT ISSUE
+===================================================== */
+
+window.editIssue = function(id){
+
+    const issue =
+        issues.find(i=>i.id===id);
+
+    if(!issue) return;
+
+
+    openModal(
+        "تعديل الإشكالية",
+        `
+        <label>اسم الإشكالية</label>
+
+        <input
+            id="editIssueName"
+            value="${escapeHtml(issue.name)}">
+
+        <br><br>
+
+        <label>الوصف</label>
+
+        <input
+            id="editIssueSubtitle"
+            value="${escapeHtml(issue.subtitle)}">
+
+        <br><br>
+
+        <label>الفصل</label>
+
+        <select id="editIssueSemester">
+
+            <option value="1"
+                ${issue.sort_order===1?"selected":""}>
+                الفصل الأول
+            </option>
+
+            <option value="2"
+                ${issue.sort_order===2?"selected":""}>
+                الفصل الثاني
+            </option>
+
+            <option value="3"
+                ${issue.sort_order===3?"selected":""}>
+                الفصل الثالث
+            </option>
+
+        </select>
+
+        <div class="buttons">
+
+            <button
+                class="btn btn-gold"
+                onclick="saveIssueEdit(${id})">
+                حفظ
+            </button>
+
+        </div>
+        `
+    );
+
+};
+
+
+window.saveIssueEdit = async function(id){
+
+    const name =
+        document
+        .getElementById("editIssueName")
+        .value
+        .trim();
+
+    const subtitle =
+        document
+        .getElementById("editIssueSubtitle")
+        .value
+        .trim();
+
+    const semester =
+        Number(
+            document
+            .getElementById("editIssueSemester")
+            .value
+        );
+
+
+    if(!name) return;
+
+
+    const {error} =
+        await supabaseClient
+        .from("issues")
+        .update({
+            name:name,
+            subtitle:subtitle,
+            sort_order:semester
+        })
+        .eq("id",id);
+
+
+    if(error){
+
+        showMessage(
+            error.message,
+            "error"
+        );
+
+        return;
+    }
+
+
+    closeModal();
+
+    showMessage("تم تعديل الإشكالية.");
+
+    await loadProgram();
+
+};
 
 
 /* =====================================================
    DELETE ISSUE
 ===================================================== */
 
-function deleteIssueByIndex(index){
+window.deleteIssue = async function(id){
 
-    const issue =
-        curriculum[index];
-
-
-    if(!issue){
-
-        return;
-
-    }
+    if(!confirm(
+        "هل تريد حذف هذه الإشكالية وكل المشاكل التابعة لها؟"
+    )) return;
 
 
-    const confirmed =
-        confirm(
-            "هل تريد حذف الإشكالية:\n\n" +
-            issue.name +
-            "\n\nسيتم حذفها من البرنامج."
-        );
+    const {error} =
+        await supabaseClient
+        .from("issues")
+        .delete()
+        .eq("id",id);
 
 
-    if(!confirmed){
-
-        return;
-
-    }
-
-
-    curriculum.splice(
-        index,
-        1
-    );
-
-
-    saveCurriculum();
-
-    renderCurriculum();
-
-    populateIssueSelect();
-
-
-    showMessage(
-        "تم حذف الإشكالية."
-    );
-
-}
-
-
-/* =====================================================
-   SAVE PROBLEM
-===================================================== */
-
-document
-.getElementById(
-    "saveProblemButton"
-)
-.addEventListener(
-    "click",
-    function(){
-
-        const name =
-            document
-            .getElementById(
-                "problemName"
-            )
-            .value
-            .trim();
-
-
-        if(
-            !name ||
-            selectedIssueIndex === null
-        ){
-
-            return;
-
-        }
-
-
-        const issue =
-            curriculum[
-                selectedIssueIndex
-            ];
-
-
-        if(
-            !issue.problems
-        ){
-
-            issue.problems = [];
-
-        }
-
-
-        issue.problems.push(
-            name
-        );
-
-
-        saveCurriculum();
-
-        renderCurriculum();
-
-        populateIssueSelect();
-
-
-        document
-        .getElementById(
-            "problemModal"
-        )
-        .classList.remove(
-            "active"
-        );
-
-
-        selectedIssueIndex =
-            null;
-
+    if(error){
 
         showMessage(
-            "تمت إضافة المشكلة."
+            error.message,
+            "error"
         );
 
+        return;
     }
-);
+
+
+    showMessage("تم حذف الإشكالية.");
+
+    await loadProgram();
+
+};
 
 
 /* =====================================================
-   CLOSE PROBLEM MODAL
+   ADD PROBLEM
 ===================================================== */
 
-document
-.getElementById(
-    "closeProblemModal"
-)
-.addEventListener(
-    "click",
-    function(){
+window.addProblem = function(issueId){
 
+    openModal(
+        "إضافة مشكلة",
+        `
+        <label>اسم المشكلة</label>
+
+        <input
+            id="newProblemName"
+            placeholder="مثال: هل الإدراك مجرد إحساس؟">
+
+        <div class="buttons">
+
+            <button
+                class="btn btn-gold"
+                onclick="saveNewProblem(${issueId})">
+                إضافة المشكلة
+            </button>
+
+        </div>
+        `
+    );
+
+};
+
+
+window.saveNewProblem = async function(issueId){
+
+    const name =
         document
-        .getElementById(
-            "problemModal"
-        )
-        .classList.remove(
-            "active"
+        .getElementById("newProblemName")
+        .value
+        .trim();
+
+    if(!name){
+
+        showMessage(
+            "اكتب اسم المشكلة.",
+            "error"
         );
 
-        selectedIssueIndex =
-            null;
-
+        return;
     }
-);
+
+
+    const count =
+        problems.filter(
+            p=>p.issue_id===issueId
+        ).length;
+
+
+    const {error} =
+        await supabaseClient
+        .from("problems")
+        .insert({
+            issue_id:issueId,
+            name:name,
+            sort_order:count+1
+        });
+
+
+    if(error){
+
+        showMessage(
+            error.message,
+            "error"
+        );
+
+        return;
+    }
+
+
+    closeModal();
+
+    showMessage("تمت إضافة المشكلة.");
+
+    await loadProgram();
+
+};
+
+
+/* =====================================================
+   EDIT PROBLEM
+===================================================== */
+
+window.editProblem = function(id){
+
+    const problem =
+        problems.find(p=>p.id===id);
+
+    if(!problem) return;
+
+
+    openModal(
+        "تعديل المشكلة",
+        `
+        <label>اسم المشكلة</label>
+
+        <input
+            id="editProblemName"
+            value="${escapeHtml(problem.name)}">
+
+        <div class="buttons">
+
+            <button
+                class="btn btn-gold"
+                onclick="saveProblemEdit(${id})">
+                حفظ
+            </button>
+
+        </div>
+        `
+    );
+
+};
+
+
+window.saveProblemEdit = async function(id){
+
+    const name =
+        document
+        .getElementById("editProblemName")
+        .value
+        .trim();
+
+    if(!name) return;
+
+
+    const {error} =
+        await supabaseClient
+        .from("problems")
+        .update({name:name})
+        .eq("id",id);
+
+
+    if(error){
+
+        showMessage(
+            error.message,
+            "error"
+        );
+
+        return;
+    }
+
+
+    closeModal();
+
+    showMessage("تم تعديل المشكلة.");
+
+    await loadProgram();
+
+};
 
 
 /* =====================================================
    DELETE PROBLEM
 ===================================================== */
 
-function deleteProblem(
-    issueIndex,
-    problemIndex
-){
+window.deleteProblem = async function(id){
 
-    const issue =
-        curriculum[
-            issueIndex
-        ];
+    if(!confirm(
+        "هل تريد حذف هذه المشكلة؟"
+    )) return;
 
 
-    const problem =
-        issue.problems[
-            problemIndex
-        ];
-
-
-    if(
-        !confirm(
-            "حذف المشكلة:\n\n" +
-            problem
-        )
-    ){
-
-        return;
-
-    }
-
-
-    issue.problems.splice(
-        problemIndex,
-        1
-    );
-
-
-    saveCurriculum();
-
-    renderCurriculum();
-
-    populateIssueSelect();
-
-
-    showMessage(
-        "تم حذف المشكلة."
-    );
-
-}
-
-
-/* =====================================================
-   POPULATE ISSUE SELECT
-===================================================== */
-
-function populateIssueSelect(){
-
-    articleIssue.innerHTML = `
-
-        <option value="">
-            اختر الإشكالية
-        </option>
-
-    `;
-
-
-    curriculum.forEach(
-        function(issue,index){
-
-            const option =
-                document.createElement(
-                    "option"
-                );
-
-            option.value =
-                index;
-
-            option.textContent =
-                issue.name;
-
-            articleIssue.appendChild(
-                option
-            );
-
-        }
-    );
-
-
-    updateProblemSelect();
-
-}
-
-
-/* =====================================================
-   UPDATE PROBLEM SELECT
-===================================================== */
-
-articleIssue.addEventListener(
-    "change",
-    updateProblemSelect
-);
-
-
-function updateProblemSelect(){
-
-    articleProblem.innerHTML = `
-
-        <option value="">
-            اختر المشكلة
-        </option>
-
-    `;
-
-
-    const index =
-        articleIssue.value;
-
-
-    if(index === ""){
-
-        return;
-
-    }
-
-
-    const issue =
-        curriculum[
-            Number(index)
-        ];
-
-
-    if(!issue){
-
-        return;
-
-    }
-
-
-    (
-        issue.problems || []
-    )
-    .forEach(
-        function(problem){
-
-            const option =
-                document.createElement(
-                    "option"
-                );
-
-            option.value =
-                problem;
-
-            option.textContent =
-                problem;
-
-            articleProblem.appendChild(
-                option
-            );
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   LOAD ARTICLES
-===================================================== */
-
-async function loadArticles(){
-
-    articlesTable.innerHTML = `
-
-        <tr>
-
-            <td colspan="5"
-                style="text-align:center;">
-
-                جاري تحميل المقالات...
-
-            </td>
-
-        </tr>
-
-    `;
-
-
-    const {
-        data,
-        error
-    } =
+    const {error} =
         await supabaseClient
-        .from("articles")
-        .select("*")
-        .order(
-            "created_at",
-            {
-                ascending:false
-            }
-        );
+        .from("problems")
+        .delete()
+        .eq("id",id);
 
 
     if(error){
 
-        console.error(error);
-
         showMessage(
-            "تعذر تحميل المقالات: " +
             error.message,
             "error"
         );
 
         return;
-
     }
 
 
-    articles =
-        data || [];
+    showMessage("تم حذف المشكلة.");
 
+    await loadProgram();
+
+};
+
+
+/* =====================================================
+   ARTICLE SECTION
+===================================================== */
+
+function populateArticleSections(){
+
+    articleSection.innerHTML=
+        `<option value="">اختر الشعبة</option>`;
+
+    sections.forEach(section=>{
+
+        const option =
+            document.createElement("option");
+
+        option.value=section.id;
+
+        option.textContent=section.name;
+
+        articleSection.appendChild(option);
+
+    });
+
+    populateArticleSemesters();
+
+}
+
+
+articleSection.addEventListener(
+    "change",
+    populateArticleSemesters
+);
+
+
+articleSemester.addEventListener(
+    "change",
+    populateArticleIssues
+);
+
+
+articleIssue.addEventListener(
+    "change",
+    populateArticleProblems
+);
+
+
+function populateArticleSemesters(){
+
+    articleSemester.innerHTML=`
+
+        <option value="">
+            اختر الفصل
+        </option>
+
+        <option value="1">
+            الفصل الأول
+        </option>
+
+        <option value="2">
+            الفصل الثاني
+        </option>
+
+        <option value="3">
+            الفصل الثالث
+        </option>
+    `;
+
+    articleIssue.innerHTML=
+        `<option value="">اختر الإشكالية</option>`;
+
+    articleProblem.innerHTML=
+        `<option value="">اختر المشكلة</option>`;
+}
+
+
+function populateArticleIssues(){
+
+    articleIssue.innerHTML=
+        `<option value="">اختر الإشكالية</option>`;
+
+    articleProblem.innerHTML=
+        `<option value="">اختر المشكلة</option>`;
+
+
+    const sectionId =
+        Number(articleSection.value);
+
+    const semester =
+        Number(articleSemester.value);
+
+
+    if(!sectionId || !semester) return;
+
+
+    issues
+    .filter(
+        issue =>
+        issue.section_id===sectionId &&
+        Number(issue.sort_order)===semester
+    )
+    .forEach(issue=>{
+
+        const option =
+            document.createElement("option");
+
+        option.value=issue.id;
+
+        option.textContent=issue.name;
+
+        articleIssue.appendChild(option);
+
+    });
+
+}
+
+
+function populateArticleProblems(){
+
+    articleProblem.innerHTML=
+        `<option value="">اختر المشكلة</option>`;
+
+
+    const issueId =
+        Number(articleIssue.value);
+
+    if(!issueId) return;
+
+
+    problems
+    .filter(
+        problem =>
+        problem.issue_id===issueId
+    )
+    .forEach(problem=>{
+
+        const option =
+            document.createElement("option");
+
+        option.value=problem.name;
+
+        option.textContent=problem.name;
+
+        articleProblem.appendChild(option);
+
+    });
+
+}
+
+
+/* =====================================================
+   ARTICLES
+===================================================== */
+
+async function loadArticles(){
+
+    articlesTable.innerHTML=`
+
+        <tr>
+            <td colspan="7"
+                style="text-align:center">
+                جاري تحميل المقالات...
+            </td>
+        </tr>
+    `;
+
+
+    const {data,error} =
+        await supabaseClient
+        .from("articles")
+        .select("*")
+        .order("created_at",{ascending:false});
+
+
+    if(error){
+
+        showMessage(
+            "تعذر تحميل المقالات: "+
+            error.message,
+            "error"
+        );
+
+        return;
+    }
+
+
+    articles=data || [];
 
     renderArticles();
 
 }
 
 
-/* =====================================================
-   RENDER ARTICLES
-===================================================== */
-
 function renderArticles(){
 
-    articlesTable.innerHTML =
-        "";
+    articlesTable.innerHTML="";
 
 
-    if(
-        articles.length === 0
-    ){
+    if(!articles.length){
 
-        articlesTable.innerHTML = `
+        articlesTable.innerHTML=`
 
             <tr>
-
-                <td
-                    colspan="5"
-                    style="text-align:center;">
-
+                <td colspan="7"
+                    style="text-align:center">
                     لا توجد مقالات.
-
                 </td>
-
             </tr>
-
         `;
 
         return;
-
     }
 
 
-    articles.forEach(
-        function(article){
+    articles.forEach(article=>{
 
-            const row =
-                document.createElement(
-                    "tr"
-                );
+        const row =
+            document.createElement("tr");
 
 
-            const title =
-                document.createElement(
-                    "td"
-                );
+        row.innerHTML=`
 
-            title.textContent =
-                article.title ||
-                "بدون عنوان";
+            <td>
+                ${escapeHtml(article.title || "-")}
+            </td>
 
+            <td>
+                ${escapeHtml(article.section || "-")}
+            </td>
 
-            const issue =
-                document.createElement(
-                    "td"
-                );
+            <td>
+                ${escapeHtml(article.semester || "-")}
+            </td>
 
-            issue.textContent =
-                article.issue ||
-                "-";
+            <td>
+                ${escapeHtml(article.issue || "-")}
+            </td>
 
+            <td>
+                ${escapeHtml(article.problem || "-")}
+            </td>
 
-            const problem =
-                document.createElement(
-                    "td"
-                );
+            <td>
 
-            problem.textContent =
-                article.problem ||
-                "-";
+                <span class="status ${
+                    article.published
+                    ?
+                    "status-published"
+                    :
+                    "status-hidden"
+                }">
 
+                    ${
+                        article.published
+                        ?
+                        "منشور"
+                        :
+                        "مخفي"
+                    }
 
-            const status =
-                document.createElement(
-                    "td"
-                );
+                </span>
 
+            </td>
 
-            const statusSpan =
-                document.createElement(
-                    "span"
-                );
+            <td>
 
+                <button
+                    class="btn btn-dark"
+                    onclick="editArticle(${article.id})">
+                    تعديل
+                </button>
 
-            statusSpan.className =
-                article.published
-                ?
-                "status status-published"
-                :
-                "status status-hidden";
+                <button
+                    class="btn ${
+                        article.published
+                        ?
+                        "btn-dark"
+                        :
+                        "btn-green"
+                    }"
+                    onclick="toggleArticle(${article.id})">
 
+                    ${
+                        article.published
+                        ?
+                        "إخفاء"
+                        :
+                        "نشر"
+                    }
 
-            statusSpan.textContent =
-                article.published
-                ?
-                "منشور"
-                :
-                "مخفي";
+                </button>
 
+                <button
+                    class="btn btn-red"
+                    onclick="deleteArticle(${article.id})">
+                    حذف
+                </button>
 
-            status.appendChild(
-                statusSpan
-            );
+            </td>
+        `;
 
 
-            const actions =
-                document.createElement(
-                    "td"
-                );
+        articlesTable.appendChild(row);
 
-
-            const edit =
-                document.createElement(
-                    "button"
-                );
-
-            edit.className =
-                "btn btn-dark";
-
-            edit.textContent =
-                "تعديل";
-
-
-            edit.onclick =
-                function(){
-
-                    editArticle(
-                        article
-                    );
-
-                };
-
-
-            const toggle =
-                document.createElement(
-                    "button"
-                );
-
-            toggle.className =
-                article.published
-                ?
-                "btn btn-dark"
-                :
-                "btn btn-green";
-
-            toggle.textContent =
-                article.published
-                ?
-                "إخفاء"
-                :
-                "نشر";
-
-
-            toggle.onclick =
-                function(){
-
-                    togglePublished(
-                        article
-                    );
-
-                };
-
-
-            const remove =
-                document.createElement(
-                    "button"
-                );
-
-            remove.className =
-                "btn btn-red";
-
-            remove.textContent =
-                "حذف";
-
-
-            remove.onclick =
-                function(){
-
-                    deleteArticle(
-                        article
-                    );
-
-                };
-
-
-            actions.appendChild(
-                edit
-            );
-
-            actions.appendChild(
-                toggle
-            );
-
-            actions.appendChild(
-                remove
-            );
-
-
-            row.appendChild(
-                title
-            );
-
-            row.appendChild(
-                issue
-            );
-
-            row.appendChild(
-                problem
-            );
-
-            row.appendChild(
-                status
-            );
-
-            row.appendChild(
-                actions
-            );
-
-
-            articlesTable.appendChild(
-                row
-            );
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   CLEAR ARTICLE FORM
-===================================================== */
-
-function clearArticleForm(){
-
-    editingArticleId =
-        null;
-
-
-    document
-    .getElementById(
-        "articleFormTitle"
-    )
-    .textContent =
-        "إضافة مقال جديد";
-
-
-    document
-    .getElementById(
-        "articleTitle"
-    )
-    .value = "";
-
-
-    document
-    .getElementById(
-        "articleType"
-    )
-    .value =
-        "مقال فلسفي";
-
-
-    document
-    .getElementById(
-        "articleAuthor"
-    )
-    .value =
-        "الأستاذ زيد";
-
-
-    document
-    .getElementById(
-        "articleExcerpt"
-    )
-    .value = "";
-
-
-    document
-    .getElementById(
-        "articleContent"
-    )
-    .value = "";
-
-
-    document
-    .getElementById(
-        "articlePublished"
-    )
-    .value =
-        "true";
-
-
-    articleIssue.value =
-        "";
-
-
-    updateProblemSelect();
-
-
-    document
-    .getElementById(
-        "cancelEditButton"
-    )
-    .style.display =
-        "none";
-
-}
-
-
-/* =====================================================
-   EDIT ARTICLE
-===================================================== */
-
-function editArticle(article){
-
-    editingArticleId =
-        article.id;
-
-
-    document
-    .getElementById(
-        "articleFormTitle"
-    )
-    .textContent =
-        "تعديل المقال";
-
-
-    document
-    .getElementById(
-        "articleTitle"
-    )
-    .value =
-        article.title || "";
-
-
-    document
-    .getElementById(
-        "articleType"
-    )
-    .value =
-        article.article_type ||
-        "مقال فلسفي";
-
-
-    document
-    .getElementById(
-        "articleAuthor"
-    )
-    .value =
-        article.author ||
-        "الأستاذ زيد";
-
-
-    document
-    .getElementById(
-        "articleExcerpt"
-    )
-    .value =
-        article.excerpt ||
-        "";
-
-
-    document
-    .getElementById(
-        "articleContent"
-    )
-    .value =
-        article.content ||
-        "";
-
-
-    document
-    .getElementById(
-        "articlePublished"
-    )
-    .value =
-        article.published
-        ?
-        "true"
-        :
-        "false";
-
-
-    const issueIndex =
-        curriculum.findIndex(
-            issue =>
-                normalizeText(
-                    issue.name
-                )
-                ===
-                normalizeText(
-                    article.issue
-                )
-        );
-
-
-    if(issueIndex >= 0){
-
-        articleIssue.value =
-            issueIndex;
-
-        updateProblemSelect();
-
-        articleProblem.value =
-            article.problem ||
-            "";
-
-    }
-
-
-    document
-    .getElementById(
-        "cancelEditButton"
-    )
-    .style.display =
-        "inline-block";
-
-
-    document
-    .querySelector(
-        '[data-panel="addArticlePanel"]'
-    )
-    .click();
-
-}
-
-
-/* =====================================================
-   NORMALIZE
-===================================================== */
-
-function normalizeText(value){
-
-    return String(
-        value || ""
-    )
-    .trim()
-    .replace(
-        /\s+/g,
-        " "
-    );
+    });
 
 }
 
@@ -2695,102 +2315,87 @@ function normalizeText(value){
 ===================================================== */
 
 document
-.getElementById(
-    "saveArticleButton"
-)
-.addEventListener(
-    "click",
-    saveArticle
-);
+.getElementById("saveArticleButton")
+.addEventListener("click",saveArticle);
 
 
 async function saveArticle(){
 
     const title =
-        document
-        .getElementById(
-            "articleTitle"
-        )
-        .value
-        .trim();
+        document.getElementById("articleTitle")
+        .value.trim();
 
+    const sectionId =
+        Number(articleSection.value);
 
-    const issueIndex =
-        articleIssue.value;
+    const semester =
+        Number(articleSemester.value);
 
+    const issueId =
+        Number(articleIssue.value);
 
     const problem =
         articleProblem.value;
 
-
     const content =
-        document
-        .getElementById(
-            "articleContent"
-        )
-        .value
-        .trim();
+        document.getElementById("articleContent")
+        .value.trim();
 
 
-    if(!title){
+    if(!title ||
+       !sectionId ||
+       !semester ||
+       !issueId ||
+       !problem ||
+       !content){
 
         showMessage(
-            "أدخل عنوان المقال.",
+            "أكمل جميع بيانات المقال.",
             "error"
         );
 
         return;
-
     }
 
 
-    if(issueIndex === ""){
-
-        showMessage(
-            "اختر الإشكالية.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    if(!problem){
-
-        showMessage(
-            "اختر المشكلة.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    if(!content){
-
-        showMessage(
-            "أدخل محتوى المقال.",
-            "error"
-        );
-
-        return;
-
-    }
-
+    const section =
+        sections.find(s=>s.id===sectionId);
 
     const issue =
-        curriculum[
-            Number(issueIndex)
-        ];
+        issues.find(i=>i.id===issueId);
 
 
-    const articleData = {
+    const articleData={
 
         title:title,
 
-        issue:issue.name,
+        section:
+            section
+            ?
+            section.name
+            :
+            "",
+
+        semester:
+            "الفصل " +
+            (
+                semester===1
+                ?
+                "الأول"
+                :
+                semester===2
+                ?
+                "الثاني"
+                :
+                "الثالث"
+            ),
+
+        issue:
+            issue
+            ?
+            issue.name
+            :
+            "",
 
         problem:problem,
 
@@ -2798,36 +2403,23 @@ async function saveArticle(){
 
         excerpt:
             document
-            .getElementById(
-                "articleExcerpt"
-            )
-            .value
-            .trim(),
+            .getElementById("articleExcerpt")
+            .value.trim(),
 
         article_type:
             document
-            .getElementById(
-                "articleType"
-            )
-            .value
-            .trim(),
+            .getElementById("articleType")
+            .value.trim(),
 
         author:
             document
-            .getElementById(
-                "articleAuthor"
-            )
-            .value
-            .trim(),
+            .getElementById("articleAuthor")
+            .value.trim(),
 
         published:
             document
-            .getElementById(
-                "articlePublished"
-            )
-            .value ===
-            "true"
-
+            .getElementById("articlePublished")
+            .value==="true"
     };
 
 
@@ -2839,42 +2431,28 @@ async function saveArticle(){
         result =
             await supabaseClient
             .from("articles")
-            .update(
-                articleData
-            )
-            .eq(
-                "id",
-                editingArticleId
-            );
+            .update(articleData)
+            .eq("id",editingArticleId);
 
     }
-
     else{
 
         result =
             await supabaseClient
             .from("articles")
-            .insert(
-                articleData
-            );
+            .insert(articleData);
 
     }
 
 
     if(result.error){
 
-        console.error(
-            result.error
-        );
-
         showMessage(
-            "حدث خطأ: " +
             result.error.message,
             "error"
         );
 
         return;
-
     }
 
 
@@ -2895,13 +2473,171 @@ async function saveArticle(){
 
 
 /* =====================================================
-   CANCEL EDIT
+   EDIT ARTICLE
 ===================================================== */
 
+window.editArticle = function(id){
+
+    const article =
+        articles.find(a=>a.id===id);
+
+    if(!article) return;
+
+
+    editingArticleId=id;
+
+
+    document
+    .getElementById("articleFormTitle")
+    .textContent="تعديل المقال";
+
+
+    document
+    .getElementById("articleTitle")
+    .value=article.title || "";
+
+
+    document
+    .getElementById("articleType")
+    .value=article.article_type || "مقال فلسفي";
+
+
+    document
+    .getElementById("articleAuthor")
+    .value=article.author || "الأستاذ زيد";
+
+
+    document
+    .getElementById("articleExcerpt")
+    .value=article.excerpt || "";
+
+
+    document
+    .getElementById("articleContent")
+    .value=article.content || "";
+
+
+    document
+    .getElementById("articlePublished")
+    .value=article.published
+        ?
+        "true"
+        :
+        "false";
+
+
+    const section =
+        sections.find(
+            s=>s.name===article.section
+        );
+
+
+    if(section){
+
+        articleSection.value=section.id;
+
+        populateArticleSemesters();
+
+        const semesterNumber =
+            article.semester === "الفصل الأول"
+            ?
+            1
+            :
+            article.semester === "الفصل الثاني"
+            ?
+            2
+            :
+            3;
+
+
+        articleSemester.value=
+            semesterNumber;
+
+        populateArticleIssues();
+
+
+        const issue =
+            issues.find(
+                i =>
+                i.section_id===section.id &&
+                i.name===article.issue &&
+                Number(i.sort_order)===semesterNumber
+            );
+
+
+        if(issue){
+
+            articleIssue.value=issue.id;
+
+            populateArticleProblems();
+
+            articleProblem.value=
+                article.problem || "";
+        }
+
+    }
+
+
+    document
+    .getElementById("cancelEditButton")
+    .style.display="inline-block";
+
+
+    document
+    .querySelector('[data-panel="addArticlePanel"]')
+    .click();
+
+};
+
+
+/* =====================================================
+   CLEAR ARTICLE
+===================================================== */
+
+function clearArticleForm(){
+
+    editingArticleId=null;
+
+    document
+    .getElementById("articleFormTitle")
+    .textContent="إضافة مقال جديد";
+
+    document
+    .getElementById("articleTitle")
+    .value="";
+
+    document
+    .getElementById("articleType")
+    .value="مقال فلسفي";
+
+    document
+    .getElementById("articleAuthor")
+    .value="الأستاذ زيد";
+
+    document
+    .getElementById("articleExcerpt")
+    .value="";
+
+    document
+    .getElementById("articleContent")
+    .value="";
+
+    document
+    .getElementById("articlePublished")
+    .value="true";
+
+    articleSection.value="";
+
+    populateArticleSemesters();
+
+    document
+    .getElementById("cancelEditButton")
+    .style.display="none";
+}
+
+
 document
-.getElementById(
-    "cancelEditButton"
-)
+.getElementById("cancelEditButton")
 .addEventListener(
     "click",
     clearArticleForm
@@ -2912,90 +2648,67 @@ document
    DELETE ARTICLE
 ===================================================== */
 
-async function deleteArticle(article){
+window.deleteArticle = async function(id){
 
-    const confirmed =
-        confirm(
-            "هل تريد حذف المقال:\n\n" +
-            article.title +
-            "\n\nهذا الإجراء لا يمكن التراجع عنه."
-        );
+    if(!confirm(
+        "هل تريد حذف هذا المقال؟"
+    )) return;
 
 
-    if(!confirmed){
-
-        return;
-
-    }
-
-
-    const {
-        error
-    } =
+    const {error} =
         await supabaseClient
         .from("articles")
         .delete()
-        .eq(
-            "id",
-            article.id
-        );
+        .eq("id",id);
 
 
     if(error){
 
         showMessage(
-            "تعذر حذف المقال: " +
             error.message,
             "error"
         );
 
         return;
-
     }
 
 
-    showMessage(
-        "تم حذف المقال."
-    );
-
+    showMessage("تم حذف المقال.");
 
     await loadArticles();
 
-}
+};
 
 
 /* =====================================================
-   TOGGLE PUBLISHED
+   TOGGLE ARTICLE
 ===================================================== */
 
-async function togglePublished(article){
+window.toggleArticle = async function(id){
 
-    const {
-        error
-    } =
+    const article =
+        articles.find(a=>a.id===id);
+
+    if(!article) return;
+
+
+    const {error} =
         await supabaseClient
         .from("articles")
         .update({
-
-            published:
-                !article.published
-
+            published:!article.published
         })
-        .eq(
-            "id",
-            article.id
-        );
+        .eq("id",id);
 
 
     if(error){
 
         showMessage(
-            "تعذر تغيير حالة المقال.",
+            error.message,
             "error"
         );
 
         return;
-
     }
 
 
@@ -3010,7 +2723,7 @@ async function togglePublished(article){
 
     await loadArticles();
 
-}
+};
 
 
 /* =====================================================
@@ -3019,17 +2732,15 @@ async function togglePublished(article){
 
 async function start(){
 
-    await loadCurriculum();
+    await loadProgram();
 
     await loadArticles();
 
 }
-
 
 start();
 
 </script>
 
 </body>
-
 </html>
