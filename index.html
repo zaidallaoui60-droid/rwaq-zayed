@@ -73,6 +73,10 @@ button{
     margin:auto;
 }
 
+/* =========================
+   NAVBAR
+========================= */
+
 .navbar{
     position:fixed;
     top:0;
@@ -155,6 +159,10 @@ button{
 .nav-menu a:hover{
     color:var(--gold-light);
 }
+
+/* =========================
+   HERO
+========================= */
 
 .hero{
     min-height:100vh;
@@ -351,6 +359,10 @@ button{
         );
 }
 
+/* =========================
+   GENERAL SECTIONS
+========================= */
+
 section.content-section{
     padding:85px 0;
 }
@@ -374,6 +386,10 @@ section.content-section{
     color:var(--gold);
     margin-bottom:8px;
 }
+
+/* =========================
+   PHILOSOPHERS
+========================= */
 
 .philosophers{
     background:
@@ -438,6 +454,10 @@ section.content-section{
     font-size:.8rem;
     margin-top:5px;
 }
+
+/* =========================
+   ARTICLES
+========================= */
 
 .articles{
     background:
@@ -595,6 +615,10 @@ section.content-section{
     margin-bottom:15px;
 }
 
+/* =========================
+   ARTICLE MODAL
+========================= */
+
 .article-modal{
     position:fixed;
     inset:0;
@@ -664,6 +688,10 @@ section.content-section{
     word-break:break-word;
 }
 
+/* =========================
+   ABOUT
+========================= */
+
 .about{
     text-align:center;
     background:var(--bg);
@@ -683,6 +711,10 @@ section.content-section{
     line-height:2;
 }
 
+/* =========================
+   FOOTER
+========================= */
+
 footer{
     padding:35px 0;
     border-top:1px solid rgba(197,160,89,.2);
@@ -701,6 +733,10 @@ footer{
     font-size:.75rem;
     margin-top:5px;
 }
+
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media(max-width:1000px){
 
@@ -789,6 +825,10 @@ footer{
 
 <body>
 
+<!-- =========================
+     NAVBAR
+========================= -->
+
 <nav class="navbar">
 
 <div class="container nav-container">
@@ -822,23 +862,27 @@ footer{
 <ul class="nav-menu">
 
 <li>
-<a href="#">الرئيسية</a>
+<a href="#">
+الرئيسية
+</a>
 </li>
 
 <li>
-<a href="#program">البرنامج</a>
+<a href="#philosophers">
+الفلاسفة
+</a>
 </li>
 
 <li>
-<a href="#philosophers">الفلاسفة</a>
+<a href="#articles">
+المقالات
+</a>
 </li>
 
 <li>
-<a href="#articles">المقالات</a>
-</li>
-
-<li>
-<a href="#about">حول المنصة</a>
+<a href="#about">
+حول المنصة
+</a>
 </li>
 
 </ul>
@@ -846,6 +890,10 @@ footer{
 </div>
 
 </nav>
+
+<!-- =========================
+     HERO
+========================= -->
 
 <section class="hero">
 
@@ -947,20 +995,15 @@ class="btn btn-gold">
 
 </a>
 
-<a href="#program"
-class="btn btn-outline">
-
-<i class="fa-solid fa-book-open"></i>
-
-استكشف البرنامج
-
-</a>
-
 </div>
 
 </div>
 
 </section>
+
+<!-- =========================
+     PHILOSOPHERS
+========================= -->
 
 <section
 class="content-section philosophers"
@@ -1104,113 +1147,9 @@ alt="ديكارت">
 
 </section>
 
-<section
-class="content-section program"
-id="program">
-
-<div class="container">
-
-<div class="section-header">
-
-<div class="decor">
-❖
-</div>
-
-<h2 class="section-title">
-البرنامج السنوي
-</h2>
-
-<p class="section-subtitle">
-اختر مسارك الدراسي للوصول إلى البرنامج الخاص بك.
-</p>
-
-</div>
-
-<div class="program-grid">
-
-<div class="program-card">
-
-<div class="program-image">
-
-<img
-src="https://commons.wikimedia.org/wiki/Special:Redirect/file/The%20Library%20of%20Celsus%2C%20Ephesus%20Interior.jpg"
-alt="السنة الثالثة آداب وفلسفة">
-
-<div class="number">
-I
-</div>
-
-</div>
-
-<div class="program-title">
-
-السنة الثالثة آداب وفلسفة
-
-<br>
-
-شعبة آداب وفلسفة
-
-</div>
-
-</div>
-
-<div class="program-card">
-
-<div class="program-image">
-
-<img
-src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Library%20of%20Alexandria%20%281%29.jpg"
-alt="السنة الثانية آداب وفلسفة">
-
-<div class="number">
-II
-</div>
-
-</div>
-
-<div class="program-title">
-
-السنة الثانية آداب وفلسفة
-
-<br>
-
-شعبة آداب وفلسفة
-
-</div>
-
-</div>
-
-<div class="program-card">
-
-<div class="program-image">
-
-<img
-src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Library%20of%20Alexandria%20-1.JPG"
-alt="الشعب العلمية واللغات">
-
-<div class="number">
-III
-</div>
-
-</div>
-
-<div class="program-title">
-
-السنة الثانية
-
-<br>
-
-الشعب العلمية واللغات
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
+<!-- =========================
+     ARTICLES
+========================= -->
 
 <section
 class="content-section articles"
@@ -1241,7 +1180,7 @@ id="articles">
 <i class="fa-solid fa-spinner fa-spin"></i>
 
 <div>
-جاري تحميل البرنامج والمقالات...
+جاري تحميل المقالات...
 </div>
 
 </div>
@@ -1251,6 +1190,10 @@ id="articles">
 </div>
 
 </section>
+
+<!-- =========================
+     ARTICLE MODAL
+========================= -->
 
 <div
 id="articleModal"
@@ -1287,6 +1230,10 @@ class="article-modal-content">
 
 </div>
 
+<!-- =========================
+     ABOUT
+========================= -->
+
 <section
 class="content-section about"
 id="about">
@@ -1321,6 +1268,10 @@ id="about">
 
 </section>
 
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
 
 <div class="container">
@@ -1339,6 +1290,10 @@ id="about">
 
 <script>
 
+/* =========================
+   SUPABASE
+========================= */
+
 const SUPABASE_URL =
 "https://mitzxvmmnlkjczbmrumk.supabase.co";
 
@@ -1350,6 +1305,10 @@ window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
+
+/* =========================
+   CURRICULUM
+========================= */
 
 const curriculum = [
 
@@ -1410,6 +1369,10 @@ const curriculum = [
 
 ];
 
+/* =========================
+   DOM ELEMENTS
+========================= */
+
 const articleContainer =
 document.getElementById(
     "articleContainer"
@@ -1439,6 +1402,10 @@ const closeArticleButton =
 document.getElementById(
     "closeArticleButton"
 );
+
+/* =========================
+   TEXT NORMALIZATION
+========================= */
 
 function normalizeText(value){
 
@@ -1499,12 +1466,15 @@ function problemMatches(
 
 }
 
+/* =========================
+   ARTICLE EXCERPT
+========================= */
+
 function getExcerpt(content){
 
     if(!content){
 
-        return
-        "اضغط على قراءة المقال لقراءة النص كاملًا.";
+        return "اضغط على قراءة المقال لقراءة النص كاملًا.";
 
     }
 
@@ -1521,6 +1491,10 @@ function getExcerpt(content){
     );
 
 }
+
+/* =========================
+   ARTICLE MODAL
+========================= */
 
 function openArticle(article){
 
@@ -1600,6 +1574,10 @@ document.addEventListener(
     }
 );
 
+/* =========================
+   ARTICLE CARD
+========================= */
+
 function createArticleCard(article){
 
     const card =
@@ -1677,6 +1655,10 @@ function createArticleCard(article){
     return card;
 
 }
+
+/* =========================
+   ISSUE SECTION
+========================= */
 
 function createIssueSection(
     issueData,
@@ -1804,6 +1786,10 @@ function createIssueSection(
     return section;
 
 }
+
+/* =========================
+   LOAD ARTICLES
+========================= */
 
 async function loadArticles(){
 
@@ -1959,4 +1945,5 @@ loadArticles();
 </script>
 
 </body>
+
 </html>
